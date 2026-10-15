@@ -27,10 +27,16 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare public files
+        run: |
+          mkdir -p _site
+          cp index.html 404.html styles.css script.js favicon.svg .nojekyll _site/
+          cp -R assets citations _site/
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

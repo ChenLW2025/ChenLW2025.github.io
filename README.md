@@ -1,17 +1,20 @@
-# Chen Linwei personal homepage
+# Linwei Chen · 陈林蔚
 
-Static GitHub Pages site for `ChenLW2025`.
+A buildless, bilingual research homepage for https://chenlw2025.github.io/.
 
-## Local preview
+## Preview
 
-From this directory:
+Run `py -m http.server 4173 --bind 127.0.0.1` in this directory, then visit http://127.0.0.1:4173/. Opening index.html directly also displays the page; clipboard support depends on a secure browser context.
 
-```powershell
-python -m http.server 4173
-```
+## Content
 
-Then open `http://localhost:4173`.
+- `index.html`: complete default English content. Chinese translations use `data-zh`; accessible labels use `data-aria-zh` and `data-alt-zh`.
+- `styles.css`: desktop, mobile, keyboard, reduced-motion, and print layouts.
+- `script.js`: browser-language detection, saved language preference, clipboard actions, and navigation state. Share `?lang=zh` or `?lang=en` to select a language; section anchors such as `#contact` are preserved. Content and citation downloads remain available without JavaScript.
+- `citations/`: BibTeX downloads. Keep them synchronized with the corresponding inline citation blocks.
+
+Publication metadata comes from the linked publisher pages. The Springer chapter was published online in July 2026; its publisher-specified citation year is 2027. The page explains both dates. Show published work only. Add new projects, profiles, photos, or journal entries only with source material.
 
 ## Deployment
 
-The site deploys through `.github/workflows/pages.yml` whenever changes are pushed to `main`.
+The existing GitHub Pages workflow deploys on pushes to `main`. It stages only the HTML, CSS, JavaScript, favicon, avatar and citation assets in `_site`; repository documentation is not deployed. Review the local preview before pushing. No build or external JavaScript dependencies are required.
