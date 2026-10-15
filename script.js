@@ -11,6 +11,7 @@
   };
   let language = "en";
   function setLanguage(next, updateUrl = false) {
+    clearCopyStatus();
     language = next === "zh" ? "zh" : "en";
     document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
     translations.forEach(({element, english}) => {
@@ -21,8 +22,8 @@
       if (label) element.setAttribute("aria-label", language === "zh" ? element.dataset.ariaZh : label);
       if (alt) element.setAttribute("alt", language === "zh" ? element.dataset.altZh : alt);
     });
-    const degree = document.querySelector(".hero-name span[lang]");
-    if (degree) degree.lang = language === "zh" ? "zh-CN" : "en";
+    const alternateName = document.querySelector("#alternate-name");
+    if (alternateName) alternateName.lang = language === "zh" ? "en" : "zh-CN";
     languageButton.textContent = language === "zh" ? "EN ↗" : "中文 ↗";
     languageButton.setAttribute("aria-label", language === "zh" ? "Switch to English" : "切换为中文 / Switch to Chinese");
     languageButton.lang = language === "zh" ? "en" : "zh-CN";
@@ -50,25 +51,46 @@
     language = initialLanguage;
   }
   const status = document.querySelector("#copy-status");
+  let statusTimer;
+  const buttonTimers = new WeakMap();
+  function clearCopyStatus() {
+    window.clearTimeout(statusTimer);
+    if (status) status.textContent = "";
+  }
+  document.addEventListener("copy", clearCopyStatus);
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") clearCopyStatus();
+  });
   document.querySelectorAll("[data-copy], [data-copy-text]").forEach(button => {
-    if (!navigator.clipboard?.writeText) return;
     button.hidden = false;
     button.addEventListener("click", async () => {
       const value = button.dataset.copyText || document.getElementById(button.dataset.copy)?.textContent;
       if (!value) return;
-      status.textContent = "";
+      clearCopyStatus();
+      window.clearTimeout(buttonTimers.get(button));
       try {
+        if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
         await navigator.clipboard.writeText(value.trim());
         status.textContent = language === "zh" ? "已复制到剪贴板。" : "Copied to clipboard.";
         button.textContent = language === "zh" ? "已复制 ✓" : "Copied ✓";
+        statusTimer = window.setTimeout(() => { status.textContent = ""; }, 2800);
       } catch {
-        status.textContent = language === "zh" ? "复制未成功，请手动选择文本或下载引用。" : "Copy unavailable. Select the text or download the citation.";
-        button.textContent = language === "zh" ? "请手动复制" : "Select text to copy";
+        const target = document.getElementById(button.dataset.copy || button.dataset.copySelect);
+        const selection = window.getSelection();
+        if (target && selection) {
+          const range = document.createRange();
+          range.selectNodeContents(target);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+        status.textContent = language === "zh" ? "自动复制不可用，文本已选中。请使用系统复制。" : "Automatic copy unavailable. Text selected: use your device's Copy command.";
+        if (button.dataset.copy) status.textContent += language === "zh" ? "也可下载 .bib 文件。" : " You can also download the .bib file.";
+        button.textContent = language === "zh" ? "文本已选中" : "Text selected";
       }
-      window.setTimeout(() => {
+      buttonTimers.set(button, window.setTimeout(() => {
         const original = translations.find(item => item.element === button);
         button.textContent = language === "zh" ? button.dataset.zh : original.english;
-      }, 2200);
+      }, 2800));
     });
   });
   const links = [...document.querySelectorAll(".main-nav a")];
@@ -76,7 +98,7 @@
   const header = document.querySelector(".site-header");
   let scheduled = false;
   function updateActiveSection() {
-    const headerHeight = header?.getBoundingClientRect().height || 94;
+    const headerHeight = header?.getBoundingClientRect().height || 78;
     document.documentElement.style.setProperty("--header-height", `${headerHeight}px`);
     let current = null;
     sections.forEach(section => { if (section.getBoundingClientRect().top <= headerHeight + 32) current = section.id; });
