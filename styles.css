@@ -120,7 +120,7 @@ main:focus-visible { outline: none; }
 .hero-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 9px; margin: -7px 0 22px; color: var(--green); font-size: 12px; line-height: 1.8; }
 .hero-name > span { color: var(--muted); font-size: 11px; }
 .hero-name > span[aria-hidden] { color: var(--coral); }
-.hero-lede { max-width: 570px; color: var(--muted); font-size: clamp(17px, 1.45vw, 20px); line-height: 1.7; }
+.hero-lede { max-width: 570px; color: var(--muted); font-size: clamp(17px, 1.45vw, 20px); line-height: 1.7; text-wrap: balance; }
 .hero-lede strong { color: var(--ink); font-weight: 550; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 25px; margin-top: 26px; }
 .button { display: inline-flex; justify-content: center; align-items: center; gap: 24px; min-height: 48px; max-width: 100%; padding: 12px 19px; border: 1px solid var(--green); color: var(--green); font-size: 12px; font-weight: 650; line-height: 1.5; transition: background 180ms ease, border-color 180ms ease, color 180ms ease; }
