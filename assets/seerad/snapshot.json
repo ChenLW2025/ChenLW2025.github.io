@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 17:42:49",
+  "ts": "2026-10-16 17:52:55",
   "gpus": [
-   "GPU0 99% 18/80GB 53C",
-   "GPU1 0% 9/40GB 30C",
-   "GPU2 0% 50/80GB 35C",
-   "GPU3 100% 39/40GB 52C"
+   "GPU0 100% 18/80GB 54C",
+   "GPU1 9% 7/40GB 42C",
+   "GPU2 0% 50/80GB 29C",
+   "GPU3 0% 4/40GB 26C"
   ],
   "source": 30,
   "producer": 30,
@@ -55,10 +55,6 @@
     {
      "who": "me",
      "desc": "main.py"
-    },
-    {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
     }
    ],
    "gpu2": [
@@ -69,8 +65,8 @@
    ],
    "gpu3": [
     {
-     "who": "me",
-     "desc": "e02_feature_cache.py"
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     },
     {
      "who": "me",
