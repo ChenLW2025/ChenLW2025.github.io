@@ -122,7 +122,7 @@ details[open] summary::before{transform:rotate(90deg)}
 <div class="hdr">
   <div>
     <h1>SEERAD 实验监控</h1>
-    <div class="sub" id="sub">seeds15-19 · LDM/SOTA 确认 · 本地只读</div>
+    <div class="sub" id="sub">seeds15-19 · CoND 外部 SOTA 独立确认 · 本地只读</div>
   </div>
   <span class="pill muted" id="conn"><span class="spin"></span> 连接中</span>
 </div>
@@ -144,7 +144,7 @@ details[open] summary::before{transform:rotate(90deg)}
   <h2><svg class="ic" viewBox="0 0 24 24"><path d="M12 8v5l3 2M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>近期实验动态</h2>
   <ul class="tl" id="feed"><li><span class="fl">读取中…</span></li></ul>
   <div class="sumline" style="margin-top:10px">最近完成的确认/联合均值单元与阶段事件，按服务器时间倒序（只展示最近 12 条）。</div>
-  <div class="sumline" style="margin-bottom:0">背景：K16/32/64 敏感性已选出候选 <b>K64-Spatial28</b>；<b>seeds5-9</b> 为开发种子（已 pareto 全胜，同分支不可宣称）；<b>seeds15-19</b> 为独立种子（决定性，当前在跑），完成后自动给出能否宣称 SOTA 的结论。</div>
+  <div class="sumline" style="margin-bottom:0">背景：K16/32/64 敏感性已选出新方法 <b>CoND</b>（内部配置 K64-Spatial28）；<b>seeds5-9</b> 为开发种子（已对内部 LDM 全胜，同分支不可宣称）；<b>seeds15-19</b> 为独立种子（决定性，当前在跑），完成后自动给出能否对外部 SOTA 宣称的结论。</div>
 </div>
 
 <div class="card">
@@ -154,17 +154,18 @@ details[open] summary::before{transform:rotate(90deg)}
   <details>
     <summary>这表怎么读 / 方法与论文思路分析</summary>
     <div class="detail-body">
-      <h4>候选方法 K64-Spatial28</h4>
+      <h4>新方法 CoND</h4>
+      <div class="bd" style="margin:2px 0 6px;color:var(--dim);font-size:11.5px">内部配置代号 K64-Spatial28-Image-K32-MultiScaleMean4_12-Pixel-v1（K64-Spatial28）；论文与看板对外统称 <b>CoND</b>。</div>
       <ul>
         <li><span class="k">图像分</span> = 0.35·max(avgpool28 空间窗, K64) + 0.65·top2% 均值；</li>
         <li><span class="k">定位分</span> 复用与论文 LDM 字节一致的 K32 定位图（保证公平，不引入新定位分支）；</li>
         <li><span class="k">像素分</span> = MultiScaleMean4_12 多尺度后处理。</li>
       </ul>
       <h4>和论文 LDM 的关系（内部增量，不是 SOTA 对手）</h4>
-      <p>LDM = query-local mean + covariance（局部均值/协方差），它本身就是论文主表里的一个方法（LDM (Ours) 行）。候选把“局部统计”的同一思路延伸到<span class="k">图像分聚合</span>（空间窗口 + top 比例）和<span class="k">像素分多尺度</span>。对 LDM 全部不劣只能说明<b>内部增量为正</b>，要宣称 SOTA 必须对主表里<b>外部竞争方法</b>逐格取最强者比较。</p>
+      <p>LDM = query-local mean + covariance（局部均值/协方差），它本身就是论文主表里的一个方法（LDM (Ours) 行）。CoND 把“局部统计”的同一思路延伸到<span class="k">图像分聚合</span>（空间窗口 + top 比例）和<span class="k">像素分多尺度</span>。对 LDM 全部不劣只能说明<b>内部增量为正</b>，要宣称 SOTA 必须对主表里<b>外部竞争方法</b>逐格取最强者比较。</p>
       <h4>对外部最强 SOTA 的结论（开发种子 5-9）</h4>
       <ul>
-        <li>逐格最强外部竞争者在 24 格上<b>全部来自本实验室前作 SubspaceAD</b>；候选对它为 <span class="k">19 胜 / 1 平 / 4 负</span>，并非全胜；</li>
+        <li>逐格最强外部竞争者在 24 格上<b>全部来自本实验室前作 SubspaceAD</b>；CoND 对它为 <span class="k">19 胜 / 1 平 / 4 负</span>，并非全胜；</li>
         <li>领先集中在 <span class="k">图像级 I-AUROC / I-AP</span>（VisA 2/4-shot 领先 +1.0~+1.3pp）与像素排名 P-AUROC；</li>
         <li><span class="k">4 个负格：</span>VisA 三个 shot 的 <b>AU-PRO 区域定位</b>全部落后（−0.8/−1.0/−1.2pp），以及 MVTec 1-shot I-AUROC 落后 0.3pp（96.8 vs 97.1）；</li>
         <li>定位分支复用 K32 未改，所以图像分大幅领先、区域定位 AU-PRO 仍欠约 1pp，与论文正文“LDM 的 VisA AU-PRO 低于 SubspaceAD”的事实一致。</li>
@@ -173,7 +174,7 @@ details[open] summary::before{transform:rotate(90deg)}
       <p>两层门槛：① 种子 5-9 是<span class="k">调参同一分支</span>（in-sample），必须用固定身份的<span class="k">独立种子 15-19</span> 复现；② 对外部最强 SOTA 不能有任何负格。目前开发种子对外部仍有 4 格落后（VisA AU-PRO），独立审计尚未产出（CONSUMER 联合均值在跑）。</p>
       <h4>论文三种走向（按独立结果）</h4>
       <ul>
-        <li><span class="k">独立种子对外部无负格：</span>可宣称全表超越外部 SOTA，候选作为 LDM 的即插即用升级，补简洁消融；</li>
+        <li><span class="k">独立种子对外部无负格：</span>可宣称全表超越外部 SOTA，CoND 作为 LDM 的即插即用升级，补简洁消融；</li>
         <li><span class="k">仅 VisA AU-PRO 仍负：</span>不主张全表 SOTA，可明确主张<span class="k">图像级/检测口径 SOTA</span>（I-AUROC/I-AP/P-AUROC 领先），并把区域定位作为限制或后续工作；</li>
         <li><span class="k">若要争全表：</span>需先补定位分支（当前 K32 未动），把 VisA AU-PRO 拉到 SubspaceAD 之上再重跑审计。</li>
       </ul>
@@ -201,6 +202,7 @@ details[open] summary::before{transform:rotate(90deg)}
 <div class="foot" id="foot">服务器主动外推 · 约每 10 分钟更新 · 不依赖你的电脑/网络</div>
 
 <script>
+var MNAME='CoND';
 var METRIC={i_auroc:'I-AUROC',i_ap:'I-AP',p_auroc:'P-AUROC',au_pro:'AU-PRO'};
 var DSNAME={mvtec_ad:'MVTec AD',visa:'VisA'};
 var SNAP_URL='snapshot.json?t='+Date.now();
@@ -303,7 +305,7 @@ function metricTable(cells, mode){
       var v=mode==='ext'?c.dext:c.delta, other=mode==='ext'?c.ext:c.paper;
       var cls=v>0.05?'pos':(v<-0.05?'neg':'zero');
       var who=mode==='ext'?(c.ext_method||'SOTA'):'LDM';
-      var tip='候选 '+c.cand.toFixed(1)+' / '+who+' '+other.toFixed(1);
+      var tip=MNAME+' '+c.cand.toFixed(1)+' / '+who+' '+other.toFixed(1);
       return '<td><span class="dchip '+cls+'" title="'+tip+'">'+fmtD(v)+'</span></td>';
     }).join('');
     rows+='<tr><td class="ds">'+DSNAME[ds]+'</td><td class="sh">'+shot+'-shot</td>'+tds+'</tr>';
@@ -331,13 +333,13 @@ function block(title, sub, audit, isDev, progressNote){
   if(sub)h+='<div class="bd">'+sub+'</div>';
   if(audit.summary_ext){
     h+=extSummaryLine(audit);
-    h+='<div class="bd">数字为候选相对该格 <b>最强外部竞争方法</b>（逐格选取，本表最强者为 '+strongest+'）的差值（pp）；绿=超过、红=落后、灰=持平；点按格内数字可看候选/对手绝对值。</div>';
+    h+='<div class="bd">数字为 '+MNAME+' 相对该格 <b>最强外部竞争方法</b>（逐格选取，本表最强者为 '+strongest+'）的差值（pp）；绿=超过、红=落后、灰=持平；点按格内数字可看 '+MNAME+'/对手绝对值。</div>';
     h+=metricTable(audit.cells||[],'ext');
   }
   if(audit.summary){
-    h+='<details style="margin-top:8px"><summary>内部对照：候选 vs 我们自己的论文 LDM（非外部 SOTA）</summary>'
+    h+='<details style="margin-top:8px"><summary>内部对照：'+MNAME+' vs 我们自己的论文 LDM（非外部 SOTA）</summary>'
       +'<div class="detail-body" style="padding-top:6px">'+ldmSummaryLine(audit)
-      +'<div class="bd">数字为候选相对论文 <b>LDM（Ours）</b> 行的差值（pp），属内部增量；LDM 本身也是表里的一个方法，不能据此宣称 SOTA。</div>'
+      +'<div class="bd">数字为 '+MNAME+' 相对论文 <b>LDM（Ours）</b> 行的差值（pp），属内部增量；LDM 本身也是表里的一个方法，不能据此宣称 SOTA。</div>'
       +metricTable(audit.cells||[],'ldm')+'</div></details>';
   }
   h+='</div>';
@@ -362,7 +364,7 @@ function renderSota(d){
   if(ind&&ext){
     if(ext.n_lose===0&&ext.n_win>0){
       v.innerHTML='<div class="verdict"><div class="vt">SOTA 成立（独立种子 15-19 超越外部最强）<span class="badge win">可宣称</span></div>'
-        +'<div class="vd">候选 K64-Spatial28 在固定身份独立种子上，24 格对外部最强竞争方法（'+(ext.strongest||[]).join('/')+'）无一格落后（胜 '+ext.n_win+' / 平 '+ext.n_tie+'），可宣称超越外部 SOTA。</div></div>';
+        +'<div class="vd">'+MNAME+' 在固定身份独立种子上，24 格对外部最强竞争方法（'+(ext.strongest||[]).join('/')+'）无一格落后（胜 '+ext.n_win+' / 平 '+ext.n_tie+'），可宣称超越外部 SOTA。</div></div>';
     } else if(ext.n_lose>0){
       v.innerHTML='<div class="verdict"><div class="vt">独立种子未达外部 SOTA（'+ext.n_lose+' 格落后）<span class="badge neg">不宣称全表 SOTA</span></div>'
         +'<div class="vd">对外部最强竞争方法（'+(ext.strongest||[]).join('/')+'）为 胜 '+ext.n_win+' / 平 '+ext.n_tie+' / 负 '+ext.n_lose+'，落后格见下表（集中在 VisA 区域定位 AU-PRO）。建议聚焦图像级指标或先补定位短板。</div></div>';
@@ -376,7 +378,7 @@ function renderSota(d){
       +'<div class="vd">'+vd+'</div></div>';
   }
   var html=block('开发种子 seeds 5-9（调参同分支，不可宣称）',
-    '候选 K64-Spatial28 对论文主表 tab:benchmark 中<b>需要比较的外部 SOTA 方法</b>（SPADE / PatchCore / WinCLIP / PromptAD / IIPAD / AnomalyDINO / SubspaceAD / AnoPLe / FastRef / FastRecon）逐格取最强者比较；不是对我们自己的 LDM。',dev,true,'');
+    MNAME+'（内部配置 K64-Spatial28）对论文主表 tab:benchmark 中<b>需要比较的外部 SOTA 方法</b>（SPADE / PatchCore / WinCLIP / PromptAD / IIPAD / AnomalyDINO / SubspaceAD / AnoPLe / FastRef / FastRecon）逐格取最强者比较；不是对我们自己的 LDM。',dev,true,'');
   html+=block('独立种子 seeds 15-19（决定性，可宣称口径）',
     '固定身份独立复现，对<b>外部最强 SOTA</b> 24 格无一格落后才能宣称 SOTA；对自己 LDM 的比较见折叠的内部对照。',ind,false,
     'PRODUCER 已完成 30/30；CONSUMER 联合均值进行中 '+d.consumer+'/30，完成后自动产出外部 SOTA 审计并判定。');
