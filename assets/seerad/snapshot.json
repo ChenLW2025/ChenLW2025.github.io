@@ -1,10 +1,10 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 16:11:54",
+  "ts": "2026-10-16 16:22:01",
   "gpus": [
-   "GPU0 99% 18/80GB 53C",
-   "GPU1 0% 3/40GB 28C",
-   "GPU2 0% 50/80GB 29C",
+   "GPU0 99% 69/80GB 55C",
+   "GPU1 0% 33/40GB 28C",
+   "GPU2 0% 50/80GB 30C",
    "GPU3 100% 37/40GB 51C"
   ],
   "source": 30,
@@ -20,7 +20,7 @@
   "failed_msg": "",
   "queue_p": false,
   "ev_p": false,
-  "cons_p": true,
+  "cons_p": false,
   "handoff_p": true,
   "orch_p": true,
   "lit": null,
@@ -41,16 +41,12 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
     }
    ],
    "gpu1": [
     {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     }
    ],
    "gpu2": [
