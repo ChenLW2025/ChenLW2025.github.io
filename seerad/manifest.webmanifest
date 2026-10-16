@@ -1,0 +1,15 @@
+{
+  "name": "SEERAD 实验监控",
+  "short_name": "SEERAD",
+  "description": "LDM/SOTA 实验流水线 · GPU 占用 · 结果摘要与推送",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070d1a",
+  "theme_color": "#0b1120",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
