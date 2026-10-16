@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 05:42:59",
+  "ts": "2026-10-17 05:53:05",
   "gpus": [
-   "GPU0 18% 69/80GB 40C",
-   "GPU1 0% 33/40GB 27C",
-   "GPU2 0% 50/80GB 29C",
-   "GPU3 0% 1/40GB 26C"
+   "GPU0 92% 69/80GB 56C",
+   "GPU1 0% 2/40GB 32C",
+   "GPU2 0% 50/80GB 31C",
+   "GPU3 0% 1/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -41,6 +41,12 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    }
+   ],
+   "gpu1": [
+    {
+     "who": "me",
+     "desc": "j9_correct.py"
     }
    ],
    "gpu2": [
