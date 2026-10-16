@@ -1,10 +1,10 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 06:23:25",
+  "ts": "2026-10-17 06:33:32",
   "gpus": [
-   "GPU0 100% 16/80GB 56C",
+   "GPU0 83% 69/80GB 65C",
    "GPU1 0% 33/40GB 30C",
-   "GPU2 0% 50/80GB 31C",
+   "GPU2 0% 50/80GB 32C",
    "GPU3 0% 34/40GB 29C"
   ],
   "source": 30,
@@ -41,10 +41,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "weight_threshold.py"
     }
    ],
    "gpu2": [
