@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 06:13:19",
+  "ts": "2026-10-17 06:23:25",
   "gpus": [
-   "GPU0 98% 16/80GB 55C",
-   "GPU1 0% 33/40GB 27C",
-   "GPU2 0% 50/80GB 28C",
-   "GPU3 0% 34/40GB 26C"
+   "GPU0 100% 16/80GB 56C",
+   "GPU1 0% 33/40GB 30C",
+   "GPU2 0% 50/80GB 31C",
+   "GPU3 0% 34/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -44,7 +44,7 @@
     },
     {
      "who": "me",
-     "desc": "factorial_test.py"
+     "desc": "weight_threshold.py"
     }
    ],
    "gpu2": [
