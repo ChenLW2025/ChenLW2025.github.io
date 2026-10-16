@@ -1,16 +1,16 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 03:31:32",
+  "ts": "2026-10-17 03:41:41",
   "gpus": [
-   "GPU0 85% 31/80GB 53C",
-   "GPU1 0% 17/40GB 27C",
+   "GPU0 85% 16/80GB 52C",
+   "GPU1 0% 33/40GB 27C",
    "GPU2 0% 50/80GB 29C",
    "GPU3 0% 34/40GB 26C"
   ],
   "source": 30,
   "producer": 30,
   "consumer": 30,
-  "reviews": 29,
+  "reviews": 30,
   "ev_pix": 405,
   "ev_img": 405,
   "audits": true,
@@ -20,9 +20,9 @@
   "failed_msg": "",
   "queue_p": false,
   "ev_p": false,
-  "cons_p": true,
-  "handoff_p": true,
-  "orch_p": true,
+  "cons_p": false,
+  "handoff_p": false,
+  "orch_p": false,
   "lit": null,
   "who": {
    "gpu0": [
@@ -39,10 +39,6 @@
      "desc": "rgb_enc_sac.py"
     },
     {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
-    },
-    {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
     },
@@ -51,30 +47,22 @@
      "desc": "j1_degradation.py"
     }
    ],
-   "gpu1": [
-    {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
-    },
-    {
-     "who": "hold",
-     "desc": "elastic hold (yields on real job)"
-    }
-   ],
    "gpu2": [
     {
      "who": "other",
      "desc": "strata"
     }
-   ],
-   "gpu3": [
-    {
-     "who": "hold",
-     "desc": "elastic hold (yields on real job)"
-    }
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 03:31",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 17
+   },
    {
     "ts": "2026-10-17 03:30",
     "kind": "review",
@@ -162,14 +150,6 @@
     "dataset": "visa",
     "shot": 1,
     "seed": 18
-   },
-   {
-    "ts": "2026-10-17 01:57",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "visa",
-    "shot": 1,
-    "seed": 17
    }
   ],
   "results": {
@@ -562,6 +542,10 @@
  },
  "topic": "clw-seerad-7f3a9c2e",
  "events": [
+  {
+   "key": "all_done",
+   "time": "2026-10-17 03:33"
+  },
   {
    "key": "producer_done",
    "time": "2026-10-16 15:11"
