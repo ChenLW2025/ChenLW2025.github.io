@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 03:41:41",
+  "ts": "2026-10-17 03:51:48",
   "gpus": [
-   "GPU0 85% 16/80GB 52C",
-   "GPU1 0% 33/40GB 27C",
+   "GPU0 97% 15/80GB 61C",
+   "GPU1 0% 1/40GB 28C",
    "GPU2 0% 50/80GB 29C",
-   "GPU3 0% 34/40GB 26C"
+   "GPU3 0% 1/40GB 27C"
   ],
   "source": 30,
   "producer": 30,
@@ -37,20 +37,24 @@
     {
      "who": "other",
      "desc": "rgb_enc_sac.py"
-    },
-    {
-     "who": "hold",
-     "desc": "elastic hold (yields on real job)"
-    },
+    }
+   ],
+   "gpu1": [
     {
      "who": "me",
-     "desc": "j1_degradation.py"
+     "desc": "b1_b2_baselines.py"
     }
    ],
    "gpu2": [
     {
      "who": "other",
      "desc": "strata"
+    }
+   ],
+   "gpu3": [
+    {
+     "who": "me",
+     "desc": "j8_contamination.py"
     }
    ]
   },
