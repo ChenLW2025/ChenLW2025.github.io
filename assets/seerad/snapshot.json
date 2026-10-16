@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 14:36:27",
+  "ts": "2026-10-16 14:40:55",
   "gpus": [
-   "GPU0 100% 24/80GB 51C",
-   "GPU1 0% 33/40GB 25C",
-   "GPU2 99% 50/80GB 54C",
-   "GPU3 100% 37/40GB 48C"
+   "GPU0 100% 24/80GB 56C",
+   "GPU1 0% 33/40GB 29C",
+   "GPU2 99% 50/80GB 58C",
+   "GPU3 100% 37/40GB 51C"
   ],
   "source": 30,
   "producer": 29,
@@ -62,6 +62,104 @@
     }
    ]
   },
+  "recent": [
+   {
+    "ts": "2026-10-16 12:29",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 1,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-16 10:56",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "visa",
+    "shot": 2,
+    "seed": 18
+   },
+   {
+    "ts": "2026-10-16 08:10",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 1,
+    "seed": 18
+   },
+   {
+    "ts": "2026-10-16 07:35",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-16 06:24",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "visa",
+    "shot": 2,
+    "seed": 17
+   },
+   {
+    "ts": "2026-10-16 05:47",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 2,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-16 05:40",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 4,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-16 04:30",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 18
+   },
+   {
+    "ts": "2026-10-16 04:04",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "visa",
+    "shot": 1,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-16 03:52",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 1,
+    "seed": 17
+   },
+   {
+    "ts": "2026-10-16 02:51",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 4,
+    "seed": 18
+   },
+   {
+    "ts": "2026-10-16 02:40",
+    "kind": "unit",
+    "stage": "PRODUCER",
+    "dataset": "mvtec_ad",
+    "shot": 2,
+    "seed": 18
+   }
+  ],
   "results": {
    "dev5_9": {
     "cells": [
@@ -71,6 +169,7 @@
       "metric": "i_auroc",
       "cand": 96.8,
       "paper": 96.6,
+      "cand_raw": 96.7723172829742,
       "delta": 0.2
      },
      {
@@ -79,6 +178,7 @@
       "metric": "i_ap",
       "cand": 98.8,
       "paper": 98.7,
+      "cand_raw": 98.80562117712589,
       "delta": 0.1
      },
      {
@@ -87,6 +187,7 @@
       "metric": "p_auroc",
       "cand": 97.8,
       "paper": 97.8,
+      "cand_raw": 97.775621462215,
       "delta": 0.0
      },
      {
@@ -95,6 +196,7 @@
       "metric": "au_pro",
       "cand": 94.5,
       "paper": 94.4,
+      "cand_raw": 94.51504516601562,
       "delta": 0.1
      },
      {
@@ -103,6 +205,7 @@
       "metric": "i_auroc",
       "cand": 97.6,
       "paper": 97.5,
+      "cand_raw": 97.63516085040233,
       "delta": 0.1
      },
      {
@@ -111,6 +214,7 @@
       "metric": "i_ap",
       "cand": 99.1,
       "paper": 99.0,
+      "cand_raw": 99.13470089971831,
       "delta": 0.1
      },
      {
@@ -119,6 +223,7 @@
       "metric": "p_auroc",
       "cand": 98.0,
       "paper": 98.0,
+      "cand_raw": 98.03366642171801,
       "delta": 0.0
      },
      {
@@ -127,6 +232,7 @@
       "metric": "au_pro",
       "cand": 95.0,
       "paper": 94.8,
+      "cand_raw": 94.96017225583394,
       "delta": 0.2
      },
      {
@@ -135,6 +241,7 @@
       "metric": "i_auroc",
       "cand": 98.8,
       "paper": 98.6,
+      "cand_raw": 98.76041389216843,
       "delta": 0.2
      },
      {
@@ -143,6 +250,7 @@
       "metric": "i_ap",
       "cand": 99.5,
       "paper": 99.4,
+      "cand_raw": 99.48191043314567,
       "delta": 0.1
      },
      {
@@ -151,6 +259,7 @@
       "metric": "p_auroc",
       "cand": 98.2,
       "paper": 98.2,
+      "cand_raw": 98.16570151745037,
       "delta": 0.0
      },
      {
@@ -159,6 +268,7 @@
       "metric": "au_pro",
       "cand": 95.2,
       "paper": 95.1,
+      "cand_raw": 95.24114672342935,
       "delta": 0.1
      },
      {
@@ -167,6 +277,7 @@
       "metric": "i_auroc",
       "cand": 93.5,
       "paper": 93.2,
+      "cand_raw": 93.47190869086909,
       "delta": 0.3
      },
      {
@@ -175,6 +286,7 @@
       "metric": "i_ap",
       "cand": 93.3,
       "paper": 93.0,
+      "cand_raw": 93.26995455202214,
       "delta": 0.3
      },
      {
@@ -183,6 +295,7 @@
       "metric": "p_auroc",
       "cand": 98.6,
       "paper": 98.6,
+      "cand_raw": 98.63542698796871,
       "delta": 0.0
      },
      {
@@ -191,6 +304,7 @@
       "metric": "au_pro",
       "cand": 94.7,
       "paper": 94.6,
+      "cand_raw": 94.65437948703766,
       "delta": 0.1
      },
      {
@@ -199,6 +313,7 @@
       "metric": "i_auroc",
       "cand": 94.9,
       "paper": 94.6,
+      "cand_raw": 94.88418481848184,
       "delta": 0.3
      },
      {
@@ -207,6 +322,7 @@
       "metric": "i_ap",
       "cand": 94.7,
       "paper": 94.4,
+      "cand_raw": 94.70265180090122,
       "delta": 0.3
      },
      {
@@ -215,6 +331,7 @@
       "metric": "p_auroc",
       "cand": 98.7,
       "paper": 98.7,
+      "cand_raw": 98.73526904404206,
       "delta": 0.0
      },
      {
@@ -223,6 +340,7 @@
       "metric": "au_pro",
       "cand": 94.7,
       "paper": 94.5,
+      "cand_raw": 94.72325285275777,
       "delta": 0.2
      },
      {
@@ -231,6 +349,7 @@
       "metric": "i_auroc",
       "cand": 95.7,
       "paper": 95.4,
+      "cand_raw": 95.68691419141913,
       "delta": 0.3
      },
      {
@@ -239,6 +358,7 @@
       "metric": "i_ap",
       "cand": 95.4,
       "paper": 95.0,
+      "cand_raw": 95.37910649519273,
       "delta": 0.4
      },
      {
@@ -247,6 +367,7 @@
       "metric": "p_auroc",
       "cand": 98.8,
       "paper": 98.8,
+      "cand_raw": 98.81907059198551,
       "delta": 0.0
      },
      {
@@ -255,6 +376,7 @@
       "metric": "au_pro",
       "cand": 94.8,
       "paper": 94.6,
+      "cand_raw": 94.7785422205925,
       "delta": 0.2
      }
     ],
@@ -264,12 +386,41 @@
      "independent_verified": false,
      "goal_claim": false,
      "all24_nonnegative": true,
-     "pixel12_nonnegative": true
+     "pixel12_nonnegative": true,
+     "loc_disclosed": true
     },
-    "candidate": "K64-Spatial28-Image-K32-MultiScaleMean4_12-Pixel-v1"
+    "status": "PASS_FULL_JOINT_LITERAL_UNROUNDED_COMPARISON",
+    "candidate": "K64-Spatial28-Image-K32-MultiScaleMean4_12-Pixel-v1",
+    "mtime": 1791804980.7417912,
+    "summary": {
+     "n": 24,
+     "n_pos": 18,
+     "n_zero": 6,
+     "n_neg": 0,
+     "min": 0.0,
+     "max": 0.4,
+     "mean": 0.15,
+     "per_dataset": {
+      "mvtec_ad": 0.1,
+      "visa": 0.2
+     },
+     "per_metric": {
+      "i_auroc": 0.23,
+      "i_ap": 0.22,
+      "p_auroc": 0.0,
+      "au_pro": 0.15
+     },
+     "neg_cells": []
+    }
    },
    "ind15_19": null
   }
  },
- "topic": "clw-seerad-7f3a9c2e"
+ "topic": "clw-seerad-7f3a9c2e",
+ "events": [
+  {
+   "key": "evidence_done",
+   "time": "2026-10-16 12:39"
+  }
+ ]
 }
