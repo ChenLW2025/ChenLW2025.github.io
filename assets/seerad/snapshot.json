@@ -1,16 +1,16 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 02:59:42",
+  "ts": "2026-10-17 03:11:19",
   "gpus": [
-   "GPU0 87% 31/80GB 54C",
-   "GPU1 0% 17/40GB 27C",
-   "GPU2 0% 50/80GB 29C",
+   "GPU0 87% 30/80GB 54C",
+   "GPU1 0% 17/40GB 28C",
+   "GPU2 0% 50/80GB 30C",
    "GPU3 0% 17/40GB 27C"
   ],
   "source": 30,
   "producer": 30,
-  "consumer": 24,
-  "reviews": 24,
+  "consumer": 27,
+  "reviews": 27,
   "ev_pix": 405,
   "ev_img": 405,
   "audits": true,
@@ -45,6 +45,14 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "j1_degradation.py"
+    },
+    {
+     "who": "me",
+     "desc": "j7_gamma.py"
     }
    ],
    "gpu1": [
@@ -75,6 +83,30 @@
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 03:06",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 16
+   },
+   {
+    "ts": "2026-10-17 03:03",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 15
+   },
+   {
+    "ts": "2026-10-17 03:03",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 2,
+    "seed": 19
+   },
    {
     "ts": "2026-10-17 02:44",
     "kind": "review",
@@ -146,30 +178,6 @@
     "dataset": "visa",
     "shot": 1,
     "seed": 15
-   },
-   {
-    "ts": "2026-10-17 01:34",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 4,
-    "seed": 19
-   },
-   {
-    "ts": "2026-10-17 01:33",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 4,
-    "seed": 18
-   },
-   {
-    "ts": "2026-10-17 01:33",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 4,
-    "seed": 17
    }
   ],
   "results": {
