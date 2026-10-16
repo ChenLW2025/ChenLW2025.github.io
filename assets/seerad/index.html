@@ -144,6 +144,7 @@ details[open] summary::before{transform:rotate(90deg)}
   <h2><svg class="ic" viewBox="0 0 24 24"><path d="M12 8v5l3 2M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>近期实验动态</h2>
   <ul class="tl" id="feed"><li><span class="fl">读取中…</span></li></ul>
   <div class="sumline" style="margin-top:10px">最近完成的确认/联合均值单元与阶段事件，按服务器时间倒序（只展示最近 12 条）。</div>
+  <div class="sumline" style="margin-bottom:0">背景：K16/32/64 敏感性已选出候选 <b>K64-Spatial28</b>；<b>seeds5-9</b> 为开发种子（已 pareto 全胜，同分支不可宣称）；<b>seeds15-19</b> 为独立种子（决定性，当前在跑），完成后自动给出能否宣称 SOTA 的结论。</div>
 </div>
 
 <div class="card">
@@ -176,16 +177,6 @@ details[open] summary::before{transform:rotate(90deg)}
       </ul>
       <h4>口径提醒</h4>
       <p>逐格表对应少样本主表（Table I，<span class="k">不含 P-AP</span>，指标为 I-AUROC/I-AP/P-AUROC/AU-PRO）；Table II 含 P-AP 但口径不同，两表不要直接相减。</p>
-    </div>
-  </details>
-  <details>
-    <summary>近期在做哪些实验</summary>
-    <div class="detail-body">
-      <ul>
-        <li><span class="k">K 敏感性 K16/32/64：</span>确定近邻 k 与分辨率（672）、多尺度像素后处理，选出候选 K64-Spatial28。</li>
-        <li><span class="k">seeds5-9（开发种子）：</span>405/405 独立证据 + round07 联合均值 + 表审计，已得 pareto 全胜（但属同分支）。</li>
-        <li><span class="k">seeds15-19（当前，决定性）：</span>固定身份独立种子复现，三级流水线 SOURCE→EVIDENCE→PRODUCER confirmation→CONSUMER round07 联合均值 + 表审计；完成后自动给出能否宣称 SOTA 的结论。</li>
-      </ul>
     </div>
   </details>
 </div>
