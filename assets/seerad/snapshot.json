@@ -1,16 +1,16 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 01:47:34",
+  "ts": "2026-10-17 01:57:41",
   "gpus": [
-   "GPU0 99% 18/80GB 45C",
-   "GPU1 0% 3/40GB 28C",
+   "GPU0 0% 18/80GB 36C",
+   "GPU1 100% 2/40GB 38C",
    "GPU2 0% 50/80GB 30C",
    "GPU3 0% 3/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
-  "consumer": 15,
-  "reviews": 15,
+  "consumer": 17,
+  "reviews": 16,
   "ev_pix": 405,
   "ev_img": 405,
   "audits": true,
@@ -63,6 +63,14 @@
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 01:57",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 1,
+    "seed": 15
+   },
    {
     "ts": "2026-10-17 01:34",
     "kind": "review",
@@ -150,14 +158,6 @@
     "dataset": "mvtec_ad",
     "shot": 1,
     "seed": 19
-   },
-   {
-    "ts": "2026-10-17 00:39",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 1,
-    "seed": 18
    }
   ],
   "results": {
