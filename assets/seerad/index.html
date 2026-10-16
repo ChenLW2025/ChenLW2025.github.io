@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b1120">
+<title>SEERAD 实验监控</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2310b981'/%3E%3Cpath d='M5 15l4-4 3 3 7-8' stroke='%2306121f' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#070d1a; --panel:#0f1a2e; --panel2:#12233c; --line:#22334f; --line2:#1a2942;
+  --txt:#e8f0fb; --muted:#93a4bd; --dim:#5f7393;
+  --ok:#34d399; --okbg:rgba(16,185,129,.14); --run:#2dd4bf; --runbg:rgba(45,212,191,.14);
+  --warn:#fbbf24; --warnbg:rgba(245,158,11,.16); --bad:#fb7185; --badbg:rgba(244,63,94,.15);
+  --info:#60a5fa; --accent:#5eead4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+body{padding:max(12px,env(safe-area-inset-top)) 12px 40px;max-width:760px;margin:0 auto}
+a{color:var(--accent)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 2px 12px}
+.hdr h1{font-size:17px;font-weight:700;letter-spacing:.3px}
+.hdr .sub{font-size:11px;color:var(--muted);margin-top:2px}
+.pill{font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
+.pill.ok{background:var(--okbg);color:var(--ok);border:1px solid rgba(52,211,153,.35)}
+.pill.bad{background:var(--badbg);color:var(--bad);border:1px solid rgba(244,63,94,.35)}
+.pill.run{background:var(--runbg);color:var(--run);border:1px solid rgba(45,212,191,.3)}
+.pill.muted{background:rgba(147,164,189,.12);color:var(--muted);border:1px solid var(--line)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.card h2{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.card h2 .ic{width:14px;height:14px;flex:none;fill:var(--accent)}
+.alert{border-radius:12px;padding:12px 13px;font-size:13px;line-height:1.55;margin-bottom:12px;border:1px solid}
+.alert.run{background:var(--runbg);border-color:rgba(45,212,191,.35);color:var(--accent)}
+.alert.bad{background:var(--badbg);border-color:rgba(244,63,94,.4);color:#fda4af}
+.alert.ok{background:var(--okbg);border-color:rgba(52,211,153,.35);color:#6ee7b7}
+.alert.warn{background:var(--warnbg);border-color:rgba(245,158,11,.4);color:#fcd34d}
+.alert b{color:var(--txt)}
+.gpus{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gpu{background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:11px;min-width:0}
+.gpu .top{display:flex;justify-content:space-between;align-items:baseline}
+.gpu .gi{font-size:12px;color:var(--muted);font-weight:600}
+.gpu .tmp{font-size:10px;color:var(--dim)}
+.gpu .util{font-size:22px;font-weight:800;margin:3px 0 5px}
+.gpu.hi .util{color:var(--ok)} .gpu.zero .util{color:var(--muted)}
+.bar{height:6px;border-radius:4px;background:#101c31;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#10b981,#34d399)}
+.gpu.zero .bar i{background:#33415c}
+.gpu .mem{font-size:10.5px;color:var(--muted);margin-top:6px}
+.gpu .who{font-size:10.5px;margin-top:5px;line-height:1.4;word-break:break-word}
+.who .me{color:var(--accent)} .who .other{color:var(--warn)} .who .hold{color:var(--info)}
+.stages{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stage{background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:11px}
+.stage .n{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.stage .big{font-size:20px;font-weight:800;margin:4px 0 7px}
+.stage .big small{font-size:12px;color:var(--muted);font-weight:600}
+.stage.done .big{color:var(--ok)} .stage.run .big{color:var(--run)} .stage.wait .big{color:var(--dim)}
+.mini{height:5px;border-radius:3px;background:#101c31;overflow:hidden}
+.mini i{display:block;height:100%;background:var(--ok)} .stage.run .mini i{background:var(--run)}
+.verdict{border-radius:12px;padding:13px;border:1px solid var(--line);margin-bottom:12px;background:linear-gradient(160deg,#10243d,#0d1b31)}
+.verdict .vt{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.verdict .vd{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:7px}
+.badge{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;border:1px solid}
+.badge.win{background:var(--okbg);color:var(--ok);border-color:rgba(52,211,153,.4)}
+.badge.pending{background:var(--warnbg);color:var(--warn);border-color:rgba(245,158,11,.4)}
+.badge.no{background:rgba(147,164,189,.12);color:var(--muted);border-color:var(--line)}
+.blk{border:1px solid var(--line2);border-radius:11px;padding:11px;margin-bottom:10px;background:var(--panel2)}
+.blk .bt{font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.blk .bd{font-size:11.5px;color:var(--muted);line-height:1.5;margin-bottom:9px}
+table.cells{width:100%;border-collapse:collapse;font-size:11px}
+table.cells th,table.cells td{padding:5px 4px;text-align:center;border-bottom:1px solid var(--line2)}
+table.cells th{color:var(--dim);font-weight:600;font-size:10px}
+table.cells td.ds{text-align:left;font-weight:700;color:var(--muted);white-space:nowrap}
+table.cells td.sh{color:var(--dim);font-size:10px}
+.dchip{font-weight:700;font-variant-numeric:tabular-nums;border-radius:6px;padding:1px 4px}
+.dchip.pos{color:#6ee7b7;background:rgba(16,185,129,.13)}
+.dchip.zero{color:var(--muted)}
+.dchip.neg{color:#fda4af;background:rgba(244,63,94,.14)}
+details{border-top:1px solid var(--line2);margin-top:4px}
+details summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--accent);padding:11px 2px;list-style:none;display:flex;align-items:center;gap:7px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸";color:var(--dim);transition:transform .15s}
+details[open] summary::before{transform:rotate(90deg)}
+.detail-body{font-size:12.5px;color:var(--muted);line-height:1.75;padding:2px 2px 12px}
+.detail-body h4{color:var(--txt);font-size:12.5px;margin:11px 0 4px}
+.detail-body ul{padding-left:18px} .detail-body li{margin:3px 0}
+.detail-body code{background:#0b1628;border:1px solid var(--line2);border-radius:4px;padding:1px 5px;font-size:11px;color:var(--accent)}
+.detail-body .k{color:var(--txt);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:11px;padding:4px 9px;border-radius:999px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:var(--info)}
+.chip.on{background:var(--okbg);border-color:rgba(52,211,153,.4);color:var(--ok)}
+.metricline{font-size:12px;color:var(--muted);line-height:1.7}
+.foot{text-align:center;color:var(--dim);font-size:10.5px;margin-top:14px;line-height:1.7}
+.foot a{word-break:break-all}
+.err{color:#fda4af;font-size:12px;text-align:center;padding:10px}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--run);border-radius:50%;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>SEERAD 实验监控</h1>
+    <div class="sub" id="sub">seeds15-19 · LDM/SOTA 确认 · 本地只读</div>
+  </div>
+  <span class="pill muted" id="conn"><span class="spin"></span> 连接中</span>
+</div>
+
+<div id="banner"></div>
+<div id="updated" class="metricline" style="margin:-4px 2px 12px;color:var(--dim);font-size:11px"></div>
+
+<div class="card">
+  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M4 19h16M6 16v-4m4 4V8m4 8v-7m4 7v-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>GPU 占用</h2>
+  <div class="gpus" id="gpus"></div>
+</div>
+
+<div class="card">
+  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>流水线进度</h2>
+  <div class="stages" id="stages"></div>
+</div>
+
+<div class="card">
+  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-6 4.5 2.3 7.1L12 16.2 5.7 20.5 8 13.4 2 8.9h7.6z" fill="currentColor"/></svg>实验摘要 · SOTA 判定</h2>
+  <div id="verdict"></div>
+  <div id="sotaBlocks"></div>
+  <details>
+    <summary>这表怎么读 / 方法与论文思路分析</summary>
+    <div class="detail-body">
+      <h4>候选方法 K64-Spatial28</h4>
+      <ul>
+        <li><span class="k">图像分</span> = 0.35·max(avgpool28 空间窗, K64) + 0.65·top2% 均值；</li>
+        <li><span class="k">定位分</span> 复用与论文 LDM 字节一致的 K32 定位图（保证公平，不引入新定位分支）；</li>
+        <li><span class="k">像素分</span> = MultiScaleMean4_12 多尺度后处理。</li>
+      </ul>
+      <h4>和论文 LDM 的关系</h4>
+      <p>LDM = query-local mean + covariance（局部均值/协方差）。候选把“局部统计”的同一思路从特征均值/协方差，延伸到<span class="k">图像分聚合</span>（空间窗口 + top 比例）和<span class="k">像素分多尺度</span>，属于可直接替换 LDM 的增量改造。</p>
+      <h4>目前读表结论（开发种子 5-9）</h4>
+      <ul>
+        <li>对论文已发表的 <span class="k">24 个逐格</span>（2 数据集 × 1/2/4-shot × 4 指标）<span class="k">全部不劣</span>，最多 +0.4pp，显示值与未四舍五入均 pareto 全胜；</li>
+        <li>提升集中在 <span class="k">I-AUROC / I-AP</span>（VisA 更强，缺陷更分散），<span class="k">P-AUROC 基本不变</span>——定位图未变，符合预期；像素多尺度带来小幅 AU-PRO 增益；</li>
+        <li>审计把“数值控制”与“方法增益”严格区分，<span class="k">数值控制不被算作方法增益</span>。</li>
+      </ul>
+      <h4>为什么还不能宣称 SOTA</h4>
+      <p>种子 5-9 是<span class="k">调参同一分支</span>（in-sample）。必须用固定身份的<span class="k">独立种子 15-19</span> 复现 pareto 不劣；独立审计的 <code>independent_confirmation_verified</code> / <code>goal_completion_claim</code> 目前都是 false——这正是当前在跑的 batch（PRODUCER→CONSUMER 联合均值 + 表审计）。</p>
+      <h4>论文两种走向</h4>
+      <ul>
+        <li><span class="k">15-19 复现不劣：</span>候选作为 LDM 的“即插即用、严格不劣”升级（主要在图像分），补一张简洁消融即可；</li>
+        <li><span class="k">未复现：</span>保留现有 LDM，把空间池化写为敏感性分析/讨论，不主张 SOTA。</li>
+      </ul>
+      <h4>口径提醒</h4>
+      <p>逐格表对应少样本主表（Table I，<span class="k">不含 P-AP</span>，指标为 I-AUROC/I-AP/P-AUROC/AU-PRO）；Table II 含 P-AP 但口径不同，两表不要直接相减。</p>
+    </div>
+  </details>
+  <details>
+    <summary>近期在做哪些实验</summary>
+    <div class="detail-body">
+      <ul>
+        <li><span class="k">K 敏感性 K16/32/64：</span>确定近邻 k 与分辨率（672）、多尺度像素后处理，选出候选 K64-Spatial28。</li>
+        <li><span class="k">seeds5-9（开发种子）：</span>405/405 独立证据 + round07 联合均值 + 表审计，已得 pareto 全胜（但属同分支）。</li>
+        <li><span class="k">seeds15-19（当前，决定性）：</span>固定身份独立种子复现，三级流水线 SOURCE→EVIDENCE→PRODUCER confirmation→CONSUMER round07 联合均值 + 表审计；完成后自动给出能否宣称 SOTA 的结论。</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+<div class="card">
+  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M12 2a6 6 0 0 0-6 6c0 4-2 5-2 7h16c0-2-2-3-2-7a6 6 0 0 0-6-6zM10 20h4a2 2 0 0 1-4 0z" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>消息提醒（跨网络）</h2>
+  <div class="chips">
+    <span class="chip on">ntfy 已启用</span>
+    <span class="chip on">微信 Server酱 已启用</span>
+    <span class="chip on" id="feishuChip">飞书群机器人 已启用</span>
+  </div>
+  <div class="detail-body" style="margin-top:8px">
+    异常中断 / 阶段完成 / 出现 SOTA 时同时推送到 ntfy、微信、飞书群。手机装 <span class="k">ntfy</span> App 或网页订阅私密 topic，或直接打开：
+    <a id="ntfyLink" href="https://ntfy.sh/clw-seerad-7f3a9c2e" target="_blank">ntfy.sh/clw-seerad-7f3a9c2e</a>。
+  </div>
+</div>
+
+<div class="foot" id="foot">服务器主动外推 · 每 120 秒刷新 · 不依赖你的电脑/网络</div>
+
+<script>
+var METRIC={i_auroc:'I-AUROC',i_ap:'I-AP',p_auroc:'P-AUROC',au_pro:'AU-PRO'};
+var DSNAME={mvtec_ad:'MVTec AD',visa:'VisA'};
+var SNAP_URL='snapshot.json?t='+Date.now();
+
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function pct(v){return Math.max(0,Math.min(100,parseFloat(v)||0));}
+
+function parseGpu(s){
+  var m=s.match(/GPU(\d+)\s+(\d+)%\s+([\d.]+)\/([\d.]+)GB\s+(\d+)C/);
+  return m?{i:m[1],u:+m[2],used:+m[3],tot:+m[4],t:+m[5]}:null;
+}
+function renderGpus(gpus, who){
+  var html='';
+  gpus.forEach(function(g){
+    var x=parseGpu(g); if(!x)return;
+    var cls=x.u>5?'hi':'zero';
+    var LABEL={me:'我们',other:'同事',hold:'弹性占卡'};
+    var w=who['gpu'+x.i]||[];
+    var whtml=w.slice(0,3).map(function(p){
+      var c=['me','other','hold'].indexOf(p.who)>=0?p.who:'other';
+      return '<div class="who"><span class="'+c+'">'+esc(LABEL[c]||p.who)+'</span> '+esc(p.desc)+'</div>';
+    }).join('');
+    html+='<div class="gpu '+cls+'"><div class="top"><span class="gi">GPU '+x.i+'</span><span class="tmp">'+x.t+'°C</span></div>'
+      +'<div class="util">'+x.u+'% <span style="font-size:11px;color:var(--muted)">利用率</span></div>'
+      +'<div class="bar"><i style="width:'+x.u+'%"></i></div>'
+      +'<div class="mem">显存 '+x.used+' / '+x.tot+' GB</div>'+whtml+'</div>';
+  });
+  document.getElementById('gpus').innerHTML=html||'<div class="err">暂无 GPU 数据</div>';
+}
+
+function stage(cls,n,big,sub,prog){
+  return '<div class="stage '+cls+'"><div class="n">'+n+'</div><div class="big">'+big+' <small>'+sub+'</small></div>'
+    +'<div class="mini"><i style="width:'+prog+'%"></i></div></div>';
+}
+function renderStages(d){
+  var ev=Math.max(d.ev_pix,d.ev_img), evP=ev>=405&&d.audits;
+  var h='';
+  h+=stage(d.source>=30?'done':'run','① SOURCE',d.source+'/30',d.source>=30?'已完成':'',pct(d.source/30*100));
+  h+=stage(evP?'done':'run','② EVIDENCE',ev+'/405',d.audits?'两审计齐':'',pct(ev/405*100));
+  h+=stage(d.producer>=30?'done':'run','③ PRODUCER',d.producer+'/30',d.queue_complete?'已完成':'进行中',pct(d.producer/30*100));
+  h+=stage(d.consumer>=30?'done':(d.consumer>0?'run':'wait'),'④ CONSUMER',d.consumer+'/30','reviews '+d.reviews,pct(d.consumer/30*100));
+  document.getElementById('stages').innerHTML=h;
+}
+
+function banner(d){
+  var b=document.getElementById('banner');
+  if(d.failed){b.innerHTML='<div class="alert bad">⚠ PRODUCER 队列出错：<b>'+esc(d.failed_msg||'见 QUEUE_FAILED')+'</b></div>';return;}
+  if(d.producer<30&&!d.queue_complete&&!d.queue_p){b.innerHTML='<div class="alert bad">⚠ 队列进程消失但未完成（'+d.producer+'/30），疑似中断</div>';return;}
+  if(d.queue_complete&&d.producer>=30&&d.consumer<30&&!d.cons_p&&!d.orch_p&&!d.handoff_p){
+    b.innerHTML='<div class="alert bad">⚠ 需要手动拉起 consumer</div>';return;}
+  if(d.consumer>=30&&d.reviews>=30){
+    b.innerHTML='<div class="alert ok">✓ 全链路 30/30 + 30 reviews，可导出联合均值结果并做最终判定</div>';return;}
+  if(d.producer>=30&&d.queue_complete){
+    b.innerHTML='<div class="alert run">▶ PRODUCER 30/30 完成，handoff 正在拉起 consumer 联合均值</div>';return;}
+  b.innerHTML='<div class="alert run">▶ 流水线正常运行中：<b>PRODUCER '+d.producer+'/30</b>；EVIDENCE 405/405；handoff 已在值守，到点自动起 consumer</div>';
+}
+
+function groupCells(cells){
+  var g={};
+  cells.forEach(function(c){
+    var k=c.dataset+'|'+c.shot; (g[k]=g[k]||[]).push(c);
+  });
+  return g;
+}
+function block(title, sub, audit, progressNote){
+  if(!audit){
+    return '<div class="blk"><div class="bt">'+title+'<span class="badge no">未产出</span></div>'
+      +(progressNote?('<div class="bd">'+progressNote+'</div>'):'')+'</div>';
+  }
+  var f=audit.flags||{};
+  var bdg;
+  if(f.independent_verified||f.goal_claim) bdg='<span class="badge win">独立确认通过 · 可宣称</span>';
+  else if(f.pareto_win) bdg='<span class="badge pending">pareto 全胜 · 待独立确认</span>';
+  else bdg='<span class="badge no">未全胜</span>';
+  var g=groupCells(audit.cells||[]);
+  var rows='';
+  Object.keys(g).sort().forEach(function(k){
+    var parts=k.split('|'), ds=parts[0], shot=parts[1];
+    var m={}; g[k].forEach(function(c){m[c.metric]=c;});
+    var tds=['i_auroc','i_ap','p_auroc','au_pro'].map(function(metric){
+      var c=m[metric]; if(!c)return '<td>–</td>';
+      var cls=c.delta>0?'pos':(c.delta<0?'neg':'zero');
+      var s=c.delta>0?('+'+c.delta.toFixed(1)):c.delta.toFixed(1);
+      return '<td><span class="dchip '+cls+'">'+s+'</span></td>';
+    }).join('');
+    rows+='<tr><td class="ds">'+DSNAME[ds]+'</td><td class="sh">'+shot+'-shot</td>'+tds+'</tr>';
+  });
+  var table='<table class="cells"><tr><th style="text-align:left">数据集</th><th>shot</th><th>I-AUROC</th><th>I-AP</th><th>P-AUROC</th><th>AU-PRO</th></tr>'+rows+'</table>';
+  return '<div class="blk"><div class="bt"><span>'+title+'</span>'+bdg+'</div>'
+    +(sub?('<div class="bd">'+sub+'</div>'):'')
+    +'<div class="bd">数字为候选相对论文已发表该格的差值（pp），绿色=更高，0=持平。</div>'
+    +table+'</div>';
+}
+
+function renderSota(d){
+  var r=d.results||{};
+  var dev=r.dev5_9, ind=r.ind15_19;
+  var v=document.getElementById('verdict');
+  if(ind&&ind.flags&&(ind.flags.independent_verified||ind.flags.goal_claim)){
+    v.innerHTML='<div class="verdict"><div class="vt">独立种子 15-19 已确认 <span class="badge win">SOTA 成立</span></div>'
+      +'<div class="vd">候选 K64-Spatial28 在固定身份独立种子上 pareto 不劣，可作为对 LDM 的严格升级写进论文。</div></div>';
+  } else if(ind&&ind.flags&&ind.flags.pareto_win){
+    v.innerHTML='<div class="verdict"><div class="vt">独立种子 15-19 表审计：pareto 全胜 <span class="badge pending">复核最终标志</span></div>'
+      +'<div class="vd">独立 24 格已非负，但请核对 independent_confirmation_verified / goal_completion_claim 后再宣称。</div></div>';
+  } else {
+    var pct29=d.producer>=30?100:Math.round(d.producer/30*100);
+    v.innerHTML='<div class="verdict"><div class="vt">尚未出现可宣称的 SOTA <span class="badge pending">独立确认进行中</span></div>'
+      +'<div class="vd">开发种子 5-9 上候选 <b>K64-Spatial28</b> 已对论文 24 格 pareto 全胜（最多 +0.4pp、无负格），但属同分支不可宣称；'
+      +'独立种子 15-19 正在跑（PRODUCER '+d.producer+'/30，CONSUMER 联合均值未开始），完成后自动判定并推送。</div></div>';
+  }
+  var html=block('开发种子 seeds 5-9（调参同分支）',
+    '候选 5-seed 联合均值 vs 论文已发表逐格；显示/未四舍五入均 pareto 全胜。',dev,'');
+  html+=block('独立种子 seeds 15-19（决定性）',
+    '固定身份独立复现，用于决定能否宣称 SOTA。',ind,
+    'PRODUCER '+d.producer+'/30，CONSUMER 联合均值尚未开始；handoff 会在证据与队列完成后自动拉起。');
+  document.getElementById('sotaBlocks').innerHTML=html;
+}
+
+function render(d){
+  banner(d);
+  renderGpus(d.gpus, d.who||{});
+  renderStages(d);
+  renderSota(d);
+  document.getElementById('updated').textContent='服务器时间 '+d.ts+' · 每 120 秒刷新';
+  var conn=document.getElementById('conn');
+  conn.className='pill ok'; conn.innerHTML='<span class="dot"></span> 已连接 114.212.225.47';
+}
+
+function load(){
+  fetch('snapshot.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+    .then(function(j){
+      var d=j.snapshot||j;
+      // owner process attribution (lightweight): parse from gpus text only; no who in server snapshot
+      if(!d.who) d.who={};
+      render(d);
+    })
+    .catch(function(e){
+      var conn=document.getElementById('conn');
+      conn.className='pill bad'; conn.innerHTML='<span class="dot"></span> 暂无数据';
+      document.getElementById('banner').innerHTML='<div class="alert warn">暂时取不到 snapshot.json（'+esc(e.message)+'）。页面由 GitHub Pages 托管，需服务器已把快照推到仓库；静态分析仍可展开阅读。</div>';
+      document.getElementById('updated').textContent='等待服务器推送数据…';
+    });
+}
+load(); setInterval(load, 60000);
+if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+}
+</script>
+</body>
+</html>
