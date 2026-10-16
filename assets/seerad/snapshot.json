@@ -1,16 +1,16 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 01:07:11",
+  "ts": "2026-10-17 01:17:17",
   "gpus": [
-   "GPU0 63% 19/80GB 54C",
-   "GPU1 0% 4/40GB 31C",
-   "GPU2 0% 50/80GB 31C",
-   "GPU3 0% 4/40GB 29C"
+   "GPU0 0% 18/80GB 36C",
+   "GPU1 0% 3/40GB 29C",
+   "GPU2 0% 50/80GB 30C",
+   "GPU3 0% 3/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
-  "consumer": 9,
-  "reviews": 9,
+  "consumer": 12,
+  "reviews": 12,
   "ev_pix": 405,
   "ev_img": 405,
   "audits": true,
@@ -63,6 +63,30 @@
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 01:15",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "mvtec_ad",
+    "shot": 2,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-17 01:15",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "mvtec_ad",
+    "shot": 4,
+    "seed": 16
+   },
+   {
+    "ts": "2026-10-17 01:15",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "mvtec_ad",
+    "shot": 4,
+    "seed": 15
+   },
    {
     "ts": "2026-10-17 00:58",
     "kind": "review",
@@ -134,28 +158,6 @@
     "dataset": "mvtec_ad",
     "shot": 1,
     "seed": 17
-   },
-   {
-    "ts": "2026-10-16 15:11",
-    "kind": "stage",
-    "stage": "PRODUCER",
-    "code": "producer_queue"
-   },
-   {
-    "ts": "2026-10-16 15:11",
-    "kind": "unit",
-    "stage": "PRODUCER",
-    "dataset": "visa",
-    "shot": 2,
-    "seed": 19
-   },
-   {
-    "ts": "2026-10-16 12:29",
-    "kind": "unit",
-    "stage": "PRODUCER",
-    "dataset": "mvtec_ad",
-    "shot": 1,
-    "seed": 19
    }
   ],
   "results": {
