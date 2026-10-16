@@ -1,8 +1,8 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 04:52:27",
+  "ts": "2026-10-17 05:02:33",
   "gpus": [
-   "GPU0 0% 17/80GB 45C",
+   "GPU0 98% 16/80GB 56C",
    "GPU1 0% 33/40GB 27C",
    "GPU2 0% 50/80GB 29C",
    "GPU3 0% 1/40GB 27C"
@@ -44,11 +44,7 @@
     },
     {
      "who": "me",
-     "desc": "diag_gamma.py"
-    },
-    {
-     "who": "me",
-     "desc": "diag_gamma.py"
+     "desc": "e06_uniform.py"
     }
    ],
    "gpu2": [
