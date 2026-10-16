@@ -1,16 +1,16 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 03:21:25",
+  "ts": "2026-10-17 03:31:32",
   "gpus": [
-   "GPU0 83% 31/80GB 54C",
+   "GPU0 85% 31/80GB 53C",
    "GPU1 0% 17/40GB 27C",
    "GPU2 0% 50/80GB 29C",
-   "GPU3 0% 18/40GB 28C"
+   "GPU3 0% 34/40GB 26C"
   ],
   "source": 30,
   "producer": 30,
-  "consumer": 27,
-  "reviews": 27,
+  "consumer": 30,
+  "reviews": 29,
   "ev_pix": 405,
   "ev_img": 405,
   "audits": true,
@@ -69,16 +69,28 @@
    ],
    "gpu3": [
     {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
-    },
-    {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
     }
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 03:30",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 19
+   },
+   {
+    "ts": "2026-10-17 03:26",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 4,
+    "seed": 18
+   },
    {
     "ts": "2026-10-17 03:06",
     "kind": "review",
@@ -158,22 +170,6 @@
     "dataset": "visa",
     "shot": 1,
     "seed": 17
-   },
-   {
-    "ts": "2026-10-17 01:57",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "visa",
-    "shot": 1,
-    "seed": 16
-   },
-   {
-    "ts": "2026-10-17 01:57",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "visa",
-    "shot": 1,
-    "seed": 15
    }
   ],
   "results": {
