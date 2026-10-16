@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 23:46:23",
+  "ts": "2026-10-16 23:56:29",
   "gpus": [
-   "GPU0 99% 69/80GB 53C",
-   "GPU1 0% 3/40GB 29C",
+   "GPU0 98% 18/80GB 54C",
+   "GPU1 0% 33/40GB 29C",
    "GPU2 0% 50/80GB 31C",
-   "GPU3 0% 4/40GB 28C"
+   "GPU3 0% 3/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
@@ -41,16 +41,16 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "consume_joint_mean (round07)"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "consume_joint_mean (round07)"
     }
    ],
    "gpu2": [
