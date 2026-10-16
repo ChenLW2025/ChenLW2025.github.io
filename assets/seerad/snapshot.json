@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 03:11:19",
+  "ts": "2026-10-17 03:21:25",
   "gpus": [
-   "GPU0 87% 30/80GB 54C",
-   "GPU1 0% 17/40GB 28C",
-   "GPU2 0% 50/80GB 30C",
-   "GPU3 0% 17/40GB 27C"
+   "GPU0 83% 31/80GB 54C",
+   "GPU1 0% 17/40GB 27C",
+   "GPU2 0% 50/80GB 29C",
+   "GPU3 0% 18/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
@@ -49,10 +49,6 @@
     {
      "who": "me",
      "desc": "j1_degradation.py"
-    },
-    {
-     "who": "me",
-     "desc": "j7_gamma.py"
     }
    ],
    "gpu1": [
