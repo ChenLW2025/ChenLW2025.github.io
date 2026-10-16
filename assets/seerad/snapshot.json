@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 20:44:36",
+  "ts": "2026-10-16 20:54:42",
   "gpus": [
-   "GPU0 100% 16/80GB 58C",
-   "GPU1 100% 10/40GB 50C",
-   "GPU2 0% 50/80GB 33C",
-   "GPU3 0% 34/40GB 30C"
+   "GPU0 99% 16/80GB 54C",
+   "GPU1 0% 11/40GB 29C",
+   "GPU2 0% 50/80GB 31C",
+   "GPU3 0% 4/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -54,11 +54,11 @@
     },
     {
      "who": "me",
-     "desc": "consume_joint_mean (round07)"
+     "desc": "main.py"
     },
     {
      "who": "me",
-     "desc": "main.py"
+     "desc": "consume_joint_mean (round07)"
     }
    ],
    "gpu2": [
