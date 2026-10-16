@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 16:32:07",
+  "ts": "2026-10-16 16:42:13",
   "gpus": [
-   "GPU0 99% 69/80GB 54C",
-   "GPU1 20% 7/40GB 43C",
+   "GPU0 100% 69/80GB 55C",
+   "GPU1 0% 7/40GB 29C",
    "GPU2 0% 50/80GB 30C",
-   "GPU3 100% 37/40GB 51C"
+   "GPU3 100% 37/40GB 52C"
   ],
   "source": 30,
   "producer": 30,
@@ -20,7 +20,7 @@
   "failed_msg": "",
   "queue_p": false,
   "ev_p": false,
-  "cons_p": false,
+  "cons_p": true,
   "handoff_p": true,
   "orch_p": true,
   "lit": null,
