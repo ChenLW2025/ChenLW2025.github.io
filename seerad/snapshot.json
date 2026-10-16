@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-16 13:06:42",
+  "ts": "2026-10-16 13:58:56",
   "gpus": [
-   "GPU0 100% 24/80GB 54C",
-   "GPU1 0% 0/40GB 28C",
-   "GPU2 100% 50/80GB 54C",
-   "GPU3 0% 34/40GB 27C"
+   "GPU0 100% 24/80GB 53C",
+   "GPU1 13% 33/40GB 26C",
+   "GPU2 100% 50/80GB 52C",
+   "GPU3 0% 34/40GB 25C"
   ],
   "source": 30,
   "producer": 29,
@@ -41,6 +41,12 @@
     {
      "who": "me",
      "desc": "confirm_spatial64.py --gpu 0 --dataset visa --"
+    }
+   ],
+   "gpu1": [
+    {
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     }
    ],
    "gpu2": [
