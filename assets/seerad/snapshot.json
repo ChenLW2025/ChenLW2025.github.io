@@ -1,16 +1,16 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 02:38:05",
+  "ts": "2026-10-17 02:49:36",
   "gpus": [
-   "GPU0 100% 31/80GB 53C",
-   "GPU1 100% 17/40GB 35C",
+   "GPU0 82% 31/80GB 54C",
+   "GPU1 0% 17/40GB 27C",
    "GPU2 0% 58/80GB 29C",
-   "GPU3 0% 17/40GB 26C"
+   "GPU3 0% 17/40GB 27C"
   ],
   "source": 30,
   "producer": 30,
-  "consumer": 21,
-  "reviews": 21,
+  "consumer": 24,
+  "reviews": 24,
   "ev_pix": 405,
   "ev_img": 405,
   "audits": true,
@@ -79,6 +79,30 @@
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 02:44",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 2,
+    "seed": 18
+   },
+   {
+    "ts": "2026-10-17 02:41",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 2,
+    "seed": 17
+   },
+   {
+    "ts": "2026-10-17 02:41",
+    "kind": "review",
+    "stage": "CONSUMER",
+    "dataset": "visa",
+    "shot": 2,
+    "seed": 16
+   },
    {
     "ts": "2026-10-17 02:20",
     "kind": "review",
@@ -150,30 +174,6 @@
     "dataset": "mvtec_ad",
     "shot": 4,
     "seed": 17
-   },
-   {
-    "ts": "2026-10-17 01:15",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 2,
-    "seed": 19
-   },
-   {
-    "ts": "2026-10-17 01:15",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 4,
-    "seed": 16
-   },
-   {
-    "ts": "2026-10-17 01:15",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "mvtec_ad",
-    "shot": 4,
-    "seed": 15
    }
   ],
   "results": {
@@ -186,7 +186,10 @@
       "cand": 96.8,
       "paper": 96.6,
       "cand_raw": 96.7723172829742,
-      "delta": 0.2
+      "delta": 0.2,
+      "ext": 97.1,
+      "ext_method": "SubspaceAD",
+      "dext": -0.3
      },
      {
       "dataset": "mvtec_ad",
@@ -195,7 +198,10 @@
       "cand": 98.8,
       "paper": 98.7,
       "cand_raw": 98.80562117712589,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 98.6,
+      "ext_method": "SubspaceAD",
+      "dext": 0.2
      },
      {
       "dataset": "mvtec_ad",
@@ -204,7 +210,10 @@
       "cand": 97.8,
       "paper": 97.8,
       "cand_raw": 97.775621462215,
-      "delta": 0.0
+      "delta": 0.0,
+      "ext": 97.5,
+      "ext_method": "SubspaceAD",
+      "dext": 0.3
      },
      {
       "dataset": "mvtec_ad",
@@ -213,7 +222,10 @@
       "cand": 94.5,
       "paper": 94.4,
       "cand_raw": 94.51504516601562,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 94.5,
+      "ext_method": "SubspaceAD",
+      "dext": 0.0
      },
      {
       "dataset": "mvtec_ad",
@@ -222,7 +234,10 @@
       "cand": 97.6,
       "paper": 97.5,
       "cand_raw": 97.63516085040233,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 97.5,
+      "ext_method": "SubspaceAD",
+      "dext": 0.1
      },
      {
       "dataset": "mvtec_ad",
@@ -231,7 +246,10 @@
       "cand": 99.1,
       "paper": 99.0,
       "cand_raw": 99.13470089971831,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 98.8,
+      "ext_method": "SubspaceAD",
+      "dext": 0.3
      },
      {
       "dataset": "mvtec_ad",
@@ -240,7 +258,10 @@
       "cand": 98.0,
       "paper": 98.0,
       "cand_raw": 98.03366642171801,
-      "delta": 0.0
+      "delta": 0.0,
+      "ext": 97.8,
+      "ext_method": "SubspaceAD",
+      "dext": 0.2
      },
      {
       "dataset": "mvtec_ad",
@@ -249,7 +270,10 @@
       "cand": 95.0,
       "paper": 94.8,
       "cand_raw": 94.96017225583394,
-      "delta": 0.2
+      "delta": 0.2,
+      "ext": 94.9,
+      "ext_method": "SubspaceAD",
+      "dext": 0.1
      },
      {
       "dataset": "mvtec_ad",
@@ -258,7 +282,10 @@
       "cand": 98.8,
       "paper": 98.6,
       "cand_raw": 98.76041389216843,
-      "delta": 0.2
+      "delta": 0.2,
+      "ext": 98.0,
+      "ext_method": "SubspaceAD",
+      "dext": 0.8
      },
      {
       "dataset": "mvtec_ad",
@@ -267,7 +294,10 @@
       "cand": 99.5,
       "paper": 99.4,
       "cand_raw": 99.48191043314567,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 99.0,
+      "ext_method": "SubspaceAD",
+      "dext": 0.5
      },
      {
       "dataset": "mvtec_ad",
@@ -276,7 +306,10 @@
       "cand": 98.2,
       "paper": 98.2,
       "cand_raw": 98.16570151745037,
-      "delta": 0.0
+      "delta": 0.0,
+      "ext": 97.9,
+      "ext_method": "SubspaceAD",
+      "dext": 0.3
      },
      {
       "dataset": "mvtec_ad",
@@ -285,7 +318,10 @@
       "cand": 95.2,
       "paper": 95.1,
       "cand_raw": 95.24114672342935,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 95.1,
+      "ext_method": "SubspaceAD",
+      "dext": 0.1
      },
      {
       "dataset": "visa",
@@ -294,7 +330,10 @@
       "cand": 93.5,
       "paper": 93.2,
       "cand_raw": 93.47190869086909,
-      "delta": 0.3
+      "delta": 0.3,
+      "ext": 93.2,
+      "ext_method": "SubspaceAD",
+      "dext": 0.3
      },
      {
       "dataset": "visa",
@@ -303,7 +342,10 @@
       "cand": 93.3,
       "paper": 93.0,
       "cand_raw": 93.26995455202214,
-      "delta": 0.3
+      "delta": 0.3,
+      "ext": 93.0,
+      "ext_method": "SubspaceAD",
+      "dext": 0.3
      },
      {
       "dataset": "visa",
@@ -312,7 +354,10 @@
       "cand": 98.6,
       "paper": 98.6,
       "cand_raw": 98.63542698796871,
-      "delta": 0.0
+      "delta": 0.0,
+      "ext": 98.2,
+      "ext_method": "SubspaceAD",
+      "dext": 0.4
      },
      {
       "dataset": "visa",
@@ -321,7 +366,10 @@
       "cand": 94.7,
       "paper": 94.6,
       "cand_raw": 94.65437948703766,
-      "delta": 0.1
+      "delta": 0.1,
+      "ext": 95.5,
+      "ext_method": "SubspaceAD",
+      "dext": -0.8
      },
      {
       "dataset": "visa",
@@ -330,7 +378,10 @@
       "cand": 94.9,
       "paper": 94.6,
       "cand_raw": 94.88418481848184,
-      "delta": 0.3
+      "delta": 0.3,
+      "ext": 93.8,
+      "ext_method": "SubspaceAD",
+      "dext": 1.1
      },
      {
       "dataset": "visa",
@@ -339,7 +390,10 @@
       "cand": 94.7,
       "paper": 94.4,
       "cand_raw": 94.70265180090122,
-      "delta": 0.3
+      "delta": 0.3,
+      "ext": 93.4,
+      "ext_method": "SubspaceAD",
+      "dext": 1.3
      },
      {
       "dataset": "visa",
@@ -348,7 +402,10 @@
       "cand": 98.7,
       "paper": 98.7,
       "cand_raw": 98.73526904404206,
-      "delta": 0.0
+      "delta": 0.0,
+      "ext": 98.3,
+      "ext_method": "SubspaceAD",
+      "dext": 0.4
      },
      {
       "dataset": "visa",
@@ -357,7 +414,10 @@
       "cand": 94.7,
       "paper": 94.5,
       "cand_raw": 94.72325285275777,
-      "delta": 0.2
+      "delta": 0.2,
+      "ext": 95.7,
+      "ext_method": "SubspaceAD",
+      "dext": -1.0
      },
      {
       "dataset": "visa",
@@ -366,7 +426,10 @@
       "cand": 95.7,
       "paper": 95.4,
       "cand_raw": 95.68691419141913,
-      "delta": 0.3
+      "delta": 0.3,
+      "ext": 94.7,
+      "ext_method": "SubspaceAD",
+      "dext": 1.0
      },
      {
       "dataset": "visa",
@@ -375,7 +438,10 @@
       "cand": 95.4,
       "paper": 95.0,
       "cand_raw": 95.37910649519273,
-      "delta": 0.4
+      "delta": 0.4,
+      "ext": 94.3,
+      "ext_method": "SubspaceAD",
+      "dext": 1.1
      },
      {
       "dataset": "visa",
@@ -384,7 +450,10 @@
       "cand": 98.8,
       "paper": 98.8,
       "cand_raw": 98.81907059198551,
-      "delta": 0.0
+      "delta": 0.0,
+      "ext": 98.4,
+      "ext_method": "SubspaceAD",
+      "dext": 0.4
      },
      {
       "dataset": "visa",
@@ -393,7 +462,10 @@
       "cand": 94.8,
       "paper": 94.6,
       "cand_raw": 94.7785422205925,
-      "delta": 0.2
+      "delta": 0.2,
+      "ext": 96.0,
+      "ext_method": "SubspaceAD",
+      "dext": -1.2
      }
     ],
     "flags": {
@@ -427,6 +499,66 @@
       "au_pro": 0.15
      },
      "neg_cells": []
+    },
+    "summary_ext": {
+     "n": 24,
+     "n_win": 19,
+     "n_tie": 1,
+     "n_lose": 4,
+     "min": -1.2,
+     "max": 1.3,
+     "mean": 0.25,
+     "per_dataset": {
+      "mvtec_ad": 0.22,
+      "visa": 0.27
+     },
+     "per_metric": {
+      "i_auroc": 0.5,
+      "i_ap": 0.62,
+      "p_auroc": 0.33,
+      "au_pro": -0.47
+     },
+     "strongest": [
+      "SubspaceAD"
+     ],
+     "lose_cells": [
+      {
+       "dataset": "mvtec_ad",
+       "shot": 1,
+       "metric": "i_auroc",
+       "dext": -0.3,
+       "ext": 97.1,
+       "cand": 96.8,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "visa",
+       "shot": 1,
+       "metric": "au_pro",
+       "dext": -0.8,
+       "ext": 95.5,
+       "cand": 94.7,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "visa",
+       "shot": 2,
+       "metric": "au_pro",
+       "dext": -1.0,
+       "ext": 95.7,
+       "cand": 94.7,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "visa",
+       "shot": 4,
+       "metric": "au_pro",
+       "dext": -1.2,
+       "ext": 96.0,
+       "cand": 94.8,
+       "ext_method": "SubspaceAD"
+      }
+     ]
     }
    },
    "ind15_19": null
