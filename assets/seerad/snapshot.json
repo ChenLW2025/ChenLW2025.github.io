@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-18 02:15:38",
+  "ts": "2026-10-18 02:25:44",
   "gpus": [
-   "GPU0 75% 70/80GB 41C",
-   "GPU1 0% 37/40GB 27C",
-   "GPU2 87% 77/80GB 55C",
-   "GPU3 0% 1/40GB 26C"
+   "GPU0 100% 70/80GB 54C",
+   "GPU1 0% 36/40GB 31C",
+   "GPU2 99% 77/80GB 59C",
+   "GPU3 0% 1/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -53,10 +53,6 @@
     }
    ],
    "gpu1": [
-    {
-     "who": "me",
-     "desc": "r08_bench2.py"
-    },
     {
      "who": "me",
      "desc": "round08_fast_gpu.py --shard 0 --gpu 1"
