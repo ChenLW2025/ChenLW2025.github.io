@@ -1,10 +1,10 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 12:27:15",
+  "ts": "2026-10-17 12:37:20",
   "gpus": [
-   "GPU0 90% 70/80GB 57C",
+   "GPU0 83% 69/80GB 58C",
    "GPU1 0% 33/40GB 25C",
-   "GPU2 0% 51/80GB 28C",
+   "GPU2 99% 69/80GB 60C",
    "GPU3 0% 34/40GB 24C"
   ],
   "source": 30,
@@ -50,7 +50,7 @@
     },
     {
      "who": "other",
-     "desc": "rgb_enc_sac.py"
+     "desc": "metadrivepj python"
     }
    ]
   },
