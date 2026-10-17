@@ -1,10 +1,10 @@
 {
  "snapshot": {
-  "ts": "2026-10-17 23:54:07",
+  "ts": "2026-10-18 00:04:16",
   "gpus": [
-   "GPU0 92% 70/80GB 53C",
-   "GPU1 0% 33/40GB 25C",
-   "GPU2 100% 77/80GB 58C",
+   "GPU0 100% 70/80GB 54C",
+   "GPU1 0% 2/40GB 25C",
+   "GPU2 100% 77/80GB 55C",
    "GPU3 0% 34/40GB 24C"
   ],
   "source": 30,
@@ -23,7 +23,16 @@
   "cons_p": false,
   "handoff_p": false,
   "orch_p": false,
-  "lit": null,
+  "lit": {
+   "mtime": 1792252448.582817,
+   "pareto_win": false,
+   "unrounded_pareto_win": false,
+   "independent_verified": false,
+   "goal_claim": false,
+   "min_delta": 0,
+   "max_delta": 0,
+   "n_cells": 24
+  },
   "who": {
    "gpu0": [
     {
@@ -43,6 +52,12 @@
      "desc": "elastic hold (yields on real job)"
     }
    ],
+   "gpu1": [
+    {
+     "who": "me",
+     "desc": "b_probe_hard_gate.py"
+    }
+   ],
    "gpu2": [
     {
      "who": "other",
@@ -55,6 +70,12 @@
    ]
   },
   "recent": [
+   {
+    "ts": "2026-10-17 23:54",
+    "kind": "sota",
+    "stage": "SOTA",
+    "code": "table_audit"
+   },
    {
     "ts": "2026-10-17 03:31",
     "kind": "review",
@@ -142,14 +163,6 @@
     "dataset": "visa",
     "shot": 1,
     "seed": 19
-   },
-   {
-    "ts": "2026-10-17 02:19",
-    "kind": "review",
-    "stage": "CONSUMER",
-    "dataset": "visa",
-    "shot": 1,
-    "seed": 18
    }
   ],
   "results": {
@@ -537,11 +550,471 @@
      ]
     }
    },
-   "ind15_19": null
+   "ind15_19": {
+    "cells": [
+     {
+      "dataset": "mvtec_ad",
+      "shot": 1,
+      "metric": "i_auroc",
+      "cand": 96.2,
+      "paper": 96.6,
+      "cand_raw": 96.2255541740708,
+      "delta": -0.4,
+      "ext": 97.1,
+      "ext_method": "SubspaceAD",
+      "dext": -0.9
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 1,
+      "metric": "i_ap",
+      "cand": 98.6,
+      "paper": 98.7,
+      "cand_raw": 98.58098077568545,
+      "delta": -0.1,
+      "ext": 98.6,
+      "ext_method": "SubspaceAD",
+      "dext": 0.0
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 1,
+      "metric": "p_auroc",
+      "cand": 97.7,
+      "paper": 97.8,
+      "cand_raw": 97.66081730730708,
+      "delta": -0.1,
+      "ext": 97.5,
+      "ext_method": "SubspaceAD",
+      "dext": 0.2
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 1,
+      "metric": "au_pro",
+      "cand": 94.4,
+      "paper": 94.4,
+      "cand_raw": 94.4491883913676,
+      "delta": 0.0,
+      "ext": 94.5,
+      "ext_method": "SubspaceAD",
+      "dext": -0.1
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 2,
+      "metric": "i_auroc",
+      "cand": 97.3,
+      "paper": 97.5,
+      "cand_raw": 97.29040954520254,
+      "delta": -0.2,
+      "ext": 97.5,
+      "ext_method": "SubspaceAD",
+      "dext": -0.2
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 2,
+      "metric": "i_ap",
+      "cand": 99.0,
+      "paper": 99.0,
+      "cand_raw": 99.02224191649715,
+      "delta": 0.0,
+      "ext": 98.8,
+      "ext_method": "SubspaceAD",
+      "dext": 0.2
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 2,
+      "metric": "p_auroc",
+      "cand": 98.0,
+      "paper": 98.0,
+      "cand_raw": 97.95172289216329,
+      "delta": 0.0,
+      "ext": 97.8,
+      "ext_method": "SubspaceAD",
+      "dext": 0.2
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 2,
+      "metric": "au_pro",
+      "cand": 94.9,
+      "paper": 94.8,
+      "cand_raw": 94.90903234481812,
+      "delta": 0.1,
+      "ext": 94.9,
+      "ext_method": "SubspaceAD",
+      "dext": 0.0
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 4,
+      "metric": "i_auroc",
+      "cand": 98.3,
+      "paper": 98.6,
+      "cand_raw": 98.27310148659862,
+      "delta": -0.3,
+      "ext": 98.0,
+      "ext_method": "SubspaceAD",
+      "dext": 0.3
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 4,
+      "metric": "i_ap",
+      "cand": 99.4,
+      "paper": 99.4,
+      "cand_raw": 99.35183545607434,
+      "delta": 0.0,
+      "ext": 99.0,
+      "ext_method": "SubspaceAD",
+      "dext": 0.4
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 4,
+      "metric": "p_auroc",
+      "cand": 98.1,
+      "paper": 98.2,
+      "cand_raw": 98.14486811547482,
+      "delta": -0.1,
+      "ext": 97.9,
+      "ext_method": "SubspaceAD",
+      "dext": 0.2
+     },
+     {
+      "dataset": "mvtec_ad",
+      "shot": 4,
+      "metric": "au_pro",
+      "cand": 95.2,
+      "paper": 95.1,
+      "cand_raw": 95.17162720362346,
+      "delta": 0.1,
+      "ext": 95.1,
+      "ext_method": "SubspaceAD",
+      "dext": 0.1
+     },
+     {
+      "dataset": "visa",
+      "shot": 1,
+      "metric": "i_auroc",
+      "cand": 93.3,
+      "paper": 93.2,
+      "cand_raw": 93.25448459845985,
+      "delta": 0.1,
+      "ext": 93.2,
+      "ext_method": "SubspaceAD",
+      "dext": 0.1
+     },
+     {
+      "dataset": "visa",
+      "shot": 1,
+      "metric": "i_ap",
+      "cand": 93.1,
+      "paper": 93.0,
+      "cand_raw": 93.09282225599753,
+      "delta": 0.1,
+      "ext": 93.0,
+      "ext_method": "SubspaceAD",
+      "dext": 0.1
+     },
+     {
+      "dataset": "visa",
+      "shot": 1,
+      "metric": "p_auroc",
+      "cand": 98.6,
+      "paper": 98.6,
+      "cand_raw": 98.56761987720967,
+      "delta": 0.0,
+      "ext": 98.2,
+      "ext_method": "SubspaceAD",
+      "dext": 0.4
+     },
+     {
+      "dataset": "visa",
+      "shot": 1,
+      "metric": "au_pro",
+      "cand": 94.5,
+      "paper": 94.6,
+      "cand_raw": 94.5447247227033,
+      "delta": -0.1,
+      "ext": 95.5,
+      "ext_method": "SubspaceAD",
+      "dext": -1.0
+     },
+     {
+      "dataset": "visa",
+      "shot": 2,
+      "metric": "i_auroc",
+      "cand": 94.5,
+      "paper": 94.6,
+      "cand_raw": 94.4523091309131,
+      "delta": -0.1,
+      "ext": 93.8,
+      "ext_method": "SubspaceAD",
+      "dext": 0.7
+     },
+     {
+      "dataset": "visa",
+      "shot": 2,
+      "metric": "i_ap",
+      "cand": 94.1,
+      "paper": 94.4,
+      "cand_raw": 94.06166682253226,
+      "delta": -0.3,
+      "ext": 93.4,
+      "ext_method": "SubspaceAD",
+      "dext": 0.7
+     },
+     {
+      "dataset": "visa",
+      "shot": 2,
+      "metric": "p_auroc",
+      "cand": 98.8,
+      "paper": 98.7,
+      "cand_raw": 98.75795624157716,
+      "delta": 0.1,
+      "ext": 98.3,
+      "ext_method": "SubspaceAD",
+      "dext": 0.5
+     },
+     {
+      "dataset": "visa",
+      "shot": 2,
+      "metric": "au_pro",
+      "cand": 94.8,
+      "paper": 94.5,
+      "cand_raw": 94.84942436218262,
+      "delta": 0.3,
+      "ext": 95.7,
+      "ext_method": "SubspaceAD",
+      "dext": -0.9
+     },
+     {
+      "dataset": "visa",
+      "shot": 4,
+      "metric": "i_auroc",
+      "cand": 95.4,
+      "paper": 95.4,
+      "cand_raw": 95.41050330033003,
+      "delta": 0.0,
+      "ext": 94.7,
+      "ext_method": "SubspaceAD",
+      "dext": 0.7
+     },
+     {
+      "dataset": "visa",
+      "shot": 4,
+      "metric": "i_ap",
+      "cand": 95.0,
+      "paper": 95.0,
+      "cand_raw": 94.95015359439249,
+      "delta": 0.0,
+      "ext": 94.3,
+      "ext_method": "SubspaceAD",
+      "dext": 0.7
+     },
+     {
+      "dataset": "visa",
+      "shot": 4,
+      "metric": "p_auroc",
+      "cand": 98.8,
+      "paper": 98.8,
+      "cand_raw": 98.83506565798761,
+      "delta": 0.0,
+      "ext": 98.4,
+      "ext_method": "SubspaceAD",
+      "dext": 0.4
+     },
+     {
+      "dataset": "visa",
+      "shot": 4,
+      "metric": "au_pro",
+      "cand": 95.0,
+      "paper": 94.6,
+      "cand_raw": 94.97808267672858,
+      "delta": 0.4,
+      "ext": 96.0,
+      "ext_method": "SubspaceAD",
+      "dext": -1.0
+     }
+    ],
+    "flags": {
+     "pareto_win": false,
+     "unrounded_pareto_win": false,
+     "independent_verified": false,
+     "goal_claim": false,
+     "all24_nonnegative": true,
+     "pixel12_nonnegative": true,
+     "loc_disclosed": true
+    },
+    "status": "PASS_FULL_JOINT_LITERAL_UNROUNDED_COMPARISON",
+    "candidate": "K64-Spatial28-Image-K32-MultiScaleMean4_12-Pixel-v1",
+    "mtime": 1792252448.582817,
+    "summary": {
+     "n": 24,
+     "n_pos": 7,
+     "n_zero": 8,
+     "n_neg": 9,
+     "min": -0.4,
+     "max": 0.4,
+     "mean": -0.02,
+     "per_dataset": {
+      "mvtec_ad": -0.08,
+      "visa": 0.04
+     },
+     "per_metric": {
+      "i_auroc": -0.15,
+      "i_ap": -0.05,
+      "p_auroc": -0.02,
+      "au_pro": 0.13
+     },
+     "neg_cells": [
+      {
+       "dataset": "mvtec_ad",
+       "shot": 1,
+       "metric": "i_auroc",
+       "delta": -0.4
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 1,
+       "metric": "i_ap",
+       "delta": -0.1
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 1,
+       "metric": "p_auroc",
+       "delta": -0.1
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 2,
+       "metric": "i_auroc",
+       "delta": -0.2
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 4,
+       "metric": "i_auroc",
+       "delta": -0.3
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 4,
+       "metric": "p_auroc",
+       "delta": -0.1
+      },
+      {
+       "dataset": "visa",
+       "shot": 1,
+       "metric": "au_pro",
+       "delta": -0.1
+      },
+      {
+       "dataset": "visa",
+       "shot": 2,
+       "metric": "i_auroc",
+       "delta": -0.1
+      },
+      {
+       "dataset": "visa",
+       "shot": 2,
+       "metric": "i_ap",
+       "delta": -0.3
+      }
+     ]
+    },
+    "summary_ext": {
+     "n": 24,
+     "n_win": 16,
+     "n_tie": 2,
+     "n_lose": 6,
+     "min": -1.0,
+     "max": 0.7,
+     "mean": 0.07,
+     "per_dataset": {
+      "mvtec_ad": 0.03,
+      "visa": 0.12
+     },
+     "per_metric": {
+      "i_auroc": 0.12,
+      "i_ap": 0.35,
+      "p_auroc": 0.32,
+      "au_pro": -0.48
+     },
+     "strongest": [
+      "SubspaceAD"
+     ],
+     "lose_cells": [
+      {
+       "dataset": "mvtec_ad",
+       "shot": 1,
+       "metric": "i_auroc",
+       "dext": -0.9,
+       "ext": 97.1,
+       "cand": 96.2,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 1,
+       "metric": "au_pro",
+       "dext": -0.1,
+       "ext": 94.5,
+       "cand": 94.4,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "mvtec_ad",
+       "shot": 2,
+       "metric": "i_auroc",
+       "dext": -0.2,
+       "ext": 97.5,
+       "cand": 97.3,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "visa",
+       "shot": 1,
+       "metric": "au_pro",
+       "dext": -1.0,
+       "ext": 95.5,
+       "cand": 94.5,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "visa",
+       "shot": 2,
+       "metric": "au_pro",
+       "dext": -0.9,
+       "ext": 95.7,
+       "cand": 94.8,
+       "ext_method": "SubspaceAD"
+      },
+      {
+       "dataset": "visa",
+       "shot": 4,
+       "metric": "au_pro",
+       "dext": -1.0,
+       "ext": 96.0,
+       "cand": 95.0,
+       "ext_method": "SubspaceAD"
+      }
+     ]
+    }
+   }
   }
  },
  "topic": "clw-seerad-7f3a9c2e",
  "events": [
+  {
+   "key": "sota_ext_not",
+   "time": "2026-10-17 23:56"
+  },
   {
    "key": "all_done",
    "time": "2026-10-17 03:33"
