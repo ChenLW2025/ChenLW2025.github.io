@@ -1,10 +1,10 @@
 {
  "snapshot": {
-  "ts": "2026-10-18 01:35:12",
+  "ts": "2026-10-18 01:45:19",
   "gpus": [
-   "GPU0 99% 70/80GB 49C",
-   "GPU1 0% 4/40GB 27C",
-   "GPU2 100% 77/80GB 55C",
+   "GPU0 100% 70/80GB 50C",
+   "GPU1 0% 8/40GB 27C",
+   "GPU2 100% 77/80GB 51C",
    "GPU3 0% 4/40GB 26C"
   ],
   "source": 30,
@@ -56,6 +56,10 @@
     {
      "who": "me",
      "desc": "round08_pixel_k64_sweep.py --shard 0 --gpu 1"
+    },
+    {
+     "who": "me",
+     "desc": "_val.py"
     }
    ],
    "gpu2": [
