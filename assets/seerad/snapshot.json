@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-18 14:53:40",
+  "ts": "2026-10-18 15:03:47",
   "gpus": [
-   "GPU0 99% 69/80GB 54C",
-   "GPU1 0% 1/40GB 40C",
+   "GPU0 100% 69/80GB 52C",
+   "GPU1 100% 6/40GB 51C",
    "GPU2 100% 77/80GB 56C",
-   "GPU3 11% 34/40GB 28C"
+   "GPU3 0% 34/40GB 27C"
   ],
   "source": 30,
   "producer": 30,
@@ -56,6 +56,10 @@
     {
      "who": "me",
      "desc": "round08_fast_gpu.py --shard 0 --gpu 1"
+    },
+    {
+     "who": "me",
+     "desc": "aupro_batch_diag.py"
     }
    ],
    "gpu2": [
