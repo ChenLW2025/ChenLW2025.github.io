@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 07:44:31",
+  "ts": "2026-10-19 07:54:38",
   "gpus": [
-   "GPU0 92% 69/80GB 48C",
-   "GPU1 100% 26/40GB 59C",
-   "GPU2 99% 77/80GB 57C",
-   "GPU3 84% 17/40GB 55C"
+   "GPU0 31% 69/80GB 53C",
+   "GPU1 100% 21/40GB 58C",
+   "GPU2 0% 77/80GB 40C",
+   "GPU3 16% 10/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,11 +59,11 @@
     },
     {
      "who": "me",
-     "desc": "python -u c7b_synth.py --nsyn 400 --iters 600"
+     "desc": "candle"
     },
     {
      "who": "me",
-     "desc": "candle"
+     "desc": "python -u e06_reg_dump.py"
     }
    ],
    "gpu2": [
@@ -84,10 +84,6 @@
     {
      "who": "me",
      "desc": "python comp_v5.py"
-    },
-    {
-     "who": "me",
-     "desc": "candle"
     },
     {
      "who": "other",
