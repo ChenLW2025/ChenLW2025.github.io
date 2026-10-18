@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 05:22:59",
+  "ts": "2026-10-19 05:33:05",
   "gpus": [
-   "GPU0 100% 69/80GB 50C",
-   "GPU1 0% 25/40GB 29C",
-   "GPU2 0% 77/80GB 38C",
-   "GPU3 46% 20/40GB 53C"
+   "GPU0 86% 69/80GB 53C",
+   "GPU1 17% 29/40GB 31C",
+   "GPU2 0% 77/80GB 42C",
+   "GPU3 20% 14/40GB 41C"
   ],
   "source": 30,
   "producer": 30,
@@ -63,7 +63,7 @@
     },
     {
      "who": "me",
-     "desc": "regev_g1.json"
+     "desc": "final_g1.json"
     }
    ],
    "gpu2": [
@@ -87,15 +87,15 @@
     },
     {
      "who": "me",
-     "desc": "ml_g3.json"
+     "desc": "python e03_feature_dump_hr.py"
+    },
+    {
+     "who": "me",
+     "desc": "final_g3.json"
     },
     {
      "who": "other",
      "desc": "yangsiyu python"
-    },
-    {
-     "who": "me",
-     "desc": "python e03_feature_dump_hr.py"
     }
    ]
   },
