@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-18 23:19:02",
+  "ts": "2026-10-18 23:29:09",
   "gpus": [
-   "GPU0 93% 69/80GB 54C",
-   "GPU1 100% 7/40GB 51C",
-   "GPU2 99% 77/80GB 58C",
-   "GPU3 100% 7/40GB 51C"
+   "GPU0 100% 69/80GB 57C",
+   "GPU1 100% 7/40GB 49C",
+   "GPU2 100% 77/80GB 58C",
+   "GPU3 1% 33/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -69,10 +69,6 @@
     }
    ],
    "gpu3": [
-    {
-     "who": "me",
-     "desc": "round08_fast_gpu.py --shard 2 --gpu 3 --half 1"
-    },
     {
      "who": "other",
      "desc": "yangsiyu python"
