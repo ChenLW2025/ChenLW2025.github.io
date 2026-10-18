@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 06:33:45",
+  "ts": "2026-10-19 06:43:52",
   "gpus": [
-   "GPU0 100% 69/80GB 52C",
-   "GPU1 0% 2/40GB 32C",
-   "GPU2 98% 77/80GB 58C",
-   "GPU3 100% 14/40GB 47C"
+   "GPU0 29% 69/80GB 46C",
+   "GPU1 0% 16/40GB 37C",
+   "GPU2 100% 77/80GB 56C",
+   "GPU3 6% 14/40GB 38C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,7 +59,11 @@
     },
     {
      "who": "me",
-     "desc": "two_head_decisive.py --device cuda:0"
+     "desc": "python -u comp_v6.py --cats pushpins,screw_bag"
+    },
+    {
+     "who": "me",
+     "desc": "cable"
     }
    ],
    "gpu2": [
@@ -83,11 +87,7 @@
     },
     {
      "who": "me",
-     "desc": "chewinggum"
-    },
-    {
-     "who": "me",
-     "desc": "two_head_shard3.json"
+     "desc": "macaroni1"
     },
     {
      "who": "other",
