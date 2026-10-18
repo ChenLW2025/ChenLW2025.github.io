@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 03:52:01",
+  "ts": "2026-10-19 04:02:07",
   "gpus": [
-   "GPU0 99% 69/80GB 59C",
-   "GPU1 0% 26/40GB 35C",
+   "GPU0 96% 69/80GB 58C",
+   "GPU1 16% 2/40GB 33C",
    "GPU2 99% 77/80GB 58C",
-   "GPU3 1% 3/40GB 33C"
+   "GPU3 12% 6/40GB 33C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,7 +59,7 @@
     },
     {
      "who": "me",
-     "desc": "python comp_pilot.py"
+     "desc": "trajectory_g1.json"
     }
    ],
    "gpu2": [
