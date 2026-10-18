@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 02:51:22",
+  "ts": "2026-10-19 03:01:28",
   "gpus": [
-   "GPU0 100% 69/80GB 56C",
-   "GPU1 26% 33/40GB 31C",
-   "GPU2 100% 77/80GB 58C",
-   "GPU3 6% 2/40GB 30C"
+   "GPU0 100% 69/80GB 59C",
+   "GPU1 0% 1/40GB 32C",
+   "GPU2 100% 77/80GB 60C",
+   "GPU3 3% 2/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -52,6 +52,12 @@
      "desc": "elastic hold (yields on real job)"
     }
    ],
+   "gpu1": [
+    {
+     "who": "me",
+     "desc": "pipe_fryum --device cuda:0"
+    }
+   ],
    "gpu2": [
     {
      "who": "other",
@@ -65,7 +71,7 @@
    "gpu3": [
     {
      "who": "me",
-     "desc": "breakfast_box --seeds 0 --kshots 4 --device cu"
+     "desc": "pcb3 --device cuda:0"
     },
     {
      "who": "other",
