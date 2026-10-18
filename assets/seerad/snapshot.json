@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 05:43:12",
+  "ts": "2026-10-19 05:53:19",
   "gpus": [
-   "GPU0 100% 69/80GB 49C",
-   "GPU1 0% 25/40GB 29C",
-   "GPU2 0% 77/80GB 37C",
-   "GPU3 0% 39/40GB 29C"
+   "GPU0 92% 69/80GB 56C",
+   "GPU1 0% 29/40GB 32C",
+   "GPU2 99% 77/80GB 56C",
+   "GPU3 40% 36/40GB 34C"
   ],
   "source": 30,
   "producer": 30,
@@ -83,7 +83,11 @@
     },
     {
      "who": "me",
-     "desc": "python comp_v5.py --cats pushpins --kshots 1 -"
+     "desc": "python comp_v5.py"
+    },
+    {
+     "who": "me",
+     "desc": "w2_evidence.py --device cuda:0"
     },
     {
      "who": "other",
