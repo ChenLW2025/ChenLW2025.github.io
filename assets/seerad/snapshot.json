@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 03:31:48",
+  "ts": "2026-10-19 03:41:55",
   "gpus": [
-   "GPU0 100% 69/80GB 56C",
-   "GPU1 27% 2/40GB 32C",
-   "GPU2 99% 77/80GB 56C",
-   "GPU3 11% 3/40GB 30C"
+   "GPU0 97% 69/80GB 55C",
+   "GPU1 0% 12/40GB 31C",
+   "GPU2 100% 77/80GB 57C",
+   "GPU3 15% 4/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,7 +59,7 @@
     },
     {
      "who": "me",
-     "desc": "w1_fast_g1.json"
+     "desc": "python comp_pilot.py"
     }
    ],
    "gpu2": [
@@ -84,6 +84,10 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
+    },
+    {
+     "who": "me",
+     "desc": "severity_agg_g3.json"
     }
    ]
   },
