@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 01:10:18",
+  "ts": "2026-10-19 01:20:25",
   "gpus": [
-   "GPU0 100% 20/80GB 57C",
-   "GPU1 36% 7/40GB 47C",
-   "GPU2 99% 77/80GB 57C",
-   "GPU3 100% 9/40GB 49C"
+   "GPU0 88% 69/80GB 55C",
+   "GPU1 10% 14/40GB 46C",
+   "GPU2 0% 77/80GB 49C",
+   "GPU3 100% 12/40GB 49C"
   ],
   "source": 30,
   "producer": 30,
@@ -50,16 +50,16 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "verify_gate_visa.py"
     }
    ],
    "gpu1": [
     {
      "who": "me",
      "desc": "round08_fast_gpu.py --shard 0 --gpu 1 --no-ver"
+    },
+    {
+     "who": "me",
+     "desc": "round08_fast_gpu.py --shard 2 --gpu 1 --half 0"
     }
    ],
    "gpu2": [
@@ -80,6 +80,10 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
+    },
+    {
+     "who": "me",
+     "desc": "round08_fast_gpu.py --shard 2 --gpu 3 --half 1"
     }
    ]
   },
