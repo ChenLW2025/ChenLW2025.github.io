@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 04:52:39",
+  "ts": "2026-10-19 05:02:46",
   "gpus": [
-   "GPU0 100% 69/80GB 52C",
-   "GPU1 0% 11/40GB 29C",
-   "GPU2 0% 77/80GB 41C",
-   "GPU3 64% 17/40GB 51C"
+   "GPU0 100% 69/80GB 54C",
+   "GPU1 100% 22/40GB 51C",
+   "GPU2 100% 77/80GB 58C",
+   "GPU3 50% 33/40GB 54C"
   ],
   "source": 30,
   "producer": 30,
@@ -60,6 +60,10 @@
     {
      "who": "me",
      "desc": "python comp_v3.py"
+    },
+    {
+     "who": "me",
+     "desc": "ml_g1.json"
     }
    ],
    "gpu2": [
@@ -82,16 +86,16 @@
      "desc": "breakfast_box --seeds 0 --kshots 1,4 --device "
     },
     {
-     "who": "other",
-     "desc": "yangsiyu python"
-    },
-    {
-     "who": "me",
-     "desc": "multilayer_probe.py --device cuda:0"
-    },
-    {
      "who": "me",
      "desc": "python comp_v4.py --cats pushpins --kshots 1 -"
+    },
+    {
+     "who": "me",
+     "desc": "ml_g3.json"
+    },
+    {
+     "who": "other",
+     "desc": "yangsiyu python"
     }
    ]
   },
