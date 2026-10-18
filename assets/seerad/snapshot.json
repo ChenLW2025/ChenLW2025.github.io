@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 06:43:52",
+  "ts": "2026-10-19 06:53:59",
   "gpus": [
-   "GPU0 29% 69/80GB 46C",
-   "GPU1 0% 16/40GB 37C",
-   "GPU2 100% 77/80GB 56C",
-   "GPU3 6% 14/40GB 38C"
+   "GPU0 36% 69/80GB 46C",
+   "GPU1 0% 14/40GB 37C",
+   "GPU2 0% 77/80GB 41C",
+   "GPU3 7% 14/40GB 37C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,11 +59,11 @@
     },
     {
      "who": "me",
-     "desc": "python -u comp_v6.py --cats pushpins,screw_bag"
+     "desc": "cable"
     },
     {
      "who": "me",
-     "desc": "cable"
+     "desc": "python -u comp_v6.py --cats pushpins,screw_bag"
     }
    ],
    "gpu2": [
