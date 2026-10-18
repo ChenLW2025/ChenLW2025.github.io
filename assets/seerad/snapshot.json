@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 03:41:55",
+  "ts": "2026-10-19 03:52:01",
   "gpus": [
-   "GPU0 97% 69/80GB 55C",
-   "GPU1 0% 12/40GB 31C",
-   "GPU2 100% 77/80GB 57C",
-   "GPU3 15% 4/40GB 30C"
+   "GPU0 99% 69/80GB 59C",
+   "GPU1 0% 26/40GB 35C",
+   "GPU2 99% 77/80GB 58C",
+   "GPU3 1% 3/40GB 33C"
   ],
   "source": 30,
   "producer": 30,
@@ -84,10 +84,6 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
-    },
-    {
-     "who": "me",
-     "desc": "severity_agg_g3.json"
     }
    ]
   },
