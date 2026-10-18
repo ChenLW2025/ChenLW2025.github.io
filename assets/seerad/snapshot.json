@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 03:21:42",
+  "ts": "2026-10-19 03:31:48",
   "gpus": [
-   "GPU0 99% 69/80GB 56C",
-   "GPU1 8% 2/40GB 31C",
-   "GPU2 99% 77/80GB 58C",
-   "GPU3 1% 3/40GB 30C"
+   "GPU0 100% 69/80GB 56C",
+   "GPU1 27% 2/40GB 32C",
+   "GPU2 99% 77/80GB 56C",
+   "GPU3 11% 3/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,7 +59,7 @@
     },
     {
      "who": "me",
-     "desc": "gate_t3_fast.py --cats dev --device cuda:0"
+     "desc": "w1_fast_g1.json"
     }
    ],
    "gpu2": [
