@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 04:42:33",
+  "ts": "2026-10-19 04:52:39",
   "gpus": [
-   "GPU0 100% 69/80GB 54C",
-   "GPU1 0% 2/40GB 31C",
-   "GPU2 99% 77/80GB 59C",
-   "GPU3 15% 6/40GB 31C"
+   "GPU0 100% 69/80GB 52C",
+   "GPU1 0% 11/40GB 29C",
+   "GPU2 0% 77/80GB 41C",
+   "GPU3 64% 17/40GB 51C"
   ],
   "source": 30,
   "producer": 30,
@@ -84,6 +84,14 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
+    },
+    {
+     "who": "me",
+     "desc": "multilayer_probe.py --device cuda:0"
+    },
+    {
+     "who": "me",
+     "desc": "python comp_v4.py --cats pushpins --kshots 1 -"
     }
    ]
   },
