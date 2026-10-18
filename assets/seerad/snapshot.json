@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 05:33:05",
+  "ts": "2026-10-19 05:43:12",
   "gpus": [
-   "GPU0 86% 69/80GB 53C",
-   "GPU1 17% 29/40GB 31C",
-   "GPU2 0% 77/80GB 42C",
-   "GPU3 20% 14/40GB 41C"
+   "GPU0 100% 69/80GB 49C",
+   "GPU1 0% 25/40GB 29C",
+   "GPU2 0% 77/80GB 37C",
+   "GPU3 0% 39/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -60,10 +60,6 @@
     {
      "who": "me",
      "desc": "python comp_v4.py"
-    },
-    {
-     "who": "me",
-     "desc": "final_g1.json"
     }
    ],
    "gpu2": [
@@ -87,11 +83,7 @@
     },
     {
      "who": "me",
-     "desc": "python e03_feature_dump_hr.py"
-    },
-    {
-     "who": "me",
-     "desc": "final_g3.json"
+     "desc": "python comp_v5.py --cats pushpins --kshots 1 -"
     },
     {
      "who": "other",
