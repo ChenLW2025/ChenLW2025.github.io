@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 02:41:15",
+  "ts": "2026-10-19 02:51:22",
   "gpus": [
    "GPU0 100% 69/80GB 56C",
-   "GPU1 0% 1/40GB 30C",
+   "GPU1 26% 33/40GB 31C",
    "GPU2 100% 77/80GB 58C",
-   "GPU3 2% 33/40GB 29C"
+   "GPU3 6% 2/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -52,12 +52,6 @@
      "desc": "elastic hold (yields on real job)"
     }
    ],
-   "gpu1": [
-    {
-     "who": "me",
-     "desc": "python harness.py --gate --device cuda:0"
-    }
-   ],
    "gpu2": [
     {
      "who": "other",
@@ -69,6 +63,10 @@
     }
    ],
    "gpu3": [
+    {
+     "who": "me",
+     "desc": "breakfast_box --seeds 0 --kshots 4 --device cu"
+    },
     {
      "who": "other",
      "desc": "yangsiyu python"
