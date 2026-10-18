@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 03:01:28",
+  "ts": "2026-10-19 03:11:34",
   "gpus": [
-   "GPU0 100% 69/80GB 59C",
-   "GPU1 0% 1/40GB 32C",
-   "GPU2 100% 77/80GB 60C",
-   "GPU3 3% 2/40GB 31C"
+   "GPU0 100% 69/80GB 58C",
+   "GPU1 0% 2/40GB 31C",
+   "GPU2 0% 77/80GB 51C",
+   "GPU3 3% 3/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -76,6 +76,10 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
+    },
+    {
+     "who": "me",
+     "desc": "breakfast_box --seeds 0 --kshots 1,4 --device "
     }
    ]
   },
