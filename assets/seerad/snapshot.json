@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 09:56:00",
+  "ts": "2026-10-19 10:06:06",
   "gpus": [
-   "GPU0 18% 68/80GB 32C",
-   "GPU1 75% 5/40GB 52C",
-   "GPU2 99% 77/80GB 60C",
-   "GPU3 82% 6/40GB 52C"
+   "GPU0 9% 68/80GB 30C",
+   "GPU1 74% 5/40GB 51C",
+   "GPU2 100% 77/80GB 58C",
+   "GPU3 82% 11/40GB 48C"
   ],
   "source": 30,
   "producer": 30,
@@ -76,6 +76,10 @@
     {
      "who": "me",
      "desc": "calib_bootstrap_B.json"
+    },
+    {
+     "who": "me",
+     "desc": "python -u e12_sinbad.py"
     },
     {
      "who": "other",
