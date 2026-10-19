@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 08:45:10",
+  "ts": "2026-10-19 08:55:17",
   "gpus": [
-   "GPU0 89% 68/80GB 60C",
-   "GPU1 93% 39/40GB 57C",
-   "GPU2 100% 77/80GB 61C",
-   "GPU3 60% 5/40GB 51C"
+   "GPU0 100% 68/80GB 58C",
+   "GPU1 76% 5/40GB 49C",
+   "GPU2 0% 77/80GB 46C",
+   "GPU3 76% 5/40GB 48C"
   ],
   "source": 30,
   "producer": 30,
@@ -60,14 +60,6 @@
     {
      "who": "me",
      "desc": "calib_bootstrap_A.json"
-    },
-    {
-     "who": "me",
-     "desc": "python -u e07_reg_crop.py"
-    },
-    {
-     "who": "me",
-     "desc": "python -u e08_reg_attn.py"
     }
    ],
    "gpu2": [
