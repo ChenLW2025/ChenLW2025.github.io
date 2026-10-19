@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 11:47:11",
+  "ts": "2026-10-19 11:57:18",
   "gpus": [
-   "GPU0 5% 68/80GB 31C",
-   "GPU1 78% 33/40GB 52C",
-   "GPU2 100% 77/80GB 59C",
-   "GPU3 85% 6/40GB 48C"
+   "GPU0 1% 67/80GB 28C",
+   "GPU1 75% 33/40GB 51C",
+   "GPU2 100% 77/80GB 56C",
+   "GPU3 11% 2/40GB 27C"
   ],
   "source": 30,
   "producer": 30,
@@ -76,10 +76,6 @@
     {
      "who": "me",
      "desc": "pcb3 --device cuda:0"
-    },
-    {
-     "who": "me",
-     "desc": "calib_bootstrap_B.json"
     },
     {
      "who": "other",
