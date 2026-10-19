@@ -11,7 +11,7 @@
   };
   let language = "en";
   function setLanguage(next, updateUrl = false) {
-    clearCopyStatus();
+    resetCopyFeedback();
     language = next === "zh" ? "zh" : "en";
     document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
     translations.forEach(({element, english}) => {
@@ -24,11 +24,22 @@
     });
     const alternateName = document.querySelector("#alternate-name");
     if (alternateName) alternateName.lang = language === "zh" ? "en" : "zh-CN";
-    languageButton.textContent = language === "zh" ? "EN ↗" : "中文 ↗";
-    languageButton.setAttribute("aria-label", language === "zh" ? "Switch to English" : "切换为中文 / Switch to Chinese");
-    languageButton.lang = language === "zh" ? "en" : "zh-CN";
+    const languageLabel = languageButton.querySelector("#language-label");
+    languageLabel.textContent = language === "zh" ? "EN" : "中文";
+    languageLabel.lang = language === "zh" ? "en" : "zh-CN";
+    languageButton.setAttribute("aria-label", language === "zh" ? "切换为英文" : "Switch to Chinese");
+    languageButton.lang = document.documentElement.lang;
     document.title = language === "zh" ? "陈林蔚 · Linwei Chen | 南京大学" : "Linwei Chen · 陈林蔚 | Nanjing University";
-    document.querySelector('meta[name="description"]').content = descriptions[language];
+    document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach(meta => {
+      meta.content = descriptions[language];
+    });
+    document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]').forEach(meta => {
+      meta.content = document.title;
+    });
+    const locale = document.querySelector('meta[property="og:locale"]');
+    const alternateLocale = document.querySelector('meta[property="og:locale:alternate"]');
+    if (locale) locale.content = language === "zh" ? "zh_CN" : "en_US";
+    if (alternateLocale) alternateLocale.content = language === "zh" ? "en_US" : "zh_CN";
     if (updateUrl) {
       try {
         const url = new URL(window.location.href);
@@ -51,30 +62,48 @@
     language = initialLanguage;
   }
   const status = document.querySelector("#copy-status");
+  const copyButtons = [...document.querySelectorAll("[data-copy], [data-copy-text]")];
   let statusTimer;
+  let copyRequest = 0;
   const buttonTimers = new WeakMap();
   function clearCopyStatus() {
     window.clearTimeout(statusTimer);
     if (status) status.textContent = "";
   }
+  function restoreCopyButton(button) {
+    const original = translations.find(item => item.element === button);
+    if (language === "zh" && button.dataset.zh) button.textContent = button.dataset.zh;
+    else if (original) button.innerHTML = original.english;
+  }
+  function resetCopyFeedback() {
+    copyRequest += 1;
+    clearCopyStatus();
+    copyButtons.forEach(button => {
+      window.clearTimeout(buttonTimers.get(button));
+      buttonTimers.delete(button);
+      restoreCopyButton(button);
+    });
+  }
   document.addEventListener("copy", clearCopyStatus);
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") clearCopyStatus();
   });
-  document.querySelectorAll("[data-copy], [data-copy-text]").forEach(button => {
+  copyButtons.forEach(button => {
     button.hidden = false;
     button.addEventListener("click", async () => {
       const value = button.dataset.copyText || document.getElementById(button.dataset.copy)?.textContent;
       if (!value) return;
-      clearCopyStatus();
-      window.clearTimeout(buttonTimers.get(button));
+      resetCopyFeedback();
+      const request = copyRequest;
       try {
         if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
         await navigator.clipboard.writeText(value.trim());
+        if (request !== copyRequest) return;
         status.textContent = language === "zh" ? "已复制到剪贴板。" : "Copied to clipboard.";
         button.textContent = language === "zh" ? "已复制 ✓" : "Copied ✓";
-        statusTimer = window.setTimeout(() => { status.textContent = ""; }, 2800);
+        statusTimer = window.setTimeout(clearCopyStatus, 2800);
       } catch {
+        if (request !== copyRequest) return;
         const target = document.getElementById(button.dataset.copy || button.dataset.copySelect);
         const selection = window.getSelection();
         if (target && selection) {
@@ -88,8 +117,8 @@
         button.textContent = language === "zh" ? "文本已选中" : "Text selected";
       }
       buttonTimers.set(button, window.setTimeout(() => {
-        const original = translations.find(item => item.element === button);
-        button.textContent = language === "zh" ? button.dataset.zh : original.english;
+        if (request === copyRequest) restoreCopyButton(button);
+        buttonTimers.delete(button);
       }, 2800));
     });
   });
@@ -100,9 +129,15 @@
   function updateActiveSection() {
     const headerHeight = header?.getBoundingClientRect().height || 78;
     document.documentElement.style.setProperty("--header-height", `${headerHeight}px`);
+    const positions = sections.map(section => ({section, rect: section.getBoundingClientRect()}));
+    positions.sort((a, b) => a.rect.top - b.rect.top);
     let current = null;
-    sections.forEach(section => { if (section.getBoundingClientRect().top <= headerHeight + 32) current = section.id; });
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12) current = "contact";
+    if (window.scrollY > 1) {
+      positions.forEach(({section, rect}) => { if (rect.top <= headerHeight + 32) current = section.id; });
+      const contact = positions.find(({section}) => section.id === "contact");
+      const contactVisible = contact && contact.rect.top < window.innerHeight && contact.rect.bottom > headerHeight;
+      if (contactVisible && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12) current = "contact";
+    }
     links.forEach(link => {
       if (link.hash === `#${current}`) link.setAttribute("aria-current", "location");
       else link.removeAttribute("aria-current");
