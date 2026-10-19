@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 15:49:46",
+  "ts": "2026-10-19 15:59:54",
   "gpus": [
-   "GPU0 0% 67/80GB 29C",
-   "GPU1 0% 2/40GB 30C",
-   "GPU2 100% 77/80GB 56C",
-   "GPU3 44% 33/40GB 30C"
+   "GPU0 0% 67/80GB 32C",
+   "GPU1 0% 2/40GB 34C",
+   "GPU2 100% 77/80GB 60C",
+   "GPU3 31% 2/40GB 35C"
   ],
   "source": 30,
   "producer": 30,
@@ -65,6 +65,10 @@
     }
    ],
    "gpu3": [
+    {
+     "who": "me",
+     "desc": "multidet_corner_B.json"
+    },
     {
      "who": "other",
      "desc": "yangsiyu python"
