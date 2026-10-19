@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 17:41:02",
+  "ts": "2026-10-19 17:51:08",
   "gpus": [
-   "GPU0 0% 67/80GB 29C",
-   "GPU1 52% 33/40GB 38C",
-   "GPU2 100% 77/80GB 56C",
-   "GPU3 20% 33/40GB 28C"
+   "GPU0 0% 67/80GB 31C",
+   "GPU1 0% 2/40GB 32C",
+   "GPU2 100% 77/80GB 57C",
+   "GPU3 12% 2/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -50,8 +50,8 @@
    ],
    "gpu1": [
     {
-     "who": "other",
-     "desc": "tongzhaoyang python3.8"
+     "who": "me",
+     "desc": "multidet_corner_A_s1.json"
     }
    ],
    "gpu2": [
@@ -68,6 +68,10 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
+    },
+    {
+     "who": "me",
+     "desc": "multidet_corner_B_s1.json"
     }
    ]
   },
