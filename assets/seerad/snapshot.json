@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 08:04:44",
+  "ts": "2026-10-19 08:14:50",
   "gpus": [
-   "GPU0 96% 69/80GB 54C",
-   "GPU1 0% 14/40GB 43C",
-   "GPU2 0% 77/80GB 43C",
-   "GPU3 78% 10/40GB 36C"
+   "GPU0 40% 68/80GB 33C",
+   "GPU1 0% 3/40GB 30C",
+   "GPU2 99% 77/80GB 55C",
+   "GPU3 34% 4/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -44,10 +44,6 @@
      "desc": "experiment_runner_v2.py"
     },
     {
-     "who": "other",
-     "desc": "rgb_enc_sac.py"
-    },
-    {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
     }
@@ -56,10 +52,6 @@
     {
      "who": "me",
      "desc": "pipe_fryum --device cuda:0"
-    },
-    {
-     "who": "me",
-     "desc": "python -u e06_reg_dump.py"
     },
     {
      "who": "me",
@@ -83,7 +75,7 @@
     },
     {
      "who": "me",
-     "desc": "python comp_v5.py"
+     "desc": "pipe_fryum"
     },
     {
      "who": "other",
@@ -91,7 +83,7 @@
     },
     {
      "who": "me",
-     "desc": "pipe_fryum"
+     "desc": "w2_k1.py"
     }
    ]
   },
