@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 07:54:38",
+  "ts": "2026-10-19 08:04:44",
   "gpus": [
-   "GPU0 31% 69/80GB 53C",
-   "GPU1 100% 21/40GB 58C",
-   "GPU2 0% 77/80GB 40C",
-   "GPU3 16% 10/40GB 31C"
+   "GPU0 96% 69/80GB 54C",
+   "GPU1 0% 14/40GB 43C",
+   "GPU2 0% 77/80GB 43C",
+   "GPU3 78% 10/40GB 36C"
   ],
   "source": 30,
   "producer": 30,
@@ -59,11 +59,11 @@
     },
     {
      "who": "me",
-     "desc": "candle"
+     "desc": "python -u e06_reg_dump.py"
     },
     {
      "who": "me",
-     "desc": "python -u e06_reg_dump.py"
+     "desc": "wood"
     }
    ],
    "gpu2": [
@@ -88,6 +88,10 @@
     {
      "who": "other",
      "desc": "yangsiyu python"
+    },
+    {
+     "who": "me",
+     "desc": "pipe_fryum"
     }
    ]
   },
