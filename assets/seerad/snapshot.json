@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 20:32:53",
+  "ts": "2026-10-19 20:43:00",
   "gpus": [
-   "GPU0 20% 7/80GB 30C",
-   "GPU1 2% 1/40GB 31C",
-   "GPU2 100% 77/80GB 56C",
-   "GPU3 10% 2/40GB 29C"
+   "GPU0 81% 7/80GB 41C",
+   "GPU1 0% 2/40GB 32C",
+   "GPU2 100% 77/80GB 58C",
+   "GPU3 1% 2/40GB 32C"
   ],
   "source": 30,
   "producer": 30,
@@ -49,15 +49,15 @@
     },
     {
      "who": "me",
-     "desc": "full_A.json"
+     "desc": "full_B_s2.json"
     },
     {
      "who": "me",
-     "desc": "full_B.json"
+     "desc": "full_B_s1.json"
     },
     {
      "who": "me",
-     "desc": "full_A_s1.json"
+     "desc": "full_A_s2.json"
     }
    ],
    "gpu2": [
