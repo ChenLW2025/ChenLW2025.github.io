@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 12:27:37",
+  "ts": "2026-10-19 12:37:44",
   "gpus": [
-   "GPU0 0% 68/80GB 31C",
-   "GPU1 81% 33/40GB 50C",
-   "GPU2 99% 77/80GB 58C",
-   "GPU3 11% 32/40GB 29C"
+   "GPU0 1% 68/80GB 31C",
+   "GPU1 21% 33/40GB 50C",
+   "GPU2 89% 77/80GB 59C",
+   "GPU3 11% 32/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,10 +46,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "other",
-     "desc": "metadrivepj python"
     },
     {
      "who": "other",
