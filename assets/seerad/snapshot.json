@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 12:17:31",
+  "ts": "2026-10-19 12:27:37",
   "gpus": [
-   "GPU0 0% 67/80GB 29C",
-   "GPU1 20% 5/40GB 45C",
-   "GPU2 100% 77/80GB 58C",
-   "GPU3 0% 2/40GB 29C"
+   "GPU0 0% 68/80GB 31C",
+   "GPU1 81% 33/40GB 50C",
+   "GPU2 99% 77/80GB 58C",
+   "GPU3 11% 32/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,6 +46,14 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "other",
+     "desc": "metadrivepj python"
+    },
+    {
+     "who": "other",
+     "desc": "metadrivepj python"
     }
    ],
    "gpu1": [
@@ -56,6 +64,10 @@
     {
      "who": "me",
      "desc": "calib_bootstrap_A.json"
+    },
+    {
+     "who": "me",
+     "desc": "python -u e13_slotsets.py"
     }
    ],
    "gpu2": [
@@ -72,6 +84,10 @@
     {
      "who": "me",
      "desc": "pcb3 --device cuda:0"
+    },
+    {
+     "who": "other",
+     "desc": "xieyuxuan python"
     },
     {
      "who": "other",
