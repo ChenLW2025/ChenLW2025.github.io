@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 15:59:54",
+  "ts": "2026-10-19 16:10:01",
   "gpus": [
-   "GPU0 0% 67/80GB 32C",
-   "GPU1 0% 2/40GB 34C",
-   "GPU2 100% 77/80GB 60C",
-   "GPU3 31% 2/40GB 35C"
+   "GPU0 0% 67/80GB 30C",
+   "GPU1 0% 33/40GB 29C",
+   "GPU2 100% 77/80GB 58C",
+   "GPU3 6% 33/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -48,12 +48,6 @@
      "desc": "elastic hold (yields on real job)"
     }
    ],
-   "gpu1": [
-    {
-     "who": "me",
-     "desc": "multidet_corner_A.json"
-    }
-   ],
    "gpu2": [
     {
      "who": "other",
@@ -65,10 +59,6 @@
     }
    ],
    "gpu3": [
-    {
-     "who": "me",
-     "desc": "multidet_corner_B.json"
-    },
     {
      "who": "other",
      "desc": "yangsiyu python"
