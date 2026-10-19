@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 08:14:50",
+  "ts": "2026-10-19 08:24:57",
   "gpus": [
-   "GPU0 40% 68/80GB 33C",
-   "GPU1 0% 3/40GB 30C",
-   "GPU2 99% 77/80GB 55C",
-   "GPU3 34% 4/40GB 30C"
+   "GPU0 2% 68/80GB 31C",
+   "GPU1 0% 2/40GB 30C",
+   "GPU2 99% 77/80GB 57C",
+   "GPU3 15% 2/40GB 30C"
   ],
   "source": 30,
   "producer": 30,
@@ -52,10 +52,6 @@
     {
      "who": "me",
      "desc": "pipe_fryum --device cuda:0"
-    },
-    {
-     "who": "me",
-     "desc": "wood"
     }
    ],
    "gpu2": [
@@ -74,16 +70,8 @@
      "desc": "pcb3 --device cuda:0"
     },
     {
-     "who": "me",
-     "desc": "pipe_fryum"
-    },
-    {
      "who": "other",
      "desc": "yangsiyu python"
-    },
-    {
-     "who": "me",
-     "desc": "w2_k1.py"
     }
    ]
   },
