@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-20 04:48:14",
+  "ts": "2026-10-20 04:58:20",
   "gpus": [
-   "GPU0 61% 8/80GB 52C",
-   "GPU1 0% 33/40GB 31C",
-   "GPU2 89% 77/80GB 60C",
-   "GPU3 0% 34/40GB 30C"
+   "GPU0 0% 67/80GB 32C",
+   "GPU1 0% 33/40GB 29C",
+   "GPU2 99% 77/80GB 58C",
+   "GPU3 0% 34/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,10 +46,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "grace_config.py"
     }
    ],
    "gpu2": [
