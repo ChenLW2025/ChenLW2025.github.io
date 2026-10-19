@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 08:24:57",
+  "ts": "2026-10-19 08:35:04",
   "gpus": [
-   "GPU0 2% 68/80GB 31C",
-   "GPU1 0% 2/40GB 30C",
-   "GPU2 99% 77/80GB 57C",
-   "GPU3 15% 2/40GB 30C"
+   "GPU0 100% 68/80GB 59C",
+   "GPU1 89% 9/40GB 57C",
+   "GPU2 0% 77/80GB 51C",
+   "GPU3 81% 6/40GB 51C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,12 +46,24 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "other",
+     "desc": "metadrivepj python"
     }
    ],
    "gpu1": [
     {
      "who": "me",
      "desc": "pipe_fryum --device cuda:0"
+    },
+    {
+     "who": "me",
+     "desc": "calib_bootstrap_A.json"
+    },
+    {
+     "who": "me",
+     "desc": "python -u e07_reg_crop.py"
     }
    ],
    "gpu2": [
@@ -68,6 +80,10 @@
     {
      "who": "me",
      "desc": "pcb3 --device cuda:0"
+    },
+    {
+     "who": "me",
+     "desc": "calib_bootstrap_B.json"
     },
     {
      "who": "other",
