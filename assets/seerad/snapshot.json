@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-20 03:37:27",
+  "ts": "2026-10-20 03:47:34",
   "gpus": [
-   "GPU0 1% 67/80GB 32C",
-   "GPU1 44% 34/40GB 37C",
-   "GPU2 91% 77/80GB 60C",
-   "GPU3 0% 34/40GB 30C"
+   "GPU0 22% 7/80GB 34C",
+   "GPU1 36% 34/40GB 33C",
+   "GPU2 89% 77/80GB 58C",
+   "GPU3 0% 34/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,6 +46,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "gate_siglip.py"
     }
    ],
    "gpu1": [
