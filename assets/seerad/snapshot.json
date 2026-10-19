@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-19 15:09:21",
+  "ts": "2026-10-19 15:19:27",
   "gpus": [
-   "GPU0 0% 67/80GB 30C",
-   "GPU1 0% 33/40GB 29C",
+   "GPU0 0% 67/80GB 29C",
+   "GPU1 0% 33/40GB 28C",
    "GPU2 100% 77/80GB 58C",
-   "GPU3 1% 33/40GB 29C"
+   "GPU3 0% 33/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
@@ -56,12 +56,6 @@
     {
      "who": "other",
      "desc": "rgb_enc_sac.py"
-    }
-   ],
-   "gpu3": [
-    {
-     "who": "other",
-     "desc": "yangsiyu python"
     }
    ]
   },
