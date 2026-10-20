@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-20 17:06:29",
+  "ts": "2026-10-20 17:16:36",
   "gpus": [
-   "GPU0 0% 68/80GB 30C",
-   "GPU1 0% 33/40GB 29C",
-   "GPU2 99% 77/80GB 62C",
-   "GPU3 0% 34/40GB 28C"
+   "GPU0 37% 69/80GB 32C",
+   "GPU1 40% 34/40GB 32C",
+   "GPU2 100% 77/80GB 54C",
+   "GPU3 46% 34/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -52,6 +52,12 @@
      "desc": "cenzihan python"
     }
    ],
+   "gpu1": [
+    {
+     "who": "other",
+     "desc": "cenzihan python"
+    }
+   ],
    "gpu2": [
     {
      "who": "other",
@@ -60,6 +66,12 @@
     {
      "who": "other",
      "desc": "rgb_enc_sac.py"
+    }
+   ],
+   "gpu3": [
+    {
+     "who": "other",
+     "desc": "cenzihan python"
     }
    ]
   },
