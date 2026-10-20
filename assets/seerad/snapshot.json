@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-21 01:42:17",
+  "ts": "2026-10-21 01:52:23",
   "gpus": [
-   "GPU0 0% 68/80GB 34C",
-   "GPU1 0% 33/40GB 31C",
-   "GPU2 0% 67/80GB 33C",
-   "GPU3 0% 34/40GB 30C"
+   "GPU0 0% 67/80GB 31C",
+   "GPU1 0% 33/40GB 30C",
+   "GPU2 0% 67/80GB 32C",
+   "GPU3 0% 34/40GB 29C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,14 +46,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "other",
-     "desc": "metadrivepj python"
-    },
-    {
-     "who": "other",
-     "desc": "metadrivepj python"
     }
    ],
    "gpu2": [
