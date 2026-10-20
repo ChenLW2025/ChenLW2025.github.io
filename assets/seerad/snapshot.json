@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-20 10:32:01",
+  "ts": "2026-10-20 10:42:08",
   "gpus": [
-   "GPU0 0% 68/80GB 29C",
-   "GPU1 0% 33/40GB 28C",
+   "GPU0 0% 67/80GB 30C",
+   "GPU1 0% 33/40GB 29C",
    "GPU2 100% 77/80GB 59C",
-   "GPU3 0% 34/40GB 27C"
+   "GPU3 0% 34/40GB 28C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,10 +46,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "other",
-     "desc": "cenzihan python"
     }
    ],
    "gpu2": [
