@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 02:45:00",
+  "ts": "2026-10-22 02:55:08",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 11309,
+    "mem_used_mb": 6463,
     "mem_total_mb": 81920,
-    "util_gpu": 20,
-    "temp_c": 48,
+    "util_gpu": 0,
+    "temp_c": 36,
     "procs": [
      {
       "pid": 1209327,
@@ -37,13 +37,6 @@
       "mem_mb": 3176,
       "experiment": "MCA",
       "cmd_short": "cache_patches.py --cat=screw_bag --out=patches_noft"
-     },
-     {
-      "pid": 1190182,
-      "owner": "chenlinwei",
-      "mem_mb": 4840,
-      "experiment": "MCA",
-      "cmd_short": "cache_build_ft.py --cat=breakfast_box --ckpt=ep01"
      }
     ]
    },
@@ -87,7 +80,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 32,
+    "temp_c": 31,
     "procs": [
      {
       "pid": 225386,
@@ -100,10 +93,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 92% 11/80GB 47C",
+   "GPU0 0% 6/80GB 35C",
    "GPU1 0% 33/40GB 32C",
    "GPU2 0% 67/80GB 34C",
-   "GPU3 26% 34/40GB 32C"
+   "GPU3 0% 34/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -148,10 +141,6 @@
     {
      "who": "me",
      "desc": "cache_patches.py --cat screw_bag --out patches"
-    },
-    {
-     "who": "me",
-     "desc": "ep01 --out-sub det_ft_freeze_cache"
     }
    ],
    "gpu1": [
@@ -279,13 +268,13 @@
      0
     ],
     "progress": {
-     "done": 350,
-     "total": 626,
-     "label": "cache_ft_freeze_bb"
+     "done": 550,
+     "total": 701,
+     "label": "patches_sb"
     },
     "latest_results": [],
-    "log_tail": "loading gdino: /mnt/disk20t/chenlinwei/pilot_4shot_loco/mca_v2_linwei/v2_4shot/breakfast_box/det_ft_freeze/ep01\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 12462.66it/s]\nloading sam ...\nLoading weights:   0%|          | 0/314 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 314/314 [00:00<00:00, 7765.72it/s]\n/mnt/disk20t/chenlinwei/pilot_4shot_loco/code/cache_build_ft.py:88: RuntimeWarning: Mean of empty slice.\n  z_deep[i]=fmap3[mr3.reshape(-1)].mean(axis=0)\n/home/chenlinwei/SubspaceAD-main/.venv_cuda/lib/python3.10/site-packages/numpy/_core/_methods.py:137: RuntimeWarning: invalid value encountered in divide\n  ret = um.true_divide(\n[50/626] 049 n=8  0.9s/img\n[100/626] 099 n=8  0.8s/img\n[150/626] 149 n=5  0.8s/img\n[200/626] 199 n=5  0.8s/img\n[250/626] 249 n=7  0.8s/img\n[300/626] 299 n=8  0.8s/img\n/mnt/disk20t/chenlinwei/pilot_4shot_loco/code/cache_build_ft.py:85: RuntimeWarning: Mean of empty slice.\n  z_ms[i]=fmap[mr.reshape(-1)].mean(axis=0)\n[350/626] 349 n=7  0.8s/img",
-    "updated_at": "2026-10-22 02:44:33",
+    "log_tail": "Loading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 23244.62it/s]\n[50/701] 2.69s/img\n[100/701] 2.67s/img\n[150/701] 2.66s/img\n[200/701] 2.65s/img\n[250/701] 2.66s/img\n[300/701] 2.66s/img\n[350/701] 2.66s/img\n[400/701] 2.66s/img\n[450/701] 2.66s/img\n[500/701] 2.66s/img\n[550/701] 2.67s/img",
+    "updated_at": "2026-10-22 02:54:28",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
