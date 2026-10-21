@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 03:56:02",
+  "ts": "2026-10-22 04:06:10",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68818,
+    "mem_used_mb": 4833,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 33,
+    "util_gpu": 1,
+    "temp_c": 34,
     "procs": [
      {
       "pid": 1209327,
@@ -27,18 +27,25 @@
      {
       "pid": 225384,
       "owner": "chenlinwei",
-      "mem_mb": 66026,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 1388386,
+      "owner": "chenlinwei",
+      "mem_mb": 1546,
+      "experiment": "other",
+      "cmd_short": "ft_mmdet_bb.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 3818,
+    "mem_used_mb": 6339,
     "mem_total_mb": 40960,
-    "util_gpu": 67,
+    "util_gpu": 45,
     "temp_c": 48,
     "procs": [
      {
@@ -51,7 +58,7 @@
      {
       "pid": 1340112,
       "owner": "chenlinwei",
-      "mem_mb": 3190,
+      "mem_mb": 5702,
       "experiment": "TBO-Norm",
       "cmd_short": "h3_heldout_recognition.py"
      }
@@ -60,17 +67,24 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 16640,
     "mem_total_mb": 81920,
-    "util_gpu": 2,
-    "temp_c": 35,
+    "util_gpu": 100,
+    "temp_c": 62,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 1375180,
+      "owner": "chenlinwei",
+      "mem_mb": 16118,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h3_sam2_overlay.py"
      }
     ]
    },
@@ -93,9 +107,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 33C",
-   "GPU1 67% 4/40GB 51C",
-   "GPU2 0% 67/80GB 35C",
+   "GPU0 1% 5/80GB 34C",
+   "GPU1 23% 6/40GB 51C",
+   "GPU2 100% 16/80GB 60C",
    "GPU3 0% 34/40GB 32C"
   ],
   "source": 30,
@@ -137,6 +151,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python ft_mmdet_bb.py"
     }
    ],
    "gpu1": [
@@ -153,6 +171,10 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "python h3_sam2_overlay.py"
     }
    ],
    "gpu3": [
@@ -317,7 +339,8 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     1
+     1,
+     2
     ],
     "progress": {
      "done": 1800,
