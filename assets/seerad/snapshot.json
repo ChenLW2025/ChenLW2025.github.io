@@ -1,9 +1,9 @@
 {
  "snapshot": {
-  "ts": "2026-10-21 23:16:51",
+  "ts": "2026-10-21 23:26:59",
   "gpus": [
    "GPU0 0% 67/80GB 35C",
-   "GPU1 0% 33/40GB 34C",
+   "GPU1 0% 0/40GB 33C",
    "GPU2 0% 67/80GB 36C",
    "GPU3 0% 34/40GB 33C"
   ],
@@ -52,6 +52,12 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    }
+   ],
+   "gpu3": [
+    {
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     }
    ]
   },
