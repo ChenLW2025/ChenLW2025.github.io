@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 06:28:13",
+  "ts": "2026-10-22 06:38:21",
   "gpus": [
    {
     "index": 0,
@@ -70,22 +70,22 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 35108,
+    "mem_used_mb": 1412,
     "mem_total_mb": 40960,
-    "util_gpu": 13,
-    "temp_c": 36,
+    "util_gpu": 0,
+    "temp_c": 37,
     "procs": [
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2098854,
+      "pid": 2166339,
       "owner": "chenlinwei",
-      "mem_mb": 796,
+      "mem_mb": 892,
       "experiment": "TBO-Norm",
       "cmd_short": "h5_object_residual.py"
      }
@@ -96,7 +96,7 @@
    "GPU0 0% 67/80GB 38C",
    "GPU1 0% 33/40GB 38C",
    "GPU2 0% 67/80GB 39C",
-   "GPU3 0% 34/40GB 36C"
+   "GPU3 0% 1/40GB 37C"
   ],
   "source": 30,
   "producer": 30,
@@ -158,7 +158,7 @@
     },
     {
      "who": "me",
-     "desc": "python h5_object_residual.py"
+     "desc": "python -u -B h5_object_residual.py"
     }
    ]
   },
