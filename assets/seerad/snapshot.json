@@ -1,13 +1,13 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 04:06:10",
+  "ts": "2026-10-22 04:16:18",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 4833,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 1,
+    "util_gpu": 0,
     "temp_c": 34,
     "procs": [
      {
@@ -27,26 +27,19 @@
      {
       "pid": 225384,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1388386,
-      "owner": "chenlinwei",
-      "mem_mb": 1546,
-      "experiment": "other",
-      "cmd_short": "ft_mmdet_bb.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 6339,
+    "mem_used_mb": 7678,
     "mem_total_mb": 40960,
-    "util_gpu": 45,
-    "temp_c": 48,
+    "util_gpu": 32,
+    "temp_c": 51,
     "procs": [
      {
       "pid": 225385,
@@ -58,7 +51,7 @@
      {
       "pid": 1340112,
       "owner": "chenlinwei",
-      "mem_mb": 5702,
+      "mem_mb": 7050,
       "experiment": "TBO-Norm",
       "cmd_short": "h3_heldout_recognition.py"
      }
@@ -67,50 +60,50 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 16640,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 100,
-    "temp_c": 62,
+    "util_gpu": 0,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 1375180,
-      "owner": "chenlinwei",
-      "mem_mb": 16118,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h3_sam2_overlay.py"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 2120,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 32,
+    "temp_c": 46,
     "procs": [
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 1404306,
+      "owner": "chenlinwei",
+      "mem_mb": 1600,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h4_batch_driver.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 1% 5/80GB 34C",
-   "GPU1 23% 6/40GB 51C",
-   "GPU2 100% 16/80GB 60C",
-   "GPU3 0% 34/40GB 32C"
+   "GPU0 0% 67/80GB 34C",
+   "GPU1 32% 7/40GB 49C",
+   "GPU2 0% 67/80GB 41C",
+   "GPU3 0% 2/40GB 45C"
   ],
   "source": 30,
   "producer": 30,
@@ -151,10 +144,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python ft_mmdet_bb.py"
     }
    ],
    "gpu1": [
@@ -171,16 +160,16 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "python h3_sam2_overlay.py"
     }
    ],
    "gpu3": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python -u -B h4_batch_driver.py"
     }
    ]
   },
@@ -340,7 +329,7 @@
     "tmux": [],
     "gpus": [
      1,
-     2
+     3
     ],
     "progress": {
      "done": 1800,
