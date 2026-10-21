@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 02:04:09",
+  "ts": "2026-10-22 02:14:25",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 11055,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 17,
-    "temp_c": 35,
+    "util_gpu": 0,
+    "temp_c": 34,
     "procs": [
      {
       "pid": 1209327,
@@ -27,16 +27,9 @@
      {
       "pid": 225384,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1137368,
-      "owner": "chenlinwei",
-      "mem_mb": 7768,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h6_vlm_order_text_fewshot.py --out=h6_vlm_order_fewshot.json"
      }
     ]
    },
@@ -46,7 +39,7 @@
     "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 32,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 225385,
@@ -60,17 +53,31 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 6031,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 35,
+    "util_gpu": 4,
+    "temp_c": 38,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 1151008,
+      "owner": "chenlinwei",
+      "mem_mb": 2920,
+      "experiment": "MCA",
+      "cmd_short": "cache_patches.py --cat=breakfast_box --out=patches_noft"
+     },
+     {
+      "pid": 1161571,
+      "owner": "cenzihan",
+      "mem_mb": 2584,
+      "experiment": "other",
+      "cmd_short": "replay_v7_contact_impact.py"
      }
     ]
    },
@@ -93,9 +100,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 17% 11/80GB 35C",
-   "GPU1 0% 33/40GB 32C",
-   "GPU2 0% 67/80GB 35C",
+   "GPU0 0% 67/80GB 34C",
+   "GPU1 0% 33/40GB 33C",
+   "GPU2 1% 6/80GB 38C",
    "GPU3 0% 34/40GB 32C"
   ],
   "source": 30,
@@ -137,10 +144,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "h6_vlm_order_fewshot.json --limit 600"
     }
    ],
    "gpu1": [
@@ -153,6 +156,14 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "cache_patches.py --cat breakfast_box --out pat"
+    },
+    {
+     "who": "other",
+     "desc": "cenzihan python"
     }
    ],
    "gpu3": [
@@ -260,19 +271,21 @@
   ],
   "experiments": {
    "MCA": {
-    "state": "idle",
+    "state": "running",
     "tmux": [
-     "pilot_eval_cpu"
+     "pilot_patches"
     ],
-    "gpus": [],
+    "gpus": [
+     2
+    ],
     "progress": {
      "done": null,
      "total": null,
-     "label": "10ep_v2_splicing_connectors"
+     "label": "v3_sb"
     },
     "latest_results": [],
-    "log_tail": "ep0 A_L=0.6805 fused=0.7290\nep1 A_L=0.7109 fused=0.7449\nep2 A_L=0.6765 fused=0.7115\nep3 A_L=0.7284 fused=0.7448\nep4 A_L=0.7162 fused=0.7345\nep5 A_L=0.7156 fused=0.7480\nep6 A_L=0.6965 fused=0.7267",
-    "updated_at": "2026-10-22 02:04:04",
+    "log_tail": "loaded train=360 good=122 logi=137\nep0: row1=0.511 row2=0.538 row3=0.511  0.1s\nep1: row1=0.538 row2=0.553 row3=0.538  0.1s\nep2: row1=0.527 row2=0.554 row3=0.527  0.1s\nep3: row1=0.519 row2=0.559 row3=0.559  0.2s\nep4: row1=0.534 row2=0.542 row3=0.534  0.1s\nep5: row1=0.489 row2=0.551 row3=0.549  0.1s\nep6: row1=0.545 row2=0.550 row3=0.545  0.1s\nep7: row1=0.479 row2=0.526 row3=0.479  0.1s\nep8 MCA fail: index 5 is out of bounds for axis 0 with size 5\nep8: row1=0.589 row2=0.568 row3=0.589  0.0s\nep9: row1=0.570 row2=0.559 row3=0.527  0.1s\n=== screw_bag No-FT 10ep: row1 0.530+-0.032 row2 0.550+-0.012 row3 0.536+-0.028 ===\nrow3-row1: 0.006  row3-row2: -0.014\nDONE",
+    "updated_at": "2026-10-22 02:14:09",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
@@ -316,11 +329,9 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "running",
+    "state": "idle",
     "tmux": [],
-    "gpus": [
-     0
-    ],
+    "gpus": [],
     "progress": {
      "done": 1800,
      "total": 1803,
