@@ -1,11 +1,130 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 00:48:01",
+  "ts": "2026-10-22 00:58:53",
   "gpus": [
-   "GPU0 2% 9/80GB 40C",
-   "GPU1 5% 33/40GB 32C",
-   "GPU2 2% 5/80GB 41C",
-   "GPU3 12% 34/40GB 31C"
+   {
+    "index": 0,
+    "name": "NVIDIA A100-SXM4-80GB",
+    "mem_used_mb": 15445,
+    "mem_total_mb": 81920,
+    "util_gpu": 4,
+    "temp_c": 33,
+    "procs": [
+     {
+      "pid": 1209327,
+      "owner": "cjsnew",
+      "mem_mb": 1342,
+      "experiment": "other",
+      "cmd_short": "experiment_runner_v2.py"
+     },
+     {
+      "pid": 825799,
+      "owner": "cjsnew",
+      "mem_mb": 1310,
+      "experiment": "other",
+      "cmd_short": "experiment_runner_v2.py"
+     },
+     {
+      "pid": 225384,
+      "owner": "chenlinwei",
+      "mem_mb": 490,
+      "experiment": "other",
+      "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 538960,
+      "owner": "chenlinwei",
+      "mem_mb": 12158,
+      "experiment": "TBO-Norm",
+      "cmd_short": "baseline.py --out=ws3a_auroc_7cat_base.json"
+     }
+    ]
+   },
+   {
+    "index": 1,
+    "name": "NVIDIA A100-PCIE-40GB",
+    "mem_used_mb": 32898,
+    "mem_total_mb": 40960,
+    "util_gpu": 100,
+    "temp_c": 58,
+    "procs": [
+     {
+      "pid": 225385,
+      "owner": "chenlinwei",
+      "mem_mb": 490,
+      "experiment": "other",
+      "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 647610,
+      "owner": "chenlinwei",
+      "mem_mb": 14544,
+      "experiment": "MCA",
+      "cmd_short": "ft_scan.py"
+     },
+     {
+      "pid": 683641,
+      "owner": "chenlinwei",
+      "mem_mb": 3220,
+      "experiment": "other",
+      "cmd_short": "h3_robovad.py"
+     },
+     {
+      "pid": 704856,
+      "owner": "chenlinwei",
+      "mem_mb": 14486,
+      "experiment": "MCA",
+      "cmd_short": "ft_gdino.py --cat=breakfast_box --ep=0"
+     }
+    ]
+   },
+   {
+    "index": 2,
+    "name": "NVIDIA A100-SXM4-80GB",
+    "mem_used_mb": 68100,
+    "mem_total_mb": 81920,
+    "util_gpu": 0,
+    "temp_c": 35,
+    "procs": [
+     {
+      "pid": 330781,
+      "owner": "chenlinwei",
+      "mem_mb": 68074,
+      "experiment": "other",
+      "cmd_short": "gpu_hold_courteous.py"
+     }
+    ]
+   },
+   {
+    "index": 3,
+    "name": "NVIDIA A100-PCIE-40GB",
+    "mem_used_mb": 4618,
+    "mem_total_mb": 40960,
+    "util_gpu": 22,
+    "temp_c": 33,
+    "procs": [
+     {
+      "pid": 225386,
+      "owner": "chenlinwei",
+      "mem_mb": 490,
+      "experiment": "other",
+      "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 681087,
+      "owner": "chenlinwei",
+      "mem_mb": 4098,
+      "experiment": "other",
+      "cmd_short": "h2_robovad.py"
+     }
+    ]
+   }
+  ],
+  "gpus_text": [
+   "GPU0 0% 15/80GB 33C",
+   "GPU1 100% 32/40GB 57C",
+   "GPU2 0% 67/80GB 35C",
+   "GPU3 20% 5/40GB 34C"
   ],
   "source": 30,
   "producer": 30,
@@ -50,32 +169,40 @@
     {
      "who": "me",
      "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
-    },
-    {
-     "who": "me",
-     "desc": "cache_build.py --cat splicing_connectors --spl"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "ft_scan.py"
+    },
+    {
+     "who": "me",
+     "desc": "python h3_robovad.py"
+    },
+    {
+     "who": "me",
+     "desc": "ft_gdino.py --cat breakfast_box --ep 0"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "cache_build.py --cat splicing_connectors --spl"
     }
    ],
    "gpu3": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "h2_robovad.py"
     }
    ]
   },
@@ -175,391 +302,236 @@
     "seed": 19
    }
   ],
-  "results": {
-   "dev5_9": {
-    "cells": [
-     {
-      "dataset": "mvtec_ad",
-      "shot": 1,
-      "metric": "i_auroc",
-      "cand": 96.8,
-      "paper": 96.6,
-      "cand_raw": 96.7723172829742,
-      "delta": 0.2,
-      "ext": 97.1,
-      "ext_method": "SubspaceAD",
-      "dext": -0.3
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 1,
-      "metric": "i_ap",
-      "cand": 98.8,
-      "paper": 98.7,
-      "cand_raw": 98.80562117712589,
-      "delta": 0.1,
-      "ext": 98.6,
-      "ext_method": "SubspaceAD",
-      "dext": 0.2
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 1,
-      "metric": "p_auroc",
-      "cand": 97.8,
-      "paper": 97.8,
-      "cand_raw": 97.775621462215,
-      "delta": 0.0,
-      "ext": 97.5,
-      "ext_method": "SubspaceAD",
-      "dext": 0.3
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 1,
-      "metric": "au_pro",
-      "cand": 94.5,
-      "paper": 94.4,
-      "cand_raw": 94.51504516601562,
-      "delta": 0.1,
-      "ext": 94.5,
-      "ext_method": "SubspaceAD",
-      "dext": 0.0
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 2,
-      "metric": "i_auroc",
-      "cand": 97.6,
-      "paper": 97.5,
-      "cand_raw": 97.63516085040233,
-      "delta": 0.1,
-      "ext": 97.5,
-      "ext_method": "SubspaceAD",
-      "dext": 0.1
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 2,
-      "metric": "i_ap",
-      "cand": 99.1,
-      "paper": 99.0,
-      "cand_raw": 99.13470089971831,
-      "delta": 0.1,
-      "ext": 98.8,
-      "ext_method": "SubspaceAD",
-      "dext": 0.3
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 2,
-      "metric": "p_auroc",
-      "cand": 98.0,
-      "paper": 98.0,
-      "cand_raw": 98.03366642171801,
-      "delta": 0.0,
-      "ext": 97.8,
-      "ext_method": "SubspaceAD",
-      "dext": 0.2
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 2,
-      "metric": "au_pro",
-      "cand": 95.0,
-      "paper": 94.8,
-      "cand_raw": 94.96017225583394,
-      "delta": 0.2,
-      "ext": 94.9,
-      "ext_method": "SubspaceAD",
-      "dext": 0.1
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 4,
-      "metric": "i_auroc",
-      "cand": 98.8,
-      "paper": 98.6,
-      "cand_raw": 98.76041389216843,
-      "delta": 0.2,
-      "ext": 98.0,
-      "ext_method": "SubspaceAD",
-      "dext": 0.8
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 4,
-      "metric": "i_ap",
-      "cand": 99.5,
-      "paper": 99.4,
-      "cand_raw": 99.48191043314567,
-      "delta": 0.1,
-      "ext": 99.0,
-      "ext_method": "SubspaceAD",
-      "dext": 0.5
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 4,
-      "metric": "p_auroc",
-      "cand": 98.2,
-      "paper": 98.2,
-      "cand_raw": 98.16570151745037,
-      "delta": 0.0,
-      "ext": 97.9,
-      "ext_method": "SubspaceAD",
-      "dext": 0.3
-     },
-     {
-      "dataset": "mvtec_ad",
-      "shot": 4,
-      "metric": "au_pro",
-      "cand": 95.2,
-      "paper": 95.1,
-      "cand_raw": 95.24114672342935,
-      "delta": 0.1,
-      "ext": 95.1,
-      "ext_method": "SubspaceAD",
-      "dext": 0.1
-     },
-     {
-      "dataset": "visa",
-      "shot": 1,
-      "metric": "i_auroc",
-      "cand": 93.5,
-      "paper": 93.2,
-      "cand_raw": 93.47190869086909,
-      "delta": 0.3,
-      "ext": 93.2,
-      "ext_method": "SubspaceAD",
-      "dext": 0.3
-     },
-     {
-      "dataset": "visa",
-      "shot": 1,
-      "metric": "i_ap",
-      "cand": 93.3,
-      "paper": 93.0,
-      "cand_raw": 93.26995455202214,
-      "delta": 0.3,
-      "ext": 93.0,
-      "ext_method": "SubspaceAD",
-      "dext": 0.3
-     },
-     {
-      "dataset": "visa",
-      "shot": 1,
-      "metric": "p_auroc",
-      "cand": 98.6,
-      "paper": 98.6,
-      "cand_raw": 98.63542698796871,
-      "delta": 0.0,
-      "ext": 98.2,
-      "ext_method": "SubspaceAD",
-      "dext": 0.4
-     },
-     {
-      "dataset": "visa",
-      "shot": 1,
-      "metric": "au_pro",
-      "cand": 94.7,
-      "paper": 94.6,
-      "cand_raw": 94.65437948703766,
-      "delta": 0.1,
-      "ext": 95.5,
-      "ext_method": "SubspaceAD",
-      "dext": -0.8
-     },
-     {
-      "dataset": "visa",
-      "shot": 2,
-      "metric": "i_auroc",
-      "cand": 94.9,
-      "paper": 94.6,
-      "cand_raw": 94.88418481848184,
-      "delta": 0.3,
-      "ext": 93.8,
-      "ext_method": "SubspaceAD",
-      "dext": 1.1
-     },
-     {
-      "dataset": "visa",
-      "shot": 2,
-      "metric": "i_ap",
-      "cand": 94.7,
-      "paper": 94.4,
-      "cand_raw": 94.70265180090122,
-      "delta": 0.3,
-      "ext": 93.4,
-      "ext_method": "SubspaceAD",
-      "dext": 1.3
-     },
-     {
-      "dataset": "visa",
-      "shot": 2,
-      "metric": "p_auroc",
-      "cand": 98.7,
-      "paper": 98.7,
-      "cand_raw": 98.73526904404206,
-      "delta": 0.0,
-      "ext": 98.3,
-      "ext_method": "SubspaceAD",
-      "dext": 0.4
-     },
-     {
-      "dataset": "visa",
-      "shot": 2,
-      "metric": "au_pro",
-      "cand": 94.7,
-      "paper": 94.5,
-      "cand_raw": 94.72325285275777,
-      "delta": 0.2,
-      "ext": 95.7,
-      "ext_method": "SubspaceAD",
-      "dext": -1.0
-     },
-     {
-      "dataset": "visa",
-      "shot": 4,
-      "metric": "i_auroc",
-      "cand": 95.7,
-      "paper": 95.4,
-      "cand_raw": 95.68691419141913,
-      "delta": 0.3,
-      "ext": 94.7,
-      "ext_method": "SubspaceAD",
-      "dext": 1.0
-     },
-     {
-      "dataset": "visa",
-      "shot": 4,
-      "metric": "i_ap",
-      "cand": 95.4,
-      "paper": 95.0,
-      "cand_raw": 95.37910649519273,
-      "delta": 0.4,
-      "ext": 94.3,
-      "ext_method": "SubspaceAD",
-      "dext": 1.1
-     },
-     {
-      "dataset": "visa",
-      "shot": 4,
-      "metric": "p_auroc",
-      "cand": 98.8,
-      "paper": 98.8,
-      "cand_raw": 98.81907059198551,
-      "delta": 0.0,
-      "ext": 98.4,
-      "ext_method": "SubspaceAD",
-      "dext": 0.4
-     },
-     {
-      "dataset": "visa",
-      "shot": 4,
-      "metric": "au_pro",
-      "cand": 94.8,
-      "paper": 94.6,
-      "cand_raw": 94.7785422205925,
-      "delta": 0.2,
-      "ext": 96.0,
-      "ext_method": "SubspaceAD",
-      "dext": -1.2
-     }
+  "experiments": {
+   "MCA": {
+    "state": "running",
+    "tmux": [
+     "pilot_10ep",
+     "pilot_ft_bb",
+     "pilot_ft_scan"
     ],
-    "flags": {
-     "pareto_win": true,
-     "unrounded_pareto_win": true,
-     "independent_verified": false,
-     "goal_claim": false,
-     "all24_nonnegative": true,
-     "pixel12_nonnegative": true,
-     "loc_disclosed": true
+    "gpus": [
+     1
+    ],
+    "progress": {
+     "done": null,
+     "total": null,
+     "label": "10ep_sb"
     },
-    "status": "PASS_FULL_JOINT_LITERAL_UNROUNDED_COMPARISON",
-    "candidate": "K64-Spatial28-Image-K32-MultiScaleMean4_12-Pixel-v1",
-    "mtime": 1791804980.7417912,
-    "summary": {
-     "n": 24,
-     "n_pos": 18,
-     "n_zero": 6,
-     "n_neg": 0,
-     "min": 0.0,
-     "max": 0.4,
-     "mean": 0.15,
-     "per_dataset": {
-      "mvtec_ad": 0.1,
-      "visa": 0.2
-     },
-     "per_metric": {
-      "i_auroc": 0.23,
-      "i_ap": 0.22,
-      "p_auroc": 0.0,
-      "au_pro": 0.15
-     },
-     "neg_cells": []
-    },
-    "summary_ext": {
-     "n": 24,
-     "n_win": 19,
-     "n_tie": 1,
-     "n_lose": 4,
-     "min": -1.2,
-     "max": 1.3,
-     "mean": 0.25,
-     "per_dataset": {
-      "mvtec_ad": 0.22,
-      "visa": 0.27
-     },
-     "per_metric": {
-      "i_auroc": 0.5,
-      "i_ap": 0.62,
-      "p_auroc": 0.33,
-      "au_pro": -0.47
-     },
-     "strongest": [
-      "SubspaceAD"
+    "latest_results": [],
+    "log_tail": "ep0 A_L=0.5112 fused=0.5129\nep1 A_L=0.5376 fused=0.5327\nep2 A_L=0.5272 fused=0.5249\nep3 A_L=0.5193 fused=0.5172\nep4 A_L=0.5335 fused=0.5324\nep5 A_L=0.4885 fused=0.4907\nep6 A_L=0.5448 fused=0.5400",
+    "updated_at": "2026-10-22 00:58:12",
+    "conclusion": {
+     "verdict": "PENDING",
+     "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
+     "points": [
+      "①忠实复现（No-FT,z_deep,A_L-only）breakfast_box ep01=0.709，≈ObjectCore Only M_L 锚点 70.6，核心匹配逻辑方向正确",
+      "②混池=0.706，弱检测器阶段 ①≈② 属预期；多模式 episode 上必须 ③>②",
+      "A_L+A_S 融合 0.720（+4pp）；z_ms 1792 特征 0.680，FT 后 10-episode 再选型",
+      "FT 微调进行中（tmux pilot_ft_bb），验收带 macro [78.8,82.8]",
+      "D5 五项门禁：多模式占比≥25%、M=1 上③−①≈0、③>①>②、LOSO存活对≥10%、<5s/episode"
      ],
-     "lose_cells": [
+     "killline": {
+      "loco_target": 80.8,
+      "cad_target": 96.6,
+      "current_loco": 0.72,
+      "current_cad": null
+     },
+     "four_rows": [
       {
-       "dataset": "mvtec_ad",
-       "shot": 1,
-       "metric": "i_auroc",
-       "dext": -0.3,
-       "ext": 97.1,
-       "cand": 96.8,
-       "ext_method": "SubspaceAD"
+       "row": "1",
+       "label": "最近单图·No-FT单类",
+       "value": 0.709
       },
       {
-       "dataset": "visa",
-       "shot": 1,
-       "metric": "au_pro",
-       "dext": -0.8,
-       "ext": 95.5,
-       "cand": 94.7,
-       "ext_method": "SubspaceAD"
+       "row": "2",
+       "label": "混池·No-FT单类",
+       "value": 0.706
       },
       {
-       "dataset": "visa",
-       "shot": 2,
-       "metric": "au_pro",
-       "dext": -1.0,
-       "ext": 95.7,
-       "cand": 94.7,
-       "ext_method": "SubspaceAD"
+       "row": "3",
+       "label": "MCA",
+       "value": null
       },
       {
-       "dataset": "visa",
-       "shot": 4,
-       "metric": "au_pro",
-       "dext": -1.2,
-       "ext": 96.0,
-       "cand": 94.8,
-       "ext_method": "SubspaceAD"
+       "row": "4",
+       "label": "编辑",
+       "value": null
       }
-     ]
+     ],
+     "updated_at": "2026-10-22 00:48"
     }
    },
+   "TBO-Norm": {
+    "state": "running",
+    "tmux": [],
+    "gpus": [
+     0
+    ],
+    "progress": {
+     "done": 900,
+     "total": 930,
+     "label": "ws3a_run_7cat.log"
+    },
+    "latest_results": [
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "pooled",
+      "row": "missing",
+      "metric": "AUROC",
+      "value": 0.5422
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "exterior_image_1_left",
+      "row": "missing",
+      "metric": "AUROC",
+      "value": 0.5307
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "wrist_image_left",
+      "row": "missing",
+      "metric": "AUROC",
+      "value": 0.6081
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "pooled",
+      "row": "extra",
+      "metric": "AUROC",
+      "value": 0.5279
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "exterior_image_1_left",
+      "row": "extra",
+      "metric": "AUROC",
+      "value": 0.5231
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "wrist_image_left",
+      "row": "extra",
+      "metric": "AUROC",
+      "value": 0.5687
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "pooled",
+      "row": "position",
+      "metric": "AUROC",
+      "value": 0.6154
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "exterior_image_1_left",
+      "row": "position",
+      "metric": "AUROC",
+      "value": 0.6201
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "wrist_image_left",
+      "row": "position",
+      "metric": "AUROC",
+      "value": 0.7602
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "pooled",
+      "row": "count",
+      "metric": "AUROC",
+      "value": 0.604
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "exterior_image_1_left",
+      "row": "count",
+      "metric": "AUROC",
+      "value": 0.6101
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "wrist_image_left",
+      "row": "count",
+      "metric": "AUROC",
+      "value": 0.7261
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "pooled",
+      "row": "temporal",
+      "metric": "AUROC",
+      "value": 0.4999
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "exterior_image_1_left",
+      "row": "temporal",
+      "metric": "AUROC",
+      "value": 0.5
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "wrist_image_left",
+      "row": "temporal",
+      "metric": "AUROC",
+      "value": 0.4997
+     },
+     {
+      "ts": "2026-10-22 00:33",
+      "category": "pooled",
+      "row": "temporal_temp",
+      "metric": "AUROC",
+      "value": 0.5729
+     }
+    ],
+    "log_tail": "[bank] 50/930 clips 49s\n[bank] 100/930 clips 97s\n[bank] 150/930 clips 143s\n[bank] 200/930 clips 164s\n[bank] 250/930 clips 185s\n[bank] 300/930 clips 207s\n[bank] 350/930 clips 227s\n[bank] 400/930 clips 246s\n[bank] 450/930 clips 267s\n[bank] 500/930 clips 288s\n[bank] 550/930 clips 324s\n[bank] 600/930 clips 375s\n[bank] 650/930 clips 446s\n[bank] 700/930 clips 537s\n[bank] 750/930 clips 616s\n[bank] 800/930 clips 698s\n[bank] 850/930 clips 813s\n[bank] 900/930 clips 921s\n[bank] motion train mean=0.3350 sd=0.2221\n[bank] pooled=torch.Size([7440, 768]) patch=torch.Size([80000, 768])",
+    "updated_at": "2026-10-22 00:58:23",
+    "conclusion": {
+     "verdict": "RUNNING",
+     "headline": "TBO-Norm 正常库 kNN 基线在盘：Phys-AD 分支 ws3a score_pooled AUROC=0.997（part0/base 基准），DROID 分支 ws3c pooled 仅 0.53–0.62 偏弱；当前无活跃 GPU 进程（idle），方法层 GO/KILL 结论待你下发，不预设。",
+     "points": [
+      "ws3a(Phys-AD, dinov2-base, 8帧, bank 60k patches, n_train=486/n_test=1035=255正+780异常)：score_pooled AUROC=0.9970/AUPRC=0.9990，score_pooled_top AUROC=0.9983；score_patch=0.934；score_temporal AUROC=0.348 不可用",
+      "ws3c(DROID 正常库 kNN, EVAL_DONE n=1432, 2026-10-22 00:33)：pooled AUROC missing=0.542/extra=0.528/position=0.615/count=0.604/temporal=0.500；wrist_image_left/position=0.760 为当前最佳单元",
+      "ws3a 强、ws3c 弱 → 差距在视频/视角域而非打分器本身；优化方向待后端定，我只同步数字不判方法结论",
+      "结果文件：results/ws3a_auroc_part0_base_v2.json(mtime 2026-10-22 00:39)、results/ws3c/ws3c_auroc_summary.json(mtime 2026-10-22 00:35)"
+     ],
+     "killline": {
+      "loco_target": 80.8,
+      "cad_target": 96.6,
+      "current_loco": 0.615,
+      "current_cad": null
+     },
+     "four_rows": [
+      {
+       "row": "1",
+       "label": "ws3a Phys-AD pooled",
+       "value": 0.997
+      },
+      {
+       "row": "2",
+       "label": "ws3c DROID pooled best",
+       "value": 0.615
+      },
+      {
+       "row": "3",
+       "label": "ws3c wrist/position",
+       "value": 0.76
+      },
+      {
+       "row": "4",
+       "label": "ws3c temporal",
+       "value": 0.5
+      }
+     ],
+     "updated_at": "2026-10-22 00:48"
+    }
+   }
+  },
+  "results": {
+   "dev5_9": null,
    "ind15_19": {
     "cells": [
      {
