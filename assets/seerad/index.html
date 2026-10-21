@@ -3,451 +3,776 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0b1120">
+<meta name="theme-color" content="#0a0c0e">
 <title>MCA / TBO-Norm 实验监控</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2310b981'/%3E%3Cpath d='M5 15l4-4 3 3 7-8' stroke='%2306121f' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232dd4bf'/%3E%3Cpath d='M5 15l4-4 3 3 7-8' stroke='%230a0c0e' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
+/* ============ 设计 tokens（design_system.md §1，生产原样复制） ============ */
 :root{
-  --bg:#070d1a; --panel:#0f1a2e; --panel2:#12233c; --line:#22334f; --line2:#1a2942;
-  --txt:#e8f0fb; --muted:#93a4bd; --dim:#5f7393;
-  --ok:#34d399; --okbg:rgba(16,185,129,.14); --run:#2dd4bf; --runbg:rgba(45,212,191,.14);
-  --warn:#fbbf24; --warnbg:rgba(245,158,11,.16); --bad:#fb7185; --badbg:rgba(244,63,94,.15);
-  --info:#60a5fa; --infobg:rgba(96,165,250,.12); --accent:#5eead4;
+  --bg:#0a0c0e;
+  --surface:#111519;
+  --surface-2:#161b20;
+  --surface-3:#1d232a;
+  --border:#222a31;
+  --border-2:#2f3942;
+
+  --text:#e7ecf0;
+  --text-2:#98a5b1;
+  --text-3:#5f6d79;
+
+  --mca:#2dd4bf;  --mca-bg:rgba(45,212,191,.10);  --mca-bd:rgba(45,212,191,.32);
+  --tbo:#6aa6ff;  --tbo-bg:rgba(106,166,255,.10);  --tbo-bd:rgba(106,166,255,.32);
+
+  --ok:#3fb950;   --ok-bg:rgba(63,185,80,.10);    --ok-bd:rgba(63,185,80,.32);
+  --warn:#d29922; --warn-bg:rgba(210,153,34,.10); --warn-bd:rgba(210,153,34,.34);
+  --danger:#f85149;--danger-bg:rgba(248,81,73,.10);--danger-bd:rgba(248,81,73,.34);
+  --info:#58a6ff; --info-bg:rgba(88,166,255,.10); --info-bd:rgba(88,166,255,.32);
+  --idle:#8b98a5; --idle-bg:rgba(139,152,165,.10); --idle-bd:rgba(139,152,165,.28);
+
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+
+  --r-card:10px; --r-in:6px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,sans-serif;-webkit-text-size-adjust:100%}
-body{padding:max(12px,env(safe-area-inset-top)) 12px 40px;max-width:1180px;margin:0 auto}
-a{color:var(--accent)}
-.hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 2px 12px;flex-wrap:wrap}
-.hdr h1{font-size:18px;font-weight:700;letter-spacing:.3px}
-.hdr .sub{font-size:11px;color:var(--muted);margin-top:2px}
-.pill{font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
-.dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
-.pill.ok{background:var(--okbg);color:var(--ok);border:1px solid rgba(52,211,153,.35)}
-.pill.bad{background:var(--badbg);color:var(--bad);border:1px solid rgba(244,63,94,.35)}
-.pill.run{background:var(--runbg);color:var(--run);border:1px solid rgba(45,212,191,.3)}
-.pill.muted{background:rgba(147,164,189,.12);color:var(--muted);border:1px solid var(--line)}
-.pill.info{background:var(--infobg);color:var(--info);border:1px solid rgba(96,165,250,.4)}
-.pill.warn2{background:var(--warnbg);color:var(--warn);border:1px solid rgba(245,158,11,.4)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
-.card h2{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:7px}
-.card h2 .ic{width:14px;height:14px;flex:none;fill:var(--accent)}
-.alert{border-radius:12px;padding:12px 13px;font-size:13px;line-height:1.55;margin-bottom:12px;border:1px solid}
-.alert.run{background:var(--runbg);border-color:rgba(45,212,191,.35);color:var(--accent)}
-.alert.bad{background:var(--badbg);border-color:rgba(244,63,94,.4);color:#fda4af}
-.alert.ok{background:var(--okbg);border-color:rgba(52,211,153,.35);color:#6ee7b7}
-.alert.warn{background:var(--warnbg);border-color:rgba(245,158,11,.4);color:#fcd34d}
-.alert b{color:var(--txt)}
-/* ===== GPU 卡片 ===== */
+html,body{background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:13px;line-height:1.5;-webkit-text-size-adjust:100%}
+body{padding:max(14px,env(safe-area-inset-top)) 0 40px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+b{font-weight:600}
+.mono{font-family:var(--mono)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ============ 顶栏 ============ */
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:2px 0 16px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.hdr .t1{font-size:16px;font-weight:700;letter-spacing:.2px}
+.hdr .t2{font-size:11.5px;color:var(--text-3);margin-top:3px}
+.hdr .right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.conn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;
+  padding:5px 10px;border-radius:999px;border:1px solid var(--border-2);
+  background:var(--surface-2);color:var(--text-2)}
+.conn .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.conn.ok{color:var(--ok);border-color:var(--ok-bd);background:var(--ok-bg)}
+.conn.bad{color:var(--danger);border-color:var(--danger-bd);background:var(--danger-bg)}
+.conn.loading{color:var(--warn)}
+
+/* MCA Paper (live) 主按钮 */
+.paper-btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;
+  border:1px solid var(--mca-bd);background:var(--mca-bg);color:var(--mca);
+  border-radius:8px;padding:7px 13px}
+.paper-btn:hover{background:rgba(45,212,191,.16)}
+.paper-btn .pi{width:16px;height:16px;flex:none}
+.paper-btn .pn{font-size:12.5px;font-weight:700;letter-spacing:.2px;display:flex;align-items:center;gap:6px}
+.paper-btn .live{width:6px;height:6px;border-radius:50%;background:var(--mca);
+  animation:pulse-dot 1.6s ease-in-out infinite}
+.paper-btn .pm{font-size:10.5px;color:var(--text-2);font-family:var(--mono);text-align:left;line-height:1.35}
+@keyframes pulse-dot{50%{opacity:.35}}
+
+/* ============ 实验健康度徽章 ============ */
+.health{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.hchip{border:1px solid var(--border);border-radius:var(--r-card);background:var(--surface);
+  padding:11px 14px;display:flex;align-items:center;gap:12px;min-width:0}
+.hchip .hpic{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none}
+.hchip .hpic svg{width:15px;height:15px}
+.hchip.mca .hpic{background:var(--mca-bg);color:var(--mca)}
+.hchip.tbo .hpic{background:var(--tbo-bg);color:var(--tbo)}
+.hchip .hmain{min-width:0;flex:1}
+.hchip .hname{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+.hchip.mca .hname{color:var(--mca)} .hchip.tbo .hname{color:var(--tbo)}
+.hchip .hline{font-size:11.5px;color:var(--text-2);margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hchip .hnum{font-family:var(--mono);font-size:11.5px;font-weight:700;
+  font-variant-numeric:tabular-nums;text-align:right;flex:none;line-height:1.4}
+
+/* ============ 通用 pill 状态徽章 ============ */
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+  padding:3px 9px;border-radius:999px;border:1px solid;white-space:nowrap;letter-spacing:.2px}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.pill.run{color:var(--idle);background:var(--idle-bg);border-color:var(--idle-bd)}
+.pill.pending{color:var(--info);background:var(--info-bg);border-color:var(--info-bd)}
+.pill.cond{color:var(--warn);background:var(--warn-bg);border-color:var(--warn-bd)}
+.pill.go{color:var(--ok);background:var(--ok-bg);border-color:var(--ok-bd)}
+.pill.kill{color:var(--danger);background:var(--danger-bg);border-color:var(--danger-bd)}
+.pill.idle{color:var(--text-3);background:var(--idle-bg);border-color:var(--border-2)}
+
+/* ============ 卡片 ============ */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:16px;margin-bottom:14px}
+.card>h2{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
+  color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.card>h2 svg{width:13px;height:13px}
+.card>h2 .sp{flex:1}
+.card>h2 .hmeta{font-family:var(--mono);font-size:10.5px;color:var(--text-3);
+  text-transform:none;letter-spacing:0;font-weight:500}
+
+/* ============ GPU 卡 ============ */
 .gpus{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media (max-width:900px){.gpus{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.gpus{grid-template-columns:1fr}}
-.gpu{background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:11px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.gpu{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:11px 12px;display:flex;flex-direction:column;gap:7px;min-width:0}
 .gpu .top{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
-.gpu .gi{font-size:12px;color:var(--txt);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gpu .gname{font-size:10px;color:var(--dim);font-weight:500}
-.gpu .tmp{font-size:11px;color:var(--warn);font-variant-numeric:tabular-nums;flex:none}
-.gpu .util{font-size:24px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
-.gpu .util small{font-size:11px;color:var(--muted);font-weight:600}
-.gpu.hi .util{color:var(--ok)} .gpu.zero .util{color:var(--muted)}
-.bar{height:6px;border-radius:4px;background:#101c31;overflow:hidden}
-.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#10b981,#34d399);transition:width .3s}
-.gpu.zero .bar i{background:#33415c}
-.bar.mem i{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
-.gpu .mem{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.gpu .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
-.etag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid;white-space:nowrap}
-.etag.mca{background:var(--runbg);color:var(--run);border-color:rgba(45,212,191,.4)}
-.etag.tbo{background:var(--infobg);color:var(--info);border-color:rgba(96,165,250,.4)}
-.etag.other{background:rgba(251,191,36,.1);color:var(--warn);border-color:rgba(251,191,36,.35)}
-.gpu .who{font-size:10px;color:var(--dim);line-height:1.45;word-break:break-all}
-.gpu .who b{color:var(--muted);font-weight:600}
-/* ===== 实验面板 ===== */
-.exps{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-@media (max-width:900px){.exps{grid-template-columns:1fr}}
-.exp{background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:13px}
-.exp.mca{border-top:3px solid var(--run)}
-.exp.tbo{border-top:3px solid var(--info)}
-.exp.off{border-top:3px solid var(--line);opacity:.85}
-.exp .eh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.exp .eh .en{font-size:14px;font-weight:800;letter-spacing:.3px}
-.exp.mca .en{color:var(--run)} .exp.tbo .en{color:var(--info)}
-.exp .meta{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:9px}
-.exp .meta b{color:var(--txt);font-weight:600}
-.progrow{margin:8px 0 10px}
-.progrow .pl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px}
-.progrow .pl b{color:var(--txt);font-variant-numeric:tabular-nums}
-.progrow .mini{height:6px;border-radius:4px;background:#101c31;overflow:hidden}
-.progrow .mini i{display:block;height:100%;border-radius:4px}
-.exp.mca .mini i{background:var(--run)} .exp.tbo .mini i{background:var(--info)}
-.exp h3{font-size:11px;color:var(--dim);font-weight:700;letter-spacing:.4px;margin:10px 0 5px;text-transform:uppercase}
-table.res{width:100%;border-collapse:collapse;font-size:10.5px;table-layout:fixed}
-table.res th,table.res td{padding:4px 4px;text-align:left;border-bottom:1px solid var(--line2);word-break:break-word}
-table.res th{color:var(--dim);font-weight:600;font-size:10px}
-table.res td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--txt)}
-table.res td.rowc{color:var(--accent);white-space:nowrap}
-.logtail{background:#0b1628;border:1px solid var(--line2);border-radius:8px;padding:8px 10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;line-height:1.6;color:var(--muted);white-space:pre-wrap;word-break:break-word;max-height:130px;overflow:auto;margin-top:2px}
-.exp .upd{font-size:10px;color:var(--dim);margin-top:9px;text-align:right}
-.exp .empty{font-size:12px;color:var(--dim);text-align:center;padding:22px 8px;line-height:1.7}
-.exp .empty b{color:var(--muted)}
-/* ===== 当前结论区块 ===== */
-.concl{border:1px solid var(--line2);border-radius:10px;padding:10px 11px;margin-bottom:11px;background:#0b1628}
+.gpu .gi{font-size:11.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gpu .gname{display:block;font-size:10px;color:var(--text-3);font-weight:500;margin-top:1px}
+.gpu .tmp{font-size:11px;font-family:var(--mono);color:var(--text-2);flex:none}
+.gpu .tmp.hot{color:var(--warn)}
+.gpu .util{font-size:22px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.gpu .util small{font-size:10.5px;color:var(--text-3);font-weight:600;margin-left:3px}
+.gpu.busy .util{color:var(--text)} .gpu.idle .util{color:var(--text-3)}
+.bar{height:3px;border-radius:2px;background:var(--surface-3);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:2px;background:var(--text-2)}
+.gpu.busy .bar.util i{background:var(--mca)}
+.gpu .mem{font-size:10.5px;color:var(--text-2);font-family:var(--mono);
+  font-variant-numeric:tabular-nums;display:flex;justify-content:space-between}
+.gpu .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:1px}
+.etag{font-size:9.5px;font-weight:700;padding:1.5px 7px;border-radius:999px;
+  border:1px solid;white-space:nowrap;letter-spacing:.2px}
+.etag.mca{color:var(--mca);background:var(--mca-bg);border-color:var(--mca-bd)}
+.etag.tbo{color:var(--tbo);background:var(--tbo-bg);border-color:var(--tbo-bd)}
+.etag.other{color:var(--text-3);background:transparent;border-color:var(--border-2);font-weight:600}
+.gpu .who{font-size:10px;color:var(--text-3);line-height:1.5;word-break:break-word;border-top:1px dashed var(--border);padding-top:6px}
+.gpu .who b{color:var(--text-2);font-weight:600}
+
+/* ============ 实验面板 ============ */
+.exps{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;margin-bottom:14px}
+.exp{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:15px;min-width:0}
+.exp.mca{border-top:2px solid var(--mca)}
+.exp.tbo{border-top:2px solid var(--tbo)}
+.exp.off{opacity:.75}
+.exp .eh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.exp .en{font-size:14.5px;font-weight:700;letter-spacing:.2px}
+.exp.mca .en{color:var(--mca)} .exp.tbo .en{color:var(--tbo)}
+.exp .sub{font-size:11px;color:var(--text-2);margin-bottom:12px;font-family:var(--mono)}
+.exp .sub b{color:var(--text);font-weight:600}
+
+/* 步骤条 */
+.steps{list-style:none;display:flex;margin:0 0 13px;gap:0}
+.steps li{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.steps li::before{content:"";position:absolute;top:5px;left:-50%;width:100%;height:2px;background:var(--border-2)}
+.steps li:first-child::before{display:none}
+.steps li.done::before{background:var(--exp-c,var(--text-2))}
+.steps li .sd{width:10px;height:10px;border-radius:50%;background:var(--surface);
+  border:2px solid var(--border-2);position:relative;z-index:1}
+.steps li.done .sd{background:var(--exp-c,var(--text-2));border-color:var(--exp-c,var(--text-2))}
+.steps li.active .sd{border-color:var(--warn);animation:pulse-dot 1.4s infinite}
+.steps li .sl{font-size:9.5px;color:var(--text-3);white-space:nowrap}
+.steps li.done .sl{color:var(--text-2)} .steps li.active .sl{color:var(--warn);font-weight:700}
+.exp.mca{--exp-c:var(--mca)} .exp.tbo{--exp-c:var(--tbo)}
+
+/* 进度行 */
+.progrow{margin:2px 0 13px}
+.progrow .pl{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:11px;color:var(--text-2);margin-bottom:5px;gap:8px}
+.progrow .pl b{color:var(--text);font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums}
+.progrow .mini{height:4px;border-radius:2px;background:var(--surface-3);overflow:hidden}
+.progrow .mini i{display:block;height:100%;border-radius:2px;background:var(--exp-c,var(--text-2))}
+
+.exp h3{font-size:10px;font-weight:700;color:var(--text-3);letter-spacing:.08em;
+  text-transform:uppercase;margin:13px 0 6px}
+
+/* 结果表 */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r-in)}
+table.res{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed;min-width:340px}
+table.res th,table.res td{padding:5px 8px;text-align:left;border-bottom:1px solid var(--border);
+  word-break:break-word}
+table.res tr:last-child td{border-bottom:none}
+table.res th{color:var(--text-3);font-weight:600;font-size:10px;background:var(--surface-2)}
+table.res td.v{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700}
+table.res td.rc{color:var(--exp-c,var(--text))}
+
+/* log tail */
+.logtail{background:#0c0f12;border:1px solid var(--border);border-radius:var(--r-in);
+  padding:8px 10px;font-family:var(--mono);font-size:10.5px;line-height:1.65;color:var(--text-2);
+  white-space:pre-wrap;word-break:break-word;max-height:92px;overflow:auto}
+
+.exp .upd{font-size:10px;color:var(--text-3);font-family:var(--mono);margin-top:10px;text-align:right}
+.exp .empty{font-size:11.5px;color:var(--text-3);text-align:center;padding:16px 6px;line-height:1.7}
+.exp .empty b{color:var(--text-2)}
+
+/* 结论块 */
+.concl{border:1px solid var(--border-2);border-radius:var(--r-in);padding:10px 12px;
+  margin-bottom:12px;background:#0d1013}
 .concl.pend{text-align:center;padding:12px 8px;color:var(--info);font-size:12px;font-weight:600}
-.concl .cr{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
-.concl .ch{font-size:12.5px;font-weight:700;line-height:1.5;color:var(--txt)}
-.concl ul{margin:5px 0 8px;padding-left:17px}
-.concl li{font-size:11px;color:var(--muted);line-height:1.6;margin:2px 0}
-.concl h5{font-size:10px;color:var(--dim);font-weight:700;letter-spacing:.4px;margin:8px 0 4px;text-transform:uppercase}
-.klrow{margin-bottom:6px}
-.klrow .klab{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
-.klrow .klab .t{color:var(--muted)}
-.klrow .klab .v{font-weight:700;font-variant-numeric:tabular-nums}
-.klrow .klab .v.ok{color:var(--ok)} .klrow .klab .v.bad{color:var(--bad)} .klrow .klab .v.dim{color:var(--dim)}
-.klrow .kbar{height:5px;border-radius:3px;background:#101c31;overflow:hidden}
-.klrow .kbar i{display:block;height:100%;border-radius:3px}
-.klrow .kbar i.ok{background:var(--ok)} .klrow .kbar i.bad{background:var(--bad)} .klrow .kbar i.dim{background:#33415c}
-table.four{width:100%;border-collapse:collapse;font-size:10.5px;table-layout:fixed;margin-top:2px}
-table.four th,table.four td{padding:3px 4px;text-align:left;border-bottom:1px solid var(--line2)}
-table.four th{color:var(--dim);font-weight:600;font-size:10px}
-table.four td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
-table.four td.v.tbd{color:var(--dim);font-weight:500}
-/* ===== 底部归档折叠区 ===== */
-details.archive{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:0 14px;margin-bottom:12px}
-details.archive summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--dim);padding:13px 2px;list-style:none;display:flex;align-items:center;gap:7px}
+.concl .cr{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px}
+.concl .ch{font-size:12.5px;font-weight:700;line-height:1.5}
+.concl .points{margin:4px 0 8px;padding-left:16px}
+.concl .points li{font-size:11px;color:var(--text-2);line-height:1.6;margin:2px 0}
+.concl h5{font-size:9.5px;color:var(--text-3);font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;margin:9px 0 5px}
+
+/* 杀稿线位置条 */
+.klrow{margin-bottom:7px}
+.klrow .klab{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;margin-bottom:4px;gap:8px}
+.klrow .klab .t{color:var(--text-2)}
+.klrow .klab .v{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.klrow .klab .v.ok{color:var(--ok)} .klrow .klab .v.bad{color:var(--danger)} .klrow .klab .v.dim{color:var(--text-3)}
+.klrow .kbar{height:4px;border-radius:2px;background:var(--surface-3);position:relative;overflow:visible}
+.klrow .kbar i{position:absolute;left:0;top:0;height:100%;border-radius:2px}
+.klrow .kbar i.ok{background:var(--ok)} .klrow .kbar i.bad{background:var(--danger)}
+.klrow .kbar i.dim{background:var(--text-3)}
+.klrow .kbar .tick{position:absolute;top:-3px;width:2px;height:10px;background:var(--text-2)}
+.klrow .kbar .tick::after{content:"目标";position:absolute;top:-12px;left:-8px;font-size:8.5px;color:var(--text-3)}
+
+/* 四行表 */
+table.four{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
+table.four th,table.four td{padding:3.5px 0;text-align:left;border-bottom:1px dashed var(--border)}
+table.four tr:last-child td{border-bottom:none}
+table.four th{color:var(--text-3);font-weight:600;font-size:10px}
+table.four td.v{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700}
+table.four td.v.tbd{color:var(--text-3);font-weight:500}
+
+/* ============ SOTA 面板 ============ */
+.sota-wrap{display:grid;grid-template-columns:1.9fr 1fr;gap:16px;align-items:start}
+.sota-main .tbl-scroll{margin-bottom:4px}
+table.lb{width:100%;border-collapse:collapse;font-size:11.5px;table-layout:fixed;min-width:420px}
+table.lb th,table.lb td{padding:6px 9px;text-align:right;border-bottom:1px solid var(--border)}
+table.lb th:first-child,table.lb td:first-child{text-align:left}
+table.lb tr:last-child td{border-bottom:none}
+table.lb th{color:var(--text-3);font-weight:600;font-size:10px;background:var(--surface-2)}
+table.lb td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+table.lb td.meth{font-family:var(--sans);color:var(--text-2)}
+table.lb tr.ours td{background:var(--mca-bg)}
+table.lb tr.ours td.meth{color:var(--mca);font-weight:700}
+table.lb tr.ours td.v-ok{color:var(--ok);font-weight:700}
+table.lb tr.ours td.v-bad{color:var(--danger);font-weight:700}
+
+/* 差距条 */
+.gapbox{border:1px dashed var(--border-2);border-radius:var(--r-in);padding:9px 11px;margin-top:10px}
+.gapbox .gl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px}
+.gapbox .gl .t{color:var(--text-2)}
+.gapbox .gl .v{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums}
+.gapbox .gl .v.ok{color:var(--ok)} .gapbox .gl .v.bad{color:var(--danger)}
+.track{position:relative;height:16px}
+.track .rail{position:absolute;left:0;right:0;top:7px;height:3px;border-radius:2px;background:var(--surface-3)}
+.track .tick{position:absolute;top:3px;width:2px;height:11px;background:var(--text-2)}
+.track .tick em{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  font-style:normal;font-size:8.5px;color:var(--text-3);white-space:nowrap}
+.track .dot{position:absolute;top:3px;width:11px;height:11px;border-radius:50%;
+  transform:translateX(-50%);border:2px solid var(--bg)}
+.track .dot.ok{background:var(--ok)} .track .dot.bad{background:var(--danger)}
+.scale{display:flex;justify-content:space-between;font-size:9px;color:var(--text-3);font-family:var(--mono);margin-top:2px;padding:0 1px}
+
+/* 参考区 */
+.sota-ref{border:1px solid var(--border);border-radius:var(--r-card);background:var(--surface-2);padding:12px 13px}
+.sota-ref h4{font-size:10px;font-weight:700;color:var(--text-3);letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.sota-ref h4 svg{width:12px;height:12px;flex:none}
+.sota-ref .rrow{display:flex;justify-content:space-between;gap:8px;font-size:11px;
+  padding:5px 0;border-top:1px dashed var(--border)}
+.sota-ref .rrow:first-of-type{border-top:none}
+.sota-ref .rrow .rm{color:var(--text-2);min-width:0}
+.sota-ref .rrow .rm small{display:block;color:var(--text-3);font-size:9.5px;margin-top:1px}
+.sota-ref .rrow .rv{font-family:var(--mono);color:var(--text-3);font-variant-numeric:tabular-nums;flex:none}
+
+/* ============ 事件条 ============ */
+.evstrip{display:flex;gap:0;overflow-x:auto;border-top:1px solid var(--border);padding-top:10px}
+.evstrip .ev{flex:none;display:flex;gap:6px;font-size:10.5px;color:var(--text-3);
+  padding-right:16px;margin-right:16px;border-right:1px solid var(--border)}
+.evstrip .ev b{color:var(--text-2);font-family:var(--mono);font-weight:600}
+
+/* ============ 归档 ============ */
+details.archive{border:1px solid var(--border);border-radius:var(--r-card);
+  background:var(--surface);padding:0 16px;margin-bottom:14px}
+details.archive summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;color:var(--text-3);padding:12px 0}
 details.archive summary::-webkit-details-marker{display:none}
-details.archive summary::before{content:"▸";color:var(--dim);transition:transform .15s}
-details.archive[open] summary::before{transform:rotate(90deg)}
-.detail-body{font-size:12.5px;color:var(--muted);line-height:1.8;padding:2px 2px 14px}
-.detail-body h4{color:var(--txt);font-size:13px;margin:4px 0 8px}
-.detail-body p{margin:6px 0}
-.detail-body code{background:#0b1628;border:1px solid var(--line2);border-radius:4px;padding:1px 5px;font-size:11px;color:var(--accent)}
-/* ===== 旧版兼容区块 ===== */
-.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media (max-width:900px){.stages{grid-template-columns:repeat(2,1fr)}}
-.stage{background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:11px}
-.stage .n{font-size:11px;color:var(--muted)}
-.stage .big{font-size:20px;font-weight:800;margin:4px 0 7px}
-.stage .big small{font-size:12px;color:var(--muted);font-weight:600}
-.stage.done .big{color:var(--ok)} .stage.run .big{color:var(--run)} .stage.wait .big{color:var(--dim)}
-.mini2{height:5px;border-radius:3px;background:#101c31;overflow:hidden}
-.mini2 i{display:block;height:100%;background:var(--ok)} .stage.run .mini2 i{background:var(--run)}
-.legacy-note{font-size:12px;color:var(--dim);text-align:center;padding:14px 6px;line-height:1.7}
-.tl{list-style:none;margin:0}
-.tl li{position:relative;padding:0 0 12px 22px;border-left:2px solid var(--line2);margin-left:6px}
-.tl li:last-child{border-left-color:transparent;padding-bottom:0}
-.tl li::before{content:"";position:absolute;left:-7px;top:2px;width:10px;height:10px;border-radius:50%;background:var(--run);border:2px solid var(--panel)}
-.tl .ft{font-size:10.5px;color:var(--dim);display:flex;gap:7px;align-items:center}
-.tl .stag{font-size:9.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 4px;letter-spacing:.3px}
-.tl .fl{font-size:12px;color:var(--txt);margin-top:2px;line-height:1.5}
-.evlist{list-style:none;margin-top:4px}
-.evlist li{font-size:11.5px;padding:7px 0;border-top:1px dashed var(--line2);display:flex;justify-content:space-between;gap:10px}
-.evlist .et{color:var(--dim);white-space:nowrap}
-.evlist .el{color:var(--txt);text-align:right}
-.evlist .el.bad{color:#fda4af} .evlist .el.ok{color:#6ee7b7} .evlist .el.warn{color:#fcd34d}
-.foot{text-align:center;color:var(--dim);font-size:10.5px;margin-top:14px;line-height:1.7}
-.err{color:#fda4af;font-size:12px;text-align:center;padding:10px}
-.spin{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--run);border-radius:50%;animation:sp 1s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-#updated{color:var(--dim);font-size:11px;margin:-4px 2px 12px}
+details.archive summary svg{width:12px;height:12px;transition:transform .15s}
+details.archive[open] summary svg{transform:rotate(90deg)}
+details.archive summary .cnt{font-family:var(--mono);font-size:10px;color:var(--text-3)}
+.archive .ab{font-size:12px;color:var(--text-2);line-height:1.75;padding:2px 0 14px}
+.archive .ab h4{color:var(--text-2);font-size:12.5px;margin:2px 0 7px}
+.archive .ab p{margin:5px 0}
+.archive .ab code{background:var(--surface-2);border:1px solid var(--border);
+  border-radius:4px;padding:1px 5px;font-size:10.5px;font-family:var(--mono);color:var(--text-2)}
+
+.foot{text-align:center;color:var(--text-3);font-size:10.5px;margin-top:16px;line-height:1.7}
+.alert{border-radius:var(--r-in);padding:10px 12px;font-size:12px;line-height:1.55;margin-bottom:14px;border:1px solid}
+.alert.warn{background:var(--warn-bg);border-color:var(--warn-bd);color:#e3b341}
+.alert.bad{background:var(--danger-bg);border-color:var(--danger-bd);color:#ffb3ae}
+
+/* ============ 骨架屏 ============ */
+.skel{border-radius:var(--r-card);background:var(--surface);border:1px solid var(--border);padding:16px;margin-bottom:14px}
+.sk{background:var(--surface-3);border-radius:4px;animation:skp 1.4s ease-in-out infinite}
+@keyframes skp{50%{opacity:.45}}
+.sk-line{height:12px;margin-bottom:9px}
+.sk-line:last-child{margin-bottom:0}
+.sk-block{height:64px;margin-bottom:10px}
+.sk-row{display:grid;gap:10px;margin-bottom:10px}
+
+/* 播客按钮 */
+.pcast{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+  color:var(--text-2);background:var(--surface-2);text-decoration:none;
+  border:1px solid var(--border-2);border-radius:8px;padding:7px 11px;position:relative}
+.pcast:hover{border-color:var(--text-3);color:var(--text)}
+.pcast svg{width:13px;height:13px}
+.pcast.mca{color:var(--mca);border-color:var(--mca-bd)}
+.pcast.tbo{color:var(--tbo);border-color:var(--tbo-bd)}
+.pcast .nb{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--text-3);
+  background:var(--surface-3);border-radius:999px;padding:1px 6px;margin-left:2px}
+.pcast .unread{position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;
+  background:var(--warn);border:2px solid var(--bg)}
+
+/* ============ 响应式 ============ */
+@media (max-width:980px){
+  .gpus{grid-template-columns:repeat(2,1fr)}
+  .exps{grid-template-columns:1fr}
+  .sota-wrap{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:0 12px}
+  .gpus{grid-template-columns:1fr}
+  .health{grid-template-columns:1fr}
+  .hdr .t1{font-size:15px}
+  .paper-btn .pm{display:none}
+  .steps li .sl{font-size:8.5px}
+}
 </style>
 </head>
 <body>
-<div class="hdr">
-  <div>
-    <h1>MCA / TBO-Norm 实验监控</h1>
-    <div class="sub">4 卡 GPU 实时占用 · 双实验独立分区 · 本地只读</div>
-  </div>
-  <span class="pill muted" id="conn"><span class="spin"></span> 连接中</span>
-</div>
-
-<div id="banner"></div>
-<div id="updated"></div>
-
-<div class="card">
-  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M4 19h16M6 16v-4m4 4V8m4 8v-7m4 7v-3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>GPU 占用（4 卡）</h2>
-  <div class="gpus" id="gpus"></div>
-</div>
-
-<div class="card">
-  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>实验分区（互相独立）</h2>
-  <div class="exps">
-    <div class="exp mca" id="expMCA"></div>
-    <div class="exp tbo" id="expTBO"></div>
-  </div>
-</div>
-
-<div class="card">
-  <h2><svg class="ic" viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H22l-6 4.5 2.3 7.1L12 16.2 5.7 20.5 8 13.4 2 8.9h7.6z" fill="currentColor"/></svg>最近推送事件</h2>
-  <ul class="evlist" id="evlist"></ul>
-</div>
-
-<details class="archive">
-  <summary>已完结归档 · CoND 旧线（默认折叠，点开查看历史结论）</summary>
-  <div class="detail-body">
-    <h4>CoND（seeds15-19 独立批次）——未复现全表 SOTA，该线终结</h4>
-    <p>决定性批次 <b>seeds15-19</b> 经独立 <code>table_audit</code>，对 LDM 显示值为 <b>7 胜 / 8 平 / 9 负</b>，均值 <b>−0.02pp</b>，未形成对外部 SOTA 的严格超越。</p>
-    <p>证据包 <code>cond_seeds15_19_evidence_20261018.zip</code> 已交付；论文已投稿。<b>该线已终结，不回头刷结构 SOTA</b>——当前全部算力与注意力在 MCA / TBO-Norm。</p>
-  </div>
-</details>
-
-<div class="foot" id="foot">服务器主动外推 · 约每 5–10 分钟自动刷新 · 不依赖你的电脑/网络</div>
-
+<div class="wrap" id="app"></div>
 <script>
-/* ===== 工具 ===== */
-function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
-function num(v){v=parseFloat(v);return isFinite(v)?v:0;}
-function pct(v){return Math.max(0,Math.min(100,v));}
-function fmtGB(mb){mb=num(mb);return (mb/1024).toFixed(1)+' GB';}
+/* ============================================================
+ * v3 生产看板 —— 数据源 snapshot.json（外层 {events,snapshot,topic}）
+ * demo 自检分支：?demo=full / ?demo=go / ?demo=nolb / ?demo=empty
+ * ============================================================ */
+var G = { LOCO: 80.8, CAD: 96.5 };
 
-/* ===== GPU 卡片（新契约 snapshot.gpus[]） ===== */
-function renderGpus(gpus){
-  var el=document.getElementById('gpus');
-  if(!gpus||!gpus.length){el.innerHTML='<div class="err">暂无 GPU 数据</div>';return;}
-  var html='';
-  gpus.forEach(function(g){
-    if(!g)return;
-    var idx=(g.index==null)?'?':g.index;
-    var name=g.name||('GPU '+idx);
-    var util=num(g.util_gpu), temp=g.temp_c;
-    var memUsed=num(g.mem_used_mb), memTotal=num(g.mem_total_mb);
-    var memPct=memTotal>0?pct(memUsed/memTotal*100):0;
-    var cls=util>5?'hi':'zero';
-    /* 进程归属：experiment=other 只在卡上小字标注，不进实验面板 */
-    var expMap={}, others=[];
+var I = {
+  chip:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>',
+  flask:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9V3"/><path d="M7.5 14h9"/></svg>',
+  trophy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a1 1 0 0 0-1 1c0 2.2 1.8 4 4 4M17 6h3a1 1 0 0 1 1 1c0 2.2-1.8 4-4 4"/></svg>',
+  file:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
+  mic:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  ev:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 6.9H22l-6 4.5 2.3 7.1L12 16.2 5.7 20.5 8 13.4 2 8.9h7.6z"/></svg>',
+  chev:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+  layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>',
+  gauge:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l4-6"/><path d="M4 19a9 9 0 1 1 16 0"/></svg>'
+};
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function gb(mb){mb=parseFloat(mb||0);return (mb/1024).toFixed(1)+'G';}
+function pct(v){v=parseFloat(v);return isFinite(v)?Math.max(0,Math.min(100,v)):0;}
+
+/* ---------- verdict 五态 ---------- */
+var V = {
+  RUNNING:['run','运行中'], PENDING:['pending','待门禁'],
+  CONDITIONAL_GO:['cond','条件 GO'], GO:['go','GO'], KILL:['kill','KILL']
+};
+function vpill(verdict){
+  var v = V[verdict] || ['idle', String(verdict||'未知')];
+  return '<span class="pill '+v[0]+'"><span class="dot"></span>'+esc(v[1])+'</span>';
+}
+
+/* ---------- 渲染：顶栏（paper / 播客按钮的 meta 由后续 loader 补充） ---------- */
+var PAPER_META = {ver:'—', updated:'—', data:'—'};
+var POD_BADGE = {mca:null, tbo:null}; /* 最新期日期 MM-DD，失败为 null 不显示角标 */
+function renderHeader(d, mode){
+  var conn;
+  if(mode==='empty') conn = '<span class="conn bad"><span class="dot"></span>无数据</span>';
+  else conn = '<span class="conn ok"><span class="dot"></span>已连接</span>';
+  var p = PAPER_META;
+  var mcaNb = POD_BADGE.mca ? '<span class="nb">'+esc(POD_BADGE.mca)+'</span><i class="unread"></i>' : '';
+  var tboNb = POD_BADGE.tbo ? '<span class="nb">'+esc(POD_BADGE.tbo)+'</span>' : '';
+  return '<header class="hdr">'
+    +'<div><div class="t1">MCA / TBO-Norm 实验监控</div>'
+    +'<div class="t2">4 卡 GPU 实时占用 · 双实验独立分区 · 更新 '+esc(d.ts||'—')+'</div></div>'
+    +'<div class="right">'
+    + conn
+    +'<a class="paper-btn" href="paper/mca_latest.pdf" target="_blank" rel="noopener">'
+      + I.file + '<span><span class="pn"><span class="live"></span>MCA Paper (live)</span>'
+      +'<span class="pm">v'+esc(p.ver||'—')+' · 更新 '+esc(p.updated||'—')+' · 数据 '+esc(p.data||'—')+'</span></span></a>'
+    +'<a class="pcast mca" href="podcast_mca.html">'+I.mic+'MCA 播客'+mcaNb+'</a>'
+    +'<a class="pcast tbo" href="podcast_tbonorm.html">'+I.mic+'TBO-Norm 播客'+tboNb+'</a>'
+    +'</div></header>';
+}
+
+/* ---------- 渲染：健康度徽章 ---------- */
+function renderHealth(d){
+  function chip(expName, exp, icon){
+    if(!exp || String(exp.state||'').toLowerCase()==='not_found'){
+      return '<div class="hchip '+(expName==='MCA'?'mca':'tbo')+'"><div class="hpic">'+icon+'</div>'
+        +'<div class="hmain"><div class="hname">'+expName+'</div>'
+        +'<div class="hline">未识别 / 未运行</div></div>'+vpill('RUNNING')+'</div>';
+    }
+    var kl = (exp.conclusion||{}).kill_line || {};
+    var lc = kl.loco && kl.loco.current;
+    var sub = lc==null ? 'LOCO 未出数' : ('LOCO '+Number(lc).toFixed(1)+' / 目标 '+G.LOCO);
+    return '<div class="hchip '+(expName==='MCA'?'mca':'tbo')+'"><div class="hpic">'+icon+'</div>'
+      +'<div class="hmain"><div class="hname">'+expName+' '+vpill((exp.conclusion||{}).verdict||'RUNNING')+'</div>'
+      +'<div class="hline">'+esc(sub)+'</div></div>'
+      +'<div class="hnum">'+(lc==null?'—':Number(lc).toFixed(1))+'<br><span style="color:var(--text-3)">/ '+G.LOCO+'</span></div>'
+      +'</div>';
+  }
+  return '<div class="health">'
+    + chip('MCA', d.experiments && d.experiments.MCA, I.chip)
+    + chip('TBO-Norm', d.experiments && d.experiments['TBO-Norm'], I.flask)
+    +'</div>';
+}
+
+/* ---------- 渲染：GPU 卡（新契约 util_gpu/temp_c/mem_used_mb/mem_total_mb/procs[].experiment） ---------- */
+function renderGpus(d){
+  if(!d.gpus || !d.gpus.length){
+    return '<div class="card"><h2>'+I.gauge+'GPU 占用（4 卡）</h2>'
+      +'<div class="empty" style="padding:26px;text-align:center;color:var(--text-3)">快照中暂无 GPU 数据，等待服务器下一次推送。</div></div>';
+  }
+  var html = '<div class="card"><h2>'+I.gauge+'GPU 占用（4 卡）<span class="sp"></span><span class="hmeta">每 5 分钟轮询</span></h2><div class="gpus">';
+  d.gpus.forEach(function(g){
+    var util = parseFloat(g.util_gpu)||0;
+    var busy = util > 5;
+    var temp = parseFloat(g.temp_c);
+    var memU = parseFloat(g.mem_used_mb)||0, memT = parseFloat(g.mem_total_mb)||1;
+    var memPct = pct(memU/memT*100);
+    var tags = [], others = [];
     (g.procs||[]).forEach(function(p){
-      if(!p)return;
-      var e=(p.experiment||'other');
-      if(e==='other'){others.push(p);}
-      else{(expMap[e]=expMap[e]||[]).push(p);}
+      var ex = p.experiment||'other';
+      if(ex==='MCA') tags.push('<span class="etag mca">MCA</span>');
+      else if(ex==='TBO-Norm') tags.push('<span class="etag tbo">TBO-Norm</span>');
+      else if(ex==='other') others.push(p);
+      else tags.push('<span class="etag other">'+esc(ex)+'</span>');
     });
-    var tags=Object.keys(expMap).map(function(e){
-      var c=/mca/i.test(e)?'mca':(/tbo/i.test(e)?'tbo':'other');
-      return '<span class="etag '+c+'">'+esc(e)+'</span>';
+    var who = others.slice(0,2).map(function(p){
+      return '<div><b>'+esc(p.owner||'?')+'</b> · '+esc(p.cmd_short||'')+'</div>';
     }).join('');
-    var who=others.slice(0,3).map(function(p){
-      return '<div class="who"><b>'+esc(p.owner||'?')+'</b> · '+esc(p.cmd_short||'')+'</div>';
-    }).join('');
-    html+='<div class="gpu '+cls+'">'
-      +'<div class="top"><span class="gi">GPU '+idx+'<span class="gname"> · '+esc(name)+'</span></span>'
-      +'<span class="tmp">'+(temp==null?'–':esc(temp)+'°C')+'</span></div>'
-      +'<div class="util">'+util+'<small>% 利用率</small></div>'
-      +'<div class="bar"><i style="width:'+pct(util)+'%"></i></div>'
-      +'<div class="mem">显存 '+fmtGB(memUsed)+' / '+fmtGB(memTotal)+'</div>'
-      +'<div class="bar mem"><i style="width:'+memPct+'%"></i></div>'
+    html += '<div class="gpu '+(busy?'busy':'idle')+'">'
+      +'<div class="top"><span class="gi">GPU '+g.index+'<span class="gname">'+esc(g.name||'')+'</span></span>'
+      +'<span class="tmp'+(temp>=80?' hot':'')+'">'+(isFinite(temp)?temp:'–')+'°C</span></div>'
+      +'<div class="util tnum">'+util+'<small>% 利用率</small></div>'
+      +'<div class="bar util"><i style="width:'+pct(util)+'%"></i></div>'
+      +'<div class="mem"><span>显存 '+gb(memU)+' / '+gb(memT)+'</span><span>'+Math.round(memPct)+'%</span></div>'
+      +'<div class="bar"><i style="width:'+memPct+'%"></i></div>'
       +(tags?'<div class="tags">'+tags+'</div>':'')
-      +who
+      +(who?'<div class="who">'+who+'</div>':'')
       +'</div>';
   });
-  el.innerHTML=html||'<div class="err">暂无 GPU 数据</div>';
+  return html + '</div></div>';
 }
 
-/* ===== 当前结论区块 ===== */
-var VSTYLE={RUNNING:['pill muted','运行中'],CONDITIONAL_GO:['pill warn2','条件 GO'],GO:['pill ok','GO'],KILL:['pill bad','KILL'],PENDING:['pill info','待门禁']};
-var FOURROW_LABEL={'1':'① 最近单图','2':'② 混池','3':'③ MCA','4':'④ 编辑'};
-function fourRowLabel(r){
-  if(r.label)return r.label;
-  var k=String(r.row==null?'':r.row).replace(/①/g,'1').replace(/②/g,'2').replace(/③/g,'3').replace(/④/g,'4');
-  return FOURROW_LABEL[k]||String(r.row==null?'':r.row);
+/* ---------- 步骤条：前端固定 4 步，状态由 conclusion.verdict 推导 ---------- */
+var STEP_LABELS = {
+  MCA: ['cache 构建','GDINO 微调','评测 AUROC','D5 门禁'],
+  'TBO-Norm': ['bank 构建','kNN 打分','AUROC 评测','消融']
+};
+function stepsHtml(expName, exp){
+  var labels = STEP_LABELS[expName] || STEP_LABELS['MCA'];
+  var v = ((exp.conclusion||{}).verdict)||'';
+  /* RUNNING/无结论 → 前两步 done、第三步 active；PENDING/CONDITIONAL_GO → 前三 done、第四步 active；GO/KILL → 全 done */
+  var doneCount = 2, activeIdx = 2;
+  if(v==='PENDING'||v==='CONDITIONAL_GO'){ doneCount=3; activeIdx=3; }
+  else if(v==='GO'||v==='KILL'){ doneCount=4; activeIdx=-1; }
+  return '<ol class="steps">'+labels.map(function(lab,i){
+    var st = i<doneCount?'done':(i===activeIdx?'active':'');
+    return '<li class="'+st+'"><span class="sd"></span><span class="sl">'+esc(lab)+'</span></li>';
+  }).join('')+'</ol>';
 }
-function conclusionHtml(con){
-  if(!con){return '<div class="concl pend">结论待 D5 门禁（2026-10-25）</div>';}
-  var v=VSTYLE[con.verdict]||['pill muted',String(con.verdict||'未知')];
-  var h='<div class="concl"><div class="cr"><span class="ch">当前结论</span><span class="pill '+v[0]+'"><span class="dot"></span> '+esc(v[1])+'</span></div>';
-  if(con.headline)h+='<div class="ch" style="margin-bottom:6px">'+esc(con.headline)+'</div>';
-  if(con.points&&con.points.length){h+='<ul>'+con.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>';}
-  /* 杀稿线位置条：LOCO 目标 80.8 / CAD-SD 目标 96.6（写死，来自实验口径） */
-  var kl=con.kill_line||{};
-  var defs=[['loco','LOCO',80.8],['cad_sd','CAD-SD',96.6]];
-  h+='<h5>杀稿线位置条（LOCO 目标 80.8 · CAD-SD 目标 96.6）</h5>';
+
+/* ---------- 杀稿线条 / 四行 ---------- */
+function killLineRows(kl){
+  var defs = [['loco','LOCO',G.LOCO],['cad_sd','CAD-SD',G.CAD]];
+  var h = '<h5>杀稿线位置条（LOCO 目标 '+G.LOCO+' · CAD-SD 目标 '+G.CAD+'）</h5>';
   defs.forEach(function(d){
-    var cell=kl[d[0]]||{};var cur=cell.current;
-    var has=cur!=null&&isFinite(num(cur));
-    var gap=has?num(cur)-d[2]:0;
-    var cls=has?(gap>=0?'ok':'bad'):'dim';
-    var barw=has?Math.min(100,num(cur)/d[2]*100):0;
-    h+='<div class="klrow"><div class="klab"><span class="t">'+d[1]+'（目标 '+d[2]+'）</span>'
-      +'<span class="v '+cls+'">'+(has?num(cur).toFixed(1)+'（'+(gap>=0?'+':'')+gap.toFixed(1)+'）':'未出数')+'</span></div>'
-      +'<div class="kbar"><i class="'+cls+'" style="width:'+barw+'%"></i></div></div>';
+    var cur = kl[d[0]] ? kl[d[0]].current : null;
+    var has = cur!=null && isFinite(parseFloat(cur));
+    var gap = has ? parseFloat(cur)-d[2] : 0;
+    var cls = has ? (gap>=0?'ok':'bad') : 'dim';
+    h += '<div class="klrow"><div class="klab"><span class="t">'+d[1]+'（目标 '+d[2]+'）</span>'
+      +'<span class="v '+cls+'">'+(has?parseFloat(cur).toFixed(1)+'（'+(gap>=0?'+':'')+gap.toFixed(1)+'pp）':'未出数')+'</span></div>'
+      +'<div class="kbar"><i class="'+cls+'" style="width:'+pct(has?cur:0)+'%"></i>'
+      +'<span class="tick" style="left:'+pct(d[2])+'%"></span></div></div>';
   });
-  /* 四行对照小表 */
-  var fr=con.four_rows||[];
-  h+='<h5>四行对照</h5><table class="four"><tr><th>row</th><th style="text-align:right">value</th></tr>';
-  if(fr.length){
-    fr.forEach(function(r){
-      if(!r)return;
-      if(r.value==null)h+='<tr><td>'+esc(fourRowLabel(r))+'</td><td class="v tbd">待跑</td></tr>';
-      else h+='<tr><td>'+esc(fourRowLabel(r))+'</td><td class="v">'+esc(r.value)+'</td></tr>';
-    });
-  }else{h+='<tr><td colspan="2" style="color:var(--dim)">暂无四行数据</td></tr>';}
-  h+='</table></div>';
   return h;
 }
-
-/* ===== 实验面板（MCA / TBO-Norm 同构，互不混显） ===== */
-var MCA_ROW={'1':'① 最近单图','2':'② 混池','3':'③ MCA','4':'④ 编辑'};
-function rowLabel(expName,row){
-  var r=String(row==null?'':row);
-  if(/^MCA$/i.test(expName)){
-    var m=r.match(/[1234①②③④]/);
-    if(m){var k=m[0].replace(/①/,'1').replace(/②/,'2').replace(/③/,'3').replace(/④/,'4');return MCA_ROW[k]||r;}
-  }
-  return r;
+var MCA_ROW4 = {'1':'① 最近单图','2':'② 混池','3':'③ MCA','4':'④ 编辑'};
+function fourRowLabel(expName, r){
+  if(r.label) return r.label;
+  var k=String(r.row==null?'':r.row).replace(/①/g,'1').replace(/②/g,'2').replace(/③/g,'3').replace(/④/g,'4');
+  if(expName==='MCA' && MCA_ROW4[k]) return MCA_ROW4[k];
+  return String(r.row==null?'':r.row);
 }
-function statePill(s){
-  s=String(s==null?'':s).toLowerCase();
-  if(!s||s==='not_found')return '<span class="pill muted"><span class="dot"></span> 未识别/未运行</span>';
-  if(/run|tmux|train|active|pending/.test(s))return '<span class="pill run"><span class="dot"></span> 运行中</span>';
-  if(/done|finish|success|complete/.test(s))return '<span class="pill ok"><span class="dot"></span> 已完成</span>';
-  if(/fail|error|crash|abort/.test(s))return '<span class="pill bad"><span class="dot"></span> 异常</span>';
-  return '<span class="pill muted"><span class="dot"></span> '+esc(s)+'</span>';
+function fourRowsTable(expName, fr){
+  var h = '<h5>四行对照</h5><table class="four"><colgroup><col style="width:62%"><col style="width:38%"></colgroup><tr><th>row</th><th style="text-align:right">value</th></tr>';
+  if(fr && fr.length){
+    fr.forEach(function(r){
+      h += '<tr><td>'+esc(fourRowLabel(expName,r))+'</td><td class="v'+(r.value==null?' tbd':'')+'">'+(r.value==null?'待跑':esc(r.value))+'</td></tr>';
+    });
+  } else h += '<tr><td colspan="2" style="color:var(--text-3)">暂无四行数据</td></tr>';
+  return h + '</table>';
+}
+function conclBlock(exp){
+  var c = exp.conclusion;
+  if(!c) return '<div class="concl pend">结论待 D5 门禁（2026-10-25）</div>';
+  var h = '<div class="concl"><div class="cr"><span class="ch">当前结论</span>'+vpill(c.verdict)+'</div>';
+  if(c.headline) h += '<div class="ch" style="margin-bottom:6px">'+esc(c.headline)+'</div>';
+  if(c.points && c.points.length) h += '<ul class="points">'+c.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>';
+  h += killLineRows(c.kill_line||{}) + fourRowsTable(exp._name, c.four_rows);
+  return h + '</div>';
 }
 function fmtLogTail(lt){
-  if(!lt)return '';
-  var lines=Array.isArray(lt)?lt:String(lt).split(/\r?\n/);
+  if(!lt) return '';
+  var lines = Array.isArray(lt) ? lt : String(lt).split(/\r?\n/);
   return esc(lines.slice(-8).join('\n'));
 }
-function expPanel(expName, exp, box){
-  /* not_found 或关键字段缺失 → 未识别/未运行，绝不与另一个实验混显 */
-  var missing=!exp || String(exp.state||'').toLowerCase()==='not_found';
-  box.className='exp '+(expName==='MCA'?'mca':'tbo')+(missing?' off':'');
-  if(missing){
-    box.innerHTML='<div class="eh"><span class="en">'+esc(expName)+'</span>'+statePill(exp&&exp.state)+'</div>'
-      +'<div class="empty">该实验 <b>未识别 / 未运行</b>。<br>快照中无此字段或 state=not_found，分区保持空白。</div>';
-    return;
+
+/* ---------- 渲染：实验面板 ---------- */
+function renderExp(expName, exp){
+  var kind = expName==='MCA' ? 'mca' : 'tbo';
+  if(!exp || String(exp.state||'').toLowerCase()==='not_found'){
+    return '<div class="exp '+kind+' off"><div class="eh"><span class="en">'+expName+'</span>'
+      +'<span class="pill idle">未识别 / 未运行</span></div>'
+      +'<div class="empty">该实验 <b>未识别 / 未运行</b>。<br>快照无此字段或 state=not_found，分区保持空白。</div></div>';
   }
-  var gpus=(exp.gpus==null)?'–':(Array.isArray(exp.gpus)?exp.gpus.join(', '):esc(exp.gpus));
-  var pg=exp.progress||{};
-  var done=num(pg.done), total=num(pg.total), pgPct=total>0?pct(done/total*100):0;
-  var resRows=(exp.latest_results||[]).slice(-12).map(function(r){
-    if(!r)return '';
-    return '<tr><td>'+esc(r.ts||'')+'</td><td>'+esc(r.category||'')+'</td>'
-      +'<td class="rowc">'+esc(rowLabel(expName,r.row))+'</td><td>'+esc(r.metric||'')+'</td>'
-      +'<td class="v">'+esc(r.value==null?'–':r.value)+'</td></tr>';
+  exp._name = expName;
+  var gpusTxt = exp.gpus==null ? '–' : (Array.isArray(exp.gpus)?exp.gpus.join(', '):esc(exp.gpus));
+  var res = (exp.latest_results||[]).slice(-8).map(function(r){
+    return '<tr><td>'+esc(r.ts||'')+'</td><td>'+esc(r.category||'')+'</td><td class="rc">'+esc(r.row||'')+'</td>'
+      +'<td>'+esc(r.metric||'')+'</td><td class="v">'+esc(r.value==null?'–':r.value)+'</td></tr>';
   }).join('');
-  var html='<div class="eh"><span class="en">'+esc(expName)+'</span>'+statePill(exp.state)+'</div>'
-    +conclusionHtml(exp.conclusion)
-    +'<div class="meta">tmux：<b>'+esc(exp.tmux||'–')+'</b> ｜ 占用 GPU：<b>'+esc(gpus)+'</b></div>'
-    +'<div class="progrow"><div class="pl"><span>'+esc(pg.label||'进度')+'</span><b>'+(total>0?done+' / '+total:(done||'–'))+'</b></div>'
-    +'<div class="mini"><i style="width:'+pgPct+'%"></i></div></div>'
+  var pg = exp.progress||{};
+  var pgp = pg.total>0 ? pct(pg.done/pg.total*100) : 0;
+  return '<div class="exp '+kind+'">'
+    +'<div class="eh"><span class="en">'+expName+'</span>'+vpill(exp.conclusion?exp.conclusion.verdict:'RUNNING')+'</div>'
+    +'<div class="sub">tmux <b>'+esc(exp.tmux||'–')+'</b> ｜ GPU <b>'+gpusTxt+'</b></div>'
+    + stepsHtml(expName, exp)
+    +'<div class="progrow"><div class="pl"><span>'+esc(pg.label||'进度')+'</span><b>'+(pg.total?pg.done+' / '+pg.total:pg.done||'–')+'</b></div>'
+    +'<div class="mini"><i style="width:'+pgp+'%"></i></div></div>'
+    + conclBlock(exp)
     +'<h3>latest_results</h3>'
-    +(resRows?'<table class="res"><colgroup><col style="width:22%"><col style="width:18%"><col style="width:22%"><col style="width:18%"><col style="width:20%"></colgroup>'
-      +'<tr><th>ts</th><th>category</th><th>row</th><th>metric</th><th style="text-align:right">value</th></tr>'+resRows+'</table>'
+    +(res?'<div class="tbl-scroll"><table class="res"><colgroup><col style="width:16%"><col style="width:16%"><col style="width:26%"><col style="width:24%"><col style="width:18%"></colgroup>'
+      +'<tr><th>ts</th><th>cat</th><th>row</th><th>metric</th><th style="text-align:right">value</th></tr>'+res+'</table></div>'
       :'<div class="empty" style="padding:8px">暂无结果行</div>')
     +'<h3>log_tail</h3>'
     +(exp.log_tail?'<div class="logtail">'+fmtLogTail(exp.log_tail)+'</div>':'<div class="empty" style="padding:8px">无日志</div>')
-    +'<div class="upd">updated_at: '+esc(exp.updated_at||'–')+'</div>';
-  box.innerHTML=html;
+    +'<div class="upd">updated_at: '+esc(exp.updated_at||'–')+'</div>'
+    +'</div>';
 }
 
-/* ===== 推送事件（外层 events 字段仍在契约内） ===== */
-function renderEvents(d){
-  var ev=document.getElementById('evlist');
-  if(d._events&&d._events.length){
-    ev.innerHTML=d._events.slice(0,8).map(function(x){
-      return '<li><span class="et">'+esc(x.time||'')+'</span><span class="el">'+esc(x.key||'事件')+'</span></li>';
-    }).join('');
-  }else{ev.innerHTML='<li><span class="el" style="color:var(--dim)">暂无事件（监控运行中）</span></li>';}
-}
-function renderBanner(d){
-  var b=document.getElementById('banner');
-  if(d.failed){b.innerHTML='<div class="alert bad">队列异常：<b>'+esc(d.failed_msg||'')+'</b></div>';return;}
-  b.innerHTML='';
+/* ---------- 渲染：SOTA（leaderboard=null → 占位） ---------- */
+function lbRowVal(r, key){ return r[key]!=null?r[key]:'–'; }
+function renderSOTA(lb){
+  var head = '<div class="card"><h2>'+I.trophy+'SOTA 对比 · class-agnostic LOCO<span class="sp"></span>';
+  if(!lb){
+    return head+'<span class="hmeta">leaderboard 未同步</span></h2>'
+      +'<div class="empty" style="padding:26px;text-align:center;color:var(--text-3)">leaderboard.json 尚未由 SOTA 维护员同步，对比区暂空。</div></div>';
+  }
+  head += '<span class="hmeta">更新 '+esc(lb.updated||'—')+'</span></h2><div class="sota-wrap">';
+  var mainRows = (lb.main||[]).map(function(r){
+    return '<tr><td class="meth">'+esc(r.method)+'</td><td>'+esc(lbRowVal(r,'1-shot'))+'</td><td>'+esc(lbRowVal(r,'2-shot'))+'</td><td>'+esc(lbRowVal(r,'4-shot'))+'</td></tr>';
+  }).join('');
+  var oursPath = (lb.ours||{}).mca||lb.ours||{};
+  var ours = parseFloat(oursPath.k4_loco_i);
+  var gap = ours - G.LOCO;
+  var gCls = gap>=0 ? 'ok' : 'bad';
+  var dotP = pct((ours-75)/10*100);
+  var tickP = pct((G.LOCO-75)/10*100);
+  var main = '<div class="sota-main"><div class="tbl-scroll"><table class="lb"><colgroup><col style="width:34%"><col style="width:22%"><col style="width:22%"><col style="width:22%"></colgroup>'
+    +'<tr><th>Method</th><th style="text-align:right">1-shot</th><th style="text-align:right">2-shot</th><th style="text-align:right">4-shot</th></tr>'
+    + mainRows
+    +'<tr class="ours"><td class="meth">Ours · MCA (k4_loco_i)</td><td>–</td><td>–</td><td class="v-'+gCls+'">'+(isFinite(ours)?ours.toFixed(1):'–')+'</td></tr>'
+    +'</table></div>'
+    +'<div class="gapbox"><div class="gl"><span class="t">距杀稿线 '+G.LOCO+'（LOCO）</span>'
+    +'<span class="v '+gCls+'">'+(isFinite(ours)?((gap>=0?'+':'')+gap.toFixed(1)+' pp'):'–')+'</span></div>'
+    +'<div class="track"><div class="rail"></div>'
+    +'<span class="tick" style="left:'+tickP+'%"><em>目标 '+G.LOCO+'</em></span>'
+    +(isFinite(ours)?'<span class="dot '+gCls+'" style="left:'+dotP+'%"></span>':'')+'</div>'
+    +'<div class="scale"><span>75</span><span>80</span><span>85</span></div></div></div>';
+  var ref = '<div class="sota-ref"><h4>'+I.layers+'参考区 · 不可比</h4>';
+  if(lb.reference && lb.reference.length){
+    ref += lb.reference.map(function(r){
+        return '<div class="rrow"><span class="rm">'+esc(r.method)+'<small>'+esc(r.note||'')+'</small></span><span class="rv">'+esc(r.full==null?'–':r.full)+'</span></div>';
+      }).join('');
+  } else ref += '<div class="rrow"><span class="rm">暂无参考行</span></div>';
+  ref += '</div>';
+  return head + main + ref + '</div></div>';
 }
 
-/* ===== 总渲染 ===== */
-function render(d){
-  renderBanner(d);
-  renderGpus(d.gpus);
-  var exps=(d.experiments||{});
-  expPanel('MCA', exps['MCA']||exps.MCA, document.getElementById('expMCA'));
-  expPanel('TBO-Norm', exps['TBO-Norm']||exps['TBO-Norm'], document.getElementById('expTBO'));
-  renderEvents(d);
-  document.getElementById('updated').textContent='服务器时间 '+(d.ts||'–')+' · 数据约每 5–10 分钟自动更新（切换到本页即刷新）';
-  var conn=document.getElementById('conn');
-  conn.className='pill ok'; conn.innerHTML='<span class="dot"></span> 已连接';
+/* ---------- 渲染：事件条 / 归档 / 底 ---------- */
+function renderEvents(ev){
+  if(!ev || !ev.length) return '';
+  return '<div class="card"><h2>'+I.ev+'最近推送事件<span class="sp"></span><span class="hmeta">'+ev.length+' 条</span></h2>'
+    +'<div class="evstrip">'+ev.slice(-10).map(function(e){
+        return '<span class="ev"><b>'+esc(e.time||'')+'</b>'+esc(e.key||'')+'</span>';
+      }).join('')+'</div></div>';
+}
+function renderArchive(){
+  return '<details class="archive"><summary>'+I.chev+'CoND 已完结归档<span class="cnt">seeds15-19 · 已终结</span></summary>'
+    +'<div class="ab"><h4>CoND（seeds15-19 独立批次）——未复现全表 SOTA，该线终结</h4>'
+    +'<p>决定性批次 seeds15-19 经独立 <code>table_audit</code>，对 LDM 显示值 <b>7 胜 / 8 平 / 9 负</b>，均值 <b>−0.02pp</b>，未形成对外部 SOTA 的严格超越。</p>'
+    +'<p>证据包 <code>cond_seeds15_19_evidence_20261018.zip</code> 已交付；论文已投稿。该线不回头刷结构 SOTA，当前算力与注意力全部在 MCA / TBO-Norm。</p></div></details>';
 }
 
-/* ===== 样例数据（仅 ?demo=a / ?demo=b 本地自检用，线上无 query 不生效） ===== */
-window.__DEMOS={
-a:{topic:'gpu-monitor',events:[{time:'14:02',key:'producer_done'}],snapshot:{ts:'2026-10-22 14:05:10',
-  gpus:[
-   {index:0,name:'NVIDIA A100 80GB',mem_used_mb:51230,mem_total_mb:81920,util_gpu:96,temp_c:68,procs:[{pid:23101,owner:'clw18',mem_mb:48120,experiment:'MCA',cmd_short:'python train_mca.py --cfg a1'}]},
-   {index:1,name:'NVIDIA A100 80GB',mem_used_mb:30120,mem_total_mb:81920,util_gpu:72,temp_c:64,procs:[{pid:24877,owner:'clw18',mem_mb:28600,experiment:'TBO-Norm',cmd_short:'python run_tbo.py --norm'}]},
-   {index:2,name:'NVIDIA A100 80GB',mem_used_mb:9800,mem_total_mb:81920,util_gpu:12,temp_c:41,procs:[{pid:29011,owner:'colleague',mem_mb:9200,experiment:'other',cmd_short:'jupyter lab --port 8890'}]},
-   {index:3,name:'NVIDIA A100 80GB',mem_used_mb:0,mem_total_mb:81920,util_gpu:0,temp_c:33,procs:[]}
-  ],
-  experiments:{
-   MCA:{state:'running',tmux:'mca-main',gpus:[0],progress:{done:18,total:32,label:'MCA 主训练 epoch'},
-    conclusion:{
-     verdict:'GO',
-     headline:'四行均过杀稿线，LOCO / CAD-SD 双门禁达标，建议推进投稿口径',
-     points:['row③ MCA 混池增益 +0.0042，方向正确','row④ 编辑增益稳定，无退化行','独立种子复现中'],
-     kill_line:{loco:{current:81.3},cad_sd:{current:96.9}},
-     four_rows:[{row:1,value:'0.9598'},{row:2,value:'0.9630'},{row:3,value:'0.9687'},{row:4,value:'+0.0042'}]
-    },
-    latest_results:[
-     {ts:'13:41',category:'eval',row:'1',metric:'I-AUROC',value:'0.9612'},
-     {ts:'13:41',category:'eval',row:'2',metric:'I-AUROC',value:'0.9630'},
-     {ts:'13:58',category:'eval',row:'3',metric:'I-AUROC',value:'0.9687'},
-     {ts:'13:58',category:'eval',row:'4',metric:'edit-gain',value:'+0.0042'}],
-    log_tail:'[13:55:01] epoch 17/32 done loss=0.312\n[13:57:20] eval on visa @1shot iauroc=0.9687\n[14:01:44] checkpoint saved ckpt_e17.pt',
-    updated_at:'2026-10-22 14:04:52'},
-   'TBO-Norm':{state:'running',tmux:'tbo-norm',gpus:[1],progress:{done:4,total:10,label:'TBO-Norm 消融'},
-    conclusion:{
-     verdict:'KILL',
-     headline:'CAD-SD 落后杀稿线 0.8pp，norm 变体连续无增益，本方向枪毙',
-     points:['norm ablation 4/10 全部无增益','LOCO 80.1 低于目标 80.8','不再追加算力，转 MCA 主线'],
-     kill_line:{loco:{current:80.1},cad_sd:{current:95.8}},
-     four_rows:[{row:'norm-ab1',label:'norm 消融1',value:'0.9410'},{row:'norm-ab2',label:'norm 消融2',value:null},{row:'norm-ab3',label:'norm 消融3',value:null},{row:'norm-ab4',label:'norm 消融4',value:null}]
-    },
-    latest_results:[
-     {ts:'12:20',category:'ablation',row:'norm',metric:'P-AUROC',value:'0.9312'},
-     {ts:'13:05',category:'ablation',row:'norm',metric:'AU-PRO',value:'0.8721'}],
-    log_tail:'[13:02:11] norm ablation run 4/10\n[13:20:40] result written p_auroc=0.9312',
-    updated_at:'2026-10-22 13:59:03'}
-  }}},
-b:{topic:'gpu-monitor',events:[],snapshot:{ts:'2026-10-22 14:05:10',
-  gpus:[
-   {index:0,name:'NVIDIA A100 80GB',mem_used_mb:51230,mem_total_mb:81920,util_gpu:96,temp_c:68,procs:[{pid:23101,owner:'clw18',mem_mb:48120,experiment:'MCA',cmd_short:'python train_mca.py --cfg a1'}]},
-   {index:1,name:'NVIDIA A100 80GB',mem_used_mb:0,mem_total_mb:81920,util_gpu:3,temp_c:36,procs:[]},
-   {index:2,name:'NVIDIA A100 80GB',mem_used_mb:9800,mem_total_mb:81920,util_gpu:12,temp_c:41,procs:[{pid:29011,owner:'colleague',mem_mb:9200,experiment:'other',cmd_short:'jupyter lab --port 8890'}]},
-   {index:3,name:'NVIDIA A100 80GB',mem_used_mb:0,mem_total_mb:81920,util_gpu:0,temp_c:33,procs:[]}
-  ],
-  experiments:{
-   MCA:{state:'running',tmux:'mca-main',gpus:[0],progress:{done:18,total:32,label:'MCA 主训练 epoch'},
-    conclusion:null,
-    latest_results:[
-     {ts:'13:58',category:'eval',row:'3',metric:'I-AUROC',value:'0.9687'}],
-    log_tail:'[14:01:44] checkpoint saved ckpt_e17.pt',
-    updated_at:'2026-10-22 14:04:52'},
-   'TBO-Norm':{state:'not_found'}
-  }}}
+/* ---------- 骨架屏 ---------- */
+function sk(w,h){return '<div class="sk" style="width:'+w+';height:'+h+'px;max-width:100%"></div>';}
+function skeleton(){
+  function chip(){return '<div class="skel">'+sk(60,12)+sk('90%',11)+sk('40%',11)+'</div>';}
+  var gpuCells='';
+  for(var i=0;i<4;i++) gpuCells += '<div class="skel" style="margin:0">'+sk('100%',20)+sk('70%',30)+sk('100%',3)+sk('60%',10)+'</div>';
+  return '<header class="hdr"><div>'+sk(200,18)+sk(300,11)+'</div><div class="right">'+sk(90,28)+sk(230,40)+'</div></header>'
+    +'<div class="health">'+chip()+chip()+'</div>'
+    +'<div class="skel">'+sk(140,11)+'<div class="sk-row" style="grid-template-columns:repeat(4,1fr);margin-top:12px">'+gpuCells+'</div></div>'
+    +'<div class="exps"><div class="skel" style="margin:0">'+sk(120,13)+sk('100%',26)+sk('90%',11)+sk('70%',11)+'</div>'
+    +'<div class="skel" style="margin:0">'+sk(120,13)+sk('100%',26)+sk('90%',11)+sk('70%',11)+'</div></div>'
+    +'<div class="skel">'+sk(160,11)+sk('100%',40)+sk('85%',40)+'</div>';
+}
+
+/* ---------- 总渲染 ---------- */
+function renderAll(d, mode){
+  var app = document.getElementById('app');
+  if(mode==='skeleton'){ app.innerHTML = skeleton(); return; }
+  var banner = mode==='empty'
+    ? '<div class="alert warn">暂时取不到 snapshot.json：页面由 GitHub Pages 托管，需服务器把快照推到仓库。切回本页 / 5 分钟后自动重试。</div>' : '';
+  var exps = d.experiments || {};
+  app.innerHTML = renderHeader(d, mode) + banner + renderHealth(d)
+    + renderGpus(d)
+    + '<div class="exps">' + renderExp('MCA', exps.MCA) + renderExp('TBO-Norm', exps['TBO-Norm']) + '</div>'
+    + renderSOTA(d.leaderboard)
+    + renderEvents(d._events)
+    + renderArchive()
+    + '<div class="foot">服务器主动外推 · 约每 5 分钟自动刷新 · 切回本页即刷新 · 本地只读</div>';
+}
+
+/* ---------- 旁路 loader：paper manifest / 播客 feed 角标 ---------- */
+function loadPaperMeta(){
+  fetch('paper/manifest.json?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+    .then(function(m){
+      PAPER_META = {ver:m.version||'—', updated:(m.updated_at||'').slice(5,16)||'—', data:m.data_version||'—'};
+      renderIntoHeader();
+    }).catch(function(){});
+}
+function loadPodBadges(){
+  [['mca','podcast/mca/episodes.json'],['tbo','podcast/tbonorm/episodes.json']].forEach(function(pair){
+    fetch(pair[1]+'?t='+Date.now(),{cache:'no-store'})
+      .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+      .then(function(feed){
+        var lat = feed.latest||{};
+        var pub = lat.published||lat.date||'';
+        POD_BADGE[pair[0]] = pub ? String(pub).slice(5,10) : null;
+        renderIntoHeader();
+      }).catch(function(){});
+  });
+}
+/* 只重渲染顶栏右侧 meta（避免打断实验面板里的音频/滚动状态） */
+function renderIntoHeader(){
+  var d = LAST_DATA; if(!d) return;
+  var hdr = document.querySelector('.hdr'); if(!hdr) return;
+  hdr.outerHTML = renderHeader(d, LAST_MODE);
+}
+
+/* ---------- demo 自检数据（仅 ?demo= 生效） ---------- */
+var DEMOS = {
+  full: {topic:'gpu-monitor', events:[
+    {time:'14:02',key:'mca_cache_560_665'},
+    {time:'13:58',key:'mca_eval_row3'},
+    {time:'12:20',key:'tbo_ablation_run4'}],
+    snapshot:{ts:'2026-10-22 14:05:10',
+      gpus:[
+       {index:0,name:'A100-SXM4 80GB',util_gpu:96,temp_c:68,mem_used_mb:51230,mem_total_mb:81920,procs:[{owner:'clw18',experiment:'MCA',cmd_short:'cache_build.py --cat juice_bottle'}]},
+       {index:1,name:'A100-PCIE 40GB',util_gpu:72,temp_c:64,mem_used_mb:21040,mem_total_mb:40960,procs:[{owner:'clw18',experiment:'TBO-Norm',cmd_short:'ws3c_bank.py --split test'}]},
+       {index:2,name:'A100-SXM4 80GB',util_gpu:12,temp_c:41,mem_used_mb:9800,mem_total_mb:81920,procs:[{owner:'cjsnew',experiment:'other',cmd_short:'experiment_runner_v2.py'}]},
+       {index:3,name:'A100-PCIE 40GB',util_gpu:0,temp_c:33,mem_used_mb:0,mem_total_mb:40960,procs:[]}
+      ],
+      experiments:{
+       MCA:{state:'running',tmux:'pilot_gpu0',gpus:'0',
+        progress:{done:560,total:665,label:'cache_build · juice_bottle'},
+        conclusion:{
+          verdict:'CONDITIONAL_GO',
+          headline:'row③ 已过线，row④ 编辑增益待门禁确认',
+          points:['row③ MCA 0.9687，超官方 4-shot 表 1.8pp','row④ 编辑增益 +0.0042，三窗稳定无退化','LOCO 80.2 距杀稿线 0.6pp，cache 收尾中'],
+          kill_line:{loco:{current:80.2}, cad_sd:{current:96.1}},
+          four_rows:[{row:'① 最近单图',value:'0.9598'},{row:'② 混池',value:'0.9630'},{row:'③ MCA',value:'0.9687'},{row:'④ 编辑',value:'+0.0042'}]
+        },
+        latest_results:[
+         {ts:'13:41',category:'eval',row:'① 单图',metric:'I-AUROC',value:'0.9598'},
+         {ts:'13:41',category:'eval',row:'② 混池',metric:'I-AUROC',value:'0.9630'},
+         {ts:'13:58',category:'eval',row:'③ MCA',metric:'I-AUROC',value:'0.9687'},
+         {ts:'13:58',category:'eval',row:'④ 编辑',metric:'edit-gain',value:'+0.0042'}],
+        log_tail:'[13:55:01] [560/665] logical_anomalies 130 n=1 0.4s/img ETA 47s\n[13:57:20] eval visa @1shot iauroc=0.9687\n[14:01:44] checkpoint saved ckpt_e17.pt',
+        updated_at:'2026-10-22 14:04:52'},
+       'TBO-Norm':{state:'running',tmux:'ws3c_bank',gpus:'1',
+        progress:{done:1000,total:1035,label:'[score] clips'},
+        conclusion:{
+          verdict:'KILL',
+          headline:'norm 变体连续无增益，CAD-SD 落后 0.7pp，建议停算力转 MCA',
+          points:['norm ablation 4/10 全部无增益','LOCO 80.1 低于目标 0.7pp','ws3c wrist/position 0.760 为最佳单元'],
+          kill_line:{loco:{current:80.1}, cad_sd:{current:95.8}},
+          four_rows:[{row:'norm-ab1',value:'0.9410'},{row:'norm-ab2',value:null},{row:'norm-ab3',value:null},{row:'norm-ab4',value:null}]
+        },
+        latest_results:[
+         {ts:'13:05',category:'ws3c',row:'wrist',metric:'bank AUROC',value:'0.760'},
+         {ts:'13:05',category:'ws3c',row:'wrist',metric:'AUPRC',value:'0.712'},
+         {ts:'13:20',category:'ws3a',row:'pooled',metric:'AUROC',value:'0.997'}],
+        log_tail:'[13:02:11] [score] 1000/1035 clips\n[13:20:40] EVAL_DONE 1312s n=1432\n[13:31:00] result written wrist/position=0.760',
+        updated_at:'2026-10-22 13:59:03'}
+      },
+      leaderboard:{
+       updated:'2026-10-22 13:00',
+       main:[
+        {method:'Baseline-Official','1-shot':'73.2','2-shot':'75.8','4-shot':'78.9'},
+        {method:'LDM seeds15-19','1-shot':'71.5','2-shot':'74.9','4-shot':'78.3'}],
+       ours:{mca:{k4_loco_i:80.2}},
+       reference:[
+        {method:'ObjectCore 全量',full:'82.1',note:'全量训练 · 结构不可比'},
+        {method:'LDM 全表',full:'81.4',note:'seeds15-19 · 不可比'}]
+      }
+    }},
+  go: null, /* 由 full 派生（MCA GO + leaderboard 超线） */
+  nolb: null, /* full 派生：leaderboard=null */
+  empty: null
 };
+(function(){
+  var g = JSON.parse(JSON.stringify(DEMOS.full));
+  g.snapshot.experiments.MCA.conclusion = {
+    verdict:'GO',
+    headline:'四行均过杀稿线，LOCO / CAD-SD 双门禁达标，推进投稿口径',
+    points:['row③ MCA 0.9687，独立种子复现一致','row④ 编辑增益 +0.0042 稳定','LOCO 81.3 超目标 0.5pp'],
+    kill_line:{loco:{current:81.3}, cad_sd:{current:96.9}},
+    four_rows:DEMOS.full.snapshot.experiments.MCA.conclusion.four_rows
+  };
+  g.snapshot.leaderboard.ours.mca.k4_loco_i = 81.3;
+  DEMOS.go = g;
+  var n = JSON.parse(JSON.stringify(DEMOS.full));
+  n.snapshot.leaderboard = null;
+  DEMOS.nolb = n;
+  DEMOS.empty = {topic:'gpu-monitor', events:[], snapshot:{ts:'—', gpus:[],
+    experiments:{MCA:{state:'not_found'}, 'TBO-Norm':{state:'not_found'}}, leaderboard:null}};
+})();
 
-function applyPayload(j){
-  var d=j.snapshot||j;
-  d._events=j.events||[];
-  render(d);
+/* ---------- 加载 ---------- */
+var LAST_DATA = null, LAST_MODE = null;
+function applyPayload(j, mode){
+  var d = j.snapshot||j;
+  d._events = j.events||[];
+  LAST_DATA = d; LAST_MODE = mode||'data';
+  renderAll(d, LAST_MODE);
 }
 function load(){
-  var m=location.search.match(/[?&]demo=([a-zA-Z0-9_]+)/);
-  if(m&&window.__DEMOS&&window.__DEMOS[m[1]]){applyPayload(window.__DEMOS[m[1]]);return;}
+  var m = location.search.match(/[?&]demo=([\w-]+)/);
+  if(m && DEMOS[m[1]]){
+    var sc = m[1];
+    applyPayload(DEMOS[sc], sc==='empty'?'empty':'data');
+    /* demo 下 paper/播客 meta 也给演示值，方便截图 */
+    PAPER_META = {ver:'v0.1', updated:'14:05', data:'pre-results'};
+    if(sc!=='empty' && sc!=='nolb'){ POD_BADGE.mca='10-22'; POD_BADGE.tbo='10-21'; }
+    renderIntoHeader();
+    return;
+  }
+  LAST_MODE = 'data';
+  renderAll({experiments:{}, gpus:[]}, 'skeleton');
   fetch('snapshot.json?t='+Date.now(),{cache:'no-store'})
     .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
-    .then(applyPayload)
+    .then(function(j){
+      applyPayload(j,'data');
+      loadPaperMeta(); loadPodBadges();
+    })
     .catch(function(e){
-      var conn=document.getElementById('conn');
-      conn.className='pill bad'; conn.innerHTML='<span class="dot"></span> 暂无数据';
-      document.getElementById('banner').innerHTML='<div class="alert warn">暂时取不到 snapshot.json（'+esc(e.message)+'）。页面由 GitHub Pages 托管，需服务器已把快照推到仓库。</div>';
-      document.getElementById('updated').textContent='等待服务器推送数据…';
+      var d = {ts:'—', gpus:[], experiments:{}, leaderboard:null, _events:[]};
+      LAST_DATA = d; LAST_MODE = 'empty';
+      renderAll(d,'empty');
+      console.warn('snapshot load failed:', e && e.message);
     });
 }
-load(); setInterval(load, 300000);
+load();
+setInterval(load, 300000);
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')load();});
-if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
-  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
-}
 </script>
 </body>
 </html>
