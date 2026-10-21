@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 02:14:25",
+  "ts": "2026-10-22 02:24:34",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 34,
+    "temp_c": 35,
     "procs": [
      {
       "pid": 1209327,
@@ -39,7 +39,7 @@
     "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 33,
+    "temp_c": 35,
     "procs": [
      {
       "pid": 225385,
@@ -53,10 +53,10 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 6031,
+    "mem_used_mb": 3442,
     "mem_total_mb": 81920,
-    "util_gpu": 4,
-    "temp_c": 38,
+    "util_gpu": 0,
+    "temp_c": 39,
     "procs": [
      {
       "pid": 330781,
@@ -71,13 +71,6 @@
       "mem_mb": 2920,
       "experiment": "MCA",
       "cmd_short": "cache_patches.py --cat=breakfast_box --out=patches_noft"
-     },
-     {
-      "pid": 1161571,
-      "owner": "cenzihan",
-      "mem_mb": 2584,
-      "experiment": "other",
-      "cmd_short": "replay_v7_contact_impact.py"
      }
     ]
    },
@@ -87,7 +80,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 32,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 225386,
@@ -100,10 +93,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 34C",
-   "GPU1 0% 33/40GB 33C",
-   "GPU2 1% 6/80GB 38C",
-   "GPU3 0% 34/40GB 32C"
+   "GPU0 0% 67/80GB 35C",
+   "GPU1 0% 33/40GB 35C",
+   "GPU2 0% 3/80GB 39C",
+   "GPU3 0% 34/40GB 33C"
   ],
   "source": 30,
   "producer": 30,
@@ -160,10 +153,6 @@
     {
      "who": "me",
      "desc": "cache_patches.py --cat breakfast_box --out pat"
-    },
-    {
-     "who": "other",
-     "desc": "cenzihan python"
     }
    ],
    "gpu3": [
@@ -279,13 +268,13 @@
      2
     ],
     "progress": {
-     "done": null,
-     "total": null,
-     "label": "v3_sb"
+     "done": 450,
+     "total": 626,
+     "label": "patches_bb"
     },
     "latest_results": [],
-    "log_tail": "loaded train=360 good=122 logi=137\nep0: row1=0.511 row2=0.538 row3=0.511  0.1s\nep1: row1=0.538 row2=0.553 row3=0.538  0.1s\nep2: row1=0.527 row2=0.554 row3=0.527  0.1s\nep3: row1=0.519 row2=0.559 row3=0.559  0.2s\nep4: row1=0.534 row2=0.542 row3=0.534  0.1s\nep5: row1=0.489 row2=0.551 row3=0.549  0.1s\nep6: row1=0.545 row2=0.550 row3=0.545  0.1s\nep7: row1=0.479 row2=0.526 row3=0.479  0.1s\nep8 MCA fail: index 5 is out of bounds for axis 0 with size 5\nep8: row1=0.589 row2=0.568 row3=0.589  0.0s\nep9: row1=0.570 row2=0.559 row3=0.527  0.1s\n=== screw_bag No-FT 10ep: row1 0.530+-0.032 row2 0.550+-0.012 row3 0.536+-0.028 ===\nrow3-row1: 0.006  row3-row2: -0.014\nDONE",
-    "updated_at": "2026-10-22 02:14:09",
+    "log_tail": "Loading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 23325.44it/s]\n[50/626] 2.28s/img\n[100/626] 2.27s/img\n[150/626] 2.27s/img\n[200/626] 2.26s/img\n[250/626] 2.26s/img\n[300/626] 2.26s/img\n[350/626] 2.26s/img\n[400/626] 2.26s/img\n[450/626] 2.26s/img",
+    "updated_at": "2026-10-22 02:23:15",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
