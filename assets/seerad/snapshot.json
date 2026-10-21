@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-21 23:47:13",
+  "ts": "2026-10-21 23:57:19",
   "gpus": [
-   "GPU0 5% 4/80GB 32C",
-   "GPU1 51% 4/40GB 49C",
+   "GPU0 0% 9/80GB 33C",
+   "GPU1 0% 0/40GB 32C",
    "GPU2 0% 0/80GB 33C",
-   "GPU3 67% 4/40GB 39C"
+   "GPU3 70% 4/40GB 51C"
   ],
   "source": 30,
   "producer": 30,
@@ -48,16 +48,10 @@
      "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
     }
    ],
-   "gpu1": [
-    {
-     "who": "me",
-     "desc": "pilot_slots.py breakfast_box juice_bottle"
-    }
-   ],
    "gpu3": [
     {
      "who": "me",
-     "desc": "python -"
+     "desc": "python ws3c_detect.py"
     }
    ]
   },
