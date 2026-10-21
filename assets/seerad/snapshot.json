@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 02:55:08",
+  "ts": "2026-10-22 03:05:16",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 6463,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 36,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 1209327,
@@ -27,33 +27,33 @@
      {
       "pid": 225384,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1178882,
-      "owner": "chenlinwei",
-      "mem_mb": 3176,
-      "experiment": "MCA",
-      "cmd_short": "cache_patches.py --cat=screw_bag --out=patches_noft"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33400,
+    "mem_used_mb": 7085,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 32,
+    "util_gpu": 67,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 33258,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 1212513,
+      "owner": "chenlinwei",
+      "mem_mb": 6448,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h3_robovad_full.py"
      }
     ]
    },
@@ -93,8 +93,8 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 6/80GB 35C",
-   "GPU1 0% 33/40GB 32C",
+   "GPU0 0% 67/80GB 33C",
+   "GPU1 52% 7/40GB 51C",
    "GPU2 0% 67/80GB 34C",
    "GPU3 0% 34/40GB 31C"
   ],
@@ -137,16 +137,16 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "cache_patches.py --cat screw_bag --out patches"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "videos --tag full --max-per-task 24"
     }
    ],
    "gpu2": [
@@ -260,21 +260,17 @@
   ],
   "experiments": {
    "MCA": {
-    "state": "running",
-    "tmux": [
-     "pilot_patches"
-    ],
-    "gpus": [
-     0
-    ],
+    "state": "idle",
+    "tmux": [],
+    "gpus": [],
     "progress": {
-     "done": 550,
+     "done": 700,
      "total": 701,
      "label": "patches_sb"
     },
     "latest_results": [],
-    "log_tail": "Loading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 23244.62it/s]\n[50/701] 2.69s/img\n[100/701] 2.67s/img\n[150/701] 2.66s/img\n[200/701] 2.65s/img\n[250/701] 2.66s/img\n[300/701] 2.66s/img\n[350/701] 2.66s/img\n[400/701] 2.66s/img\n[450/701] 2.66s/img\n[500/701] 2.66s/img\n[550/701] 2.67s/img",
-    "updated_at": "2026-10-22 02:54:28",
+    "log_tail": "Loading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 23244.62it/s]\n[50/701] 2.69s/img\n[100/701] 2.67s/img\n[150/701] 2.66s/img\n[200/701] 2.65s/img\n[250/701] 2.66s/img\n[300/701] 2.66s/img\n[350/701] 2.66s/img\n[400/701] 2.66s/img\n[450/701] 2.66s/img\n[500/701] 2.66s/img\n[550/701] 2.67s/img\n[600/701] 2.66s/img\n[650/701] 2.66s/img\n[700/701] 2.66s/img\nDONE screw_bag patches_noft",
+    "updated_at": "2026-10-22 03:01:07",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
@@ -318,9 +314,11 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "idle",
+    "state": "running",
     "tmux": [],
-    "gpus": [],
+    "gpus": [
+     1
+    ],
     "progress": {
      "done": 1800,
      "total": 1803,
