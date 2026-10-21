@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 04:16:18",
+  "ts": "2026-10-22 04:26:26",
   "gpus": [
    {
     "index": 0,
@@ -36,9 +36,9 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 7678,
+    "mem_used_mb": 7687,
     "mem_total_mb": 40960,
-    "util_gpu": 32,
+    "util_gpu": 59,
     "temp_c": 51,
     "procs": [
      {
@@ -60,27 +60,34 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 18846,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 41,
+    "util_gpu": 66,
+    "temp_c": 62,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 1410798,
+      "owner": "chenlinwei",
+      "mem_mb": 18324,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h3_part_filter.py"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 2120,
+    "mem_used_mb": 20029,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 46,
+    "util_gpu": 61,
+    "temp_c": 57,
     "procs": [
      {
       "pid": 225386,
@@ -95,15 +102,22 @@
       "mem_mb": 1600,
       "experiment": "TBO-Norm",
       "cmd_short": "h4_batch_driver.py"
+     },
+     {
+      "pid": 1411975,
+      "owner": "chenlinwei",
+      "mem_mb": 17904,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h2_part_slots.py"
      }
     ]
    }
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 34C",
-   "GPU1 32% 7/40GB 49C",
-   "GPU2 0% 67/80GB 41C",
-   "GPU3 0% 2/40GB 45C"
+   "GPU1 66% 8/40GB 48C",
+   "GPU2 66% 18/80GB 62C",
+   "GPU3 100% 20/40GB 57C"
   ],
   "source": 30,
   "producer": 30,
@@ -160,6 +174,10 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "python h3_part_filter.py"
     }
    ],
    "gpu3": [
@@ -170,6 +188,10 @@
     {
      "who": "me",
      "desc": "python -u -B h4_batch_driver.py"
+    },
+    {
+     "who": "me",
+     "desc": "h2_part_slots.py"
     }
    ]
   },
@@ -329,6 +351,7 @@
     "tmux": [],
     "gpus": [
      1,
+     2,
      3
     ],
     "progress": {
