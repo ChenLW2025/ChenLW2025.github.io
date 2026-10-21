@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 07:49:32",
+  "ts": "2026-10-22 07:59:40",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 5891,
+    "mem_used_mb": 7635,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 41,
+    "util_gpu": 58,
+    "temp_c": 65,
     "procs": [
      {
       "pid": 1209327,
@@ -32,11 +32,11 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2669574,
+      "pid": 2733139,
       "owner": "chenlinwei",
-      "mem_mb": 2604,
+      "mem_mb": 4348,
       "experiment": "other",
-      "cmd_short": "ft_patches_as.py"
+      "cmd_short": "ft_patches_gpu.py"
      }
     ]
    },
@@ -77,10 +77,10 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 9466,
+    "mem_used_mb": 15253,
     "mem_total_mb": 40960,
-    "util_gpu": 99,
-    "temp_c": 64,
+    "util_gpu": 100,
+    "temp_c": 65,
     "procs": [
      {
       "pid": 225386,
@@ -90,20 +90,27 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2665350,
+      "pid": 2723561,
       "owner": "chenlinwei",
-      "mem_mb": 8946,
+      "mem_mb": 8932,
       "experiment": "TBO-Norm",
-      "cmd_short": "h8b_sam2_anchor.py"
+      "cmd_short": "h5_order_v11.py"
+     },
+     {
+      "pid": 2733568,
+      "owner": "chenlinwei",
+      "mem_mb": 5796,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h5_order_v11.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 6/80GB 41C",
+   "GPU0 97% 7/80GB 65C",
    "GPU1 0% 33/40GB 41C",
    "GPU2 0% 67/80GB 42C",
-   "GPU3 99% 9/40GB 63C"
+   "GPU3 100% 15/40GB 65C"
   ],
   "source": 30,
   "producer": 30,
@@ -169,7 +176,11 @@
     },
     {
      "who": "me",
-     "desc": "h8b_sam2_anchor.py"
+     "desc": "h5_order_v11.py"
+    },
+    {
+     "who": "me",
+     "desc": "python h5_order_v11.py --score"
     }
    ]
   },
