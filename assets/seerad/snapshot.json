@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 03:05:16",
+  "ts": "2026-10-22 03:15:25",
   "gpus": [
    {
     "index": 0,
@@ -36,10 +36,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 7085,
+    "mem_used_mb": 7147,
     "mem_total_mb": 40960,
-    "util_gpu": 67,
-    "temp_c": 48,
+    "util_gpu": 81,
+    "temp_c": 53,
     "procs": [
      {
       "pid": 225385,
@@ -49,9 +49,9 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 1212513,
+      "pid": 1225020,
       "owner": "chenlinwei",
-      "mem_mb": 6448,
+      "mem_mb": 6510,
       "experiment": "TBO-Norm",
       "cmd_short": "h3_robovad_full.py"
      }
@@ -60,17 +60,24 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 15606,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 34,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 1230774,
+      "owner": "chenlinwei",
+      "mem_mb": 15084,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h6_vlm_multiframe_robovad.py --out=h6_vlm_multiframe_robovad.json"
      }
     ]
    },
@@ -80,7 +87,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 31,
+    "temp_c": 32,
     "procs": [
      {
       "pid": 225386,
@@ -94,9 +101,9 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 33C",
-   "GPU1 52% 7/40GB 51C",
-   "GPU2 0% 67/80GB 34C",
-   "GPU3 0% 34/40GB 31C"
+   "GPU1 81% 7/40GB 52C",
+   "GPU2 0% 15/80GB 48C",
+   "GPU3 0% 34/40GB 32C"
   ],
   "source": 30,
   "producer": 30,
@@ -146,13 +153,17 @@
     },
     {
      "who": "me",
-     "desc": "videos --tag full --max-per-task 24"
+     "desc": "normal_train_left --tag full --max-per-task 24"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "h6_vlm_multiframe_robovad.json --k 8 --n_perm "
     }
    ],
    "gpu3": [
@@ -317,7 +328,8 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     1
+     1,
+     2
     ],
     "progress": {
      "done": 1800,
