@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 00:58:53",
+  "ts": "2026-10-22 01:09:58",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 15445,
     "mem_total_mb": 81920,
-    "util_gpu": 4,
-    "temp_c": 33,
+    "util_gpu": 9,
+    "temp_c": 34,
     "procs": [
      {
       "pid": 1209327,
@@ -43,10 +43,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 32898,
+    "mem_used_mb": 20239,
     "mem_total_mb": 40960,
-    "util_gpu": 100,
-    "temp_c": 58,
+    "util_gpu": 79,
+    "temp_c": 55,
     "procs": [
      {
       "pid": 225385,
@@ -56,23 +56,16 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 647610,
-      "owner": "chenlinwei",
-      "mem_mb": 14544,
-      "experiment": "MCA",
-      "cmd_short": "ft_scan.py"
-     },
-     {
       "pid": 683641,
       "owner": "chenlinwei",
-      "mem_mb": 3220,
-      "experiment": "other",
+      "mem_mb": 5108,
+      "experiment": "TBO-Norm",
       "cmd_short": "h3_robovad.py"
      },
      {
-      "pid": 704856,
+      "pid": 829603,
       "owner": "chenlinwei",
-      "mem_mb": 14486,
+      "mem_mb": 14488,
       "experiment": "MCA",
       "cmd_short": "ft_gdino.py --cat=breakfast_box --ep=0"
      }
@@ -100,8 +93,8 @@
     "name": "NVIDIA A100-PCIE-40GB",
     "mem_used_mb": 4618,
     "mem_total_mb": 40960,
-    "util_gpu": 22,
-    "temp_c": 33,
+    "util_gpu": 31,
+    "temp_c": 49,
     "procs": [
      {
       "pid": 225386,
@@ -111,20 +104,20 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 681087,
+      "pid": 776515,
       "owner": "chenlinwei",
       "mem_mb": 4098,
-      "experiment": "other",
-      "cmd_short": "h2_robovad.py"
+      "experiment": "TBO-Norm",
+      "cmd_short": "h2_sort_robovad.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 15/80GB 33C",
-   "GPU1 100% 32/40GB 57C",
+   "GPU0 9% 15/80GB 34C",
+   "GPU1 79% 20/40GB 56C",
    "GPU2 0% 67/80GB 35C",
-   "GPU3 20% 5/40GB 34C"
+   "GPU3 31% 5/40GB 50C"
   ],
   "source": 30,
   "producer": 30,
@@ -178,10 +171,6 @@
     },
     {
      "who": "me",
-     "desc": "ft_scan.py"
-    },
-    {
-     "who": "me",
      "desc": "python h3_robovad.py"
     },
     {
@@ -202,7 +191,7 @@
     },
     {
      "who": "me",
-     "desc": "h2_robovad.py"
+     "desc": "h2_sort_robovad.py"
     }
    ]
   },
@@ -305,22 +294,18 @@
   "experiments": {
    "MCA": {
     "state": "running",
-    "tmux": [
-     "pilot_10ep",
-     "pilot_ft_bb",
-     "pilot_ft_scan"
-    ],
+    "tmux": [],
     "gpus": [
      1
     ],
     "progress": {
-     "done": null,
+     "done": 10,
      "total": null,
-     "label": "10ep_sb"
+     "label": "ft_ft_bb_ep01"
     },
     "latest_results": [],
-    "log_tail": "ep0 A_L=0.5112 fused=0.5129\nep1 A_L=0.5376 fused=0.5327\nep2 A_L=0.5272 fused=0.5249\nep3 A_L=0.5193 fused=0.5172\nep4 A_L=0.5335 fused=0.5324\nep5 A_L=0.4885 fused=0.4907\nep6 A_L=0.5448 fused=0.5400",
-    "updated_at": "2026-10-22 00:58:12",
+    "log_tail": "support images: ['203.png', '270.png', '138.png', '175.png']\nloading base gdino ...\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 14563.18it/s]\n  pseudo boxes for 203.png: 12\n  pseudo boxes for 270.png: 5\n  pseudo boxes for 138.png: 5\n  pseudo boxes for 175.png: 8\nep 10 loss 0.4189  32.5s",
+    "updated_at": "2026-10-22 01:09:55",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
@@ -360,17 +345,20 @@
       }
      ],
      "updated_at": "2026-10-22 00:48"
-    }
+    },
+    "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
     "state": "running",
     "tmux": [],
     "gpus": [
-     0
+     0,
+     1,
+     3
     ],
     "progress": {
-     "done": 900,
-     "total": 930,
+     "done": 600,
+     "total": 1803,
      "label": "ws3a_run_7cat.log"
     },
     "latest_results": [
@@ -487,8 +475,8 @@
       "value": 0.5729
      }
     ],
-    "log_tail": "[bank] 50/930 clips 49s\n[bank] 100/930 clips 97s\n[bank] 150/930 clips 143s\n[bank] 200/930 clips 164s\n[bank] 250/930 clips 185s\n[bank] 300/930 clips 207s\n[bank] 350/930 clips 227s\n[bank] 400/930 clips 246s\n[bank] 450/930 clips 267s\n[bank] 500/930 clips 288s\n[bank] 550/930 clips 324s\n[bank] 600/930 clips 375s\n[bank] 650/930 clips 446s\n[bank] 700/930 clips 537s\n[bank] 750/930 clips 616s\n[bank] 800/930 clips 698s\n[bank] 850/930 clips 813s\n[bank] 900/930 clips 921s\n[bank] motion train mean=0.3350 sd=0.2221\n[bank] pooled=torch.Size([7440, 768]) patch=torch.Size([80000, 768])",
-    "updated_at": "2026-10-22 00:58:23",
+    "log_tail": "[bank] 350/930 clips 227s\n[bank] 400/930 clips 246s\n[bank] 450/930 clips 267s\n[bank] 500/930 clips 288s\n[bank] 550/930 clips 324s\n[bank] 600/930 clips 375s\n[bank] 650/930 clips 446s\n[bank] 700/930 clips 537s\n[bank] 750/930 clips 616s\n[bank] 800/930 clips 698s\n[bank] 850/930 clips 813s\n[bank] 900/930 clips 921s\n[bank] motion train mean=0.3350 sd=0.2221\n[bank] pooled=torch.Size([7440, 768]) patch=torch.Size([80000, 768])\n[score] 100/1803 1200s\n[score] 200/1803 1291s\n[score] 300/1803 1421s\n[score] 400/1803 1565s\n[score] 500/1803 1634s\n[score] 600/1803 1690s",
+    "updated_at": "2026-10-22 01:09:50",
     "conclusion": {
      "verdict": "RUNNING",
      "headline": "TBO-Norm 正常库 kNN 基线在盘：Phys-AD 分支 ws3a score_pooled AUROC=0.997（part0/base 基准），DROID 分支 ws3c pooled 仅 0.53–0.62 偏弱；当前无活跃 GPU 进程（idle），方法层 GO/KILL 结论待你下发，不预设。",
@@ -527,9 +515,11 @@
       }
      ],
      "updated_at": "2026-10-22 00:48"
-    }
+    },
+    "evidence": "dir=EMBODIED_B_2026 (docs title \"TBO-AD v3\"); procs=ws3a_physad/baseline.py, ws3c_droid/ws3c_*.py, h2_trackability/h2_*robovad*.py, h3_em/h3_robovad.py; log keys=[bank]/[score]/[eval]/EVAL_DONE/[AUROC]"
    }
   },
+  "leaderboard": null,
   "results": {
    "dev5_9": null,
    "ind15_19": {
