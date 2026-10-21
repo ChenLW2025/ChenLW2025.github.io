@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 00:27:46",
+  "ts": "2026-10-22 00:37:54",
   "gpus": [
-   "GPU0 0% 9/80GB 33C",
-   "GPU1 4% 8/40GB 45C",
-   "GPU2 0% 67/80GB 34C",
-   "GPU3 14% 11/40GB 44C"
+   "GPU0 54% 14/80GB 54C",
+   "GPU1 88% 5/40GB 47C",
+   "GPU2 92% 5/80GB 47C",
+   "GPU3 0% 34/40GB 35C"
   ],
   "source": 30,
   "producer": 30,
@@ -46,32 +46,36 @@
     {
      "who": "me",
      "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
+    },
+    {
+     "who": "me",
+     "desc": "cache_build.py --cat juice_bottle --split all"
     }
    ],
    "gpu1": [
     {
-     "who": "me",
-     "desc": "cache_build.py --cat screw_bag --split all"
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     },
     {
      "who": "me",
-     "desc": "python h3_extract_tracklets.py --cat ball"
+     "desc": "ep01"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "cache_build.py --cat pushpins --split all"
     }
    ],
    "gpu3": [
     {
-     "who": "me",
-     "desc": "python ws3c_eval.py"
-    },
-    {
-     "who": "me",
-     "desc": "python h2_track.py --dataset droid"
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     }
    ]
   },
