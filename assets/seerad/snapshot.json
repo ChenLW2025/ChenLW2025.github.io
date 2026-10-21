@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 01:32:53",
+  "ts": "2026-10-22 01:43:28",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 11045,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 49,
-    "temp_c": 38,
+    "util_gpu": 0,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 1209327,
@@ -27,16 +27,9 @@
      {
       "pid": 225384,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1110434,
-      "owner": "chenlinwei",
-      "mem_mb": 7758,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h6_vlm_order_text.py --out=h6_vlm_order_baseline.json"
      }
     ]
    },
@@ -60,17 +53,24 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 8552,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 34,
+    "util_gpu": 89,
+    "temp_c": 54,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 1122130,
+      "owner": "chenlinwei",
+      "mem_mb": 8030,
+      "experiment": "MCA",
+      "cmd_short": "ft_freeze.py --cat=breakfast_box --ep=0"
      }
     ]
    },
@@ -93,9 +93,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 50% 11/80GB 38C",
+   "GPU0 0% 67/80GB 33C",
    "GPU1 0% 33/40GB 32C",
-   "GPU2 0% 67/80GB 34C",
+   "GPU2 67% 8/80GB 51C",
    "GPU3 0% 34/40GB 31C"
   ],
   "source": 30,
@@ -137,10 +137,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "h6_vlm_order_baseline.json --limit 600"
     }
    ],
    "gpu1": [
@@ -153,6 +149,10 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "ft_freeze.py --cat breakfast_box --ep 0"
     }
    ],
    "gpu3": [
@@ -260,33 +260,36 @@
   ],
   "experiments": {
    "MCA": {
-    "state": "idle",
+    "state": "running",
     "tmux": [
-     "pilot_v2"
+     "pilot_eval_cpu",
+     "pilot_ft_freeze"
     ],
-    "gpus": [],
+    "gpus": [
+     2
+    ],
     "progress": {
-     "done": null,
+     "done": 80,
      "total": null,
-     "label": "10ep_v2_bb"
+     "label": "ft_ft_freeze"
     },
     "latest_results": [],
-    "log_tail": "ep0 A_L=0.6225 fused=0.7737\nep1 A_L=0.6590 fused=0.8503\nep2 A_L=0.6577 fused=0.8345\nep3 A_L=0.7026 fused=0.8343",
-    "updated_at": "2026-10-22 01:32:35",
+    "log_tail": "support: ['203.png', '270.png', '138.png', '175.png']\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 24513.59it/s]\ntrainable params: 558 (36.5M)\n  pseudo 203.png: 7\n  pseudo 270.png: 9\n  pseudo 138.png: 4\n  pseudo 175.png: 8\nep 10 loss 0.484 13.7s\nep 20 loss 0.429 27.3s\nep 30 loss 0.398 40.9s\nep 40 loss 0.510 54.4s\nep 50 loss 0.368 68.5s\nep 60 loss 0.471 83.7s\nep 70 loss 0.402 103.0s\nep 80 loss 0.403 122.9s",
+    "updated_at": "2026-10-22 01:43:14",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
      "points": [
       "①忠实复现（No-FT,z_deep,A_L-only）breakfast_box ep01=0.709，≈ObjectCore Only M_L 锚点 70.6，核心匹配逻辑方向正确",
       "②混池=0.706，弱检测器阶段 ①≈② 属预期；多模式 episode 上必须 ③>②",
-      "10-episode No-FT（2026-10-22 01:00 出）：breakfast_box fused(A_L+A_S) 0.7356±0.0912（A_L 0.7014±0.1003，ep8 峰值 fused=0.8853）；screw_bag fused 仅 0.5279±0.0315 → 跨类差距大，均单类非 macro；z_ms 1792 特征 0.680",
-      "FT 选型扫描中（tmux pilot_ft_scan：epochs 10/30/100 × freeze 对比，epochs=100 freeze=False loss_end=40.0；pilot_ft_bb 新一轮 01:09 启动），验收带 macro [78.8,82.8]",
+      "No-FT 10ep：breakfast_box fused 0.7356±0.0912；screw_bag fused 仅 0.5279±0.0315（跨类差大，单类非 macro）",
+      "FT ep01 后 v2 10ep（2026-10-22 01:34 出）：breakfast_box fused 0.8445±0.0331（A_L 0.6755±0.0345），较 No-FT +10.9pp、std 收窄约 3 倍；screw_bag v2 重测中。z_ms 1792 特征 0.680",
       "D5 五项门禁：多模式占比≥25%、M=1 上③−①≈0、③>①>②、LOSO存活对≥10%、<5s/episode"
      ],
      "killline": {
       "loco_target": 80.8,
       "cad_target": 96.6,
-      "current_loco": 0.7356,
+      "current_loco": 0.8445,
       "current_cad": null
      },
      "four_rows": [
@@ -302,8 +305,8 @@
       },
       {
        "row": "3",
-       "label": "MCA·bb No-FT 10ep fused均值(单类非macro)",
-       "value": 0.7356
+       "label": "MCA·bb FT-v2 10ep fused均值(单类非macro)",
+       "value": 0.8445
       },
       {
        "row": "4",
@@ -311,16 +314,14 @@
        "value": null
       }
      ],
-     "updated_at": "2026-10-22 01:10"
+     "updated_at": "2026-10-22 01:39"
     },
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "running",
+    "state": "idle",
     "tmux": [],
-    "gpus": [
-     0
-    ],
+    "gpus": [],
     "progress": {
      "done": 1800,
      "total": 1803,
