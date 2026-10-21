@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 01:20:10",
+  "ts": "2026-10-22 01:32:53",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 15943,
+    "mem_used_mb": 11045,
     "mem_total_mb": 81920,
-    "util_gpu": 9,
-    "temp_c": 33,
+    "util_gpu": 49,
+    "temp_c": 38,
     "procs": [
      {
       "pid": 1209327,
@@ -32,18 +32,11 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 538960,
+      "pid": 1110434,
       "owner": "chenlinwei",
-      "mem_mb": 12158,
+      "mem_mb": 7758,
       "experiment": "TBO-Norm",
-      "cmd_short": "baseline.py --out=ws3a_auroc_7cat_base.json"
-     },
-     {
-      "pid": 1019012,
-      "owner": "cenzihan",
-      "mem_mb": 492,
-      "experiment": "other",
-      "cmd_short": "replay_v7_contact_cap.py"
+      "cmd_short": "h6_vlm_order_text.py --out=h6_vlm_order_baseline.json"
      }
     ]
    },
@@ -53,7 +46,7 @@
     "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 38,
+    "temp_c": 32,
     "procs": [
      {
       "pid": 225385,
@@ -67,31 +60,17 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 19855,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 100,
-    "temp_c": 60,
+    "util_gpu": 0,
+    "temp_c": 34,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 982637,
-      "owner": "chenlinwei",
-      "mem_mb": 14488,
-      "experiment": "MCA",
-      "cmd_short": "ft_gdino.py --cat=breakfast_box --ep=0"
-     },
-     {
-      "pid": 1001160,
-      "owner": "chenlinwei",
-      "mem_mb": 4840,
-      "experiment": "MCA",
-      "cmd_short": "cache_build_ft.py --cat=breakfast_box --ckpt=ep01"
      }
     ]
    },
@@ -101,7 +80,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 32,
+    "temp_c": 31,
     "procs": [
      {
       "pid": 225386,
@@ -114,10 +93,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 16/80GB 33C",
-   "GPU1 0% 33/40GB 38C",
-   "GPU2 96% 19/80GB 61C",
-   "GPU3 0% 34/40GB 32C"
+   "GPU0 50% 11/80GB 38C",
+   "GPU1 0% 33/40GB 32C",
+   "GPU2 0% 67/80GB 34C",
+   "GPU3 0% 34/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -161,11 +140,7 @@
     },
     {
      "who": "me",
-     "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
-    },
-    {
-     "who": "other",
-     "desc": "cenzihan python"
+     "desc": "h6_vlm_order_baseline.json --limit 600"
     }
    ],
    "gpu1": [
@@ -178,14 +153,6 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "ft_gdino.py --cat breakfast_box --ep 0"
-    },
-    {
-     "who": "me",
-     "desc": "ep01"
     }
    ],
    "gpu3": [
@@ -293,22 +260,19 @@
   ],
   "experiments": {
    "MCA": {
-    "state": "running",
+    "state": "idle",
     "tmux": [
-     "pilot_cache_ft",
-     "pilot_ft_bb"
+     "pilot_v2"
     ],
-    "gpus": [
-     2
-    ],
+    "gpus": [],
     "progress": {
-     "done": 80,
+     "done": null,
      "total": null,
-     "label": "ft_ft_bb_ep01"
+     "label": "10ep_v2_bb"
     },
     "latest_results": [],
-    "log_tail": "loading base gdino ...\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights:  54%|█████▍    | 654/1206 [00:00<00:00, 6530.18it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 7384.15it/s]\n  pseudo boxes for 203.png: 4\n  pseudo boxes for 270.png: 5\n  pseudo boxes for 138.png: 6\n  pseudo boxes for 175.png: 15\nep 10 loss 0.6275  21.8s\nep 20 loss 0.4994  41.3s\nep 30 loss 0.4528  61.1s\nep 40 loss 0.4536  80.9s\nep 50 loss 0.4756  101.4s\nep 60 loss 0.4848  125.5s\nep 70 loss 0.4362  149.7s\nep 80 loss 0.4521  174.1s\n%|          | 0/1 [00:00<?, ?it/s]\nWriting model shards: 100%|██████████| 1/1 [00:05<00:00,  5.34s/it]\nWriting model shards: 100%|██████████| 1/1 [00:05<00:00,  5.34s/it]\nsaved FT weights to /mnt/disk20t/chenlinwei/pilot_4shot_loco/mca_v2_linwei/v2_4shot/breakfast_box/det_ft/ep01 total 494.5s",
-    "updated_at": "2026-10-22 01:19:49",
+    "log_tail": "ep0 A_L=0.6225 fused=0.7737\nep1 A_L=0.6590 fused=0.8503\nep2 A_L=0.6577 fused=0.8345\nep3 A_L=0.7026 fused=0.8343",
+    "updated_at": "2026-10-22 01:32:35",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
@@ -358,7 +322,7 @@
      0
     ],
     "progress": {
-     "done": 1300,
+     "done": 1800,
      "total": 1803,
      "label": "ws3a_run_7cat.log"
     },
@@ -476,8 +440,8 @@
       "value": 0.5729
      }
     ],
-    "log_tail": "[bank] 700/930 clips 537s\n[bank] 750/930 clips 616s\n[bank] 800/930 clips 698s\n[bank] 850/930 clips 813s\n[bank] 900/930 clips 921s\n[bank] motion train mean=0.3350 sd=0.2221\n[bank] pooled=torch.Size([7440, 768]) patch=torch.Size([80000, 768])\n[score] 100/1803 1200s\n[score] 200/1803 1291s\n[score] 300/1803 1421s\n[score] 400/1803 1565s\n[score] 500/1803 1634s\n[score] 600/1803 1690s\n[score] 700/1803 1761s\n[score] 800/1803 1845s\n[score] 900/1803 1933s\n[score] 1000/1803 2012s\n[score] 1100/1803 2081s\n[score] 1200/1803 2143s\n[score] 1300/1803 2247s",
-    "updated_at": "2026-10-22 01:19:07",
+    "log_tail": "[score] 500/1803 1634s\n[score] 600/1803 1690s\n[score] 700/1803 1761s\n[score] 800/1803 1845s\n[score] 900/1803 1933s\n[score] 1000/1803 2012s\n[score] 1100/1803 2081s\n[score] 1200/1803 2143s\n[score] 1300/1803 2247s\n[score] 1400/1803 2350s\n[score] 1500/1803 2459s\n[score] 1600/1803 2564s\n[score] 1700/1803 2684s\n[score] 1800/1803 2819s\n[AUROC] score_pooled: 0.7814  AUPRC=0.7857\n[AUROC] score_patch: 0.7162  AUPRC=0.7685\n[AUROC] score_pooled_top: 0.7847  AUPRC=0.7870\n[AUROC] score_patch_top: 0.7305  AUPRC=0.7743\n[AUROC] score_temporal: 0.3561  AUPRC=0.5813\n[done] wrote /mnt/disk20t/chenlinwei/EMBODIED_B_2026/results/ws3a_auroc_7cat_base.json 2823s",
+    "updated_at": "2026-10-22 01:28:44",
     "conclusion": {
      "verdict": "RUNNING",
      "headline": "TBO-Norm 正常库 kNN 基线在盘：Phys-AD 分支 ws3a score_pooled AUROC=0.997（part0/base 基准），DROID 分支 ws3c pooled 仅 0.53–0.62 偏弱；当前无活跃 GPU 进程（idle），方法层 GO/KILL 结论待你下发，不预设。",
