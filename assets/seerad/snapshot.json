@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-21 23:26:59",
+  "ts": "2026-10-21 23:37:05",
   "gpus": [
-   "GPU0 0% 67/80GB 35C",
-   "GPU1 0% 0/40GB 33C",
-   "GPU2 0% 67/80GB 36C",
-   "GPU3 0% 34/40GB 33C"
+   "GPU0 0% 3/80GB 34C",
+   "GPU1 0% 2/40GB 33C",
+   "GPU2 0% 0/80GB 34C",
+   "GPU3 0% 0/40GB 32C"
   ],
   "source": 30,
   "producer": 30,
@@ -42,22 +42,12 @@
     {
      "who": "other",
      "desc": "experiment_runner_v2.py"
-    },
-    {
-     "who": "hold",
-     "desc": "elastic hold (yields on real job)"
     }
    ],
-   "gpu2": [
+   "gpu1": [
     {
      "who": "me",
-     "desc": "gpu_hold_courteous.py 2 0.85 5"
-    }
-   ],
-   "gpu3": [
-    {
-     "who": "hold",
-     "desc": "elastic hold (yields on real job)"
+     "desc": "python probe.py"
     }
    ]
   },
