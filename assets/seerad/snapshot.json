@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 04:46:42",
+  "ts": "2026-10-22 04:56:50",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 34,
+    "temp_c": 35,
     "procs": [
      {
       "pid": 1209327,
@@ -53,10 +53,10 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 15470,
+    "mem_used_mb": 19560,
     "mem_total_mb": 81920,
-    "util_gpu": 83,
-    "temp_c": 57,
+    "util_gpu": 13,
+    "temp_c": 61,
     "procs": [
      {
       "pid": 330781,
@@ -68,7 +68,7 @@
      {
       "pid": 1512309,
       "owner": "chenlinwei",
-      "mem_mb": 14950,
+      "mem_mb": 19038,
       "experiment": "TBO-Norm",
       "cmd_short": "h3_part_clean.py"
      }
@@ -79,7 +79,7 @@
     "name": "NVIDIA A100-PCIE-40GB",
     "mem_used_mb": 1976,
     "mem_total_mb": 40960,
-    "util_gpu": 23,
+    "util_gpu": 0,
     "temp_c": 35,
     "procs": [
      {
@@ -90,7 +90,7 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 1527404,
+      "pid": 1544749,
       "owner": "chenlinwei",
       "mem_mb": 1456,
       "experiment": "TBO-Norm",
@@ -100,10 +100,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 34C",
+   "GPU0 0% 67/80GB 35C",
    "GPU1 0% 33/40GB 34C",
-   "GPU2 24% 15/80GB 60C",
-   "GPU3 23% 2/40GB 34C"
+   "GPU2 100% 19/80GB 60C",
+   "GPU3 0% 2/40GB 34C"
   ],
   "source": 30,
   "producer": 30,
@@ -169,7 +169,7 @@
     },
     {
      "who": "me",
-     "desc": "python -u -B h4_batch_driver_v2.py"
+     "desc": "h4_batch_driver_v2.py"
     }
    ]
   },
