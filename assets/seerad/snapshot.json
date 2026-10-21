@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 04:26:26",
+  "ts": "2026-10-22 04:36:34",
   "gpus": [
    {
     "index": 0,
@@ -36,34 +36,27 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 7687,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
-    "util_gpu": 59,
-    "temp_c": 51,
+    "util_gpu": 0,
+    "temp_c": 34,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1340112,
-      "owner": "chenlinwei",
-      "mem_mb": 7050,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h3_heldout_recognition.py"
      }
     ]
    },
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 18846,
+    "mem_used_mb": 25969,
     "mem_total_mb": 81920,
-    "util_gpu": 66,
-    "temp_c": 62,
+    "util_gpu": 100,
+    "temp_c": 63,
     "procs": [
      {
       "pid": 330781,
@@ -73,21 +66,28 @@
       "cmd_short": "gpu_hold_courteous.py"
      },
      {
-      "pid": 1410798,
+      "pid": 1491422,
       "owner": "chenlinwei",
-      "mem_mb": 18324,
+      "mem_mb": 13550,
       "experiment": "TBO-Norm",
-      "cmd_short": "h3_part_filter.py"
+      "cmd_short": "h3_diag.py"
+     },
+     {
+      "pid": 1496570,
+      "owner": "chenlinwei",
+      "mem_mb": 11892,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h3_diag.py"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 20029,
+    "mem_used_mb": 2120,
     "mem_total_mb": 40960,
-    "util_gpu": 61,
-    "temp_c": 57,
+    "util_gpu": 0,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 225386,
@@ -102,22 +102,15 @@
       "mem_mb": 1600,
       "experiment": "TBO-Norm",
       "cmd_short": "h4_batch_driver.py"
-     },
-     {
-      "pid": 1411975,
-      "owner": "chenlinwei",
-      "mem_mb": 17904,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h2_part_slots.py"
      }
     ]
    }
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 34C",
-   "GPU1 66% 8/40GB 48C",
-   "GPU2 66% 18/80GB 62C",
-   "GPU3 100% 20/40GB 57C"
+   "GPU1 0% 33/40GB 34C",
+   "GPU2 100% 25/80GB 63C",
+   "GPU3 0% 2/40GB 33C"
   ],
   "source": 30,
   "producer": 30,
@@ -164,10 +157,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "normal_train_left --max-per-task 24"
     }
    ],
    "gpu2": [
@@ -177,7 +166,11 @@
     },
     {
      "who": "me",
-     "desc": "python h3_part_filter.py"
+     "desc": "python h3_diag.py"
+    },
+    {
+     "who": "me",
+     "desc": "python h3_diag.py"
     }
    ],
    "gpu3": [
@@ -188,10 +181,6 @@
     {
      "who": "me",
      "desc": "python -u -B h4_batch_driver.py"
-    },
-    {
-     "who": "me",
-     "desc": "h2_part_slots.py"
     }
    ]
   },
@@ -350,7 +339,6 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     1,
      2,
      3
     ],
