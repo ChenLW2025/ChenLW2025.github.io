@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 03:35:47",
+  "ts": "2026-10-22 03:45:54",
   "gpus": [
    {
     "index": 0,
@@ -36,24 +36,17 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 8507,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
-    "util_gpu": 68,
-    "temp_c": 52,
+    "util_gpu": 0,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1225020,
-      "owner": "chenlinwei",
-      "mem_mb": 7870,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h3_robovad_full.py"
      }
     ]
    },
@@ -77,33 +70,26 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 20348,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
-    "util_gpu": 100,
-    "temp_c": 58,
+    "util_gpu": 0,
+    "temp_c": 37,
     "procs": [
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 1246610,
-      "owner": "chenlinwei",
-      "mem_mb": 19828,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h2_sam2_track.py"
      }
     ]
    }
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 33C",
-   "GPU1 67% 8/40GB 51C",
+   "GPU1 0% 33/40GB 33C",
    "GPU2 0% 67/80GB 35C",
-   "GPU3 100% 20/40GB 58C"
+   "GPU3 0% 34/40GB 37C"
   ],
   "source": 30,
   "producer": 30,
@@ -150,10 +136,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "normal_train_left --tag full --max-per-task 24"
     }
    ],
    "gpu2": [
@@ -166,10 +148,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "h2_sam2_track.py"
     }
    ]
   },
@@ -325,12 +303,9 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "running",
+    "state": "idle",
     "tmux": [],
-    "gpus": [
-     1,
-     3
-    ],
+    "gpus": [],
     "progress": {
      "done": 1800,
      "total": 1803,
