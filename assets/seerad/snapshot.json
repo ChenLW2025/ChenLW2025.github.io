@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 06:48:28",
+  "ts": "2026-10-22 06:58:38",
   "gpus": [
    {
     "index": 0,
@@ -70,17 +70,24 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 1412,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 37,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 2307001,
+      "owner": "chenlinwei",
+      "mem_mb": 892,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h5_object_residual_v2.py"
      }
     ]
    }
@@ -89,7 +96,7 @@
    "GPU0 0% 67/80GB 39C",
    "GPU1 0% 33/40GB 38C",
    "GPU2 0% 67/80GB 40C",
-   "GPU3 0% 34/40GB 37C"
+   "GPU3 0% 1/40GB 41C"
   ],
   "source": 30,
   "producer": 30,
@@ -148,6 +155,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "h5_object_residual_v2.py"
     }
    ]
   },
@@ -303,9 +314,11 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "idle",
+    "state": "running",
     "tmux": [],
-    "gpus": [],
+    "gpus": [
+     3
+    ],
     "progress": {
      "done": 1800,
      "total": 1803,
