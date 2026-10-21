@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 01:09:58",
+  "ts": "2026-10-22 01:20:10",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 15445,
+    "mem_used_mb": 15943,
     "mem_total_mb": 81920,
     "util_gpu": 9,
-    "temp_c": 34,
+    "temp_c": 33,
     "procs": [
      {
       "pid": 1209327,
@@ -37,87 +37,87 @@
       "mem_mb": 12158,
       "experiment": "TBO-Norm",
       "cmd_short": "baseline.py --out=ws3a_auroc_7cat_base.json"
+     },
+     {
+      "pid": 1019012,
+      "owner": "cenzihan",
+      "mem_mb": 492,
+      "experiment": "other",
+      "cmd_short": "replay_v7_contact_cap.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 20239,
+    "mem_used_mb": 33400,
     "mem_total_mb": 40960,
-    "util_gpu": 79,
-    "temp_c": 55,
+    "util_gpu": 0,
+    "temp_c": 38,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 683641,
-      "owner": "chenlinwei",
-      "mem_mb": 5108,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h3_robovad.py"
-     },
-     {
-      "pid": 829603,
-      "owner": "chenlinwei",
-      "mem_mb": 14488,
-      "experiment": "MCA",
-      "cmd_short": "ft_gdino.py --cat=breakfast_box --ep=0"
      }
     ]
    },
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 19855,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 35,
+    "util_gpu": 100,
+    "temp_c": 60,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 982637,
+      "owner": "chenlinwei",
+      "mem_mb": 14488,
+      "experiment": "MCA",
+      "cmd_short": "ft_gdino.py --cat=breakfast_box --ep=0"
+     },
+     {
+      "pid": 1001160,
+      "owner": "chenlinwei",
+      "mem_mb": 4840,
+      "experiment": "MCA",
+      "cmd_short": "cache_build_ft.py --cat=breakfast_box --ckpt=ep01"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 4618,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
-    "util_gpu": 31,
-    "temp_c": 49,
+    "util_gpu": 0,
+    "temp_c": 32,
     "procs": [
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 776515,
-      "owner": "chenlinwei",
-      "mem_mb": 4098,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h2_sort_robovad.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 9% 15/80GB 34C",
-   "GPU1 79% 20/40GB 56C",
-   "GPU2 0% 67/80GB 35C",
-   "GPU3 31% 5/40GB 50C"
+   "GPU0 0% 16/80GB 33C",
+   "GPU1 0% 33/40GB 38C",
+   "GPU2 96% 19/80GB 61C",
+   "GPU3 0% 34/40GB 32C"
   ],
   "source": 30,
   "producer": 30,
@@ -162,36 +162,36 @@
     {
      "who": "me",
      "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
+    },
+    {
+     "who": "other",
+     "desc": "cenzihan python"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python h3_robovad.py"
-    },
-    {
-     "who": "me",
-     "desc": "ft_gdino.py --cat breakfast_box --ep 0"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "me",
+     "desc": "ft_gdino.py --cat breakfast_box --ep 0"
+    },
+    {
+     "who": "me",
+     "desc": "ep01"
     }
    ],
    "gpu3": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "h2_sort_robovad.py"
     }
    ]
   },
@@ -294,32 +294,35 @@
   "experiments": {
    "MCA": {
     "state": "running",
-    "tmux": [],
+    "tmux": [
+     "pilot_cache_ft",
+     "pilot_ft_bb"
+    ],
     "gpus": [
-     1
+     2
     ],
     "progress": {
-     "done": 10,
+     "done": 80,
      "total": null,
      "label": "ft_ft_bb_ep01"
     },
     "latest_results": [],
-    "log_tail": "support images: ['203.png', '270.png', '138.png', '175.png']\nloading base gdino ...\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 14563.18it/s]\n  pseudo boxes for 203.png: 12\n  pseudo boxes for 270.png: 5\n  pseudo boxes for 138.png: 5\n  pseudo boxes for 175.png: 8\nep 10 loss 0.4189  32.5s",
-    "updated_at": "2026-10-22 01:09:55",
+    "log_tail": "loading base gdino ...\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights:  54%|█████▍    | 654/1206 [00:00<00:00, 6530.18it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 7384.15it/s]\n  pseudo boxes for 203.png: 4\n  pseudo boxes for 270.png: 5\n  pseudo boxes for 138.png: 6\n  pseudo boxes for 175.png: 15\nep 10 loss 0.6275  21.8s\nep 20 loss 0.4994  41.3s\nep 30 loss 0.4528  61.1s\nep 40 loss 0.4536  80.9s\nep 50 loss 0.4756  101.4s\nep 60 loss 0.4848  125.5s\nep 70 loss 0.4362  149.7s\nep 80 loss 0.4521  174.1s\n%|          | 0/1 [00:00<?, ?it/s]\nWriting model shards: 100%|██████████| 1/1 [00:05<00:00,  5.34s/it]\nWriting model shards: 100%|██████████| 1/1 [00:05<00:00,  5.34s/it]\nsaved FT weights to /mnt/disk20t/chenlinwei/pilot_4shot_loco/mca_v2_linwei/v2_4shot/breakfast_box/det_ft/ep01 total 494.5s",
+    "updated_at": "2026-10-22 01:19:49",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
      "points": [
       "①忠实复现（No-FT,z_deep,A_L-only）breakfast_box ep01=0.709，≈ObjectCore Only M_L 锚点 70.6，核心匹配逻辑方向正确",
       "②混池=0.706，弱检测器阶段 ①≈② 属预期；多模式 episode 上必须 ③>②",
-      "A_L+A_S 融合 0.720（+4pp）；z_ms 1792 特征 0.680，FT 后 10-episode 再选型",
-      "FT 微调进行中（tmux pilot_ft_bb），验收带 macro [78.8,82.8]",
+      "10-episode No-FT（2026-10-22 01:00 出）：breakfast_box fused(A_L+A_S) 0.7356±0.0912（A_L 0.7014±0.1003，ep8 峰值 fused=0.8853）；screw_bag fused 仅 0.5279±0.0315 → 跨类差距大，均单类非 macro；z_ms 1792 特征 0.680",
+      "FT 选型扫描中（tmux pilot_ft_scan：epochs 10/30/100 × freeze 对比，epochs=100 freeze=False loss_end=40.0；pilot_ft_bb 新一轮 01:09 启动），验收带 macro [78.8,82.8]",
       "D5 五项门禁：多模式占比≥25%、M=1 上③−①≈0、③>①>②、LOSO存活对≥10%、<5s/episode"
      ],
      "killline": {
       "loco_target": 80.8,
       "cad_target": 96.6,
-      "current_loco": 0.72,
+      "current_loco": 0.7356,
       "current_cad": null
      },
      "four_rows": [
@@ -335,8 +338,8 @@
       },
       {
        "row": "3",
-       "label": "MCA",
-       "value": null
+       "label": "MCA·bb No-FT 10ep fused均值(单类非macro)",
+       "value": 0.7356
       },
       {
        "row": "4",
@@ -344,7 +347,7 @@
        "value": null
       }
      ],
-     "updated_at": "2026-10-22 00:48"
+     "updated_at": "2026-10-22 01:10"
     },
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
@@ -352,12 +355,10 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     0,
-     1,
-     3
+     0
     ],
     "progress": {
-     "done": 600,
+     "done": 1300,
      "total": 1803,
      "label": "ws3a_run_7cat.log"
     },
@@ -475,8 +476,8 @@
       "value": 0.5729
      }
     ],
-    "log_tail": "[bank] 350/930 clips 227s\n[bank] 400/930 clips 246s\n[bank] 450/930 clips 267s\n[bank] 500/930 clips 288s\n[bank] 550/930 clips 324s\n[bank] 600/930 clips 375s\n[bank] 650/930 clips 446s\n[bank] 700/930 clips 537s\n[bank] 750/930 clips 616s\n[bank] 800/930 clips 698s\n[bank] 850/930 clips 813s\n[bank] 900/930 clips 921s\n[bank] motion train mean=0.3350 sd=0.2221\n[bank] pooled=torch.Size([7440, 768]) patch=torch.Size([80000, 768])\n[score] 100/1803 1200s\n[score] 200/1803 1291s\n[score] 300/1803 1421s\n[score] 400/1803 1565s\n[score] 500/1803 1634s\n[score] 600/1803 1690s",
-    "updated_at": "2026-10-22 01:09:50",
+    "log_tail": "[bank] 700/930 clips 537s\n[bank] 750/930 clips 616s\n[bank] 800/930 clips 698s\n[bank] 850/930 clips 813s\n[bank] 900/930 clips 921s\n[bank] motion train mean=0.3350 sd=0.2221\n[bank] pooled=torch.Size([7440, 768]) patch=torch.Size([80000, 768])\n[score] 100/1803 1200s\n[score] 200/1803 1291s\n[score] 300/1803 1421s\n[score] 400/1803 1565s\n[score] 500/1803 1634s\n[score] 600/1803 1690s\n[score] 700/1803 1761s\n[score] 800/1803 1845s\n[score] 900/1803 1933s\n[score] 1000/1803 2012s\n[score] 1100/1803 2081s\n[score] 1200/1803 2143s\n[score] 1300/1803 2247s",
+    "updated_at": "2026-10-22 01:19:07",
     "conclusion": {
      "verdict": "RUNNING",
      "headline": "TBO-Norm 正常库 kNN 基线在盘：Phys-AD 分支 ws3a score_pooled AUROC=0.997（part0/base 基准），DROID 分支 ws3c pooled 仅 0.53–0.62 偏弱；当前无活跃 GPU 进程（idle），方法层 GO/KILL 结论待你下发，不预设。",
@@ -519,7 +520,243 @@
     "evidence": "dir=EMBODIED_B_2026 (docs title \"TBO-AD v3\"); procs=ws3a_physad/baseline.py, ws3c_droid/ws3c_*.py, h2_trackability/h2_*robovad*.py, h3_em/h3_robovad.py; log keys=[bank]/[score]/[eval]/EVAL_DONE/[AUROC]"
    }
   },
-  "leaderboard": null,
+  "leaderboard": {
+   "schema_version": "1.0",
+   "updated_at": "2026-10-22T01:15:00+08:00",
+   "as_of": "2026-10-22",
+   "main": [
+    {
+     "method": "ObjectCore",
+     "venue": "WACV",
+     "year": 2026,
+     "url": "https://openaccess.thecvf.com/content/WACV2026/papers/Fucka_ObjectCore_-_Efficient_Few-shot_Logical_Anomaly_Detection_using_Object_Representations_WACV_2026_paper.pdf",
+     "table_ref": "Table 1, p.3861（k=4 P-AUROC 另见 Table 3 末行, p.3863）",
+     "class_agnostic": true,
+     "prompt": "generic 'part' (no category name)",
+     "detector_ft": "per-category GroundingDINO-Swin-B 100ep, 仅 GLIP 对比分类损失 L_cls（去 L_bbox）, AdamW lr 1e-5 batch1, box/text 阈值 0.25",
+     "k": [
+      1,
+      2,
+      4
+     ],
+     "loco_i": [
+      72.5,
+      74.6,
+      80.8
+     ],
+     "loco_i_std": [
+      0.2,
+      0.6,
+      1.3
+     ],
+     "loco_p": [
+      null,
+      null,
+      84.4
+     ],
+     "loco_p_std": [
+      null,
+      null,
+      0.6
+     ],
+     "cad_i": [
+      90.0,
+      92.1,
+      96.5
+     ],
+     "cad_i_std": [
+      0.5,
+      0.9,
+      0.6
+     ],
+     "notes": "数字逐字抄自 WACV2026 PDF：正文叙述句 'I-AUROC of 72.5/74.6/80.8% and 90.0/92.1/96.5%' 与 Table 1 行一致（k=1 CAD 90.0±0.5, k=2 92.1±0.9, k=4 96.5±0.6，与摘要 96.5 一致）。verify: CAD k=1/2 与早期 lit_verification_report §1.1-b 的 90.8/92.7 不符，以本次 PDF 直读为准；loco_p 仅填 k=4=84.4±0.6（Table 3 末行 ObjectCore 行 I-AUROC/I-F1/P-AUROC/P-F1=80.8/82.8/84.4/31.9），k=1/2 P-AUROC 抽取列序存疑暂留 null。协议：随机 support、每 k 重复 3 次报均值±std；GroundingDINO 按类别在 K 张 support 上微调（提示词仍为通用 'part'，属'提示词类别无关'而非零适应）。消融：No-FT -11.8pp、Only M_S -12.1、Only M_L -10.2（Table 3）。第五类官方名 splicing_connectors。"
+    }
+   ],
+   "reference": [
+    {
+     "method": "SALAD",
+     "venue": "ICCV",
+     "year": 2025,
+     "protocol": "full-shot（每类单模型，7000 iters, batch 8）",
+     "loco_i_full": 96.1,
+     "url": "https://openaccess.thecvf.com/content/ICCV2025/html/Fucka_SALAD_--_Semantics-Aware_Logical_Anomaly_Detection_ICCV_2025_paper.html",
+     "table_ref": "Abstract（'image-level AUROC of 96.1%'）; 正文 Table 1",
+     "incomparable_reason": "full training set, not few-shot；不做 CAD-SD、不做 1/2/4-shot 协议",
+     "notes": "全样本逻辑异常上一代 SOTA（较 EfficientAD 93.0 高 3.0pp）。ObjectCore 正文称 CAD-SD 上较其次优 15.6/13.2/13.9pp，即 SALAD 在 CAD-SD 为 74.4/78.9/82.6（由差值反推，非 SALAD 原表，verify）。"
+    },
+    {
+     "method": "AnomalyMoE",
+     "venue": "WACV",
+     "year": 2025,
+     "protocol": "few-shot（含文本提示特征记忆库的多模型混合）",
+     "k": 4,
+     "loco_i_k4": 75.1,
+     "url": "https://arxiv.org/abs/2508.06203",
+     "table_ref": "ObjectCore Table 1, p.3861 转引（'AnomalyMoE [1] 75.1'）；正文 p.3861 'outperforms next best (AnomalyMoE) for 4.8/5.7pp for k=2,4' 与 80.8-5.7=75.1 互证",
+     "incomparable_reason": "含类别相关文本提示特征与多模型 ensemble，非通用提示 class-agnostic；数字取自 ObjectCore 转引表",
+     "notes": "verify: lit_verification_report 记其原文表 LOCO k=4=73.8，与 ObjectCore 转引的 75.1 差 1.3pp，协议口径可能不同；未逐字核对其原论文表格，下次周扫读 WACV2025 原文表。"
+    },
+    {
+     "method": "LogSAD",
+     "venue": "CVPR",
+     "year": 2025,
+     "protocol": "training-free VLM（CLIP+DINOv2+SAM+GPT-4V 离线生成组合规则）",
+     "k": [
+      1,
+      2,
+      4
+     ],
+     "loco_i": [
+      78.5,
+      82.1,
+      86.3
+     ],
+     "url": "https://arxiv.org/abs/2503.18325",
+     "table_ref": "Table 2（Few-shot image-level AUROC on MVTec LOCO，逐字：PatchCore 64.9/65.4/68.7, WinCLIP+ 68.0/69.7/71.3, PromptAD 71.2/72.6/73.5, LogSAD 78.5/82.1/86.3）",
+     "incomparable_reason": "VLM 文本/视觉提示与 GPT-4V 离线组合规则，属类别语义提示路线，被'无类别文本提示'口径排除",
+     "notes": "k=4 86.3 提示纯视觉 foundation 特征在逻辑 AD 上的上限仍高于 ObjectCore 80.8；其 4-shot 全表 Table 1 记 86.3（avg），full-data 90.2。"
+    },
+    {
+     "method": "PromptAD",
+     "venue": "CVPR",
+     "year": 2024,
+     "protocol": "CLIP 提示学习 few-shot",
+     "k": [
+      1,
+      2,
+      4
+     ],
+     "loco_i": [
+      71.2,
+      72.6,
+      73.5
+     ],
+     "url": "https://arxiv.org/abs/2404.05231",
+     "table_ref": "LogSAD Table 2 转引（逐字 71.2/72.6/73.5/72.4 avg）；PromptAD 原文表不含 LOCO 行",
+     "incomparable_reason": "CLIP 类别提示学习，非 class-agnostic 通用提示",
+     "notes": "勘误：lit_verification_report 记为 NeurIPS2024 且 71.2 为 k=4，经核对实为 CVPR2024，且 71.2 是 k=1、k=4=73.5。"
+    },
+    {
+     "method": "CSAD",
+     "venue": "BMVC",
+     "year": 2024,
+     "protocol": "full-shot 无监督（foundation 模型自动产分割标签 + Patch Histogram + LGST）",
+     "loco_i_full": 95.3,
+     "url": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_854/paper.pdf",
+     "table_ref": "Abstract（'detection AUROC of 95.3% in the MVTec LOCO AD dataset'）",
+     "incomparable_reason": "full training set, not few-shot",
+     "notes": "无监督组件分割+patch 直方图全样本路线。"
+    },
+    {
+     "method": "PSAD",
+     "venue": "AAAI",
+     "year": 2024,
+     "protocol": "full-shot + 额外人工组件分割标注",
+     "url": "https://arxiv.org/abs/2312.13783",
+     "table_ref": "Abstract（'98.1% AUROC in LA detection vs. 89.6% from competing methods'）; 正文表 Ours LA 95.9 / SA 89.6",
+     "incomparable_reason": "人工 composition/分割标注 + full-shot，非 few-shot 无提示协议",
+     "notes": "verify: 数字口径冲突——摘要 98.1（LA）、正文表 95.9（LA）/89.6（SA）、lit_verification_report 记 92.5（avg?），LogSAD Table 3 另转述 PSAD‡ 98.1/91.6/94.9（结构/逻辑/均值）。未逐字读 AAAI 原文主表，下次周扫核对。"
+    },
+    {
+     "method": "SubspaceAD",
+     "venue": "CVPR",
+     "year": 2026,
+     "protocol": "1-shot, training-free PCA on DINOv2-G 特征",
+     "dataset_scope": "MVTec AD / VisA（结构异常）",
+     "mvtec_ad_i1": 98.0,
+     "mvtec_ad_p1": 97.6,
+     "visa_i1": 93.3,
+     "visa_p1": 98.3,
+     "url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Lendering_SubspaceAD_Training-Free_Few-Shot_Anomaly_Detection_via_Subspace_Modeling_CVPR_2026_paper.pdf",
+     "table_ref": "Abstract（'image-level and pixel-level AUROC of 98.0% and 97.6% on the MVTec-AD dataset, and 93.3% and 98.3% on the VisA dataset'）",
+     "incomparable_reason": "结构异常数据集（MVTec AD/VisA）1-shot，不做 MVTec LOCO/CAD-SD 逻辑异常，协议与赛道不同",
+     "notes": "arXiv v1 摘要口径为 97.1/97.5/93.2/98.2，以 CVF camera-ready 版 98.0/97.6/93.3/98.3 为准。"
+    },
+    {
+     "method": "WinCLIP",
+     "venue": "CVPR",
+     "year": 2023,
+     "protocol": "zero/few-shot CLIP 集成",
+     "k": [
+      1,
+      2,
+      4
+     ],
+     "loco_i": [
+      68.0,
+      69.7,
+      71.3
+     ],
+     "url": "https://arxiv.org/abs/2305.13890",
+     "table_ref": "LogSAD Table 2 转引（WinCLIP+ 68.0/69.7/71.3/69.7 avg）；其 MVTec AD 0-shot 91.8 见 MuSc Table 1",
+     "incomparable_reason": "CLIP 文本提示路线；LOCO 数字由 LogSAD 转述而非其原文表",
+     "notes": "结构 AD 强（MVTec AD 4-shot 95.2 见 LogSAD Table 4），逻辑 AD 弱。"
+    },
+    {
+     "method": "AnomalyDINO",
+     "venue": "WACV",
+     "year": 2025,
+     "protocol": "training-free patch-based DINOv2 few-shot",
+     "dataset_scope": "MVTec AD（结构）",
+     "mvtec_ad_i1": 96.6,
+     "url": "https://openaccess.thecvf.com/content/WACV2025/papers/Damm_AnomalyDINO_Boosting_Patch-Based_Few-Shot_Anomaly_Detection_with_DINOv2_WACV_2025_paper.pdf",
+     "table_ref": "Abstract（'pushing the one-shot performance on MVTec-AD from an AUROC of 93.1% to 96.6%'）",
+     "incomparable_reason": "结构异常 MVTec AD 1-shot，不做逻辑异常 LOCO/CAD-SD",
+     "notes": "结构少样本强基线，供论文 related work 引用。"
+    },
+    {
+     "method": "MuSc",
+     "venue": "CVPR",
+     "year": 2024,
+     "protocol": "0-shot（无任何参考图）互评分",
+     "dataset_scope": "MVTec AD / VisA（结构）",
+     "mvtec_ad_i0": 97.8,
+     "mvtec_ad_p0": 97.3,
+     "url": "https://arxiv.org/abs/2401.16753",
+     "table_ref": "Table 1（MuSc 0-shot: AUROC-cls 97.8(+6.0), AUROC-segm 97.3(+4.8)）",
+     "incomparable_reason": "0-shot 结构异常数据集，非少样本逻辑异常协议",
+     "notes": "ObjectCore Table 1 脚注称 MuSc 按 batched zero-shot 评估套件报告。"
+    },
+    {
+     "method": "PyramidCore",
+     "venue": "MELECON",
+     "year": 2026,
+     "protocol": "few-shot 逻辑异常，宣称不依赖外部信息（feature pyramid 物体外观层级模型）",
+     "url": "https://www.vicos.si/publications/fucka2026pyramidcore/",
+     "table_ref": "ViCoS 实验室主页（'achieves state-of-the-art results on the challenging MVTec LOCO Dataset'），论文 PDF 未获取",
+     "incomparable_reason": "—",
+     "notes": "verify（2026-10-22 周扫新增）：与 ObjectCore 同一团队（Fučka/Zavrtanik/Skočaj），MELECON 2026，宣称 class-agnostic few-shot 且 LOCO 上 SOTA，可能直接进入 main 区；本页无具体数字与 PDF 链接，下次周扫检索 MELECON 2026 论文集/arXiv 逐字核对 k=1/2/4 LOCO 与 CAD-SD 数字后再定分区。"
+    }
+   ],
+   "ours": {
+    "mca": {
+     "k4_loco_i": null,
+     "ci": [
+      null,
+      null
+     ],
+     "episodes_done": 5,
+     "target_loco": 80.8,
+     "target_cad": 96.5,
+     "verdict": "pending",
+     "updated_at": null,
+     "note": "未出数；macro 10-episode 口径，未达不填",
+     "target": 80.8
+    },
+    "tbo_norm": {
+     "k4_loco_i": null,
+     "target_loco": null,
+     "verdict": "pending",
+     "note": "待识别实验口径"
+    }
+   },
+   "changelog": [
+    {
+     "date": "2026-10-22",
+     "entry": "建表首扫。main=1（ObjectCore，WACV2026 PDF 逐字核对，CAD k=1/2 以 90.0±0.5/92.1±0.9 覆盖早期报告的 90.8/92.7）；reference=11（SALAD/AnomalyMoE/LogSAD/PromptAD/CSAD/PSAD/SubspaceAD/WinCLIP/AnomalyDINO/MuSc/PyramidCore）。勘误：PromptAD 实为 CVPR2024 且 71.2=k=1 而非 k=4；新增周扫发现 PyramidCore（MELECON2026，同团队，待核数字）。verify 项：AnomalyMoE(73.8 vs 75.1)、PSAD(92.5/95.9/98.1 口径)、PyramidCore(无数字)、ObjectCore CAD k=1/2 与 loco_p k=1/2 列序。"
+    }
+   ]
+  },
   "results": {
    "dev5_9": null,
    "ind15_19": {
