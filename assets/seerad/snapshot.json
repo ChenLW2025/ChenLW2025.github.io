@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 00:07:27",
+  "ts": "2026-10-22 00:17:37",
   "gpus": [
-   "GPU0 0% 9/80GB 33C",
-   "GPU1 0% 0/40GB 32C",
-   "GPU2 0% 0/80GB 37C",
-   "GPU3 28% 4/40GB 50C"
+   "GPU0 0% 4/80GB 33C",
+   "GPU1 0% 1/40GB 36C",
+   "GPU2 0% 0/80GB 33C",
+   "GPU3 0% 7/40GB 34C"
   ],
   "source": 30,
   "producer": 30,
@@ -51,13 +51,13 @@
    "gpu1": [
     {
      "who": "me",
-     "desc": "cache_build.py --cat breakfast_box --split tra"
+     "desc": "cache_build.py --cat screw_bag --split all"
     }
    ],
    "gpu3": [
     {
      "who": "me",
-     "desc": "python ws3c_detect.py"
+     "desc": "python ws3c_eval.py"
     }
    ]
   },
