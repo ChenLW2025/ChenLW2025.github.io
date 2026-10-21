@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 00:37:54",
+  "ts": "2026-10-22 00:48:01",
   "gpus": [
-   "GPU0 54% 14/80GB 54C",
-   "GPU1 88% 5/40GB 47C",
-   "GPU2 92% 5/80GB 47C",
-   "GPU3 0% 34/40GB 35C"
+   "GPU0 2% 9/80GB 40C",
+   "GPU1 5% 33/40GB 32C",
+   "GPU2 2% 5/80GB 41C",
+   "GPU3 12% 34/40GB 31C"
   ],
   "source": 30,
   "producer": 30,
@@ -44,22 +44,22 @@
      "desc": "experiment_runner_v2.py"
     },
     {
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
+    },
+    {
      "who": "me",
      "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
     },
     {
      "who": "me",
-     "desc": "cache_build.py --cat juice_bottle --split all"
+     "desc": "cache_build.py --cat splicing_connectors --spl"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "ep01"
     }
    ],
    "gpu2": [
@@ -69,7 +69,7 @@
     },
     {
      "who": "me",
-     "desc": "cache_build.py --cat pushpins --split all"
+     "desc": "cache_build.py --cat splicing_connectors --spl"
     }
    ],
    "gpu3": [
