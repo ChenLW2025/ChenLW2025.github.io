@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 00:17:37",
+  "ts": "2026-10-22 00:27:46",
   "gpus": [
-   "GPU0 0% 4/80GB 33C",
-   "GPU1 0% 1/40GB 36C",
-   "GPU2 0% 0/80GB 33C",
-   "GPU3 0% 7/40GB 34C"
+   "GPU0 0% 9/80GB 33C",
+   "GPU1 4% 8/40GB 45C",
+   "GPU2 0% 67/80GB 34C",
+   "GPU3 14% 11/40GB 44C"
   ],
   "source": 30,
   "producer": 30,
@@ -52,12 +52,26 @@
     {
      "who": "me",
      "desc": "cache_build.py --cat screw_bag --split all"
+    },
+    {
+     "who": "me",
+     "desc": "python h3_extract_tracklets.py --cat ball"
+    }
+   ],
+   "gpu2": [
+    {
+     "who": "me",
+     "desc": "gpu_hold_courteous.py 2 0.85 5"
     }
    ],
    "gpu3": [
     {
      "who": "me",
      "desc": "python ws3c_eval.py"
+    },
+    {
+     "who": "me",
+     "desc": "python h2_track.py --dataset droid"
     }
    ]
   },
