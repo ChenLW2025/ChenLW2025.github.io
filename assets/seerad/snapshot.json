@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-21 23:37:05",
+  "ts": "2026-10-21 23:47:13",
   "gpus": [
-   "GPU0 0% 3/80GB 34C",
-   "GPU1 0% 2/40GB 33C",
-   "GPU2 0% 0/80GB 34C",
-   "GPU3 0% 0/40GB 32C"
+   "GPU0 5% 4/80GB 32C",
+   "GPU1 51% 4/40GB 49C",
+   "GPU2 0% 0/80GB 33C",
+   "GPU3 67% 4/40GB 39C"
   ],
   "source": 30,
   "producer": 30,
@@ -42,12 +42,22 @@
     {
      "who": "other",
      "desc": "experiment_runner_v2.py"
+    },
+    {
+     "who": "me",
+     "desc": "dinov2-base --n_frames 8 --size 518 --bank_pat"
     }
    ],
    "gpu1": [
     {
      "who": "me",
-     "desc": "python probe.py"
+     "desc": "pilot_slots.py breakfast_box juice_bottle"
+    }
+   ],
+   "gpu3": [
+    {
+     "who": "me",
+     "desc": "python -"
     }
    ]
   },
