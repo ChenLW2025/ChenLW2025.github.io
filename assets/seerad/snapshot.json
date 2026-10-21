@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 06:18:04",
+  "ts": "2026-10-22 06:28:13",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 2786,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 38,
@@ -23,16 +23,23 @@
       "mem_mb": 1310,
       "experiment": "other",
       "cmd_short": "experiment_runner_v2.py"
+     },
+     {
+      "pid": 2083398,
+      "owner": "chenlinwei",
+      "mem_mb": 66026,
+      "experiment": "other",
+      "cmd_short": "gpu_hold_elastic.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33399,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 37,
+    "temp_c": 38,
     "procs": [
      {
       "pid": 225385,
@@ -46,33 +53,26 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 3118,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 92,
-    "temp_c": 57,
+    "util_gpu": 0,
+    "temp_c": 39,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 1861971,
-      "owner": "chenlinwei",
-      "mem_mb": 2596,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h5_order_v5.py"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 35108,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
+    "util_gpu": 13,
     "temp_c": 36,
     "procs": [
      {
@@ -81,14 +81,21 @@
       "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 2098854,
+      "owner": "chenlinwei",
+      "mem_mb": 796,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h5_object_residual.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 3/80GB 38C",
-   "GPU1 0% 33/40GB 37C",
-   "GPU2 42% 3/80GB 60C",
+   "GPU0 0% 67/80GB 38C",
+   "GPU1 0% 33/40GB 38C",
+   "GPU2 0% 67/80GB 39C",
    "GPU3 0% 34/40GB 36C"
   ],
   "source": 30,
@@ -126,6 +133,10 @@
     {
      "who": "other",
      "desc": "experiment_runner_v2.py"
+    },
+    {
+     "who": "hold",
+     "desc": "elastic hold (yields on real job)"
     }
    ],
    "gpu1": [
@@ -138,16 +149,16 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "h5_order_v5.py"
     }
    ],
    "gpu3": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python h5_object_residual.py"
     }
    ]
   },
@@ -306,7 +317,7 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     2
+     3
     ],
     "progress": {
      "done": 1800,
