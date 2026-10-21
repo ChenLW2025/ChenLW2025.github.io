@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 01:43:28",
+  "ts": "2026-10-22 01:53:43",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68818,
+    "mem_used_mb": 11053,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 33,
+    "util_gpu": 13,
+    "temp_c": 34,
     "procs": [
      {
       "pid": 1209327,
@@ -27,9 +27,16 @@
      {
       "pid": 225384,
       "owner": "chenlinwei",
-      "mem_mb": 66026,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 1137368,
+      "owner": "chenlinwei",
+      "mem_mb": 7766,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h6_vlm_order_text_fewshot.py --out=h6_vlm_order_fewshot.json"
      }
     ]
    },
@@ -53,24 +60,17 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 8552,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 89,
-    "temp_c": 54,
+    "util_gpu": 0,
+    "temp_c": 35,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 1122130,
-      "owner": "chenlinwei",
-      "mem_mb": 8030,
-      "experiment": "MCA",
-      "cmd_short": "ft_freeze.py --cat=breakfast_box --ep=0"
      }
     ]
    },
@@ -93,9 +93,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 33C",
+   "GPU0 18% 11/80GB 34C",
    "GPU1 0% 33/40GB 32C",
-   "GPU2 67% 8/80GB 51C",
+   "GPU2 0% 67/80GB 35C",
    "GPU3 0% 34/40GB 31C"
   ],
   "source": 30,
@@ -137,6 +137,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "h6_vlm_order_fewshot.json --limit 600"
     }
    ],
    "gpu1": [
@@ -149,10 +153,6 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "ft_freeze.py --cat breakfast_box --ep 0"
     }
    ],
    "gpu3": [
@@ -260,22 +260,19 @@
   ],
   "experiments": {
    "MCA": {
-    "state": "running",
+    "state": "idle",
     "tmux": [
-     "pilot_eval_cpu",
-     "pilot_ft_freeze"
+     "pilot_eval_cpu"
     ],
-    "gpus": [
-     2
-    ],
+    "gpus": [],
     "progress": {
-     "done": 80,
+     "done": null,
      "total": null,
-     "label": "ft_ft_freeze"
+     "label": "10ep_v2_pushpins"
     },
     "latest_results": [],
-    "log_tail": "support: ['203.png', '270.png', '138.png', '175.png']\nLoading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 24513.59it/s]\ntrainable params: 558 (36.5M)\n  pseudo 203.png: 7\n  pseudo 270.png: 9\n  pseudo 138.png: 4\n  pseudo 175.png: 8\nep 10 loss 0.484 13.7s\nep 20 loss 0.429 27.3s\nep 30 loss 0.398 40.9s\nep 40 loss 0.510 54.4s\nep 50 loss 0.368 68.5s\nep 60 loss 0.471 83.7s\nep 70 loss 0.402 103.0s\nep 80 loss 0.403 122.9s",
-    "updated_at": "2026-10-22 01:43:14",
+    "log_tail": "ep0 A_L=0.6527 fused=0.5010\nep1 A_L=0.7132 fused=0.4866",
+    "updated_at": "2026-10-22 01:53:36",
     "conclusion": {
      "verdict": "PENDING",
      "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
@@ -283,7 +280,7 @@
       "①忠实复现（No-FT,z_deep,A_L-only）breakfast_box ep01=0.709，≈ObjectCore Only M_L 锚点 70.6，核心匹配逻辑方向正确",
       "②混池=0.706，弱检测器阶段 ①≈② 属预期；多模式 episode 上必须 ③>②",
       "No-FT 10ep：breakfast_box fused 0.7356±0.0912；screw_bag fused 仅 0.5279±0.0315（跨类差大，单类非 macro）",
-      "FT ep01 后 v2 10ep（2026-10-22 01:34 出）：breakfast_box fused 0.8445±0.0331（A_L 0.6755±0.0345），较 No-FT +10.9pp、std 收窄约 3 倍；screw_bag v2 重测中。z_ms 1792 特征 0.680",
+      "FT ep01 后 v2 10ep（2026-10-22 01:34–01:38 出）：breakfast_box fused 0.8445±0.0331（A_L 0.6755±0.0345），较 No-FT +10.9pp、std 收窄约 3 倍；但 screw_bag v2 fused 仅 0.5022±0.0305（No-FT 0.5279，FT 无增益反略降）→ bb/sb 跨类差约 34pp，D5 跨类一致性亮红灯；juice_bottle v2 重测中。z_ms 1792 特征 0.680",
       "D5 五项门禁：多模式占比≥25%、M=1 上③−①≈0、③>①>②、LOSO存活对≥10%、<5s/episode"
      ],
      "killline": {
@@ -314,14 +311,16 @@
        "value": null
       }
      ],
-     "updated_at": "2026-10-22 01:39"
+     "updated_at": "2026-10-22 01:51"
     },
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "idle",
+    "state": "running",
     "tmux": [],
-    "gpus": [],
+    "gpus": [
+     0
+    ],
     "progress": {
      "done": 1800,
      "total": 1803,
