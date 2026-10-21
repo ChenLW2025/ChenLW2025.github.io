@@ -1,1 +1,1 @@
-{"version":"v0.1","updated_at":"2026-10-22","title":"MCA: Memory-Centric Augmentation for Class-Agnostic Object Detection (anonymous CVPR submission)","data_version":"pre-results"}
+{"version":"v0.2","updated_at":"2026-10-22","title":"Mode-Conditional Assembly: Compositional Set Inference for Class-Agnostic Few-Shot Logical Anomaly Detection (anonymous CVPR submission)","data_version":"pre-results; main table TBD ETA 2026-10-30","pages":9,"bib_entries":42,"repo":"https://github.com/ChenLW2025/mca-paper (private)","deploy_target":"gpu_monitor/dist/paper/mca_latest.pdf"}
