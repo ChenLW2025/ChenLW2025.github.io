@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 03:45:54",
+  "ts": "2026-10-22 03:56:02",
   "gpus": [
    {
     "index": 0,
@@ -36,17 +36,24 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 3818,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 33,
+    "util_gpu": 67,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 33258,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 1340112,
+      "owner": "chenlinwei",
+      "mem_mb": 3190,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h3_heldout_recognition.py"
      }
     ]
    },
@@ -55,7 +62,7 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 2,
     "temp_c": 35,
     "procs": [
      {
@@ -73,7 +80,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 37,
+    "temp_c": 32,
     "procs": [
      {
       "pid": 225386,
@@ -87,9 +94,9 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 33C",
-   "GPU1 0% 33/40GB 33C",
+   "GPU1 67% 4/40GB 51C",
    "GPU2 0% 67/80GB 35C",
-   "GPU3 0% 34/40GB 37C"
+   "GPU3 0% 34/40GB 32C"
   ],
   "source": 30,
   "producer": 30,
@@ -136,6 +143,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "normal_train_left --max-per-task 24"
     }
    ],
    "gpu2": [
@@ -303,9 +314,11 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "idle",
+    "state": "running",
     "tmux": [],
-    "gpus": [],
+    "gpus": [
+     1
+    ],
     "progress": {
      "done": 1800,
      "total": 1803,
