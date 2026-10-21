@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0c0e">
+<title>MCA 播客 · 实验监控</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232dd4bf'/%3E%3Cpath d='M12 3v10' stroke='%230a0c0e' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='17' r='3' fill='%230a0c0e'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0c0e; --surface:#111519; --surface-2:#161b20; --surface-3:#1d232a;
+  --border:#222a31; --border-2:#2f3942;
+  --text:#e7ecf0; --text-2:#98a5b1; --text-3:#5f6d79;
+  --brand:#2dd4bf; --brand-bg:rgba(45,212,191,.10); --brand-bd:rgba(45,212,191,.32);
+  --warn:#d29922; --warn-bg:rgba(210,153,34,.10); --warn-bd:rgba(210,153,34,.34);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Code",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:18px 20px 56px}
+.top{display:flex;align-items:center;gap:12px;padding:2px 0 16px;border-bottom:1px solid var(--border);margin-bottom:18px;flex-wrap:wrap}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--text-2);text-decoration:none;font-size:12px;font-weight:600;border:1px solid var(--border-2);background:var(--surface-2);border-radius:7px;padding:6px 11px}
+.back:hover{color:var(--text);border-color:var(--text-3)}
+.top .tt{flex:1;min-width:120px}
+.top .tt h1{font-size:16px;font-weight:700;color:var(--brand);display:flex;align-items:center;gap:8px}
+.top .tt .sub{font-size:11px;color:var(--text-3);margin-top:2px}
+.live{width:7px;height:7px;border-radius:50%;background:var(--brand);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.ep{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--brand);border-radius:10px;padding:16px;margin-bottom:16px}
+.ep .ehead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin-bottom:4px}
+.ep .eno{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--brand);letter-spacing:.05em}
+.ep .etime{font-family:var(--mono);font-size:10.5px;color:var(--text-3)}
+.ep h2{font-size:17px;font-weight:700;line-height:1.4;margin:4px 0 8px}
+.ep .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--text-2);margin-bottom:13px;font-family:var(--mono)}
+.ep .meta b{color:var(--text);font-weight:600}
+.audiobox{background:#0c0f12;border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:13px}
+.audiobox audio{width:100%;height:38px}
+.apfail{display:none;font-size:11.5px;color:var(--warn);background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:6px;padding:8px 10px;margin-top:8px}
+.keypoints{background:var(--brand-bg);border:1px solid var(--brand-bd);border-radius:8px;padding:9px 12px;margin-bottom:13px}
+.keypoints h3{font-size:10px;font-weight:700;color:var(--brand);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.keypoints ul{padding-left:16px}
+.keypoints li{font-size:12px;color:var(--text);line-height:1.65;margin:2px 0}
+.script{border:1px solid var(--border);border-radius:8px;background:#0c0f12}
+.script summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:11px;font-weight:700;color:var(--text-2);display:flex;align-items:center;gap:7px;user-select:none}
+.script summary::-webkit-details-marker{display:none}
+.script summary svg{width:11px;height:11px;transition:transform .15s}
+.script[open] summary svg{transform:rotate(90deg)}
+.script .body{padding:2px 14px 14px;border-top:1px dashed var(--border);max-height:340px;overflow:auto}
+.script .body p{font-size:13.5px;line-height:1.85;color:var(--text-2);margin:10px 0}
+.script .body b{color:var(--text)}
+.hist{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.hist h3{font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.hrow{border-top:1px solid var(--border);padding:12px 0}
+.hrow:first-of-type{border-top:none;padding-top:0}
+.hrow .hr1{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.hrow .ht{font-size:13px;font-weight:700}
+.hrow .ht .no{font-family:var(--mono);color:var(--brand);font-size:11px;margin-right:7px}
+.hrow .hd{font-family:var(--mono);font-size:10.5px;color:var(--text-3);white-space:nowrap}
+.hrow .hp{font-size:11.5px;color:var(--text-2);margin:4px 0 8px;line-height:1.6}
+.hrow audio{width:100%;height:32px}
+/* 识别中占位 */
+.scanning{background:var(--surface);border:1px dashed var(--border-2);border-radius:10px;
+  padding:34px 18px;text-align:center;color:var(--text-3);font-size:12.5px;line-height:1.9;margin-bottom:16px}
+.scanning .sp{display:inline-block;width:11px;height:11px;border:2px solid var(--border-2);border-top-color:var(--brand);
+  border-radius:50%;animation:sp 1s linear infinite;margin-right:7px;vertical-align:-1px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.foot{text-align:center;color:var(--text-3);font-size:10.5px;margin-top:18px;line-height:1.7}
+@media (max-width:560px){.wrap{padding:12px 12px 40px}.ep h2{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header class="top">
+    <a class="back" href="index.html">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      返回监控看板
+    </a>
+    <div class="tt">
+      <h1><span class="live"></span>MCA 播客</h1>
+      <div class="sub">实验进展语音简报 · 每期约 10–15 分钟 · 数据版本随快照</div>
+    </div>
+  </header>
+  <div id="body"></div>
+  <div class="foot">音频与文稿由 episodes feed 注入 · 页面静态托管 · 主播口播内容仅记录当日实验口径</div>
+</div>
+<script>
+var FEED_URL='podcast/mca/episodes.json';
+var TOPIC='MCA';
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* demo：?demo=1 显示完整一期，?demo=0 显示识别中 */
+var DEMO={
+  latest:{no:'EP.03',title:'cache 收尾过半：row③ 过线，距杀稿线 0.6pp',
+    published:'2026-10-22',time:'14:00',data_version:'d24',duration:'12:34',host:'clw18',mp3:'ep03.mp3',
+    keypoints:['cache_build 进度 560/665（84%），juice_bottle 类别收尾中，ETA 约 47 分钟。',
+      'row③ MCA 混池 I-AUROC 0.9687，超官方 4-shot 表 1.8pp；row④ 编辑增益 +0.0042 三窗稳定。',
+      'LOCO 80.2，距杀稿线 80.8 还差 0.6pp；结论维持条件 GO，等 D5 门禁（10-25）。'],
+    script_paras:['大家好，这是 MCA 实验监控播客第三期，数据截止到今天下午两点。先报进度：GPU0 上跑的 cache_build 已经到 560/665，也就是百分之八十四，目前在跑 juice_bottle 这一类，ETA 大概四十七分钟。',
+      '重点看结果。今天凌晨 eval 出了 row③，也就是 MCA 混池这一行，I-AUROC 是 <b>0.9687</b>。对照官方 4-shot 表是 78.9 这个量级，我们高了 1.8 个百分点，方向是对的。row④ 编辑增益 +0.0042，连续三个窗口没有退化。',
+      '杀稿线位置：LOCO 现在 <b>80.2</b>，目标是 <b>80.8</b>，差 0.6 个百分点；CAD-SD 96.1，目标 96.5，差 0.4。所以当前结论是<b>条件 GO</b>——主方向已经站住，但还差 cache 全部跑完、独立种子复现这两步，才能在 10 月 25 号的 D5 门禁转正。',
+      '下期预告：cache 收尾后的全量 eval，以及 row④ 第四个窗口的编辑增益是否守住。以上，我们下期见。']},
+  history:[
+    {no:'EP.02',title:'GDINO 微调完成，开始首轮 eval',published:'2026-10-15',data_version:'d22',duration:'14:02',mp3:'ep02.mp3',summary:'det_ft ep01 存盘；单图 baseline 0.9598 跑出；确认 npz cache 口径与 ObjectCore 重写一致。'},
+    {no:'EP.01',title:'MCA 管线启动：cache 构建开始',published:'2026-10-08',data_version:'d20',duration:'11:47',mp3:'ep01.mp3',summary:'pilot_4shot_loco 工作目录确认；tmux pilot_gpu0/pilot_gpu2 双线；log 进度正则上线。'}]
+};
+
+function renderScanning(){
+  document.getElementById('body').innerHTML='<div class="scanning"><span class="sp"></span>'+TOPIC+' 播客识别中<br>'
+    +'<span style="font-size:11.5px">episodes feed 尚未部署完成（podcast/'+esc(TOPIC==='MCA'?'mca':'tbonorm')+'/episodes.json），音频上线后本页自动填充。</span></div>';
+}
+function renderFeed(feed){
+  var l=feed.latest;
+  if(!l){renderScanning();return;}
+  var h='<article class="ep"><div class="ehead"><span class="eno">'+esc(l.no||'EP')+' · 最新</span>'
+    +'<span class="etime">'+esc(l.published||'')+' '+esc(l.time||'')+' · 数据 '+esc(l.data_version||'–')+'</span></div>'
+    +'<h2>'+esc(l.title||'(无标题)')+'</h2>'
+    +'<div class="meta"><span>发布 <b>'+esc(l.published||'–')+'</b></span>'
+    +'<span>数据版本 <b>'+esc(l.data_version||'–')+'</b></span>'
+    +'<span>时长 <b>'+esc(l.duration||'–')+'</b></span>'
+    +'<span>主播 <b>'+esc(l.host||'–')+'</b></span></div>';
+  if(l.mp3){
+    h+='<div class="audiobox"><audio controls preload="none" src="'+esc(l.mp3)+'" onerror="this.nextElementSibling.style.display=\'block\'"></audio>'
+      +'<div class="apfail">音频加载失败：'+esc(l.mp3)+' 拉取失败，稍后自动重试。</div></div>';
+  }
+  if(l.keypoints&&l.keypoints.length){
+    h+='<div class="keypoints"><h3>本期要点</h3><ul>'+l.keypoints.map(function(k){return '<li>'+esc(k)+'</li>';}).join('')+'</ul></div>';
+  }
+  if(l.script_paras&&l.script_paras.length){
+    h+='<details class="script"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'
+      +'查看本期完整文字稿'+(l.duration?'（'+esc(l.duration)+'）':'')+'</summary>'
+      +'<div class="body">'+l.script_paras.map(function(p){return '<p>'+p+'</p>';}).join('')+'</div></details>';
+  }
+  h+='</article>';
+  var hist=feed.history||[];
+  if(hist.length){
+    h+='<section class="hist"><h3>历史期数</h3>';
+    hist.forEach(function(e){
+      h+='<div class="hrow"><div class="hr1"><span class="ht"><span class="no">'+esc(e.no||'')+'</span>'+esc(e.title||'')+'</span>'
+        +'<span class="hd">'+esc(e.published||'')+' · '+esc(e.data_version||'–')+' · '+esc(e.duration||'')+'</span></div>'
+        +(e.summary?'<div class="hp">'+esc(e.summary)+'</div>':'');
+      if(e.mp3) h+='<audio controls preload="none" src="'+esc(e.mp3)+'" onerror="this.parentNode.style.opacity=.35"></audio>';
+      h+='</div>';
+    });
+    h+='</section>';
+  }
+  document.getElementById('body').innerHTML=h;
+}
+function load(){
+  var m=location.search.match(/[?&]demo=(\d+)/);
+  if(m){renderFeed(DEMO);return;}
+  fetch(FEED_URL+'?t='+Date.now(),{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+    .then(renderFeed)
+    .catch(function(){renderScanning();});
+}
+load(); setInterval(load, 300000);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')load();});
+</script>
+</body>
+</html>
