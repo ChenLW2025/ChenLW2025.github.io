@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 07:29:12",
+  "ts": "2026-10-22 07:39:24",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 40,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 1209327,
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1529,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 40,
@@ -44,16 +44,9 @@
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2572722,
-      "owner": "chenlinwei",
-      "mem_mb": 892,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h5_object_residual_position.py"
      }
     ]
    },
@@ -63,7 +56,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 41,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 330781,
@@ -77,10 +70,10 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 9466,
+    "mem_used_mb": 13038,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 47,
+    "util_gpu": 99,
+    "temp_c": 64,
     "procs": [
      {
       "pid": 225386,
@@ -92,7 +85,7 @@
      {
       "pid": 2563794,
       "owner": "chenlinwei",
-      "mem_mb": 8946,
+      "mem_mb": 12518,
       "experiment": "TBO-Norm",
       "cmd_short": "h8_sam2_track.py"
      }
@@ -100,10 +93,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 40C",
-   "GPU1 0% 1/40GB 40C",
-   "GPU2 0% 67/80GB 41C",
-   "GPU3 0% 9/40GB 47C"
+   "GPU0 0% 67/80GB 41C",
+   "GPU1 0% 33/40GB 40C",
+   "GPU2 18% 67/80GB 42C",
+   "GPU3 99% 13/40GB 64C"
   ],
   "source": 30,
   "producer": 30,
@@ -150,10 +143,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "h5_object_residual_position.py"
     }
    ],
    "gpu2": [
@@ -328,7 +317,6 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     1,
      3
     ],
     "progress": {
