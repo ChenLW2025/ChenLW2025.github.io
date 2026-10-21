@@ -1,13 +1,13 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 03:15:25",
+  "ts": "2026-10-22 03:25:34",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 18,
     "temp_c": 33,
     "procs": [
      {
@@ -36,10 +36,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 7147,
+    "mem_used_mb": 8507,
     "mem_total_mb": 40960,
-    "util_gpu": 81,
-    "temp_c": 53,
+    "util_gpu": 68,
+    "temp_c": 52,
     "procs": [
      {
       "pid": 225385,
@@ -51,7 +51,7 @@
      {
       "pid": 1225020,
       "owner": "chenlinwei",
-      "mem_mb": 6510,
+      "mem_mb": 7870,
       "experiment": "TBO-Norm",
       "cmd_short": "h3_robovad_full.py"
      }
@@ -62,8 +62,8 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 15606,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 48,
+    "util_gpu": 100,
+    "temp_c": 57,
     "procs": [
      {
       "pid": 330781,
@@ -84,26 +84,33 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 16640,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 32,
+    "util_gpu": 100,
+    "temp_c": 57,
     "procs": [
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 1246610,
+      "owner": "chenlinwei",
+      "mem_mb": 16120,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h2_sam2_track.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 33C",
-   "GPU1 81% 7/40GB 52C",
-   "GPU2 0% 15/80GB 48C",
-   "GPU3 0% 34/40GB 32C"
+   "GPU0 18% 67/80GB 33C",
+   "GPU1 67% 8/40GB 49C",
+   "GPU2 100% 15/80GB 57C",
+   "GPU3 100% 16/40GB 57C"
   ],
   "source": 30,
   "producer": 30,
@@ -170,6 +177,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "h2_sam2_track.py"
     }
    ]
   },
@@ -329,7 +340,8 @@
     "tmux": [],
     "gpus": [
      1,
-     2
+     2,
+     3
     ],
     "progress": {
      "done": 1800,
