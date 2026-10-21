@@ -1,0 +1,16 @@
+{
+  "channel": "tbonorm",
+  "updated_at": "2026-10-22T01:35:00+08:00",
+  "episodes": [
+    {
+      "id": "ep001",
+      "title": "TBO-Norm ep001: 身份确认 EMBODIED_B_2026，ws3a 0.997 打底，ws3c 偏弱",
+      "published_at": "2026-10-22T01:35:00+08:00",
+      "data_version": "snapshot@2026-10-22T01:18+08:00",
+      "duration_sec": 224,
+      "mp3": "ep001.mp3",
+      "summary": "身份确认=EMBODIED_B_2026，方法 TBO-AD v3（ws3a Phys-AD / ws3c DROID / h2h3 RoboVAD）。ws3a pooled AUROC 0.9970 / AUPRC 0.9990（top 0.9983，patch 0.934，temporal 0.348 不可用）。ws3c DROID 正常库 kNN（n=1432）pooled AUROC：missing 0.542 / extra 0.528 / position 0.615 / count 0.604 / temporal 0.500，最佳单元 wrist_image_left/position 0.760。判断：瓶颈在视频/视角域分布偏移而非打分器。ws3a 七类扩展与 h3_robovad 运行中，RoboVAD 数据从 Zenodo 下载中；GO/KILL 待后端定。",
+      "transcript": "你好，欢迎收听 TBO-Norm 实验频道的第一期播客。先说一件挂了很久的事：身份已经确认。这个频道对应的就是 EMBODIED_B_2026，文档自述方法名 TBO-AD v3，覆盖 ws3a 的 Phys-AD、ws3c 的 DROID，以及 h2、h3 的 RoboVAD 三条线。从这期开始，我们不再用识别中这种占位说法，直接报数。本期数字来自服务器 conclusions 和 GPU 快照，时间是 2026 年 10 月 22 日凌晨。\n\n先报强的那一头，ws3a，也就是 Phys-AD 物理异常分支。配置是 dinov2-base、抽 8 帧、特征记忆库 6 万 patch，训练 486、测试 1035，其中正样本 255、异常 780。结果非常稳：score_pooled 的 AUROC 是 0.9970，AUPRC 是 0.9990；top-k 池化的 AUROC 到 0.9983。单 patch 打分是 0.934。只有一路 temporal 时序分，AUROC 0.348，基本不可用，等于瞎猜。\n\n再报弱的那一头，ws3c，DROID 真机数据分支，正常库 kNN 基线，评估已完成，样本 1432。按异常类型拆开看 pooled AUROC：missing 漏放 0.542、extra 多放 0.528、position 位置 0.615、count 计数 0.604、temporal 时序 0.500。整池最好的单模态单元，是 wrist_image_left 这个相机的 position 任务，0.760。\n\n把两头放在一起看，结论很清楚：ws3a 接近饱和、ws3c 只比瞎猜好一点。差距不在打分器本身，同一套 kNN 打分逻辑，在物理仿真数据上能到 0.997，换到真机视角就掉到 0.5 上下，说明瓶颈在视频域和视角域的分布偏移，而不是判别公式。这个判断我们只报事实，方法层 GO 还是 KILL，等后端定。\n\n机器上现在在跑什么？快照显示，GPU0 上正在跑 ws3a 的七类扩展基线，输出文件是 ws3a_auroc_7cat_base.json，也就是把原来的基准从单类扩到七类；GPU1 上 h3_robovad.py 正在运行，RoboVAD 那套 h2、h3 的真实异常数据管线已经拉起来了，对应的 RoboVAD 数据包还在从 Zenodo 下载中。\n\n下一步：等 RoboVAD 数据落盘，跑通 h2、h3 的真实异常检测基线；同时 ws3a 七类结果出来后，和现在的 part0 基准做对照。风险点有两个：一是 ws3c 那个 0.54 到 0.61 的池子，如果真机数据的视角和光照偏移压不住，这条腿可能要换特征 backbone 或者加视角对齐；二是 temporal 那一路在两个分支上都不灵，时序建模这条线暂时要降级处理。\n\n我是你的播报员，TBO-Norm 频道，我们下期见。"
+    }
+  ]
+}
