@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 05:37:31",
+  "ts": "2026-10-22 05:47:41",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 5797,
+    "mem_used_mb": 10857,
     "mem_total_mb": 81920,
-    "util_gpu": 45,
-    "temp_c": 50,
+    "util_gpu": 0,
+    "temp_c": 39,
     "procs": [
      {
       "pid": 1209327,
@@ -25,18 +25,18 @@
       "cmd_short": "experiment_runner_v2.py"
      },
      {
-      "pid": 225384,
+      "pid": 1819795,
       "owner": "chenlinwei",
       "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 1808648,
+      "pid": 1834486,
       "owner": "chenlinwei",
-      "mem_mb": 2510,
+      "mem_mb": 7570,
       "experiment": "other",
-      "cmd_short": "ft_infer_feat.py"
+      "cmd_short": "main.py"
      }
     ]
    },
@@ -63,7 +63,7 @@
     "mem_used_mb": 3118,
     "mem_total_mb": 81920,
     "util_gpu": 56,
-    "temp_c": 53,
+    "temp_c": 54,
     "procs": [
      {
       "pid": 330781,
@@ -100,9 +100,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 45% 6/80GB 50C",
+   "GPU0 0% 11/80GB 39C",
    "GPU1 0% 33/40GB 35C",
-   "GPU2 56% 3/80GB 54C",
+   "GPU2 72% 3/80GB 54C",
    "GPU3 0% 34/40GB 34C"
   ],
   "source": 30,
@@ -147,7 +147,7 @@
     },
     {
      "who": "me",
-     "desc": "python ft_infer_feat.py"
+     "desc": "main.py"
     }
    ],
    "gpu1": [
