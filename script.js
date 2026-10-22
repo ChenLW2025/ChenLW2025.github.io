@@ -197,6 +197,9 @@
     document.addEventListener("click", event => {
       if (!navigation.contains(event.target)) closeNavigation();
     });
+    document.addEventListener("focusin", event => {
+      if (!navigation.contains(event.target)) closeNavigation();
+    });
     document.addEventListener("keydown", event => {
       if (event.key === "Escape") closeNavigation(true);
     });
