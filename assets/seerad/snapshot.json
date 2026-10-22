@@ -1,13 +1,13 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 23:12:29",
+  "ts": "2026-10-22 23:22:39",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 69000,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 1,
     "temp_c": 49,
     "procs": [
      {
@@ -39,7 +39,7 @@
     "mem_used_mb": 33399,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 49,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 225385,
@@ -55,7 +55,7 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 17,
     "temp_c": 50,
     "procs": [
      {
@@ -93,9 +93,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 49C",
-   "GPU1 0% 33/40GB 49C",
-   "GPU2 0% 2/80GB 50C",
+   "GPU0 2% 67/80GB 49C",
+   "GPU1 0% 33/40GB 48C",
+   "GPU2 12% 2/80GB 51C",
    "GPU3 0% 34/40GB 47C"
   ],
   "source": 30,
