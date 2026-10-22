@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-23 01:45:12",
+  "ts": "2026-10-23 01:55:25",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 6460,
+    "mem_used_mb": 69000,
     "mem_total_mb": 81920,
-    "util_gpu": 100,
-    "temp_c": 77,
+    "util_gpu": 4,
+    "temp_c": 49,
     "procs": [
      {
       "pid": 1209327,
@@ -27,23 +27,16 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 65002,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2582307,
-      "owner": "chenlinwei",
-      "mem_mb": 1966,
-      "experiment": "other",
-      "cmd_short": "objectcore_eval_gpu.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1173,
+    "mem_used_mb": 1133,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 49,
@@ -56,9 +49,9 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2720340,
+      "pid": 2735919,
       "owner": "chenlinwei",
-      "mem_mb": 536,
+      "mem_mb": 496,
       "experiment": "other",
       "cmd_short": "objectcore_eval_gpu_fp16.py"
      }
@@ -69,8 +62,8 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 51,
+    "util_gpu": 16,
+    "temp_c": 52,
     "procs": [
      {
       "pid": 330781,
@@ -104,19 +97,19 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2720343,
+      "pid": 2736053,
       "owner": "chenlinwei",
       "mem_mb": 522,
       "experiment": "other",
-      "cmd_short": "objectcore_eval_gpu_fp16.py"
+      "cmd_short": "objectcore_eval_gpu_lazy.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 92% 6/80GB 73C",
+   "GPU0 4% 67/80GB 50C",
    "GPU1 0% 1/40GB 49C",
-   "GPU2 0% 2/80GB 51C",
+   "GPU2 20% 2/80GB 51C",
    "GPU3 0% 1/40GB 48C"
   ],
   "source": 30,
@@ -158,10 +151,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python objectcore_eval_gpu.py"
     }
    ],
    "gpu1": [
@@ -191,7 +180,7 @@
     },
     {
      "who": "me",
-     "desc": "python objectcore_eval_gpu_fp16.py"
+     "desc": "python -u objectcore_eval_gpu_lazy.py"
     }
    ]
   },
