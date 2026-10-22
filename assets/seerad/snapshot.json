@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 12:13:02",
+  "ts": "2026-10-22 12:23:10",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 41,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 1209327,
@@ -36,9 +36,9 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 3813,
+    "mem_used_mb": 4099,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
+    "util_gpu": 99,
     "temp_c": 44,
     "procs": [
      {
@@ -49,11 +49,11 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 122803,
+      "pid": 386240,
       "owner": "chenlinwei",
-      "mem_mb": 3176,
+      "mem_mb": 3462,
       "experiment": "other",
-      "cmd_short": "extract_gdino_patches.py --cat=screw_bag"
+      "cmd_short": "extract_gdino_patches.py --cat=pushpins"
      }
     ]
    },
@@ -94,7 +94,7 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 41C",
-   "GPU1 0% 4/40GB 44C",
+   "GPU1 31% 4/40GB 43C",
    "GPU2 0% 67/80GB 42C",
    "GPU3 0% 34/40GB 39C"
   ],
@@ -146,7 +146,7 @@
     },
     {
      "who": "me",
-     "desc": "python extract_gdino_patches.py --cat screw_ba"
+     "desc": "python extract_gdino_patches.py --cat pushpins"
     }
    ],
    "gpu2": [
