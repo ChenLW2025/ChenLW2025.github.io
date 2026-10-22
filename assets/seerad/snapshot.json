@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 21:30:49",
+  "ts": "2026-10-22 21:40:59",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 9418,
+    "mem_used_mb": 68998,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 50,
+    "util_gpu": 2,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 1209327,
@@ -27,57 +27,36 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 65002,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2373775,
-      "owner": "chenlinwei",
-      "mem_mb": 3102,
-      "experiment": "other",
-      "cmd_short": "extract_ft_patches.py --cat=splicing_connectors --ckpt=checkpoint.pth"
-     },
-     {
-      "pid": 2391460,
-      "owner": "metadrivepj",
-      "mem_mb": 1815,
-      "experiment": "other",
-      "cmd_short": "rgb_enc_sac.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 3739,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 51,
+    "temp_c": 47,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2373963,
-      "owner": "chenlinwei",
-      "mem_mb": 3102,
-      "experiment": "other",
-      "cmd_short": "extract_ft_patches.py --cat=juice_bottle --ckpt=checkpoint.pth"
      }
     ]
    },
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 1572,
+    "mem_used_mb": 4679,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 49,
+    "util_gpu": 98,
+    "temp_c": 53,
     "procs": [
      {
       "pid": 330781,
@@ -92,6 +71,13 @@
       "mem_mb": 1050,
       "experiment": "other",
       "cmd_short": "v10_sac_base.py"
+     },
+     {
+      "pid": 2399953,
+      "owner": "chenlinwei",
+      "mem_mb": 3102,
+      "experiment": "other",
+      "cmd_short": "extract_gdino_patches.py --cat=juice_bottle"
      }
     ]
    },
@@ -114,9 +100,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 9/80GB 50C",
-   "GPU1 0% 4/40GB 51C",
-   "GPU2 0% 2/80GB 49C",
+   "GPU0 3% 67/80GB 48C",
+   "GPU1 0% 33/40GB 47C",
+   "GPU2 38% 5/80GB 52C",
    "GPU3 0% 34/40GB 45C"
   ],
   "source": 30,
@@ -158,24 +144,12 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "checkpoint.pth"
-    },
-    {
-     "who": "other",
-     "desc": "rgb_enc_sac.py"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "checkpoint.pth"
     }
    ],
    "gpu2": [
@@ -186,6 +160,10 @@
     {
      "who": "other",
      "desc": "metadrivepj python"
+    },
+    {
+     "who": "me",
+     "desc": "python extract_gdino_patches.py --cat juice_bo"
     }
    ],
    "gpu3": [
