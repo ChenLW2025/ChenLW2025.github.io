@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 08:50:19",
+  "ts": "2026-10-22 09:00:26",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 9417,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 100,
-    "temp_c": 71,
+    "util_gpu": 0,
+    "temp_c": 50,
     "procs": [
      {
       "pid": 1209327,
@@ -27,26 +27,19 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 3082272,
-      "owner": "chenlinwei",
-      "mem_mb": 6130,
-      "experiment": "other",
-      "cmd_short": "ft_patches_ms.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 41,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 225385,
@@ -93,8 +86,8 @@
    }
   ],
   "gpus_text": [
-   "GPU0 100% 9/80GB 70C",
-   "GPU1 0% 33/40GB 41C",
+   "GPU0 0% 67/80GB 50C",
+   "GPU1 0% 33/40GB 42C",
    "GPU2 0% 67/80GB 43C",
    "GPU3 0% 34/40GB 40C"
   ],
@@ -137,10 +130,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "checkpoint0099.pth"
     }
    ],
    "gpu1": [
