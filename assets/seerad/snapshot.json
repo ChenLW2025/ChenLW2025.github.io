@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 10:01:16",
+  "ts": "2026-10-22 10:11:24",
   "gpus": [
    {
     "index": 0,
@@ -36,17 +36,24 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 1520,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 41,
+    "util_gpu": 9,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 33258,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 3484818,
+      "owner": "chenlinwei",
+      "mem_mb": 892,
+      "experiment": "TBO-Norm",
+      "cmd_short": "robovad_region_state.py"
      }
     ]
    },
@@ -56,7 +63,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 43,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 330781,
@@ -70,26 +77,18 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 8970,
+    "mem_used_mb": 19,
     "mem_total_mb": 40960,
-    "util_gpu": 99,
-    "temp_c": 66,
-    "procs": [
-     {
-      "pid": 3432807,
-      "owner": "chenlinwei",
-      "mem_mb": 8946,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h5_order_v15.py"
-     }
-    ]
+    "util_gpu": 0,
+    "temp_c": 40,
+    "procs": []
    }
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 42C",
-   "GPU1 0% 33/40GB 41C",
-   "GPU2 0% 67/80GB 43C",
-   "GPU3 99% 9/40GB 66C"
+   "GPU1 9% 1/40GB 42C",
+   "GPU2 0% 67/80GB 42C",
+   "GPU3 0% 0/40GB 40C"
   ],
   "source": 30,
   "producer": 30,
@@ -136,18 +135,16 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "robovad_region_state.py --gpu 1 --stride 8"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    }
-   ],
-   "gpu3": [
-    {
-     "who": "me",
-     "desc": "h5_order_v15.py"
     }
    ]
   },
@@ -308,7 +305,7 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     3
+     1
     ],
     "progress": {
      "done": 1800,
