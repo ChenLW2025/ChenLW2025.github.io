@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 23:32:49",
+  "ts": "2026-10-22 23:43:00",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 11919,
+    "mem_used_mb": 10032,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 50,
+    "util_gpu": 3,
+    "temp_c": 54,
     "procs": [
      {
       "pid": 1209327,
@@ -32,18 +32,11 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2511345,
+      "pid": 2522041,
       "owner": "chenlinwei",
       "mem_mb": 5538,
       "experiment": "other",
       "cmd_short": "objectcore_infer.py"
-     },
-     {
-      "pid": 2515615,
-      "owner": "chenlinwei",
-      "mem_mb": 1882,
-      "experiment": "other",
-      "cmd_short": "python"
      }
     ]
    },
@@ -53,7 +46,7 @@
     "mem_used_mb": 6553,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 50,
+    "temp_c": 54,
     "procs": [
      {
       "pid": 225385,
@@ -63,7 +56,7 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2511358,
+      "pid": 2522042,
       "owner": "chenlinwei",
       "mem_mb": 5916,
       "experiment": "other",
@@ -76,8 +69,8 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 49,
+    "util_gpu": 23,
+    "temp_c": 51,
     "procs": [
      {
       "pid": 330781,
@@ -101,7 +94,7 @@
     "mem_used_mb": 6142,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 47,
+    "temp_c": 52,
     "procs": [
      {
       "pid": 2346933,
@@ -111,7 +104,7 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2511359,
+      "pid": 2522043,
       "owner": "chenlinwei",
       "mem_mb": 5622,
       "experiment": "other",
@@ -121,10 +114,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 12/80GB 50C",
-   "GPU1 0% 6/40GB 50C",
-   "GPU2 0% 2/80GB 49C",
-   "GPU3 0% 6/40GB 47C"
+   "GPU0 3% 10/80GB 54C",
+   "GPU1 0% 6/40GB 54C",
+   "GPU2 23% 2/80GB 51C",
+   "GPU3 0% 6/40GB 52C"
   ],
   "source": 30,
   "producer": 30,
@@ -169,10 +162,6 @@
     {
      "who": "me",
      "desc": "checkpoint.pth 0"
-    },
-    {
-     "who": "me",
-     "desc": "python -"
     }
    ],
    "gpu1": [
