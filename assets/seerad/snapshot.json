@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 12:23:10",
+  "ts": "2026-10-22 12:33:18",
   "gpus": [
    {
     "index": 0,
@@ -36,10 +36,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 4099,
+    "mem_used_mb": 4090,
     "mem_total_mb": 40960,
-    "util_gpu": 99,
-    "temp_c": 44,
+    "util_gpu": 0,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 225385,
@@ -93,8 +93,8 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 41C",
-   "GPU1 31% 4/40GB 43C",
+   "GPU0 0% 67/80GB 40C",
+   "GPU1 0% 4/40GB 42C",
    "GPU2 0% 67/80GB 42C",
    "GPU3 0% 34/40GB 39C"
   ],
@@ -442,14 +442,15 @@
     "updated_at": "2026-10-22 01:28:44",
     "conclusion": {
      "verdict": "RUNNING",
-     "headline": "TBO-Norm 多分支试错中：Phys-AD ws3a pooled=0.997 强基线；DROID ws3c pooled 0.53-0.62；RoboVAD appearance in_domain=0.575（跨任务/跨异常 ~0.44）；最新 region-state(h5_state_v16) 全 splits 塌到 0.5 随机。外观与 state 单路都不够，等融合/时序。GO/KILL 待你下发。",
+     "headline": "TBO-Norm 多分支试错：Phys-AD ws3a=0.997 强基线；DROID ws3c pooled 0.53-0.62；RoboVAD appearance in_domain=0.575(跨域~0.44)；region-state 全 split=0.500；最新 motion-global in_domain=0.514(cross_anomaly=0.514,跨任务未评)。外观/state/运动单路均近随机，等融合。GO/KILL 待你下发。",
      "points": [
       "ws3a(Phys-AD, dinov2-base, 8帧, bank 60k patches, n_train=486/n_test=1035=255正+780异常)：score_pooled AUROC=0.9970/AUPRC=0.9990，score_pooled_top AUROC=0.9983；score_patch=0.934；score_temporal AUROC=0.348 不可用",
       "ws3c(DROID 正常库 kNN, EVAL_DONE n=1432, 2026-10-22 00:33)：pooled AUROC missing=0.542/extra=0.528/position=0.615/count=0.604/temporal=0.500；wrist_image_left/position=0.760 为当前最佳单元",
       "RoboVAD appearance-only(robovad_bench_appearance.json, 2026-10-22 09:53)：in_domain 0.575(n=1515/429)；cross_anomaly 0.478；cross_task 0.443；cross_task+anomaly 0.446——外观单模态跨任务/跨异常退到随机",
-      "region-state pipeline(region_state_eval.json, 2026-10-22 11:17, h5_state_v16 全量 193+231+132+107 episodes)：in_domain micro=0.495/macro=0.500；cross_anomaly micro=0.495/macro=0.500；cross_task micro=macro=0.500；cross_task+anomaly micro=macro=0.500——state-based 区域信号在所有 split 上都是随机水平，单独 state 路线不通",
-      "中间产物：robovad_feat_cache 936+ npz、h5_state_cache_v15/v16、region_curves_raw/_test 逐 episode 曲线、region_dets.json 物体检测框——都在为融合/时序分支备料",
-      "结果文件：results/ws3a_auroc_part0_base_v2.json、results/ws3c/ws3c_auroc_summary.json、results/robovad_bench_appearance.json、results/region_state_eval.json"
+      "region-state pipeline(region_state_eval.json, 2026-10-22 11:17, h5_state_v16)：in_domain micro=0.495/macro=0.500(193 ep)；cross_anomaly micro=0.495/macro=0.500(231 ep)；cross_task/cross_task+anomaly 均 0.500——state 单路随机",
+      "motion-global pipeline(motion_global_eval.json, 2026-10-22 12:18, h4_alt_motion)：in_domain micro=0.518/macro=0.514(193 ep)；cross_anomaly micro=0.501/macro=0.514(231 ep)；cross_task/cross_task+anomaly n_ep=0 未评——运动全局特征仅比随机高 ~1.4pp，仍不构成信号",
+      "中间产物：robovad_feat_cache 936+ npz、h5_state_cache_v15/v16/v17、h4_alt_motion/、region_curves_raw/_test、region_dets.json——融合分支备料中",
+      "结果文件：ws3a_auroc_part0_base_v2.json、ws3c/ws3c_auroc_summary.json、robovad_bench_appearance.json、region_state_eval.json、motion_global_eval.json"
      ],
      "killline": {
       "loco_target": 80.8,
@@ -475,11 +476,11 @@
       },
       {
        "row": "4",
-       "label": "region-state in_domain macro",
-       "value": 0.5
+       "label": "motion-global in_domain macro",
+       "value": 0.514
       }
      ],
-     "updated_at": "2026-10-22 11:22"
+     "updated_at": "2026-10-22 12:27"
     },
     "evidence": "dir=EMBODIED_B_2026 (docs title \"TBO-AD v3\"); procs=ws3a_physad/baseline.py, ws3c_droid/ws3c_*.py, h2_trackability/h2_*robovad*.py, h3_em/h3_robovad.py; log keys=[bank]/[score]/[eval]/EVAL_DONE/[AUROC]"
    }
