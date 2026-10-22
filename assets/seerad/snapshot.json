@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 21:10:29",
+  "ts": "2026-10-22 21:20:39",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 6389,
+    "mem_used_mb": 7588,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 50,
@@ -45,7 +45,7 @@
     "name": "NVIDIA A100-PCIE-40GB",
     "mem_used_mb": 3739,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
+    "util_gpu": 47,
     "temp_c": 51,
     "procs": [
      {
@@ -67,10 +67,10 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 3442,
+    "mem_used_mb": 4497,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 48,
+    "temp_c": 49,
     "procs": [
      {
       "pid": 330781,
@@ -85,6 +85,13 @@
       "mem_mb": 2920,
       "experiment": "other",
       "cmd_short": "extract_gdino_patches.py --cat=breakfast_box"
+     },
+     {
+      "pid": 2385023,
+      "owner": "metadrivepj",
+      "mem_mb": 1050,
+      "experiment": "other",
+      "cmd_short": "v10_sac_base.py"
      }
     ]
    },
@@ -107,9 +114,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 6/80GB 50C",
-   "GPU1 0% 4/40GB 51C",
-   "GPU2 0% 3/80GB 48C",
+   "GPU0 0% 7/80GB 50C",
+   "GPU1 71% 4/40GB 51C",
+   "GPU2 7% 4/80GB 51C",
    "GPU3 0% 34/40GB 45C"
   ],
   "source": 30,
@@ -175,6 +182,10 @@
     {
      "who": "me",
      "desc": "python extract_gdino_patches.py --cat breakfas"
+    },
+    {
+     "who": "other",
+     "desc": "metadrivepj python"
     }
    ],
    "gpu3": [
