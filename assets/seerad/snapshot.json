@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 11:12:14",
+  "ts": "2026-10-22 11:22:22",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 4467,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 1209327,
@@ -27,16 +27,9 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 3888785,
-      "owner": "chenlinwei",
-      "mem_mb": 1180,
-      "experiment": "TBO-Norm",
-      "cmd_short": "robovad_region_state.py"
      }
     ]
    },
@@ -77,33 +70,26 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1700,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 40,
+    "temp_c": 39,
     "procs": [
      {
       "pid": 3519800,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 3886418,
-      "owner": "chenlinwei",
-      "mem_mb": 1180,
-      "experiment": "TBO-Norm",
-      "cmd_short": "robovad_region_state.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 4/80GB 42C",
+   "GPU0 0% 67/80GB 41C",
    "GPU1 0% 33/40GB 41C",
    "GPU2 0% 67/80GB 42C",
-   "GPU3 0% 2/40GB 40C"
+   "GPU3 0% 34/40GB 40C"
   ],
   "source": 30,
   "producer": 30,
@@ -144,10 +130,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "robovad_region_state.py --gpu 0 --split test -"
     }
    ],
    "gpu1": [
@@ -166,10 +148,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "robovad_region_state.py --gpu 3 --split test -"
     }
    ]
   },
@@ -327,12 +305,9 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "running",
+    "state": "idle",
     "tmux": [],
-    "gpus": [
-     0,
-     3
-    ],
+    "gpus": [],
     "progress": {
      "done": 1800,
      "total": 1803,
