@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 11:52:47",
+  "ts": "2026-10-22 12:02:54",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 43,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 1209327,
@@ -36,17 +36,24 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33400,
+    "mem_used_mb": 3813,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 44,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 33258,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 122803,
+      "owner": "chenlinwei",
+      "mem_mb": 3176,
+      "experiment": "other",
+      "cmd_short": "extract_gdino_patches.py --cat=screw_bag"
      }
     ]
    },
@@ -56,7 +63,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 44,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 330781,
@@ -73,7 +80,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 41,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 3519800,
@@ -86,10 +93,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 43C",
-   "GPU1 0% 33/40GB 42C",
-   "GPU2 0% 67/80GB 44C",
-   "GPU3 4% 34/40GB 41C"
+   "GPU0 0% 67/80GB 42C",
+   "GPU1 0% 4/40GB 44C",
+   "GPU2 0% 67/80GB 42C",
+   "GPU3 0% 34/40GB 40C"
   ],
   "source": 30,
   "producer": 30,
@@ -136,6 +143,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python extract_gdino_patches.py --cat screw_ba"
     }
    ],
    "gpu2": [
@@ -258,8 +269,8 @@
      "label": "anom_features"
     },
     "latest_results": [],
-    "log_tail": "",
-    "updated_at": "2026-10-22 11:51:22",
+    "log_tail": " n_regions: p50=1 max=2\n=== juice_bottle n= 142 ===\n area_frac: p50=0.0964 p90=0.2323 max=0.2366\n color_z  : p50=2.7 p90=4.8 max=8.0\n pos_d    : p50=0.120 p90=0.302 max=0.349\n sdelta   : median=0 frac!=0=0.06\n n_regions: p50=1 max=2\n=== pushpins n= 91 ===\n area_frac: p50=0.0508 p90=0.1532 max=0.7752\n color_z  : p50=3.0 p90=9.6 max=11.4\n pos_d    : p50=0.262 p90=0.462 max=0.499\n sdelta   : median=-4 frac!=0=0.95\n n_regions: p50=2 max=15\n=== splicing_connectors n= 108 ===\n area_frac: p50=0.0961 p90=1.0000 max=1.0000\n color_z  : p50=1.8 p90=2.7 max=4.8\n pos_d    : p50=0.049 p90=0.279 max=0.392\n sdelta   : median=0 frac!=0=0.34\n n_regions: p50=1 max=1\nwrote anom_features.json",
+    "updated_at": "2026-10-22 11:52:59",
     "conclusion": {
      "verdict": "KILL",
      "headline": "MCA v3.1 正式 KILL：class-agnostic 4-shot LOCO 上被数据证伪，4 类 macro fused≈0.62，离目标 80.8 差约 19pp；外观与几何在均匀外观零件类双零信号。停止一切 GO 进行中表述。",
