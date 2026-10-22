@@ -93,14 +93,22 @@ main:focus-visible { outline: none; }
 .education-entry-nju strong { color: #5b0b63; }
 .education-entry-njau strong { color: #176c55; }
 .education-detail { margin-top: .35em; color: var(--muted); }
-.experience-list { margin: 0; padding: 0; list-style: none; }
+.experience-list { margin: .5em 0 0; }
+.experience-list::before { content: none; }
 .experience-entry { margin: 0 0 1.15rem; }
 .experience-entry:last-child { margin-bottom: 0; }
+.experience-entry::before { z-index: 1; }
+.experience-entry::after { content: ""; position: absolute; top: 0; bottom: -1.15rem; left: calc(var(--logo) + var(--gap)/2); width: 1px; background: #d4dce5; }
+.experience-entry:first-child::after { top: 50%; }
+.experience-entry:last-child::after { bottom: 50%; }
+.experience-logo { overflow: hidden; }
+.experience-logo-everwise img { transform: scale(1.25); }
+.experience-logo-bytedance img { padding: .35em; }
 .experience-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .15rem 1rem; margin-bottom: .2rem; }
 .experience-header h3 { flex: 1 1 18rem; margin: 0; color: var(--heading); font-size: 1.06rem; line-height: 1.4; }
 .experience-entry p { margin: 0; }
 .experience-date { color: var(--muted); font-size: .88rem; font-variant-numeric: tabular-nums; }
-.experience-date time { display: inline-block; }
+.experience-date time { display: inline-block; max-width: 100%; }
 .experience-team { color: var(--muted); }
 .selected-publications-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75em; margin: 0 0 .8rem; padding-bottom: .55rem; border-bottom: 1px solid var(--line); }
 .selected-publications-heading .section-title { margin: 0; padding: 0; border: 0; }
@@ -177,6 +185,7 @@ main:focus-visible { outline: none; }
 }
 @media (max-width: 560px) {
   .education-list { --logo: 3.5em; --gap: .8em; }
+  .experience-list { --logo: min(3.5em, 60px); --gap: 1.1em; }
   .site-layout { margin-top: 1.25rem; }
   .sidebar { margin-bottom: 1.5rem; }
   .figure-dialog { padding: .85rem; }
