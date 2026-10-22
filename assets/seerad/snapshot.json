@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 21:51:08",
+  "ts": "2026-10-22 22:01:18",
   "gpus": [
    {
     "index": 0,
@@ -73,11 +73,11 @@
       "cmd_short": "v10_sac_base.py"
      },
      {
-      "pid": 2399953,
+      "pid": 2422620,
       "owner": "chenlinwei",
       "mem_mb": 3102,
       "experiment": "other",
-      "cmd_short": "extract_gdino_patches.py --cat=juice_bottle"
+      "cmd_short": "extract_gdino_patches.py --cat=splicing_connectors"
      }
     ]
    },
@@ -102,7 +102,7 @@
   "gpus_text": [
    "GPU0 0% 67/80GB 48C",
    "GPU1 0% 33/40GB 48C",
-   "GPU2 0% 5/80GB 51C",
+   "GPU2 0% 5/80GB 52C",
    "GPU3 0% 34/40GB 46C"
   ],
   "source": 30,
@@ -163,7 +163,7 @@
     },
     {
      "who": "me",
-     "desc": "python extract_gdino_patches.py --cat juice_bo"
+     "desc": "python extract_gdino_patches.py --cat splicing"
     }
    ],
    "gpu3": [
