@@ -33,6 +33,9 @@ jobs:
           cp index.html 404.html styles.css script.js favicon.svg robots.txt sitemap.xml .nojekyll _site/
           cp -R assets citations _site/
 
+      - name: Validate public files
+        run: python3 scripts/validate_site.py _site
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

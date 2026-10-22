@@ -22,6 +22,12 @@ The mobile navigation closes when keyboard focus moves outside it, keeping focus
 
 Print styles retain the email address and show the full GitHub URL alongside the profile. Navigation and interactive citation controls stay hidden, while publication DOI text remains visible.
 
+## Validation
+
+Run `py scripts/validate_site.py .` before publishing (`python3 scripts/validate_site.py .` on Linux or macOS). This standard-library-only check covers `index.html` and `404.html`: local asset and page links, same-page fragments, duplicate IDs, accessibility and copy-control references, JSON-LD syntax, and consistency between inline BibTeX, individual downloads and the combined bibliography. Citation text ignores outer whitespace and line-ending differences; the combined file joins entries in page order with one blank line.
+
+The deployment workflow runs the same check against the prepared `_site` directory before uploading it. It does not request external URLs or inspect the independent research dashboard recursively, and it does not replace visual review or verification of publication facts.
+
 ## Deployment
 
 The existing GitHub Pages workflow deploys on pushes to `main`. It stages the root HTML, CSS, JavaScript, favicon and search discovery files, plus the complete `assets/` and `citations/` directories in `_site`; repository documentation is not deployed. The `assets/seerad/` research dashboard has its own pages and regularly updated data. Preserve its updates when syncing and publishing homepage changes. Review desktop and mobile widths before pushing. The homepage requires no build, external fonts or external JavaScript dependencies.
