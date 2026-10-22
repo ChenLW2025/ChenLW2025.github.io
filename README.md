@@ -10,7 +10,7 @@ Run `py -m http.server 4173 --bind 127.0.0.1` in this directory, then visit http
 
 - `index.html`: complete default English content, ordered as introduction, publications, research, background, and contact. Chinese translations use `data-zh`; accessible labels use `data-aria-zh` and `data-alt-zh`. ProfilePage, Person and ScholarlyArticle JSON-LD describe the same published information as the visible page.
 - `styles.css`: desktop, mobile, keyboard, reduced-motion, and print layouts.
-- `script.js`: browser-language detection, saved language preference, clipboard actions, and navigation state. Share `?lang=zh` or `?lang=en` to select a language; section anchors such as `#contact` are preserved. If clipboard access is unavailable, the text is selected for manual copying with a visible notice; copying, pressing Escape, or switching languages clears the notice. Content and citation downloads remain available without JavaScript.
+- `script.js`: browser-language detection, saved language preference, clipboard actions, and navigation state. Share `?lang=zh` or `?lang=en` to select a language; section anchors such as `#contact` are preserved. Switching languages preserves the current reading position, including at the top or bottom of the page. If clipboard access is unavailable, the text is selected for manual copying with a visible notice; copying, pressing Escape, or switching languages clears the notice. Content and citation downloads remain available without JavaScript.
 - `citations/`: individual BibTeX downloads and the combined `publications.bib`. Keep all downloads synchronized with the corresponding inline citation blocks.
 - `robots.txt` and `sitemap.xml`: crawling policy and canonical homepage URL. Update the sitemap date when public content changes.
 
@@ -18,4 +18,4 @@ Publication metadata comes from the linked publisher pages. The Springer chapter
 
 ## Deployment
 
-The existing GitHub Pages workflow deploys on pushes to `main`. It stages only the HTML, CSS, JavaScript, favicon, avatar, citation and search discovery assets in `_site`; repository documentation is not deployed. Review English and Chinese at desktop and mobile widths before pushing. No build, external fonts or external JavaScript dependencies are required.
+The existing GitHub Pages workflow deploys on pushes to `main`. It stages the root HTML, CSS, JavaScript, favicon and search discovery files, plus the complete `assets/` and `citations/` directories in `_site`; repository documentation is not deployed. The `assets/seerad/` research dashboard has its own pages and regularly updated data. Preserve its updates when syncing and publishing homepage changes. Review English and Chinese at desktop and mobile widths before pushing. The homepage requires no build, external fonts or external JavaScript dependencies.

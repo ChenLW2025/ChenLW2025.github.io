@@ -10,7 +10,48 @@
     zh: "陈林蔚，南京大学控制科学与智能工程硕士研究生。研究方向包括稳健多模态学习、机器人感知与智慧农业。"
   };
   let language = "en";
+  let readingRestoreFrame;
+  let pendingReadingPosition;
+  function captureReadingPosition() {
+    if (window.scrollY <= 1) return {edge: "top"};
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12) return {edge: "bottom"};
+    const readingLine = (header?.getBoundingClientRect().height || 78) + 24;
+    const anchors = [...document.querySelectorAll("main section, main article, main h1, main h2, main h3, main h4, main p, main li, main details, main pre")]
+      .map(element => ({element, rect: element.getBoundingClientRect()}))
+      .filter(({rect}) => rect.width > 1 && rect.height > 1);
+    // Prefer the nearest stable content block above the reading line. Paragraphs
+    // and articles keep long sections from jumping when their text reflows.
+    const preceding = anchors.filter(({rect}) => rect.top <= readingLine);
+    preceding.sort((a, b) => b.rect.top - a.rect.top || a.rect.height - b.rect.height);
+    anchors.sort((a, b) => a.rect.top - b.rect.top || a.rect.height - b.rect.height);
+    const anchor = preceding[0] || anchors[0];
+    if (!anchor) return null;
+    const offset = readingLine - anchor.rect.top;
+    return {
+      element: anchor.element,
+      progress: Math.max(0, Math.min(1, offset / anchor.rect.height)),
+      gap: offset < 0 ? offset : Math.max(0, offset - anchor.rect.height)
+    };
+  }
+  function restoreReadingPosition(position) {
+    if (!position.edge && !position.element?.isConnected) return;
+    let top = 0;
+    if (position.edge === "bottom") top = document.documentElement.scrollHeight - window.innerHeight;
+    else if (position.element?.isConnected) {
+      const rect = position.element.getBoundingClientRect();
+      const readingLine = (header?.getBoundingClientRect().height || 78) + 24;
+      top = window.scrollY + rect.top + rect.height * position.progress + position.gap - readingLine;
+    }
+    // This corrects a layout change; animating it would interrupt reading.
+    window.scrollTo({top: Math.max(0, top), behavior: "instant"});
+  }
   function setLanguage(next, updateUrl = false) {
+    if (readingRestoreFrame !== undefined) window.cancelAnimationFrame(readingRestoreFrame);
+    readingRestoreFrame = undefined;
+    // Rapid toggles share the original reading position, not an intermediate
+    // layout that the browser has not finished anchoring yet.
+    const readingPosition = updateUrl ? pendingReadingPosition || captureReadingPosition() : null;
+    pendingReadingPosition = readingPosition;
     resetCopyFeedback();
     language = next === "zh" ? "zh" : "en";
     document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
@@ -48,7 +89,14 @@
       } catch { /* Direct file previews still work without URL updates. */ }
     }
     try { localStorage.setItem("site-language", language); } catch { /* Storage is optional. */ }
-    updateActiveSection();
+    if (readingPosition) {
+      readingRestoreFrame = window.requestAnimationFrame(() => {
+        readingRestoreFrame = undefined;
+        pendingReadingPosition = null;
+        restoreReadingPosition(readingPosition);
+        updateActiveSection();
+      });
+    } else updateActiveSection();
   }
   if (languageButton) {
     languageButton.hidden = false;
