@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 17:37:32",
+  "ts": "2026-10-22 17:47:40",
   "gpus": [
    {
     "index": 0,
@@ -39,7 +39,7 @@
     "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 43,
+    "temp_c": 44,
     "procs": [
      {
       "pid": 225385,
@@ -87,7 +87,7 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 44C",
-   "GPU1 0% 33/40GB 43C",
+   "GPU1 0% 33/40GB 44C",
    "GPU2 0% 67/80GB 45C",
    "GPU3 0% 34/40GB 42C"
   ],
