@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-23 00:03:20",
+  "ts": "2026-10-23 00:13:30",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 10706,
+    "mem_used_mb": 12763,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 51,
+    "util_gpu": 99,
+    "temp_c": 73,
     "procs": [
      {
       "pid": 1209327,
@@ -37,6 +37,13 @@
       "mem_mb": 6212,
       "experiment": "other",
       "cmd_short": "objectcore_infer.py"
+     },
+     {
+      "pid": 2549878,
+      "owner": "chenlinwei",
+      "mem_mb": 2052,
+      "experiment": "other",
+      "cmd_short": "objectcore_eval_gpu.py"
      }
     ]
    },
@@ -45,8 +52,8 @@
     "name": "NVIDIA A100-PCIE-40GB",
     "mem_used_mb": 6849,
     "mem_total_mb": 40960,
-    "util_gpu": 99,
-    "temp_c": 52,
+    "util_gpu": 0,
+    "temp_c": 51,
     "procs": [
      {
       "pid": 225385,
@@ -69,8 +76,8 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 50,
+    "util_gpu": 29,
+    "temp_c": 51,
     "procs": [
      {
       "pid": 330781,
@@ -91,33 +98,26 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 6142,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 49,
+    "temp_c": 47,
     "procs": [
      {
       "pid": 2346933,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2522043,
-      "owner": "chenlinwei",
-      "mem_mb": 5622,
-      "experiment": "other",
-      "cmd_short": "objectcore_infer.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 10/80GB 51C",
-   "GPU1 99% 7/40GB 56C",
-   "GPU2 0% 2/80GB 50C",
-   "GPU3 0% 6/40GB 49C"
+   "GPU0 100% 12/80GB 74C",
+   "GPU1 0% 7/40GB 51C",
+   "GPU2 17% 2/80GB 50C",
+   "GPU3 0% 34/40GB 47C"
   ],
   "source": 30,
   "producer": 30,
@@ -162,6 +162,10 @@
     {
      "who": "me",
      "desc": "checkpoint.pth 0"
+    },
+    {
+     "who": "me",
+     "desc": "python objectcore_eval_gpu.py"
     }
    ],
    "gpu1": [
@@ -188,10 +192,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "checkpoint.pth 3"
     }
    ]
   },
