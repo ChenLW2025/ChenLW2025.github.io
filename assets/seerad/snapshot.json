@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 10:41:48",
+  "ts": "2026-10-22 10:51:57",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68818,
+    "mem_used_mb": 4467,
     "mem_total_mb": 81920,
-    "util_gpu": 18,
-    "temp_c": 42,
+    "util_gpu": 3,
+    "temp_c": 44,
     "procs": [
      {
       "pid": 1209327,
@@ -27,16 +27,23 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 66026,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 3693190,
+      "owner": "chenlinwei",
+      "mem_mb": 1180,
+      "experiment": "TBO-Norm",
+      "cmd_short": "robovad_region_state.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33400,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 41,
@@ -55,7 +62,7 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 1,
+    "util_gpu": 0,
     "temp_c": 42,
     "procs": [
      {
@@ -70,26 +77,33 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 1700,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 40,
+    "util_gpu": 74,
+    "temp_c": 47,
     "procs": [
      {
       "pid": 3519800,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 3691322,
+      "owner": "chenlinwei",
+      "mem_mb": 1180,
+      "experiment": "TBO-Norm",
+      "cmd_short": "robovad_region_state.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 18% 67/80GB 42C",
-   "GPU1 27% 33/40GB 41C",
-   "GPU2 16% 67/80GB 42C",
-   "GPU3 0% 34/40GB 40C"
+   "GPU0 0% 4/80GB 44C",
+   "GPU1 0% 33/40GB 41C",
+   "GPU2 0% 67/80GB 42C",
+   "GPU3 23% 2/40GB 44C"
   ],
   "source": 30,
   "producer": 30,
@@ -130,6 +144,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "robovad_region_state.py --gpu 0 --stride 10 --"
     }
    ],
    "gpu1": [
@@ -148,6 +166,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "robovad_region_state.py --gpu 3 --stride 10 --"
     }
    ]
   },
@@ -305,9 +327,12 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "idle",
+    "state": "running",
     "tmux": [],
-    "gpus": [],
+    "gpus": [
+     0,
+     3
+    ],
     "progress": {
      "done": 1800,
      "total": 1803,
