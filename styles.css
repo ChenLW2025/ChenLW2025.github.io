@@ -112,8 +112,14 @@ main:focus-visible { outline: none; }
 .experience-date { color: var(--muted); font-size: .88rem; font-variant-numeric: tabular-nums; }
 .experience-date time { display: inline-block; max-width: 100%; }
 .experience-team { color: var(--muted); }
+.venture-entry { align-items: flex-start; }
+.venture-entry::before { top: calc(var(--logo)/2); }
+.venture-entry::after { content: none; }
+/* Show the intact symbol from the supplied image; its wordmark is clipped. */
+.experience-logo-lanbanyun { position: relative; clip-path: polygon(0 0, 100% 0, 100% 90%, 78% 90%, 78% 100%, 0 100%); }
+.experience-logo-lanbanyun img { position: absolute; width: 178.9773%; height: 178.9773%; max-width: none; left: -62.5%; top: -20.4545%; filter: grayscale(1) brightness(.51) contrast(60); }
 .venture-entry .experience-date { margin: 0; }
-.venture-role { margin: 0 0 .35rem; }
+.venture-entry .venture-role { margin: 0 0 .35rem; }
 .venture-summary { max-width: 82ch; margin: 0; }
 .selected-publications-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75em; margin: 0 0 .8rem; padding-bottom: .55rem; border-bottom: 1px solid var(--line); }
 .selected-publications-heading .section-title { margin: 0; padding: 0; border: 0; }
