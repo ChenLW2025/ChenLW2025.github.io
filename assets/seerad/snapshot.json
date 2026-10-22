@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 09:30:51",
+  "ts": "2026-10-22 09:41:00",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 4449,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 49,
+    "util_gpu": 86,
+    "temp_c": 59,
     "procs": [
      {
       "pid": 1209327,
@@ -43,17 +43,24 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 1790,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 41,
+    "util_gpu": 81,
+    "temp_c": 59,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 33258,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 3303069,
+      "owner": "chenlinwei",
+      "mem_mb": 1162,
+      "experiment": "TBO-Norm",
+      "cmd_short": "robovad_cache_shard.py"
      }
     ]
    },
@@ -77,26 +84,26 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 1186,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 40,
+    "temp_c": 52,
     "procs": [
      {
-      "pid": 225386,
+      "pid": 3303070,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
-      "experiment": "other",
-      "cmd_short": "gpu_hold_elastic.py"
+      "mem_mb": 1162,
+      "experiment": "TBO-Norm",
+      "cmd_short": "robovad_cache_shard.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 4/80GB 49C",
-   "GPU1 0% 33/40GB 41C",
+   "GPU0 87% 4/80GB 60C",
+   "GPU1 86% 2/40GB 60C",
    "GPU2 0% 67/80GB 42C",
-   "GPU3 0% 34/40GB 40C"
+   "GPU3 0% 1/40GB 52C"
   ],
   "source": 30,
   "producer": 30,
@@ -147,6 +154,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "robovad_cache_shard.py --gpu 1 --nshards 3 --s"
     }
    ],
    "gpu2": [
@@ -157,8 +168,8 @@
    ],
    "gpu3": [
     {
-     "who": "hold",
-     "desc": "elastic hold (yields on real job)"
+     "who": "me",
+     "desc": "robovad_cache_shard.py --gpu 3 --nshards 3 --s"
     }
    ]
   },
@@ -319,7 +330,9 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     0
+     0,
+     1,
+     3
     ],
     "progress": {
      "done": 1800,
