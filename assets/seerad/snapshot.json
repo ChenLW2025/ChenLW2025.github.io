@@ -1,13 +1,13 @@
 {
  "snapshot": {
-  "ts": "2026-10-23 02:05:36",
+  "ts": "2026-10-23 02:15:47",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 69000,
     "mem_total_mb": 81920,
-    "util_gpu": 14,
+    "util_gpu": 3,
     "temp_c": 49,
     "procs": [
      {
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1155,
+    "mem_used_mb": 1142,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 49,
@@ -49,9 +49,9 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2744653,
+      "pid": 2754328,
       "owner": "chenlinwei",
-      "mem_mb": 518,
+      "mem_mb": 514,
       "experiment": "other",
       "cmd_short": "objectcore_eval_gpu_lazy.py"
      }
@@ -62,7 +62,7 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 9,
     "temp_c": 51,
     "procs": [
      {
@@ -84,7 +84,7 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 1036,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 48,
@@ -92,18 +92,25 @@
      {
       "pid": 2346933,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 2754330,
+      "owner": "chenlinwei",
+      "mem_mb": 516,
+      "experiment": "other",
+      "cmd_short": "objectcore_eval_gpu_lazy.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 4% 67/80GB 49C",
+   "GPU0 3% 67/80GB 49C",
    "GPU1 0% 1/40GB 49C",
-   "GPU2 0% 2/80GB 51C",
-   "GPU3 0% 34/40GB 48C"
+   "GPU2 16% 2/80GB 51C",
+   "GPU3 0% 1/40GB 48C"
   ],
   "source": 30,
   "producer": 30,
@@ -153,7 +160,7 @@
     },
     {
      "who": "me",
-     "desc": "python -u objectcore_eval_gpu_lazy.py"
+     "desc": "python objectcore_eval_gpu_lazy.py"
     }
    ],
    "gpu2": [
@@ -170,6 +177,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python objectcore_eval_gpu_lazy.py"
     }
    ]
   },
