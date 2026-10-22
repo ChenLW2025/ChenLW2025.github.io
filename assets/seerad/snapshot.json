@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 13:13:50",
+  "ts": "2026-10-22 13:23:59",
   "gpus": [
    {
     "index": 0,
@@ -43,10 +43,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 5184,
+    "mem_used_mb": 5193,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 45,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 225385,
@@ -56,7 +56,7 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 541081,
+      "pid": 572358,
       "owner": "chenlinwei",
       "mem_mb": 4556,
       "experiment": "other",
@@ -87,7 +87,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 39,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 3519800,
@@ -100,10 +100,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 8/80GB 49C",
-   "GPU1 0% 5/40GB 48C",
+   "GPU0 0% 8/80GB 43C",
+   "GPU1 0% 5/40GB 43C",
    "GPU2 0% 67/80GB 42C",
-   "GPU3 0% 34/40GB 39C"
+   "GPU3 0% 34/40GB 40C"
   ],
   "source": 30,
   "producer": 30,
