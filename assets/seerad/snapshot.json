@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-23 02:25:57",
+  "ts": "2026-10-23 02:36:08",
   "gpus": [
    {
     "index": 0,
@@ -36,10 +36,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 14229,
+    "mem_used_mb": 2820,
     "mem_total_mb": 40960,
-    "util_gpu": 100,
-    "temp_c": 70,
+    "util_gpu": 73,
+    "temp_c": 68,
     "procs": [
      {
       "pid": 225385,
@@ -51,92 +51,36 @@
      {
       "pid": 2754328,
       "owner": "chenlinwei",
-      "mem_mb": 2186,
+      "mem_mb": 2192,
       "experiment": "other",
       "cmd_short": "objectcore_eval_gpu_lazy.py"
-     },
-     {
-      "pid": 2762953,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
-     },
-     {
-      "pid": 2762955,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
-     },
-     {
-      "pid": 2762959,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
-     },
-     {
-      "pid": 2762957,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
      }
     ]
    },
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 11923,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
-    "util_gpu": 97,
-    "temp_c": 61,
+    "util_gpu": 0,
+    "temp_c": 49,
     "procs": [
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 2762960,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
-     },
-     {
-      "pid": 2762958,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
-     },
-     {
-      "pid": 2762956,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
-     },
-     {
-      "pid": 2762954,
-      "owner": "chenlinwei",
-      "mem_mb": 2846,
-      "experiment": "MCA",
-      "cmd_short": "reconstruct_sam_masks.py"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1641,
+    "mem_used_mb": 4515,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 47,
+    "util_gpu": 100,
+    "temp_c": 73,
     "procs": [
      {
       "pid": 2346933,
@@ -148,14 +92,14 @@
      {
       "pid": 2754330,
       "owner": "chenlinwei",
-      "mem_mb": 558,
+      "mem_mb": 2000,
       "experiment": "other",
       "cmd_short": "objectcore_eval_gpu_lazy.py"
      },
      {
-      "pid": 2756950,
+      "pid": 2767504,
       "owner": "chenlinwei",
-      "mem_mb": 558,
+      "mem_mb": 1990,
       "experiment": "other",
       "cmd_short": "lazy_fp32.py"
      }
@@ -164,9 +108,9 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 49C",
-   "GPU1 100% 14/40GB 70C",
-   "GPU2 0% 12/80GB 60C",
-   "GPU3 0% 2/40GB 47C"
+   "GPU1 86% 3/40GB 69C",
+   "GPU2 18% 67/80GB 49C",
+   "GPU3 100% 4/40GB 73C"
   ],
   "source": 30,
   "producer": 30,
@@ -217,44 +161,12 @@
     {
      "who": "me",
      "desc": "python objectcore_eval_gpu_lazy.py"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
-    },
-    {
-     "who": "me",
-     "desc": "8 --cpu-threads 4"
     }
    ],
    "gpu3": [
@@ -370,12 +282,9 @@
   ],
   "experiments": {
    "MCA": {
-    "state": "running",
+    "state": "idle",
     "tmux": [],
-    "gpus": [
-     1,
-     2
-    ],
+    "gpus": [],
     "progress": {
      "done": null,
      "total": null,
