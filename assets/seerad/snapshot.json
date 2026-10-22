@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 16:46:50",
+  "ts": "2026-10-22 16:56:59",
   "gpus": [
    {
     "index": 0,
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 43,
@@ -53,7 +53,7 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 51826,
+    "mem_used_mb": 51938,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 44,
@@ -68,7 +68,7 @@
      {
       "pid": 1225003,
       "owner": "sunyusheng",
-      "mem_mb": 51226,
+      "mem_mb": 51338,
       "experiment": "other",
       "cmd_short": "strata"
      }
