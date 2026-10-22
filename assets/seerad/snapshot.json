@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 21:00:20",
+  "ts": "2026-10-22 21:10:29",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 6463,
+    "mem_used_mb": 6389,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 50,
@@ -32,21 +32,21 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2364178,
+      "pid": 2373775,
       "owner": "chenlinwei",
-      "mem_mb": 3176,
+      "mem_mb": 3102,
       "experiment": "other",
-      "cmd_short": "extract_ft_patches.py --cat=screw_bag --ckpt=checkpoint.pth"
+      "cmd_short": "extract_ft_patches.py --cat=splicing_connectors --ckpt=checkpoint.pth"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 6123,
+    "mem_used_mb": 3739,
     "mem_total_mb": 40960,
-    "util_gpu": 2,
-    "temp_c": 55,
+    "util_gpu": 0,
+    "temp_c": 51,
     "procs": [
      {
       "pid": 225385,
@@ -56,11 +56,11 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2364182,
+      "pid": 2373963,
       "owner": "chenlinwei",
-      "mem_mb": 5486,
+      "mem_mb": 3102,
       "experiment": "other",
-      "cmd_short": "as_gdino_eval2.py --cat=pushpins"
+      "cmd_short": "extract_ft_patches.py --cat=juice_bottle --ckpt=checkpoint.pth"
      }
     ]
    },
@@ -70,7 +70,7 @@
     "mem_used_mb": 3442,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 49,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 330781,
@@ -91,33 +91,26 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 3982,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 46,
+    "temp_c": 45,
     "procs": [
      {
       "pid": 2346933,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2364189,
-      "owner": "chenlinwei",
-      "mem_mb": 3462,
-      "experiment": "other",
-      "cmd_short": "extract_ft_patches.py --cat=pushpins --ckpt=checkpoint.pth"
      }
     ]
    }
   ],
   "gpus_text": [
    "GPU0 0% 6/80GB 50C",
-   "GPU1 2% 6/40GB 61C",
-   "GPU2 0% 3/80GB 49C",
-   "GPU3 0% 4/40GB 46C"
+   "GPU1 0% 4/40GB 51C",
+   "GPU2 0% 3/80GB 48C",
+   "GPU3 0% 34/40GB 45C"
   ],
   "source": 30,
   "producer": 30,
@@ -171,7 +164,7 @@
     },
     {
      "who": "me",
-     "desc": "python as_gdino_eval2.py --cat pushpins"
+     "desc": "checkpoint.pth"
     }
    ],
    "gpu2": [
@@ -188,10 +181,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "checkpoint.pth"
     }
    ]
   },
