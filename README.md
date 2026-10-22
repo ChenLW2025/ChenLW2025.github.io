@@ -22,6 +22,8 @@ The mobile navigation closes when keyboard focus moves outside it, keeping focus
 
 The desktop profile stays fixed while scrolling only when it fits below the header with room to spare. In shorter windows or with larger text, it scrolls with the page so contact links remain reachable. Without JavaScript, the profile follows normal document flow.
 
+Closing the framework preview returns keyboard focus to its opening link. If resizing has moved that link entirely outside the visible page area, it scrolls back into view; otherwise the reading position is preserved.
+
 Print styles retain the email address and show the full GitHub URL alongside the profile. Navigation and interactive citation controls stay hidden, while publication DOI text remains visible.
 
 ## Validation

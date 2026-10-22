@@ -89,7 +89,15 @@
       pointerStartedOutside = false;
       const trigger = figureTrigger;
       figureTrigger = null;
-      if (trigger?.isConnected) trigger.focus({preventScroll: true});
+      if (trigger?.isConnected) {
+        trigger.focus({preventScroll: true});
+        const rect = trigger.getBoundingClientRect();
+        const headerBottom = Math.max(0, document.querySelector(".site-header")?.getBoundingClientRect().bottom || 0);
+        // Preserve the reading position unless reflow has left the trigger out of view.
+        if (rect.bottom <= headerBottom || rect.top >= window.innerHeight) {
+          trigger.scrollIntoView({block: "center", inline: "nearest", behavior: "instant"});
+        }
+      }
     }
 
     function closeFigure() {
