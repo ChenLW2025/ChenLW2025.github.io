@@ -3,7 +3,7 @@
    License: assets/licenses/AcadHomepage-LICENSE.txt */
 :root { color-scheme: light; --ink: #404950; --heading: #24354a; --muted: #626a70; --link: #224b8d; --line: #e7eaee; --sans: "Trebuchet MS", Helvetica, Arial, sans-serif; --serif: "Times New Roman", Times, serif; }
 *, *::before, *::after { box-sizing: border-box; }
-html { background: #fff; font-size: 17px; scroll-padding-top: calc(var(--header-height, 62px) + 20px); -webkit-text-size-adjust: 100%; }
+html { background: #fff; font-size: 17px; scroll-padding-top: calc(var(--header-height, 0px) + 20px); -webkit-text-size-adjust: 100%; }
 body { margin: 0; color: var(--ink); font-family: var(--serif); line-height: 1.6; overflow-wrap: break-word; }
 [hidden] { display: none !important; }
 a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .16em; text-decoration-color: #224b8d66; transition: color .15s, text-decoration-color .15s; }
@@ -44,6 +44,7 @@ main:focus-visible { outline: none; }
 .hidden-links a::before { display: none; }
 .hidden-links a:hover { background: #f2f3f3; }
 .no-nav-overflow .visible-links { flex-wrap: wrap; }
+.no-nav-overflow .masthead { position: static; }
 
 .site-layout { max-width: 925px; margin: 1.65rem auto 0; padding-inline: 1em; }
 .sidebar { margin-bottom: 1em; font-family: var(--sans); min-width: 0; }

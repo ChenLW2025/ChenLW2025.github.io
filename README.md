@@ -18,7 +18,7 @@ Run `py -m http.server 4173 --bind 127.0.0.1` in this directory, then visit http
 
 Publication metadata comes from the linked publisher pages. The Springer chapter was published online in July 2026; its publisher-specified citation year is 2027. The page explains both dates. Show published work only. Add new projects, profiles, photos, or journal entries only with source material. External links must match a source already cited by the publication.
 
-The mobile navigation closes when keyboard focus moves outside it, keeping focus on the next control. In short windows or at high zoom, the expanded menu scrolls within the space below the header so its last links remain reachable. Citation controls and individual downloads include the paper name in their accessible labels so they can be distinguished outside the article's reading order.
+The mobile navigation closes when keyboard focus moves outside it, keeping focus on the next control. In short windows or at high zoom, the expanded menu scrolls within the space below the header so its last links remain reachable. Without JavaScript, all navigation links wrap and the header scrolls with the page, keeping anchor targets visible. Paper links, citation controls and individual downloads include the paper name in their accessible labels so they can be distinguished outside the article's reading order.
 
 The desktop profile stays fixed while scrolling only when it fits below the header with room to spare. In shorter windows or with larger text, it scrolls with the page so contact links remain reachable. Without JavaScript, the profile follows normal document flow.
 
