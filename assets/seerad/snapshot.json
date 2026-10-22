@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 22:21:37",
+  "ts": "2026-10-22 22:31:48",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 69000,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 48,
+    "temp_c": 49,
     "procs": [
      {
       "pid": 1209327,
@@ -53,10 +53,10 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 4679,
+    "mem_used_mb": 5851,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 52,
+    "temp_c": 53,
     "procs": [
      {
       "pid": 330781,
@@ -73,11 +73,11 @@
       "cmd_short": "v10_sac_base.py"
      },
      {
-      "pid": 2422620,
+      "pid": 2446099,
       "owner": "chenlinwei",
-      "mem_mb": 3102,
+      "mem_mb": 4274,
       "experiment": "other",
-      "cmd_short": "extract_gdino_patches.py --cat=splicing_connectors"
+      "cmd_short": "as_gdino_eval3.py --cat=juice_bottle"
      }
     ]
    },
@@ -87,7 +87,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 46,
+    "temp_c": 47,
     "procs": [
      {
       "pid": 2346933,
@@ -100,10 +100,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 48C",
+   "GPU0 0% 67/80GB 49C",
    "GPU1 0% 33/40GB 48C",
-   "GPU2 0% 5/80GB 52C",
-   "GPU3 0% 34/40GB 46C"
+   "GPU2 0% 6/80GB 52C",
+   "GPU3 0% 34/40GB 47C"
   ],
   "source": 30,
   "producer": 30,
@@ -163,7 +163,7 @@
     },
     {
      "who": "me",
-     "desc": "python extract_gdino_patches.py --cat splicing"
+     "desc": "python as_gdino_eval3.py --cat juice_bottle"
     }
    ],
    "gpu3": [
