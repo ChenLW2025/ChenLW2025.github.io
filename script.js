@@ -239,7 +239,7 @@
     document.documentElement.style.setProperty("--header-height", `${headerHeight}px`);
     const positions = sections.map(section => ({section, rect: section.getBoundingClientRect()}));
     positions.sort((a, b) => a.rect.top - b.rect.top);
-    let current = null;
+    let current = positions[0]?.section.id || null;
     if (window.scrollY > 1) {
       positions.forEach(({section, rect}) => { if (rect.top <= headerHeight + 32) current = section.id; });
       const last = positions.at(-1);
