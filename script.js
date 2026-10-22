@@ -207,6 +207,16 @@
       if (overflowLinks.hidden && overflowLinks.contains(activeElement)) navigationToggle.focus({preventScroll: true});
       else if (activeElement === navigationToggle && navigationToggle.hidden) visibleLinks.querySelector("a")?.focus({preventScroll: true});
       else activeElement.focus({preventScroll: true});
+      if (!overflowLinks.hidden && overflowLinks.contains(activeElement)) {
+        const menuRect = overflowLinks.getBoundingClientRect();
+        const focusRect = activeElement.getBoundingClientRect();
+        const menuStyle = getComputedStyle(overflowLinks);
+        const top = menuRect.top + overflowLinks.clientTop + parseFloat(menuStyle.paddingTop);
+        const bottom = menuRect.top + overflowLinks.clientTop + overflowLinks.clientHeight - parseFloat(menuStyle.paddingBottom);
+        // Keep the restored focus outline inside this scrollport without moving the page.
+        if (focusRect.top < top) overflowLinks.scrollTop += focusRect.top - top;
+        else if (focusRect.bottom > bottom) overflowLinks.scrollTop += focusRect.bottom - bottom;
+      }
     }
   }
 

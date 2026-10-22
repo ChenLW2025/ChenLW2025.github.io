@@ -38,7 +38,7 @@ main:focus-visible { outline: none; }
 .navicon, .navicon::before, .navicon::after { display: block; position: relative; width: 18px; height: 1.5px; background: currentColor; }
 .navicon::before, .navicon::after { content: ""; position: absolute; left: 0; }
 .navicon::before { top: -6px; } .navicon::after { top: 6px; }
-.main-nav .hidden-links { position: absolute; top: 100%; right: 0; z-index: 30; max-width: calc(100vw - 34px); margin-top: 10px; padding: 6px; border: 1px solid var(--line); border-radius: 4px; background: #fff; box-shadow: 0 6px 20px #20334b12; }
+.main-nav .hidden-links { position: absolute; top: 100%; right: 0; z-index: 30; max-width: calc(100vw - 34px); max-height: calc(100vh - var(--header-height, 62px) - 26px); max-height: calc(100dvh - var(--header-height, 62px) - 26px); overflow-y: auto; scroll-padding-block: 6px; margin-top: 10px; padding: 6px; border: 1px solid var(--line); border-radius: 4px; background: #fff; box-shadow: 0 6px 20px #20334b12; }
 .hidden-links li { margin: 0; white-space: normal; }
 .hidden-links a { margin: 0; padding: .5em 1em; }
 .hidden-links a::before { display: none; }
