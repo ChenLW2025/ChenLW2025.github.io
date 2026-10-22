@@ -20,6 +20,8 @@ Publication metadata comes from the linked publisher pages. The Springer chapter
 
 The mobile navigation closes when keyboard focus moves outside it, keeping focus on the next control. Citation controls and individual downloads include the paper name in their accessible labels so they can be distinguished outside the article's reading order.
 
+The desktop profile stays fixed while scrolling only when it fits below the header with room to spare. In shorter windows or with larger text, it scrolls with the page so contact links remain reachable. Without JavaScript, the profile follows normal document flow.
+
 Print styles retain the email address and show the full GitHub URL alongside the profile. Navigation and interactive citation controls stay hidden, while publication DOI text remains visible.
 
 ## Validation

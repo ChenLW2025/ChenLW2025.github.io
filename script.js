@@ -142,6 +142,23 @@
   const links = [...document.querySelectorAll(".main-nav a")];
   const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
   const header = document.querySelector(".site-header");
+  const sidebar = document.querySelector(".sidebar");
+  const sidebarTopGap = 40;
+  const sidebarBottomGap = 16;
+
+  function updateSidebarSticky() {
+    if (!sidebar) return;
+    const top = (header?.getBoundingClientRect().height || 62) + sidebarTopGap;
+    const fits = sidebar.getBoundingClientRect().height + top + sidebarBottomGap <= window.innerHeight;
+    const topValue = `${top}px`;
+    // Neither property changes the sidebar's size, so observing its height
+    // does not create a resize loop when sticky is enabled or disabled.
+    if (sidebar.style.getPropertyValue("--sidebar-sticky-top") !== topValue) {
+      sidebar.style.setProperty("--sidebar-sticky-top", topValue);
+    }
+    sidebar.toggleAttribute("data-sticky", fits);
+  }
+
   const navigation = document.querySelector(".main-nav");
   const visibleLinks = navigation?.querySelector(".visible-links");
   const overflowLinks = navigation?.querySelector(".hidden-links");
@@ -229,12 +246,17 @@
   function updateLayout() {
     layoutNavigation();
     updateActiveSection();
+    updateSidebarSticky();
   }
   window.addEventListener("resize", updateLayout);
   window.addEventListener("load", updateLayout);
   window.addEventListener("hashchange", updateActiveSection);
-  if ("ResizeObserver" in window && header) new ResizeObserver(updateActiveSection).observe(header);
+  if ("ResizeObserver" in window && header) new ResizeObserver(() => {
+    updateActiveSection();
+    updateSidebarSticky();
+  }).observe(header);
   if ("ResizeObserver" in window && navigation) new ResizeObserver(updateLayout).observe(navigation);
+  if ("ResizeObserver" in window && sidebar) new ResizeObserver(updateSidebarSticky).observe(sidebar);
   if (document.fonts?.ready) document.fonts.ready.then(updateLayout);
   updateLayout();
 })();

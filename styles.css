@@ -148,7 +148,7 @@ main:focus-visible { outline: none; }
 }
 @media (min-width: 57.8125em) {
   .site-layout { display: grid; grid-template-columns: 15.2542372881% minmax(0,1fr); gap: 1.6949152542%; align-items: start; }
-  .sidebar { position: sticky; top: calc(var(--header-height,62px) + 40px); }
+  .sidebar:where([data-sticky]) { position: sticky; top: var(--sidebar-sticky-top); }
   .profile-box { display: block; }
   .author-avatar { width: auto; }
   .author-avatar img { max-width: 175px; min-width: 75px; padding: 5px; border: 1px solid var(--line); }
