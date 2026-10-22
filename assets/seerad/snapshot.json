@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 08:09:48",
+  "ts": "2026-10-22 08:19:55",
   "gpus": [
    {
     "index": 0,
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33399,
+    "mem_used_mb": 33394,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 41,
@@ -70,10 +70,10 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 9466,
+    "mem_used_mb": 15203,
     "mem_total_mb": 40960,
-    "util_gpu": 99,
-    "temp_c": 61,
+    "util_gpu": 100,
+    "temp_c": 66,
     "procs": [
      {
       "pid": 225386,
@@ -83,9 +83,16 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2911875,
+      "pid": 2947589,
       "owner": "chenlinwei",
       "mem_mb": 8946,
+      "experiment": "TBO-Norm",
+      "cmd_short": "h5_order_v12.py"
+     },
+     {
+      "pid": 2956563,
+      "owner": "chenlinwei",
+      "mem_mb": 5732,
       "experiment": "TBO-Norm",
       "cmd_short": "h5_order_v11.py"
      }
@@ -96,7 +103,7 @@
    "GPU0 0% 67/80GB 42C",
    "GPU1 0% 33/40GB 41C",
    "GPU2 0% 67/80GB 42C",
-   "GPU3 99% 9/40GB 61C"
+   "GPU3 100% 15/40GB 66C"
   ],
   "source": 30,
   "producer": 30,
@@ -155,6 +162,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "h5_order_v12.py"
     },
     {
      "who": "me",
