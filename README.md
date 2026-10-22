@@ -20,6 +20,8 @@ Publication metadata comes from the linked publisher pages. The Springer chapter
 
 The mobile navigation closes when keyboard focus moves outside it, keeping focus on the next control. Citation controls and individual downloads include the paper name in their accessible labels so they can be distinguished outside the article's reading order.
 
+Print styles retain the email address and show the full GitHub URL alongside the profile. Navigation and interactive citation controls stay hidden, while publication DOI text remains visible.
+
 ## Deployment
 
 The existing GitHub Pages workflow deploys on pushes to `main`. It stages the root HTML, CSS, JavaScript, favicon and search discovery files, plus the complete `assets/` and `citations/` directories in `_site`; repository documentation is not deployed. The `assets/seerad/` research dashboard has its own pages and regularly updated data. Preserve its updates when syncing and publishing homepage changes. Review desktop and mobile widths before pushing. The homepage requires no build, external fonts or external JavaScript dependencies.

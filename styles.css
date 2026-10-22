@@ -178,12 +178,16 @@ main:focus-visible { outline: none; }
   .site-header, .skip-link, .author-urls-mobile, .copy-button, .copy-status, .citation, .bibliography-link, .site-footer a, .figure-dialog { display: none !important; }
   .site-layout { display: block; max-width: none; padding: 0; }
   .sidebar { position: static; }
-  .profile-box { display: flex; gap: 15px; }
-  .author-avatar { flex: 0 0 70px; }
+  .profile-box { display: grid; grid-template-columns: 70px minmax(0,1fr); column-gap: 15px; row-gap: .3em; align-items: start; }
+  .author-avatar { grid-row: 1 / span 2; width: 70px; }
   .author-avatar img { width: 70px; min-width: 0; }
-  .author-name { font-size: 17pt; }
+  .author-name { margin: 0; font-size: 17pt; }
   .author-bio { margin: 0; }
-  .author-urls { display: none; }
+  .author-urls { display: flex; flex-wrap: wrap; gap: .15em 1.2em; font-size: 9pt; }
+  .author-urls li { margin: 0; max-width: 100%; }
+  .author-urls .author-field, .author-urls .author-updated { display: none; }
+  .author-email { font-size: inherit; }
+  .author-urls a[href^="https://github.com/"]::after { content: ": " attr(href); overflow-wrap: anywhere; }
   .page-content { padding: 0; }
   .section-title { font-size: 14pt; }
   .selected-paper-feature { grid-template-columns: minmax(0,.36fr) minmax(0,.64fr); gap: 20px; }
