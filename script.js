@@ -89,6 +89,7 @@
       } catch { /* Direct file previews still work without URL updates. */ }
     }
     try { localStorage.setItem("site-language", language); } catch { /* Storage is optional. */ }
+    layoutNavigation();
     if (readingPosition) {
       readingRestoreFrame = window.requestAnimationFrame(() => {
         readingRestoreFrame = undefined;
@@ -173,6 +174,65 @@
   const links = [...document.querySelectorAll(".main-nav a")];
   const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
   const header = document.querySelector(".site-header");
+  const navigation = document.querySelector(".main-nav");
+  const visibleLinks = navigation?.querySelector(".visible-links");
+  const overflowLinks = navigation?.querySelector(".hidden-links");
+  const navigationToggle = navigation?.querySelector(".nav-toggle");
+  const navigationItems = visibleLinks ? [...visibleLinks.children] : [];
+
+  function closeNavigation(restoreFocus = false) {
+    if (!navigationToggle || !overflowLinks) return;
+    const wasOpen = navigationToggle.getAttribute("aria-expanded") === "true";
+    overflowLinks.hidden = true;
+    navigationToggle.setAttribute("aria-expanded", "false");
+    if (restoreFocus && wasOpen && !navigationToggle.hidden) navigationToggle.focus();
+  }
+
+  function layoutNavigation() {
+    if (!navigation || !visibleLinks || !overflowLinks || !navigationToggle) return;
+    const activeElement = document.activeElement;
+    const hadNavigationFocus = navigation.contains(activeElement);
+    const wasOpen = navigationToggle.getAttribute("aria-expanded") === "true";
+    document.body.classList.remove("no-nav-overflow");
+    // Start with every link in its original order, then measure the real flex
+    // layout. This includes font changes, translated labels and link margins.
+    navigationItems.forEach(item => visibleLinks.append(item));
+    navigationToggle.hidden = true;
+    overflowLinks.hidden = true;
+    if (visibleLinks.scrollWidth > visibleLinks.clientWidth + 1) {
+      navigationToggle.hidden = false;
+      while (visibleLinks.children.length > 1 && visibleLinks.scrollWidth > visibleLinks.clientWidth + 1) {
+        overflowLinks.prepend(visibleLinks.lastElementChild);
+      }
+    }
+    const hasOverflow = overflowLinks.children.length > 0;
+    navigationToggle.hidden = !hasOverflow;
+    overflowLinks.hidden = !hasOverflow || !wasOpen;
+    navigationToggle.setAttribute("aria-expanded", String(hasOverflow && wasOpen));
+    // Moving a focused node between lists can clear focus in the browser.
+    if (hadNavigationFocus) {
+      if (overflowLinks.hidden && overflowLinks.contains(activeElement)) navigationToggle.focus({preventScroll: true});
+      else if (activeElement === navigationToggle && navigationToggle.hidden) visibleLinks.querySelector("a")?.focus({preventScroll: true});
+      else activeElement.focus({preventScroll: true});
+    }
+  }
+
+  if (navigationToggle && overflowLinks) {
+    navigationToggle.addEventListener("click", () => {
+      const expanded = navigationToggle.getAttribute("aria-expanded") === "true";
+      overflowLinks.hidden = expanded;
+      navigationToggle.setAttribute("aria-expanded", String(!expanded));
+    });
+    navigation.addEventListener("click", event => {
+      if (event.target.closest("a")) closeNavigation();
+    });
+    document.addEventListener("click", event => {
+      if (!navigation.contains(event.target)) closeNavigation();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeNavigation(true);
+    });
+  }
   let scheduled = false;
   function updateActiveSection() {
     const headerHeight = header?.getBoundingClientRect().height || 78;
@@ -182,9 +242,9 @@
     let current = null;
     if (window.scrollY > 1) {
       positions.forEach(({section, rect}) => { if (rect.top <= headerHeight + 32) current = section.id; });
-      const contact = positions.find(({section}) => section.id === "contact");
-      const contactVisible = contact && contact.rect.top < window.innerHeight && contact.rect.bottom > headerHeight;
-      if (contactVisible && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12) current = "contact";
+      const last = positions.at(-1);
+      const lastVisible = last && last.rect.top < window.innerHeight && last.rect.bottom > headerHeight;
+      if (lastVisible && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 12) current = last.section.id;
     }
     links.forEach(link => {
       if (link.hash === `#${current}`) link.setAttribute("aria-current", "location");
@@ -195,10 +255,16 @@
   window.addEventListener("scroll", () => {
     if (!scheduled) { scheduled = true; window.requestAnimationFrame(updateActiveSection); }
   }, {passive: true});
-  window.addEventListener("resize", updateActiveSection);
-  window.addEventListener("load", updateActiveSection);
+  function updateLayout() {
+    layoutNavigation();
+    updateActiveSection();
+  }
+  window.addEventListener("resize", updateLayout);
+  window.addEventListener("load", updateLayout);
   window.addEventListener("hashchange", updateActiveSection);
   if ("ResizeObserver" in window && header) new ResizeObserver(updateActiveSection).observe(header);
+  if ("ResizeObserver" in window && navigation) new ResizeObserver(updateLayout).observe(navigation);
+  if (document.fonts?.ready) document.fonts.ready.then(updateLayout);
   if (languageButton) setLanguage(language);
-  updateActiveSection();
+  updateLayout();
 })();
