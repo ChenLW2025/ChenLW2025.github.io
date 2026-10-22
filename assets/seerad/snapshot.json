@@ -1,11 +1,11 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 21:20:39",
+  "ts": "2026-10-22 21:30:49",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 7588,
+    "mem_used_mb": 9418,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 50,
@@ -37,6 +37,13 @@
       "mem_mb": 3102,
       "experiment": "other",
       "cmd_short": "extract_ft_patches.py --cat=splicing_connectors --ckpt=checkpoint.pth"
+     },
+     {
+      "pid": 2391460,
+      "owner": "metadrivepj",
+      "mem_mb": 1815,
+      "experiment": "other",
+      "cmd_short": "rgb_enc_sac.py"
      }
     ]
    },
@@ -45,7 +52,7 @@
     "name": "NVIDIA A100-PCIE-40GB",
     "mem_used_mb": 3739,
     "mem_total_mb": 40960,
-    "util_gpu": 47,
+    "util_gpu": 0,
     "temp_c": 51,
     "procs": [
      {
@@ -67,7 +74,7 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 4497,
+    "mem_used_mb": 1572,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 49,
@@ -80,14 +87,7 @@
       "cmd_short": "gpu_hold_courteous.py"
      },
      {
-      "pid": 2366627,
-      "owner": "chenlinwei",
-      "mem_mb": 2920,
-      "experiment": "other",
-      "cmd_short": "extract_gdino_patches.py --cat=breakfast_box"
-     },
-     {
-      "pid": 2385023,
+      "pid": 2390580,
       "owner": "metadrivepj",
       "mem_mb": 1050,
       "experiment": "other",
@@ -114,9 +114,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 7/80GB 50C",
-   "GPU1 71% 4/40GB 51C",
-   "GPU2 7% 4/80GB 51C",
+   "GPU0 0% 9/80GB 50C",
+   "GPU1 0% 4/40GB 51C",
+   "GPU2 0% 2/80GB 49C",
    "GPU3 0% 34/40GB 45C"
   ],
   "source": 30,
@@ -162,6 +162,10 @@
     {
      "who": "me",
      "desc": "checkpoint.pth"
+    },
+    {
+     "who": "other",
+     "desc": "rgb_enc_sac.py"
     }
    ],
    "gpu1": [
@@ -178,10 +182,6 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "me",
-     "desc": "python extract_gdino_patches.py --cat breakfas"
     },
     {
      "who": "other",
