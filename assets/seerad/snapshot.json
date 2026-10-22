@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 12:53:35",
+  "ts": "2026-10-22 13:03:42",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 41,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 1209327,
@@ -36,24 +36,17 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 4090,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 386240,
-      "owner": "chenlinwei",
-      "mem_mb": 3462,
-      "experiment": "other",
-      "cmd_short": "extract_gdino_patches.py --cat=pushpins"
      }
     ]
    },
@@ -93,8 +86,8 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 41C",
-   "GPU1 0% 4/40GB 43C",
+   "GPU0 0% 67/80GB 40C",
+   "GPU1 0% 33/40GB 40C",
    "GPU2 0% 67/80GB 41C",
    "GPU3 0% 34/40GB 39C"
   ],
@@ -143,10 +136,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python extract_gdino_patches.py --cat pushpins"
     }
    ],
    "gpu2": [
@@ -449,8 +438,9 @@
       "RoboVAD appearance-only(robovad_bench_appearance.json, 2026-10-22 09:53)：in_domain 0.575(n=1515/429)；cross_anomaly 0.478；cross_task 0.443；cross_task+anomaly 0.446——外观单模态跨任务/跨异常退到随机",
       "region-state pipeline(region_state_eval.json, 2026-10-22 11:17, h5_state_v16)：in_domain micro=0.495/macro=0.500(193 ep)；cross_anomaly micro=0.495/macro=0.500(231 ep)；cross_task/cross_task+anomaly 均 0.500——state 单路随机",
       "motion-global pipeline(motion_global_eval.json, 2026-10-22 12:18, h4_alt_motion)：in_domain micro=0.518/macro=0.514(193 ep)；cross_anomaly micro=0.501/macro=0.514(231 ep)；cross_task/cross_task+anomaly n_ep=0 未评——运动全局特征仅比随机高 ~1.4pp，仍不构成信号",
+      "序列方法合成鲁棒性对比(alergia_vs_po.json, 2026-10-22 12:59)：test_noise 0.05/0.1/0.2/0.4 下 partial_order=0.86/0.77/0.63/0.56, alergia=0.93/0.86/0.69/0.55——test noise 下 ALERGIA 略优；train_noise 0.3/0.4 下 PO=1.0/0.75, ALERGIA=0.5/0.5——PO 对 train noise 更鲁棒",
       "中间产物：robovad_feat_cache 936+ npz、h5_state_cache_v15/v16/v17、h4_alt_motion/、region_curves_raw/_test、region_dets.json——融合分支备料中",
-      "结果文件：ws3a_auroc_part0_base_v2.json、ws3c/ws3c_auroc_summary.json、robovad_bench_appearance.json、region_state_eval.json、motion_global_eval.json"
+      "结果文件：ws3a_auroc_part0_base_v2.json、ws3c/ws3c_auroc_summary.json、robovad_bench_appearance.json、region_state_eval.json、motion_global_eval.json、alergia_vs_po.json"
      ],
      "killline": {
       "loco_target": 80.8,
@@ -480,7 +470,7 @@
        "value": 0.514
       }
      ],
-     "updated_at": "2026-10-22 12:27"
+     "updated_at": "2026-10-22 13:01"
     },
     "evidence": "dir=EMBODIED_B_2026 (docs title \"TBO-AD v3\"); procs=ws3a_physad/baseline.py, ws3c_droid/ws3c_*.py, h2_trackability/h2_*robovad*.py, h3_em/h3_robovad.py; log keys=[bank]/[score]/[eval]/EVAL_DONE/[AUROC]"
    }
