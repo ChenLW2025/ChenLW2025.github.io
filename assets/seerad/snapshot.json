@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 09:51:09",
+  "ts": "2026-10-22 10:01:16",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 4449,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 82,
-    "temp_c": 62,
+    "util_gpu": 0,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 1209327,
@@ -27,23 +27,16 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 3346805,
-      "owner": "chenlinwei",
-      "mem_mb": 1162,
-      "experiment": "TBO-Norm",
-      "cmd_short": "robovad_bench.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33399,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 41,
@@ -80,10 +73,10 @@
     "mem_used_mb": 8970,
     "mem_total_mb": 40960,
     "util_gpu": 99,
-    "temp_c": 65,
+    "temp_c": 66,
     "procs": [
      {
-      "pid": 3391684,
+      "pid": 3432807,
       "owner": "chenlinwei",
       "mem_mb": 8946,
       "experiment": "TBO-Norm",
@@ -93,10 +86,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 87% 4/80GB 63C",
+   "GPU0 0% 67/80GB 42C",
    "GPU1 0% 33/40GB 41C",
    "GPU2 0% 67/80GB 43C",
-   "GPU3 98% 9/40GB 65C"
+   "GPU3 99% 9/40GB 66C"
   ],
   "source": 30,
   "producer": 30,
@@ -137,10 +130,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "robovad_bench.py"
     }
    ],
    "gpu1": [
@@ -319,7 +308,6 @@
     "state": "running",
     "tmux": [],
     "gpus": [
-     0,
      3
     ],
     "progress": {
@@ -445,17 +433,18 @@
     "updated_at": "2026-10-22 01:28:44",
     "conclusion": {
      "verdict": "RUNNING",
-     "headline": "TBO-Norm 正常库 kNN 基线在盘：Phys-AD 分支 ws3a score_pooled AUROC=0.997（part0/base 基准），DROID 分支 ws3c pooled 仅 0.53–0.62 偏弱；当前无活跃 GPU 进程（idle），方法层 GO/KILL 结论待你下发，不预设。",
+     "headline": "TBO-Norm 多分支推进：Phys-AD ws3a pooled=0.997 强基线已立；DROID ws3c pooled 0.53-0.62 偏弱；新出 RoboVAD appearance-only in_domain=0.575，跨任务/跨异常跌到 0.44-0.48（近随机），外观单独在 RoboVAD 上不够。方法 GO/KILL 待你下发，我只同步数字。",
      "points": [
       "ws3a(Phys-AD, dinov2-base, 8帧, bank 60k patches, n_train=486/n_test=1035=255正+780异常)：score_pooled AUROC=0.9970/AUPRC=0.9990，score_pooled_top AUROC=0.9983；score_patch=0.934；score_temporal AUROC=0.348 不可用",
       "ws3c(DROID 正常库 kNN, EVAL_DONE n=1432, 2026-10-22 00:33)：pooled AUROC missing=0.542/extra=0.528/position=0.615/count=0.604/temporal=0.500；wrist_image_left/position=0.760 为当前最佳单元",
-      "ws3a 强、ws3c 弱 → 差距在视频/视角域而非打分器本身；优化方向待后端定，我只同步数字不判方法结论",
-      "结果文件：results/ws3a_auroc_part0_base_v2.json(mtime 2026-10-22 00:39)、results/ws3c/ws3c_auroc_summary.json(mtime 2026-10-22 00:35)"
+      "RoboVAD appearance-only 基线(robovad_bench_appearance.json, 2026-10-22 09:53)：in_domain AUROC=0.575(n=1515,n_anom=429)；cross_anomaly=0.478(n=1671/488)；cross_task=0.443(n=1044/283)；cross_task+anomaly=0.446(n=890/205)——外观单模态在跨任务/跨异常域退到随机附近，与 MCA 红队发现的均匀外观类双零信号一致",
+      "robovad_feat_cache/ 已积累 936 个 npz(pickandplace/rings_on_peg/stackcubes/pour_rice)，特征缓存构建中；后续应会出融合/时序/几何分支数字",
+      "结果文件：results/ws3a_auroc_part0_base_v2.json(mtime 2026-10-22 00:39)、results/ws3c/ws3c_auroc_summary.json(mtime 2026-10-22 00:35)、results/robovad_bench_appearance.json(mtime 2026-10-22 09:53)"
      ],
      "killline": {
       "loco_target": 80.8,
       "cad_target": 96.6,
-      "current_loco": 0.615,
+      "current_loco": 0.76,
       "current_cad": null
      },
      "four_rows": [
@@ -476,11 +465,11 @@
       },
       {
        "row": "4",
-       "label": "ws3c temporal",
-       "value": 0.5
+       "label": "RoboVAD appearance in_domain",
+       "value": 0.575
       }
      ],
-     "updated_at": "2026-10-22 00:48"
+     "updated_at": "2026-10-22 09:56"
     },
     "evidence": "dir=EMBODIED_B_2026 (docs title \"TBO-AD v3\"); procs=ws3a_physad/baseline.py, ws3c_droid/ws3c_*.py, h2_trackability/h2_*robovad*.py, h3_em/h3_robovad.py; log keys=[bank]/[score]/[eval]/EVAL_DONE/[AUROC]"
    }
