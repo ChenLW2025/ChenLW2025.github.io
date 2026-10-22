@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 07:59:40",
+  "ts": "2026-10-22 08:09:48",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 7635,
+    "mem_used_mb": 68818,
     "mem_total_mb": 81920,
-    "util_gpu": 58,
-    "temp_c": 65,
+    "util_gpu": 0,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 1209327,
@@ -27,16 +27,9 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2733139,
-      "owner": "chenlinwei",
-      "mem_mb": 4348,
-      "experiment": "other",
-      "cmd_short": "ft_patches_gpu.py"
      }
     ]
    },
@@ -77,10 +70,10 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 15253,
+    "mem_used_mb": 9466,
     "mem_total_mb": 40960,
-    "util_gpu": 100,
-    "temp_c": 65,
+    "util_gpu": 99,
+    "temp_c": 61,
     "procs": [
      {
       "pid": 225386,
@@ -90,16 +83,9 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2723561,
+      "pid": 2911875,
       "owner": "chenlinwei",
-      "mem_mb": 8932,
-      "experiment": "TBO-Norm",
-      "cmd_short": "h5_order_v11.py"
-     },
-     {
-      "pid": 2733568,
-      "owner": "chenlinwei",
-      "mem_mb": 5796,
+      "mem_mb": 8946,
       "experiment": "TBO-Norm",
       "cmd_short": "h5_order_v11.py"
      }
@@ -107,10 +93,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 97% 7/80GB 65C",
+   "GPU0 0% 67/80GB 42C",
    "GPU1 0% 33/40GB 41C",
    "GPU2 0% 67/80GB 42C",
-   "GPU3 100% 15/40GB 65C"
+   "GPU3 99% 9/40GB 61C"
   ],
   "source": 30,
   "producer": 30,
@@ -151,10 +137,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "checkpoint.pth"
     }
    ],
    "gpu1": [
@@ -173,10 +155,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "h5_order_v11.py"
     },
     {
      "who": "me",
