@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 13:44:17",
+  "ts": "2026-10-22 13:54:25",
   "gpus": [
    {
     "index": 0,
@@ -39,7 +39,7 @@
     "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 41,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 225385,
@@ -53,7 +53,7 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 2432,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 42,
@@ -61,16 +61,9 @@
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 670732,
-      "owner": "cenzihan",
-      "mem_mb": 1910,
-      "experiment": "other",
-      "cmd_short": "compare_v7_command_transition.py"
      }
     ]
    },
@@ -80,7 +73,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 40,
+    "temp_c": 39,
     "procs": [
      {
       "pid": 3519800,
@@ -94,9 +87,9 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 41C",
-   "GPU1 0% 33/40GB 41C",
-   "GPU2 0% 2/80GB 42C",
-   "GPU3 0% 34/40GB 40C"
+   "GPU1 0% 33/40GB 40C",
+   "GPU2 0% 67/80GB 42C",
+   "GPU3 0% 34/40GB 39C"
   ],
   "source": 30,
   "producer": 30,
@@ -149,10 +142,6 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "other",
-     "desc": "cenzihan python"
     }
    ],
    "gpu3": [
