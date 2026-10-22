@@ -71,6 +71,74 @@
       }, 2800));
     });
   });
+
+  const frameworkDialog = document.querySelector("#framework-dialog");
+  if (frameworkDialog && typeof frameworkDialog.showModal === "function") {
+    let figureTrigger = null;
+    let previousBodyOverflow = null;
+    let pointerStartedOutside = false;
+    const overflowProperties = ["overflow", "overflow-x", "overflow-y"];
+
+    function restoreFigureState() {
+      if (frameworkDialog.open || previousBodyOverflow === null) return;
+      document.body.style.removeProperty("overflow");
+      previousBodyOverflow.forEach(([property, value, priority]) => {
+        document.body.style.setProperty(property, value, priority);
+      });
+      previousBodyOverflow = null;
+      pointerStartedOutside = false;
+      const trigger = figureTrigger;
+      figureTrigger = null;
+      if (trigger?.isConnected) trigger.focus({preventScroll: true});
+    }
+
+    function closeFigure() {
+      if (frameworkDialog.open) frameworkDialog.close();
+      restoreFigureState();
+    }
+
+    function isOutsideFigure(event) {
+      const rect = frameworkDialog.getBoundingClientRect();
+      return event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+    }
+
+    document.querySelectorAll("[data-figure-open]").forEach(trigger => {
+      trigger.addEventListener("click", event => {
+        if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        if (frameworkDialog.open) {
+          event.preventDefault();
+          return;
+        }
+        restoreFigureState();
+        try { frameworkDialog.showModal(); }
+        catch { return; /* Keep the original image link usable if opening fails. */ }
+        event.preventDefault();
+        figureTrigger = trigger;
+        previousBodyOverflow = Array.from(document.body.style)
+          .filter(property => overflowProperties.includes(property))
+          .map(property => [property, document.body.style.getPropertyValue(property), document.body.style.getPropertyPriority(property)]);
+        document.body.style.setProperty("overflow", "hidden", "important");
+      });
+    });
+    frameworkDialog.querySelectorAll("[data-figure-close]").forEach(button => button.addEventListener("click", closeFigure));
+    frameworkDialog.addEventListener("cancel", event => {
+      event.preventDefault();
+      closeFigure();
+    });
+    frameworkDialog.addEventListener("close", restoreFigureState);
+    frameworkDialog.addEventListener("pointerdown", event => {
+      pointerStartedOutside = event.button === 0 && event.target === frameworkDialog && isOutsideFigure(event);
+    });
+    frameworkDialog.addEventListener("pointercancel", () => { pointerStartedOutside = false; });
+    frameworkDialog.addEventListener("click", event => {
+      // A backdrop click starts and ends outside the dialog's border box.
+      // Dialog padding and drags that begin on the figure stay inside.
+      const clickedOutside = pointerStartedOutside && event.target === frameworkDialog && isOutsideFigure(event);
+      pointerStartedOutside = false;
+      if (clickedOutside) closeFigure();
+    });
+  }
+
   const links = [...document.querySelectorAll(".main-nav a")];
   const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
   const header = document.querySelector(".site-header");
