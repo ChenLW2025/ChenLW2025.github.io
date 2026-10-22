@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 09:41:00",
+  "ts": "2026-10-22 09:51:09",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 4449,
     "mem_total_mb": 81920,
-    "util_gpu": 86,
-    "temp_c": 59,
+    "util_gpu": 82,
+    "temp_c": 62,
     "procs": [
      {
       "pid": 1209327,
@@ -32,7 +32,7 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 3266882,
+      "pid": 3346805,
       "owner": "chenlinwei",
       "mem_mb": 1162,
       "experiment": "TBO-Norm",
@@ -43,24 +43,17 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1790,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
-    "util_gpu": 81,
-    "temp_c": 59,
+    "util_gpu": 0,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 3303069,
-      "owner": "chenlinwei",
-      "mem_mb": 1162,
-      "experiment": "TBO-Norm",
-      "cmd_short": "robovad_cache_shard.py"
      }
     ]
    },
@@ -70,7 +63,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 43,
     "procs": [
      {
       "pid": 330781,
@@ -84,26 +77,26 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1186,
+    "mem_used_mb": 8970,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 52,
+    "util_gpu": 99,
+    "temp_c": 65,
     "procs": [
      {
-      "pid": 3303070,
+      "pid": 3391684,
       "owner": "chenlinwei",
-      "mem_mb": 1162,
+      "mem_mb": 8946,
       "experiment": "TBO-Norm",
-      "cmd_short": "robovad_cache_shard.py"
+      "cmd_short": "h5_order_v15.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 87% 4/80GB 60C",
-   "GPU1 86% 2/40GB 60C",
-   "GPU2 0% 67/80GB 42C",
-   "GPU3 0% 1/40GB 52C"
+   "GPU0 87% 4/80GB 63C",
+   "GPU1 0% 33/40GB 41C",
+   "GPU2 0% 67/80GB 43C",
+   "GPU3 98% 9/40GB 65C"
   ],
   "source": 30,
   "producer": 30,
@@ -154,10 +147,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "robovad_cache_shard.py --gpu 1 --nshards 3 --s"
     }
    ],
    "gpu2": [
@@ -169,7 +158,7 @@
    "gpu3": [
     {
      "who": "me",
-     "desc": "robovad_cache_shard.py --gpu 3 --nshards 3 --s"
+     "desc": "h5_order_v15.py"
     }
    ]
   },
@@ -331,7 +320,6 @@
     "tmux": [],
     "gpus": [
      0,
-     1,
      3
     ],
     "progress": {
