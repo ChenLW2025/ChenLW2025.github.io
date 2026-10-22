@@ -7,3 +7,5 @@ The layout follows [Zhang Chenglong's academic homepage](https://zhangchenglong-
 - `publications/arfh-framework.png`: cropped from Figure 1, page 3 of the owner's local manuscript, *Adaptive Role Flipping Based Robust Cross-Modal Hashing*. The figure is linked to the [publisher's page](https://doi.org/10.1007/978-981-92-2497-5_32).
 
 Sources accessed on 23 October 2026. The MIT template license does not apply to university emblems or the paper figure.
+
+The `.webp` alternatives for these three PNGs use lossless encoding at the original dimensions. Decoded color and alpha values are identical; the agricultural university emblem's XMP metadata is retained. The page uses `<picture>` to select WebP, while the original PNGs remain available as fallbacks and direct image links. The profile avatar remains JPEG.
