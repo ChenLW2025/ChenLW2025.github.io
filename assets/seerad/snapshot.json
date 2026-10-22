@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 08:30:03",
+  "ts": "2026-10-22 08:40:11",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68818,
+    "mem_used_mb": 11747,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 42,
+    "util_gpu": 90,
+    "temp_c": 66,
     "procs": [
      {
       "pid": 1209327,
@@ -27,16 +27,23 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 66026,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 3045952,
+      "owner": "chenlinwei",
+      "mem_mb": 8460,
+      "experiment": "other",
+      "cmd_short": "ft_patches_ms.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33394,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 41,
@@ -56,7 +63,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 43,
     "procs": [
      {
       "pid": 330781,
@@ -70,10 +77,10 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 9466,
+    "mem_used_mb": 1316,
     "mem_total_mb": 40960,
-    "util_gpu": 96,
-    "temp_c": 64,
+    "util_gpu": 0,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 225386,
@@ -83,20 +90,20 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 2985435,
+      "pid": 3042322,
       "owner": "chenlinwei",
-      "mem_mb": 8946,
+      "mem_mb": 796,
       "experiment": "TBO-Norm",
-      "cmd_short": "diag_sam2_centroid.py"
+      "cmd_short": "e2e_four_fast.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 42C",
+   "GPU0 90% 11/80GB 67C",
    "GPU1 0% 33/40GB 41C",
-   "GPU2 0% 67/80GB 42C",
-   "GPU3 96% 9/40GB 64C"
+   "GPU2 0% 67/80GB 43C",
+   "GPU3 0% 1/40GB 40C"
   ],
   "source": 30,
   "producer": 30,
@@ -137,6 +144,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "checkpoint.pth"
     }
    ],
    "gpu1": [
@@ -158,7 +169,7 @@
     },
     {
      "who": "me",
-     "desc": "diag_sam2_centroid.py"
+     "desc": "e2e_four_fast.py"
     }
    ]
   },
