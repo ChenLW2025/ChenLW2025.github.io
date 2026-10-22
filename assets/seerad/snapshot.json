@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 09:20:43",
+  "ts": "2026-10-22 09:30:51",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68818,
+    "mem_used_mb": 4449,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 49,
     "procs": [
      {
       "pid": 1209327,
@@ -27,19 +27,26 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 66026,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 3266882,
+      "owner": "chenlinwei",
+      "mem_mb": 1162,
+      "experiment": "TBO-Norm",
+      "cmd_short": "robovad_bench.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33399,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 225385,
@@ -56,7 +63,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 43,
+    "temp_c": 42,
     "procs": [
      {
       "pid": 330781,
@@ -86,9 +93,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 42C",
-   "GPU1 0% 33/40GB 42C",
-   "GPU2 0% 67/80GB 43C",
+   "GPU0 0% 4/80GB 49C",
+   "GPU1 0% 33/40GB 41C",
+   "GPU2 0% 67/80GB 42C",
    "GPU3 0% 34/40GB 40C"
   ],
   "source": 30,
@@ -130,6 +137,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "robovad_bench.py"
     }
    ],
    "gpu1": [
@@ -305,9 +316,11 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "idle",
+    "state": "running",
     "tmux": [],
-    "gpus": [],
+    "gpus": [
+     0
+    ],
     "progress": {
      "done": 1800,
      "total": 1803,
