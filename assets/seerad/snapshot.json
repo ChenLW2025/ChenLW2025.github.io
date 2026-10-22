@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 08:40:11",
+  "ts": "2026-10-22 08:50:19",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 11747,
+    "mem_used_mb": 9417,
     "mem_total_mb": 81920,
-    "util_gpu": 90,
-    "temp_c": 66,
+    "util_gpu": 100,
+    "temp_c": 71,
     "procs": [
      {
       "pid": 1209327,
@@ -32,9 +32,9 @@
       "cmd_short": "gpu_hold_elastic.py"
      },
      {
-      "pid": 3045952,
+      "pid": 3082272,
       "owner": "chenlinwei",
-      "mem_mb": 8460,
+      "mem_mb": 6130,
       "experiment": "other",
       "cmd_short": "ft_patches_ms.py"
      }
@@ -77,7 +77,7 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1316,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 40,
@@ -85,25 +85,18 @@
      {
       "pid": 225386,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 3042322,
-      "owner": "chenlinwei",
-      "mem_mb": 796,
-      "experiment": "TBO-Norm",
-      "cmd_short": "e2e_four_fast.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 90% 11/80GB 67C",
+   "GPU0 100% 9/80GB 70C",
    "GPU1 0% 33/40GB 41C",
    "GPU2 0% 67/80GB 43C",
-   "GPU3 0% 1/40GB 40C"
+   "GPU3 0% 34/40GB 40C"
   ],
   "source": 30,
   "producer": 30,
@@ -147,7 +140,7 @@
     },
     {
      "who": "me",
-     "desc": "checkpoint.pth"
+     "desc": "checkpoint0099.pth"
     }
    ],
    "gpu1": [
@@ -166,10 +159,6 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "e2e_four_fast.py"
     }
    ]
   },
@@ -325,11 +314,9 @@
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
    "TBO-Norm": {
-    "state": "running",
+    "state": "idle",
     "tmux": [],
-    "gpus": [
-     3
-    ],
+    "gpus": [],
     "progress": {
      "done": 1800,
      "total": 1803,
