@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 13:23:59",
+  "ts": "2026-10-22 13:34:09",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 7843,
+    "mem_used_mb": 68829,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 43,
+    "temp_c": 41,
     "procs": [
      {
       "pid": 1209327,
@@ -27,47 +27,33 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 66026,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 513883,
-      "owner": "chenlinwei",
-      "mem_mb": 4556,
-      "experiment": "other",
-      "cmd_short": "python"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 5193,
+    "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 42,
+    "temp_c": 40,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 572358,
-      "owner": "chenlinwei",
-      "mem_mb": 4556,
-      "experiment": "other",
-      "cmd_short": "diag_as_dist.py"
      }
     ]
    },
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 3051,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 42,
@@ -75,9 +61,23 @@
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 615760,
+      "owner": "cenzihan",
+      "mem_mb": 593,
+      "experiment": "other",
+      "cmd_short": "physx_feasibility.py"
+     },
+     {
+      "pid": 616679,
+      "owner": "cenzihan",
+      "mem_mb": 1398,
+      "experiment": "other",
+      "cmd_short": "compare_v7_command_transition.py"
      }
     ]
    },
@@ -100,9 +100,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 8/80GB 43C",
-   "GPU1 0% 5/40GB 43C",
-   "GPU2 0% 67/80GB 42C",
+   "GPU0 0% 67/80GB 41C",
+   "GPU1 0% 33/40GB 40C",
+   "GPU2 0% 2/80GB 42C",
    "GPU3 0% 34/40GB 40C"
   ],
   "source": 30,
@@ -144,26 +144,26 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python -"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python diag_as_dist.py"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "other",
+     "desc": "cenzihan python"
+    },
+    {
+     "who": "other",
+     "desc": "cenzihan python"
     }
    ],
    "gpu3": [
