@@ -1,13 +1,13 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 22:31:48",
+  "ts": "2026-10-22 22:41:57",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 69000,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 3,
     "temp_c": 49,
     "procs": [
      {
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 48,
@@ -55,7 +55,7 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 5851,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 21,
     "temp_c": 53,
     "procs": [
      {
@@ -73,37 +73,44 @@
       "cmd_short": "v10_sac_base.py"
      },
      {
-      "pid": 2446099,
+      "pid": 2460220,
       "owner": "chenlinwei",
       "mem_mb": 4274,
       "experiment": "other",
-      "cmd_short": "as_gdino_eval3.py --cat=juice_bottle"
+      "cmd_short": "as_gdino_eval3.py --cat=splicing_connectors"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 5076,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 47,
+    "temp_c": 55,
     "procs": [
      {
       "pid": 2346933,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 2461079,
+      "owner": "chenlinwei",
+      "mem_mb": 4556,
+      "experiment": "other",
+      "cmd_short": "as_gdino_eval3.py --cat=screw_bag"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 49C",
-   "GPU1 0% 33/40GB 48C",
-   "GPU2 0% 6/80GB 52C",
-   "GPU3 0% 34/40GB 47C"
+   "GPU0 3% 67/80GB 49C",
+   "GPU1 19% 33/40GB 48C",
+   "GPU2 19% 6/80GB 53C",
+   "GPU3 19% 5/40GB 59C"
   ],
   "source": 30,
   "producer": 30,
@@ -163,13 +170,17 @@
     },
     {
      "who": "me",
-     "desc": "python as_gdino_eval3.py --cat juice_bottle"
+     "desc": "python as_gdino_eval3.py --cat splicing_connec"
     }
    ],
    "gpu3": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python as_gdino_eval3.py --cat screw_bag"
     }
    ]
   },
