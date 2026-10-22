@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 09:10:35",
+  "ts": "2026-10-22 09:20:43",
   "gpus": [
    {
     "index": 0,
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33394,
+    "mem_used_mb": 33399,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 42,
@@ -261,44 +261,46 @@
     "log_tail": "Loading weights:   0%|          | 0/1206 [00:00<?, ?it/s]\nLoading weights: 100%|██████████| 1206/1206 [00:00<00:00, 23244.62it/s]\n[50/701] 2.69s/img\n[100/701] 2.67s/img\n[150/701] 2.66s/img\n[200/701] 2.65s/img\n[250/701] 2.66s/img\n[300/701] 2.66s/img\n[350/701] 2.66s/img\n[400/701] 2.66s/img\n[450/701] 2.66s/img\n[500/701] 2.66s/img\n[550/701] 2.67s/img\n[600/701] 2.66s/img\n[650/701] 2.66s/img\n[700/701] 2.66s/img\nDONE screw_bag patches_noft",
     "updated_at": "2026-10-22 03:01:07",
     "conclusion": {
-     "verdict": "PENDING",
-     "headline": "方案 v3.1 经三轮红队评审锁定（录用概率 35–45%），D5 门禁前不判最终结论；当前为单类单 episode 阶梯数字，非 macro 杀稿口径。",
+     "verdict": "KILL",
+     "headline": "MCA v3.1 正式 KILL：class-agnostic 4-shot LOCO 上被数据证伪，4 类 macro fused≈0.62，离目标 80.8 差约 19pp；外观与几何在均匀外观零件类双零信号。停止一切 GO 进行中表述。",
      "points": [
-      "①忠实复现（No-FT,z_deep,A_L-only）breakfast_box ep01=0.709，≈ObjectCore Only M_L 锚点 70.6，核心匹配逻辑方向正确",
-      "②混池=0.706，弱检测器阶段 ①≈② 属预期；多模式 episode 上必须 ③>②",
-      "No-FT 10ep：breakfast_box fused 0.7356±0.0912；screw_bag fused 仅 0.5279±0.0315（跨类差大，单类非 macro）",
-      "FT ep01 后 v2 10ep（2026-10-22 01:34–01:38 出）：breakfast_box fused 0.8445±0.0331（A_L 0.6755±0.0345），较 No-FT +10.9pp、std 收窄约 3 倍；但 screw_bag v2 fused 仅 0.5022±0.0305（No-FT 0.5279，FT 无增益反略降）→ bb/sb 跨类差约 34pp，D5 跨类一致性亮红灯；juice_bottle v2 重测中。z_ms 1792 特征 0.680",
-      "D5 五项门禁：多模式占比≥25%、M=1 上③−①≈0、③>①>②、LOSO存活对≥10%、<5s/episode"
+      "判定：MCA v3.1 在 class-agnostic 4-shot LOCO 上被数据证伪，正式 KILL（2026-10-22，闭环简报第 7 轮）",
+      "四行（FT 槽位，10ep）：screw_bag ①0.518/②0.471/③0.480（③M1=0.471，③R0=0.480）；pushpins ①0.629/②0.578/③0.576（③M1=0.578，③R0=0.578）；③−① 为 −3.8/−5.3pp，R≈0，去模式后 ③=②",
+      "FT A_L（10ep）：bb 0.891（峰 0.945）/sb 0.518/pushpins 0.629/sc 0.569，4 类 macro=0.652",
+      "正确多尺度 A_S（10ep）：bb 0.825/sb 0.449/pushpins 0.442/sc 0.529；fused macro≈0.62，离目标 80.8 差约 19pp",
+      "根因：均匀外观零件类（螺丝/图钉/连接器）外观与几何双 0 信号——异常零件 cos 0.105/0.051 比正常 0.265/0.106 还近；质心位移 AUROC 0.44–0.57；几何关系 AUROC 0.48–0.52；d_M 经原文确认是 mask 面积差、非可见移位；MCA 假设的'零件散在多图'错误占比≈0",
+      "外部：官方代码 github.com/MaticFuc/ObjectCore 不可得",
+      "下一步（待用户决策）：是否邮件作者核对口径；是否放开几何/关系约束另起路线；论文主笔加'实验结果与中止说明'小节如实写负结果"
      ],
      "killline": {
       "loco_target": 80.8,
       "cad_target": 96.6,
-      "current_loco": 0.8445,
+      "current_loco": 0.62,
       "current_cad": null
      },
      "four_rows": [
       {
        "row": "1",
-       "label": "最近单图·No-FT单类",
-       "value": 0.709
+       "label": "①最近单图·sb FT 10ep",
+       "value": 0.518
       },
       {
        "row": "2",
-       "label": "混池·No-FT单类",
-       "value": 0.706
+       "label": "②混池·sb FT 10ep",
+       "value": 0.471
       },
       {
        "row": "3",
-       "label": "MCA·bb FT-v2 10ep fused均值(单类非macro)",
-       "value": 0.8445
+       "label": "③MCA·sb FT 10ep",
+       "value": 0.48
       },
       {
        "row": "4",
-       "label": "编辑",
+       "label": "④编辑",
        "value": null
       }
      ],
-     "updated_at": "2026-10-22 01:51"
+     "updated_at": "2026-10-22 09:16"
     },
     "evidence": "dir=pilot_4shot_loco; procs=cache_build*.py/cache_build_ft.py/ft_gdino.py/ft_scan.py; tmux=pilot_*; log keys=[N/total] ETA / ep N loss"
    },
