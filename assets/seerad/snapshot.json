@@ -1,13 +1,13 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 22:52:08",
+  "ts": "2026-10-22 23:02:18",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 69000,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
+    "util_gpu": 4,
     "temp_c": 49,
     "procs": [
      {
@@ -36,7 +36,7 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33390,
+    "mem_used_mb": 33394,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 48,
@@ -53,10 +53,10 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 5851,
+    "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 0,
-    "temp_c": 52,
+    "util_gpu": 18,
+    "temp_c": 50,
     "procs": [
      {
       "pid": 330781,
@@ -71,13 +71,6 @@
       "mem_mb": 1050,
       "experiment": "other",
       "cmd_short": "v10_sac_base.py"
-     },
-     {
-      "pid": 2460220,
-      "owner": "chenlinwei",
-      "mem_mb": 4274,
-      "experiment": "other",
-      "cmd_short": "as_gdino_eval3.py --cat=splicing_connectors"
      }
     ]
    },
@@ -100,9 +93,9 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 49C",
+   "GPU0 5% 67/80GB 49C",
    "GPU1 0% 33/40GB 48C",
-   "GPU2 0% 6/80GB 52C",
+   "GPU2 21% 2/80GB 50C",
    "GPU3 0% 34/40GB 47C"
   ],
   "source": 30,
@@ -160,10 +153,6 @@
     {
      "who": "other",
      "desc": "metadrivepj python"
-    },
-    {
-     "who": "me",
-     "desc": "python as_gdino_eval3.py --cat splicing_connec"
     }
    ],
    "gpu3": [
