@@ -102,6 +102,8 @@ main:focus-visible { outline: none; }
 .experience-entry:first-child::after { top: 50%; }
 .experience-entry:last-child::after { bottom: 50%; }
 .experience-logo { overflow: hidden; }
+.experience-logo-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: .2em; }
+.experience-logo-item { display: block; width: 100%; aspect-ratio: 1; overflow: hidden; }
 .experience-logo-everwise img { transform: scale(1.25); }
 .experience-logo-bytedance img { padding: .35em; }
 .experience-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .15rem 1rem; margin-bottom: .2rem; }
