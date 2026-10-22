@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-22 17:17:16",
+  "ts": "2026-10-22 17:27:24",
   "gpus": [
    {
     "index": 0,
@@ -39,7 +39,7 @@
     "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 43,
+    "temp_c": 44,
     "procs": [
      {
       "pid": 225385,
@@ -53,7 +53,7 @@
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 51938,
+    "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 44,
@@ -61,16 +61,9 @@
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 68074,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
-     },
-     {
-      "pid": 1225003,
-      "owner": "sunyusheng",
-      "mem_mb": 51338,
-      "experiment": "other",
-      "cmd_short": "strata"
      }
     ]
    },
@@ -94,8 +87,8 @@
   ],
   "gpus_text": [
    "GPU0 0% 67/80GB 44C",
-   "GPU1 0% 33/40GB 43C",
-   "GPU2 0% 51/80GB 44C",
+   "GPU1 0% 33/40GB 44C",
+   "GPU2 0% 67/80GB 44C",
    "GPU3 0% 34/40GB 42C"
   ],
   "source": 30,
@@ -149,10 +142,6 @@
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
-    },
-    {
-     "who": "other",
-     "desc": "strata"
     }
    ],
    "gpu3": [
