@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-23 00:13:30",
+  "ts": "2026-10-23 00:23:41",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 12763,
+    "mem_used_mb": 10706,
     "mem_total_mb": 81920,
-    "util_gpu": 99,
-    "temp_c": 73,
+    "util_gpu": 35,
+    "temp_c": 54,
     "procs": [
      {
       "pid": 1209327,
@@ -37,23 +37,16 @@
       "mem_mb": 6212,
       "experiment": "other",
       "cmd_short": "objectcore_infer.py"
-     },
-     {
-      "pid": 2549878,
-      "owner": "chenlinwei",
-      "mem_mb": 2052,
-      "experiment": "other",
-      "cmd_short": "objectcore_eval_gpu.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 6849,
+    "mem_used_mb": 26887,
     "mem_total_mb": 40960,
-    "util_gpu": 0,
-    "temp_c": 51,
+    "util_gpu": 3,
+    "temp_c": 53,
     "procs": [
      {
       "pid": 225385,
@@ -68,6 +61,13 @@
       "mem_mb": 6212,
       "experiment": "other",
       "cmd_short": "objectcore_infer.py"
+     },
+     {
+      "pid": 2570756,
+      "owner": "chenlinwei",
+      "mem_mb": 20042,
+      "experiment": "other",
+      "cmd_short": "objectcore_eval_gpu.py"
      }
     ]
    },
@@ -76,7 +76,7 @@
     "name": "NVIDIA A100-SXM4-80GB",
     "mem_used_mb": 1572,
     "mem_total_mb": 81920,
-    "util_gpu": 29,
+    "util_gpu": 20,
     "temp_c": 51,
     "procs": [
      {
@@ -98,7 +98,7 @@
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 34306,
+    "mem_used_mb": 40282,
     "mem_total_mb": 40960,
     "util_gpu": 0,
     "temp_c": 47,
@@ -106,18 +106,25 @@
      {
       "pid": 2346933,
       "owner": "chenlinwei",
-      "mem_mb": 34282,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
+     },
+     {
+      "pid": 2566447,
+      "owner": "chenlinwei",
+      "mem_mb": 39762,
+      "experiment": "other",
+      "cmd_short": "objectcore_eval_gpu.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 100% 12/80GB 74C",
-   "GPU1 0% 7/40GB 51C",
-   "GPU2 17% 2/80GB 50C",
-   "GPU3 0% 34/40GB 47C"
+   "GPU0 3% 10/80GB 53C",
+   "GPU1 0% 26/40GB 53C",
+   "GPU2 22% 2/80GB 51C",
+   "GPU3 0% 39/40GB 47C"
   ],
   "source": 30,
   "producer": 30,
@@ -162,10 +169,6 @@
     {
      "who": "me",
      "desc": "checkpoint.pth 0"
-    },
-    {
-     "who": "me",
-     "desc": "python objectcore_eval_gpu.py"
     }
    ],
    "gpu1": [
@@ -176,6 +179,10 @@
     {
      "who": "me",
      "desc": "checkpoint.pth 1"
+    },
+    {
+     "who": "me",
+     "desc": "python objectcore_eval_gpu.py"
     }
    ],
    "gpu2": [
@@ -192,6 +199,10 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
+    },
+    {
+     "who": "me",
+     "desc": "python objectcore_eval_gpu.py"
     }
    ]
   },
