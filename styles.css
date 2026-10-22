@@ -68,8 +68,11 @@ main:focus-visible { outline: none; }
 .page-content { min-width: 0; }
 .page-content section { min-width: 0; }
 .page-content > section + section { margin-top: 1.75rem; }
-.about-section { padding-top: .15rem; }
-.about-section p { max-width: 82ch; margin-bottom: .75rem; }
+.about-section { display: flow-root; padding-top: .15rem; }
+.profile-portrait { float: right; width: 124px; aspect-ratio: 4 / 5; margin: 0 0 .75rem 1.4rem; overflow: hidden; }
+.profile-portrait picture { display: block; width: 100%; height: 100%; }
+.profile-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.15); transform-origin: center bottom; }
+.about-section p { max-width: 68ch; margin-bottom: .75rem; }
 .about-section p:last-child { margin-bottom: 0; }
 .intro-lead { color: var(--heading); font-size: 1.12rem; line-height: 1.55; }
 .section-title { margin: 0 0 .8rem; padding-bottom: .4em; border-bottom: 1px solid var(--line); color: var(--heading); font-size: 1.4rem; letter-spacing: -.012em; }
@@ -159,17 +162,23 @@ main:focus-visible { outline: none; }
   .author-urls-mobile { display: none; }
   .page-content { padding-left: 5.1020408163%; }
 }
-@media (min-width: 80em) { .masthead-inner, .site-layout { max-width: 1280px; } }
+@media (min-width: 80em) {
+  .masthead-inner, .site-layout { max-width: 1280px; }
+  .profile-portrait { width: 144px; }
+}
 @media (max-width: 560px) {
   .education-list { --logo: 3.5em; --gap: .8em; }
   .site-layout { margin-top: 1.25rem; }
   .sidebar { margin-bottom: 1.5rem; }
+  .profile-portrait { width: 104px; margin-left: 14px; }
+  .about-section p + p { clear: both; }
   .figure-dialog { padding: .85rem; }
   .figure-dialog-header { align-items: flex-start; flex-wrap: wrap; }
 }
 @media (max-width: 360px) {
   .author-name { font-size: 1.1em; }
   .author-bio { font-size: .85em; }
+  .profile-portrait { width: 88px; margin-left: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 @media print {
@@ -189,6 +198,7 @@ main:focus-visible { outline: none; }
   .author-email { font-size: inherit; }
   .author-urls a[href^="https://github.com/"]::after { content: ": " attr(href); overflow-wrap: anywhere; }
   .page-content { padding: 0; }
+  .profile-portrait { width: 28mm; margin: 0 0 3mm 5mm; }
   .section-title { font-size: 14pt; }
   .selected-paper-feature { grid-template-columns: minmax(0,.36fr) minmax(0,.64fr); gap: 20px; }
   .selected-paper-feature .pub-content { grid-column: 2; grid-row: 1; }
