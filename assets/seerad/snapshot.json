@@ -1,6 +1,6 @@
 {
  "snapshot": {
-  "ts": "2026-10-25 01:26:00",
+  "ts": "2026-10-25 01:36:07",
   "gpus": [
    {
     "index": 0,
@@ -8,7 +8,7 @@
     "mem_used_mb": 68818,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 45,
+    "temp_c": 47,
     "procs": [
      {
       "pid": 1209327,
@@ -36,10 +36,10 @@
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 33392,
+    "mem_used_mb": 33390,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 45,
+    "temp_c": 46,
     "procs": [
      {
       "pid": 225385,
@@ -56,7 +56,7 @@
     "mem_used_mb": 68100,
     "mem_total_mb": 81920,
     "util_gpu": 0,
-    "temp_c": 46,
+    "temp_c": 48,
     "procs": [
      {
       "pid": 330781,
@@ -73,7 +73,7 @@
     "mem_used_mb": 34306,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 44,
+    "temp_c": 45,
     "procs": [
      {
       "pid": 2346933,
@@ -86,10 +86,10 @@
    }
   ],
   "gpus_text": [
-   "GPU0 0% 67/80GB 45C",
-   "GPU1 0% 33/40GB 45C",
-   "GPU2 0% 67/80GB 46C",
-   "GPU3 0% 34/40GB 44C"
+   "GPU0 0% 67/80GB 47C",
+   "GPU1 0% 33/40GB 46C",
+   "GPU2 0% 67/80GB 48C",
+   "GPU3 0% 34/40GB 45C"
   ],
   "source": 30,
   "producer": 30,
