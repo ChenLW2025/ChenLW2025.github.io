@@ -54,6 +54,7 @@ b{font-weight:600}
   background:var(--surface-2);color:var(--text-2)}
 .conn .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
 .conn.ok{color:var(--ok);border-color:var(--ok-bd);background:var(--ok-bg)}
+.conn.stale{color:var(--warn);border-color:var(--warn-bd);background:var(--warn-bg)}
 .conn.bad{color:var(--danger);border-color:var(--danger-bd);background:var(--danger-bg)}
 .conn.loading{color:var(--warn)}
 
@@ -368,8 +369,14 @@ var PAPER_META = {ver:'—', updated:'—', data:'—'};
 var POD_BADGE = {mca:null, tbo:null}; /* 最新期日期 MM-DD，失败为 null 不显示角标 */
 function renderHeader(d, mode){
   var conn;
+  var ts = String(d.ts||'');
+  var snapshotTime = Date.parse(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(ts) ? ts.replace(' ','T')+'+08:00' : ts);
+  var isDemo = /[?&]demo=/.test(location.search);
+  var stale = !isDemo && (!isFinite(snapshotTime) || Date.now()-snapshotTime>20*60*1000);
   if(mode==='empty') conn = '<span class="conn bad"><span class="dot"></span>无数据</span>';
-  else conn = '<span class="conn ok"><span class="dot"></span>已连接</span>';
+  else if(mode==='skeleton') conn = '<span class="conn loading"><span class="dot"></span>加载中</span>';
+  else if(stale) conn = '<span class="conn stale" title="快照已超过 20 分钟未更新，请核对服务器发布状态"><span class="dot"></span>数据已过期</span>';
+  else conn = '<span class="conn ok"><span class="dot"></span>数据正常</span>';
   var p = PAPER_META;
   var mcaNb = POD_BADGE.mca ? '<span class="nb">'+esc(POD_BADGE.mca)+'</span><i class="unread"></i>' : '';
   var tboNb = POD_BADGE.tbo ? '<span class="nb">'+esc(POD_BADGE.tbo)+'</span>' : '';
