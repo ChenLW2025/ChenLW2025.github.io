@@ -1,6 +1,6 @@
 # Linwei Chen
 
-A buildless, English-language research homepage for https://chenlw2025.github.io/.
+A buildless, English-language research homepage for https://linweichen-ai.github.io/.
 
 ## Preview
 
