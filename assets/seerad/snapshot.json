@@ -1,14 +1,14 @@
 {
  "snapshot": {
-  "ts": "2026-10-23 02:46:18",
+  "ts": "2026-10-24 17:58:46",
   "gpus": [
    {
     "index": 0,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 5305,
+    "mem_used_mb": 69000,
     "mem_total_mb": 81920,
-    "util_gpu": 100,
-    "temp_c": 68,
+    "util_gpu": 0,
+    "temp_c": 47,
     "procs": [
      {
       "pid": 1209327,
@@ -27,47 +27,33 @@
      {
       "pid": 2083398,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 65002,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2778416,
-      "owner": "chenlinwei",
-      "mem_mb": 2018,
-      "experiment": "other",
-      "cmd_short": "objectcore_eval_gpu_lazy.py"
      }
     ]
    },
    {
     "index": 1,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 1122,
+    "mem_used_mb": 33400,
     "mem_total_mb": 40960,
     "util_gpu": 0,
-    "temp_c": 50,
+    "temp_c": 46,
     "procs": [
      {
       "pid": 225385,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 33258,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2786969,
-      "owner": "chenlinwei",
-      "mem_mb": 494,
-      "experiment": "other",
-      "cmd_short": "objectcore_eval_gpu_lazy.py"
      }
     ]
    },
    {
     "index": 2,
     "name": "NVIDIA A100-SXM4-80GB",
-    "mem_used_mb": 68100,
+    "mem_used_mb": 1572,
     "mem_total_mb": 81920,
     "util_gpu": 0,
     "temp_c": 49,
@@ -75,42 +61,42 @@
      {
       "pid": 330781,
       "owner": "chenlinwei",
-      "mem_mb": 68074,
+      "mem_mb": 490,
       "experiment": "other",
       "cmd_short": "gpu_hold_courteous.py"
+     },
+     {
+      "pid": 909802,
+      "owner": "metadrivepj",
+      "mem_mb": 1050,
+      "experiment": "other",
+      "cmd_short": "v10_sac_cw200.py"
      }
     ]
    },
    {
     "index": 3,
     "name": "NVIDIA A100-PCIE-40GB",
-    "mem_used_mb": 2522,
+    "mem_used_mb": 34306,
     "mem_total_mb": 40960,
-    "util_gpu": 43,
-    "temp_c": 68,
+    "util_gpu": 0,
+    "temp_c": 45,
     "procs": [
      {
       "pid": 2346933,
       "owner": "chenlinwei",
-      "mem_mb": 490,
+      "mem_mb": 34282,
       "experiment": "other",
       "cmd_short": "gpu_hold_elastic.py"
-     },
-     {
-      "pid": 2754330,
-      "owner": "chenlinwei",
-      "mem_mb": 2002,
-      "experiment": "other",
-      "cmd_short": "objectcore_eval_gpu_lazy.py"
      }
     ]
    }
   ],
   "gpus_text": [
-   "GPU0 65% 5/80GB 68C",
-   "GPU1 0% 1/40GB 50C",
-   "GPU2 0% 67/80GB 49C",
-   "GPU3 43% 2/40GB 68C"
+   "GPU0 0% 67/80GB 47C",
+   "GPU1 0% 33/40GB 46C",
+   "GPU2 0% 2/80GB 49C",
+   "GPU3 0% 34/40GB 45C"
   ],
   "source": 30,
   "producer": 30,
@@ -151,36 +137,28 @@
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python objectcore_eval_gpu_lazy.py"
     }
    ],
    "gpu1": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python objectcore_eval_gpu_lazy.py"
     }
    ],
    "gpu2": [
     {
      "who": "me",
      "desc": "gpu_hold_courteous.py 2 0.85 5"
+    },
+    {
+     "who": "other",
+     "desc": "metadrivepj python"
     }
    ],
    "gpu3": [
     {
      "who": "hold",
      "desc": "elastic hold (yields on real job)"
-    },
-    {
-     "who": "me",
-     "desc": "python objectcore_eval_gpu_lazy.py"
     }
    ]
   },
